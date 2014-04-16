@@ -69,14 +69,16 @@ int commando(char* commando)
 
 	//find space or \n
 	int i=0;
-	for(i = 0;befehl[i] == '\0';i++)
-	{
-		if( commando[i] == ' ')
-		break;
-	}
+	i = memchr(commando,'X',strlen(commando));
+
+	//for(i = 0;befehl[i] == '\0';i++)
+	//{
+	//	if( commando[i] == ' ')
+	//	break;
+	//}
 
 	memcpy(befehl, commando, i);
-
+	memset( (befehl + sizeof(char)* (i+1)), '/0', sizeof(befehl) );
 
 	if (strcmp(befehl, "exit") == 0)
 	{
