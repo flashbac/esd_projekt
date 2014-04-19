@@ -24,4 +24,10 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>This_Projekt</name>
+			<value>file:/home/rensky/git/esd_projekt/tmp/console/src</value>
+		</variable>
+	</variableList>
 </projectDescription>

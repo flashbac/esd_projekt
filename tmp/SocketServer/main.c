@@ -7,6 +7,7 @@
 #include <errno.h>
 #include <string.h>
 #include <sys/types.h>
+#include "commando.h"
 
 int main(void)
 {
@@ -34,67 +35,44 @@ int main(void)
   serv_addr.sin_port = htons(5000);
 
 
-  bind(sockfd, (struct sockaddr*)&serv_addr,sizeof(serv_addr));
+   	bind(sockfd, (struct sockaddr*)&serv_addr,sizeof(serv_addr));
 
-  if(listen(sockfd, 10) == -1){
-      printf("Failed to listen\n");
-      return -1;
-  }
-
-commando("exit");
-
-  i=0;
-  while(1)
-    {
-
-      connfd = accept(sockfd, (struct sockaddr*)NULL ,NULL); // accept awaiting request
-      sprintf(sendBuff,"Message from Server Nr.: %d", i);
-      i++;
-      //strcpy(sendBuff, "Message from server");
-      write(connfd, sendBuff, strlen(sendBuff));
-
-
-
-      close(connfd);
-      sleep(1);
+    if(listen(sockfd, 10) == -1){
+    	printf("Failed to listen\n");
+    	return -1;
     }
 
+    i=0;
+  	int zustand = 0;
 
-  return 0;
-}
+    while(1)
+    {
 
-int commando(char* commando)
-{
-	char* befehl;
+    	connfd = accept(sockfd, (struct sockaddr*)NULL ,NULL); // accept awaiting request
+    	sprintf(sendBuff,"Connect to Server.\n");
 
-	//find space or \n
-	int i=0;
-	i = memchr(commando,'X',strlen(commando));
 
-	//for(i = 0;befehl[i] == '\0';i++)
-	//{
-	//	if( commando[i] == ' ')
-	//	break;
-	//}
+    	//strcpy(sendBuff, "Message from server");
+    	write(connfd, sendBuff, strlen(sendBuff));
 
-	memcpy(befehl, commando, i);
-	memset( (befehl + sizeof(char)* (i+1)), '/0', sizeof(befehl) );
+    	int n;
+    	char recvBuff[200];
+    	while ( (n = read(sockfd, recvBuff, sizeof(recvBuff)-1)) > 0)
+    	{
+    	        recvBuff[n] = 0;
+    	        if(fputs(recvBuff, stdout) == EOF)
+    	        {
+    	            printf("\n Error : Fputs error\n");
+    	        }
+    	}
 
-	if (strcmp(befehl, "exit") == 0)
-	{
-	  printf("exit by client");
-	  //return -1;
-	}
-	else if (strcmp(befehl, "print") == 0)
-	{
-		printf("%s",commando);
-		return -1;
-	}
-	/* more else if clauses */
-	else /* default: */
-	{
-		printf("%s","Befehl nicht gefunden.");
-	}
+    	while (zustand != -1)
+    	{
+    		zustand = commando(recvBuff);
+    	}
 
-	return -1;
+    	close(connfd);
+    	sleep(1);
+    }
+    return 0;
 }
