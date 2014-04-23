@@ -7,19 +7,22 @@
 //============================================================================
 
 #include <iostream>
+#include <stdio.h>
 
 
 using namespace std;
 
 int main() {
 
+	char input[80+1];
 	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
 
- float hoehe, breite ;
- cout << "Hoehe und Breite eingeben: " ;
- cin >> hoehe >> breite ;
- cout << "Flaeche des Rechtecks: "
- << hoehe * breite << endl ;
+	printf("# ");
+	scanf("%s",input);
+	fgets( input, 80, stdin );
+
+	cout << input << endl ;
+
 
 
 
