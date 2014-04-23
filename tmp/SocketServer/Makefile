@@ -1,8 +1,8 @@
 CXXFLAGS =	-O2 -g -Wall -fmessage-length=0
 
-OBJS =		main.o
+OBJS =		main.o commando.o
 
-LIBS =
+LIBS =		commando.c
 
 TARGET =	SocketServer
 

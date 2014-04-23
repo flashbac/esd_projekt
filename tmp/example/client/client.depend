@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1397749171 source:/home/rensky/git/esd_projekt/tmp/example/client/main.cpp
+	<sys/socket.h>
+	<sys/types.h>
+	<netinet/in.h>
+	<netdb.h>
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<unistd.h>
+	<errno.h>
+	<arpa/inet.h>
+

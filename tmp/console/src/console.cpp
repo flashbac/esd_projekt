@@ -8,23 +8,29 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "commando.h"
 
 
-using namespace std;
 
 int main() {
 
+	//cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
+
 	char input[80+1];
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
+	int zustand;
+	while (zustand != -1)
+	{
+		printf("# ");
 
-	printf("# ");
-	scanf("%s",input);
-	fgets( input, 80, stdin );
+ 		fgets(input, 80, stdin);
 
-	cout << input << endl ;
+ 		printf("%s", input );
 
+ 		zustand = commando(input);
+	}
+ 	printf("\nProgramm Ende\n");
+ 	return 0;
 
-
-
-	return 0;
 }
