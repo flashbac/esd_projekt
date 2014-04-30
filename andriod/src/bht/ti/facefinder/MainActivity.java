@@ -4,15 +4,20 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.os.Build;
 
 public class MainActivity extends Activity {
 
+	public KontrollConnector verbindung;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -22,7 +27,36 @@ public class MainActivity extends Activity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		Log.i("Programm", "Start Programm");
+		btnConnectSetup();
 	}
+
+
+	private void btnConnectSetup() {
+		// TODO Auto-generated method stub
+		
+		Button b = (Button)findViewById(R.id.btnConnect);
+		
+		b.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+				EditText etip = (EditText) findViewById(R.id.editTextIpAddress);
+				EditText etport = (EditText) findViewById(R.id.editTextPort);
+				String ip = etip.getText().toString();
+				String port = etport.getText().toString();
+				
+				Log.i("Connect Btn", "IP:" + ip + " Port:" + port);
+				
+				verbindung = new KontrollConnector(ip, Integer.parseInt(port));
+				
+			}
+		});
+		
+	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
