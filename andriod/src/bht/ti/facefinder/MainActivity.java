@@ -29,7 +29,8 @@ public class MainActivity extends Activity {
 		}
 		Log.i("Programm", "Start Programm");
 		btnConnectSetup();
-		
+		verbindung = new KontrollConnector("192.168.1.40", 5000);
+				
 	}
 
 
@@ -37,6 +38,10 @@ public class MainActivity extends Activity {
 		// TODO Auto-generated method stub
 		
 		Button b = (Button)findViewById(R.id.btnConnect);
+		EditText etip = (EditText) findViewById(R.id.editTextIpAddress);
+		EditText etport = (EditText) findViewById(R.id.editTextPort);
+		etip.getText().append("192.168.1.40");
+		etport.getText().append("5000");
 		
 		b.setOnClickListener(new View.OnClickListener() {
 			
@@ -51,7 +56,7 @@ public class MainActivity extends Activity {
 				
 				Log.i("BtnConnect", "IP:" + ip + " Port:" + port);
 				Log.i("MY", "IP:" + ip + " Port:" + port);
-				//verbindung = new KontrollConnector(ip, Integer.parseInt(port));
+				verbindung = new KontrollConnector(ip, Integer.parseInt(port));
 				setContentView(R.layout.steam_view);
 			}
 		});
