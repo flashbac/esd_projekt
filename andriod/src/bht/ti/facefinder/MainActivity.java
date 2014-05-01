@@ -29,6 +29,7 @@ public class MainActivity extends Activity {
 		}
 		Log.i("Programm", "Start Programm");
 		btnConnectSetup();
+		
 	}
 
 
@@ -48,10 +49,10 @@ public class MainActivity extends Activity {
 				String ip = etip.getText().toString();
 				String port = etport.getText().toString();
 				
-				Log.i("Connect Btn", "IP:" + ip + " Port:" + port);
-				
-				verbindung = new KontrollConnector(ip, Integer.parseInt(port));
-				
+				Log.i("BtnConnect", "IP:" + ip + " Port:" + port);
+				Log.i("MY", "IP:" + ip + " Port:" + port);
+				//verbindung = new KontrollConnector(ip, Integer.parseInt(port));
+				setContentView(R.layout.steam_view);
 			}
 		});
 		
@@ -73,6 +74,10 @@ public class MainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+			return true;
+		}
+		if (id == R.id.settingBack) {
+			setContentView(R.layout.activity_main);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
