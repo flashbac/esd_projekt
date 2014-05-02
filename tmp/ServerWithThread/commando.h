@@ -1,0 +1,1 @@
+int commando(char* input);
