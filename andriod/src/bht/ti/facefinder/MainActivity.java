@@ -16,7 +16,7 @@ import android.os.Build;
 
 public class MainActivity extends Activity {
 
-	public KontrollConnector verbindung;
+	public Runnable verbindung;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 		Log.i("Programm", "Start Programm");
 		btnConnectSetup();
 		verbindung = new KontrollConnector("192.168.1.40", 5000);
-				
+		
 	}
 
 

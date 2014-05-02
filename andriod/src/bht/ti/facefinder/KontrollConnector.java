@@ -9,12 +9,13 @@ import java.net.UnknownHostException;
 
 import android.util.Log;
 
-public class KontrollConnector {
+public class KontrollConnector implements Runnable{
 	
 	private String IP;
 	private int Port;
 	private Socket socket;
-	private ClientThread client;
+	//private ClientThread client;
+	private Thread runningThread;
 	
 	
 	public KontrollConnector(String ip, int Port) {
@@ -25,57 +26,72 @@ public class KontrollConnector {
 	}
 	
 	public void connect() {
-		new Thread(new ClientThread()).start();
-	}
+		//client = new ClientThread();
+		runningThread = new Thread(this);
+		runningThread.start();
+		
+	}	
 	
-	
-	public int getPort() {
-		return Port;
+	public void disconnect() {
+		try {
+			socket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public void setPort(int port) {
-		Port = port;
-	}
-
-	public String getIP() {
-		return IP;
-	}
-
-	public void setIP(String iP) {
-		IP = iP;
+	public void sendKommando(String jsonString){
+		
+		// Stream befüllen
 	}
 	
-	class ClientThread implements Runnable
-	{
 	
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			socket = new Socket(getIP(),getPort());
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		while(socket != null)
+		{	
+			PrintWriter out;
 			try {
-				socket = new Socket(getIP(),getPort());
-				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+				out = new PrintWriter(socket.getOutputStream(), true);
+			
 				out.println("test");
 				
-				try{
-					BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-					String read = br.readLine();
-					Log.i("MY", "Socket Read: " + read);
-				}
-				catch(IOException e) {
-	                e.printStackTrace();	
-				}
+				BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				String read = br.readLine();
+				Log.i("MY", "Socket Read: " + read);
 				
-				socket.close();
-			
-			} catch (UnknownHostException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
-
+	
+	
+	
+	public int getPort() {
+		return Port;
+	}
+	public void setPort(int port) {
+		Port = port;
+	}
+	public String getIP() {
+		return IP;
+	}
+	public void setIP(String iP) {
+		IP = iP;
+	}
+	
 }
