@@ -6,6 +6,17 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/action_settings">
+        <menu>
+            <item android:id="@+id/auto_mode" android:title="Auto Mode"/>
+            <item android:id="@+id/manual_mode" android:title="Manual Mode"/>
+        </menu>
+    </item>
+    <item android:id="@+id/settingBack" android:orderInCategory="1" android:title="Zurück"></item>
+    <item android:id="@+id/debug" android:title="Debug">
+        <menu>
+            <item android:id="@+id/debug_run_verbindung" android:title="Verbinden"/>
+        </menu>
+    </item>
 
 </menu>

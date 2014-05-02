@@ -1,0 +1,32 @@
+Die Kommunikationsschnittstelle basiert auf einer Bytefolge welche als Json
+String übertragen wird.
+
+Mögliche Objekte:
+cmd			- Kommando welches ausgeführt wird
+left
+right
+position
+
+
+cmd detaliert:
+	
+	{"exit":"exit"}		// Trennt die Verbindung
+	
+	[{"des":"192.168.1.1"},{"port",5000}] //sende udp pakete an dieses ziel 
+	
+	{"mode":"manual"}   // Mode setzen
+					// Mögliche Modes:
+					// 1. manual	
+					// 2. auto
+					// 3. compass
+					
+	{"left":1}		// Setzt servo um 1 step nach links (Werte von 1-100)
+	
+	{"right":1}		// Setzt servo um 1 step nach rechts
+
+	{"top":1}			// Setzt servo um 1 step nach oben
+	
+	{"button":1}		// Setzt servo um 1 step nach unten
+	
+	
+					

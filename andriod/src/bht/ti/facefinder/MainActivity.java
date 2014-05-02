@@ -29,6 +29,9 @@ public class MainActivity extends Activity {
 		}
 		Log.i("Programm", "Start Programm");
 		btnConnectSetup();
+		//verbindung = new KontrollConnector("192.168.1.40", 5000);
+		
+		
 	}
 
 
@@ -36,6 +39,10 @@ public class MainActivity extends Activity {
 		// TODO Auto-generated method stub
 		
 		Button b = (Button)findViewById(R.id.btnConnect);
+		EditText etip = (EditText) findViewById(R.id.editTextIpAddress);
+		EditText etport = (EditText) findViewById(R.id.editTextPort);
+		etip.getText().append("192.168.1.40");
+		etport.getText().append("5000");
 		
 		b.setOnClickListener(new View.OnClickListener() {
 			
@@ -48,10 +55,10 @@ public class MainActivity extends Activity {
 				String ip = etip.getText().toString();
 				String port = etport.getText().toString();
 				
-				Log.i("Connect Btn", "IP:" + ip + " Port:" + port);
-				
+				Log.i("BtnConnect", "IP:" + ip + " Port:" + port);
+				Log.i("MY", "IP:" + ip + " Port:" + port);
 				verbindung = new KontrollConnector(ip, Integer.parseInt(port));
-				
+				setContentView(R.layout.steam_view);
 			}
 		});
 		
@@ -73,6 +80,23 @@ public class MainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+			return true;
+		}
+		if (id == R.id.auto_mode) {
+			verbindung.sendKommando("[commando:automode];");
+			return true;
+		}
+		if (id == R.id.manual_mode) {
+			verbindung.sendKommando("[commando:manualmode];");
+			return true;
+		}
+		if (id == R.id.debug_run_verbindung) {
+			((Runnable)verbindung).run();
+			return true;
+		}
+		
+		if (id == R.id.settingBack) {
+			setContentView(R.layout.activity_main);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
