@@ -16,7 +16,7 @@ import android.os.Build;
 
 public class MainActivity extends Activity {
 
-	public Runnable verbindung;
+	public KontrollConnector verbindung;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,8 @@ public class MainActivity extends Activity {
 		}
 		Log.i("Programm", "Start Programm");
 		btnConnectSetup();
-		verbindung = new KontrollConnector("192.168.1.40", 5000);
+		//verbindung = new KontrollConnector("192.168.1.40", 5000);
+		
 		
 	}
 
@@ -81,6 +82,19 @@ public class MainActivity extends Activity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
+		if (id == R.id.auto_mode) {
+			verbindung.sendKommando("[commando:automode];");
+			return true;
+		}
+		if (id == R.id.manual_mode) {
+			verbindung.sendKommando("[commando:manualmode];");
+			return true;
+		}
+		if (id == R.id.debug_run_verbindung) {
+			((Runnable)verbindung).run();
+			return true;
+		}
+		
 		if (id == R.id.settingBack) {
 			setContentView(R.layout.activity_main);
 			return true;
