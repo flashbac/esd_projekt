@@ -22,6 +22,11 @@ public class KontrollConnector implements Runnable{
 	private Thread runningThread;
 	private PipedWriter pw;
 	private PipedReader pr;
+	private PipedWriter RecivePW;
+	private PipedReader RecivePR;
+	
+	private ReciveData reciver;
+	private Thread reciverThread;
 	
 	public KontrollConnector(String ip, int Port) {
 		// TODO Auto-generated constructor stub
@@ -40,8 +45,23 @@ public class KontrollConnector implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		RecivePR = new PipedReader();
+		RecivePW = new PipedWriter();
+		try {
+			RecivePW.connect(RecivePR);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		reciver = new ReciveData();
 		runningThread = new Thread(this);
+		reciverThread = new Thread(reciver);
 		runningThread.start();
+		reciverThread.start();
+		
+		
 	}	
 	
 	public void disconnect() {
@@ -51,6 +71,7 @@ public class KontrollConnector implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		socket = null;
 	}
 
 	public void sendKommando(String jsonString){
@@ -106,16 +127,6 @@ public class KontrollConnector implements Runnable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			BufferedReader br;
-			try {
-				br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				String read = br.readLine();
-				Log.d("MY", "Socket Read: " + read);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}			
 		}
 	}
 	
@@ -134,4 +145,39 @@ public class KontrollConnector implements Runnable{
 		IP = iP;
 	}
 	
+	
+	class ReciveData implements Runnable
+	{
+
+		public ReciveData(){
+			
+				
+		}
+		
+		@Override
+		public void run() {
+			
+			BufferedReader br = null;
+			try {
+				br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			while(socket != null)
+			{
+				try {		
+					String read = br.readLine();
+					RecivePW.write(read);
+				Log.d("MY", "Socket Read: " + read);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	
+	}
 }

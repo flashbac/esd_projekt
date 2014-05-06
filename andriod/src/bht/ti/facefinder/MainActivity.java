@@ -30,8 +30,25 @@ public class MainActivity extends Activity {
 		Log.i("Programm", "Start Programm");
 		btnConnectSetup();
 		//verbindung = new KontrollConnector("192.168.1.40", 5000);
+		btnIPAutoFill();
 		
-		
+	}
+
+
+	private void btnIPAutoFill() {
+		// TODO Auto-generated method stub
+		Button rensky = (Button)findViewById(R.id.rensky_net);
+		rensky.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				EditText etip = (EditText) findViewById(R.id.editTextIpAddress);
+				EditText etport = (EditText) findViewById(R.id.editTextPort);
+				etip.getText().append("88.198.13.243");
+				etport.getText().append("5000");
+			}
+		});
 	}
 
 
@@ -95,8 +112,10 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		
+		
 		if (id == R.id.settingBack) {
 			setContentView(R.layout.activity_main);
+			verbindung.sendKommando("exit");
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

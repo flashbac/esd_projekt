@@ -12,7 +12,7 @@
             <item android:id="@+id/manual_mode" android:title="Manual Mode"/>
         </menu>
     </item>
-    <item android:id="@+id/settingBack" android:orderInCategory="1" android:title="Zurück"></item>
+    <item android:id="@+id/settingBack" android:orderInCategory="1" android:title="Trennen"></item>
     <item android:id="@+id/debug" android:title="Debug">
         <menu>
             <item android:id="@+id/debug_run_verbindung" android:title="Verbinden"/>
