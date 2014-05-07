@@ -79,7 +79,7 @@ public class MainActivity extends Activity {
 				
 				//setContentView(R.layout.steam_view);
 				
-			    startActivity(new Intent(MainActivity.this, StreamActivity.class ));
+			    startActivity(new Intent(MainActivity.this, ViewActivity.class ));
 			}
 		});
 		
