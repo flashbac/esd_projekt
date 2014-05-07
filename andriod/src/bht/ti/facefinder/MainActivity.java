@@ -3,6 +3,7 @@ package bht.ti.facefinder;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -74,8 +75,11 @@ public class MainActivity extends Activity {
 				
 				Log.i("BtnConnect", "IP:" + ip + " Port:" + port);
 				Log.i("MY", "IP:" + ip + " Port:" + port);
-				verbindung = new KontrollConnector(ip, Integer.parseInt(port));
-				setContentView(R.layout.steam_view);
+				//verbindung = new KontrollConnector(ip, Integer.parseInt(port));
+				
+				//setContentView(R.layout.steam_view);
+				
+			    startActivity(new Intent(MainActivity.this, StreamActivity.class ));
 			}
 		});
 		
