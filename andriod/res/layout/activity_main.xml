@@ -78,7 +78,7 @@
             android:text="rensky.net" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/home_server"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

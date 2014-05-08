@@ -26,9 +26,9 @@
         </activity>
         <activity
             android:name="bht.ti.facefinder.ViewActivity"
-            android:label="@string/title_activity_view"
-            android:parentActivityName="bht.ti.facefinder.MainActivity"
-            android:screenOrientation="landscape" >
+            android:label="@string/title_activity_view" >
+            <!-- android:parentActivityName="bht.ti.facefinder.MainActivity" -->
+             
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bht.ti.facefinder.MainActivity" />

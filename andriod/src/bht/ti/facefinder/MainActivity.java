@@ -45,7 +45,24 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated method stub
 				EditText etip = (EditText) findViewById(R.id.editTextIpAddress);
 				EditText etport = (EditText) findViewById(R.id.editTextPort);
+				etip.getText().clear();
+				etport.getText().clear();
 				etip.getText().append("88.198.13.243");
+				etport.getText().append("5000");
+			}
+		});
+		
+		Button home = (Button)findViewById(R.id.home_server);
+		home.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				EditText etip = (EditText) findViewById(R.id.editTextIpAddress);
+				EditText etport = (EditText) findViewById(R.id.editTextPort);
+				etip.getText().clear();
+				etport.getText().clear();
+				etip.getText().append("192.168.1.40");
 				etport.getText().append("5000");
 			}
 		});
@@ -74,9 +91,6 @@ public class MainActivity extends Activity {
 				
 				Log.i("BtnConnect", "IP:" + ip + " Port:" + port);
 				Log.i("MY", "IP:" + ip + " Port:" + port);
-				
-				
-				//setContentView(R.layout.steam_view);
 				
 			    Intent intent = new Intent(MainActivity.this, ViewActivity.class);
 			    Bundle b = new Bundle();

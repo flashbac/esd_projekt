@@ -28,13 +28,13 @@ public final class R {
         public static final int action_settings=0x7f08000d;
         public static final int auto_mode=0x7f08000e;
         public static final int btnConnect=0x7f080005;
-        public static final int button1=0x7f080008;
         public static final int connect=0x7f080013;
         public static final int container=0x7f080000;
         public static final int debug=0x7f08000b;
         public static final int debug_run_verbindung=0x7f08000c;
         public static final int editTextIpAddress=0x7f080003;
         public static final int editTextPort=0x7f080002;
+        public static final int home_server=0x7f080008;
         public static final int kamera=0x7f080011;
         public static final int manual_mode=0x7f08000f;
         public static final int rensky_net=0x7f080007;

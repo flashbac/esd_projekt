@@ -3,22 +3,25 @@ package bht.ti.facefinder;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 public class ViewActivity extends Activity {
 	
-	public KontrollConnector verbindung;
+	public KontrollConnector verbindung = null;
 	private String videoPath ="https://archive.org/download/Pbtestfilemp4videotestmp4/video_test.mp4";
 
 	 private static ProgressDialog progressDialog;
@@ -40,7 +43,17 @@ public class ViewActivity extends Activity {
 		int port = b.getInt("port");
 		String ip = b.getString("ip");
 		videoView = (VideoView) findViewById(R.id.videoView1);
-		verbindung = new KontrollConnector(ip, port);
+		if (verbindung == null)
+		{
+			verbindung = new KontrollConnector(ip, port);
+		}
+		if (verbindung.connect() == -1)
+		{
+			Toast.makeText(ViewActivity.this, "Can´t Connect to " + verbindung.getIP() + ".", Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent(ViewActivity.this, MainActivity.class);
+		    startActivity(intent);
+		    finish();
+		}
 	}
 
 	@Override
@@ -78,9 +91,14 @@ public class ViewActivity extends Activity {
 			verbindung.sendKommando("[commando:manualmode];");
 			return true;
 		}
-		if (id == R.id.settingBack) {
-			setContentView(R.layout.activity_main);
-			verbindung.sendKommando("exit");
+		if (id == R.id.trennen) {
+						
+			Intent intent = new Intent(ViewActivity.this, MainActivity.class);
+		    Bundle b = new Bundle();
+		    b.putBoolean("exit", true);
+		    startActivity(intent);
+		    finish();
+			
 			return true;
 		}
 		if (id == R.id.connect) {
@@ -142,4 +160,23 @@ public class ViewActivity extends Activity {
 	       }   
 
 	 }
+	 
+	 @Override
+	 public boolean onKeyDown(int keyCode, KeyEvent event)
+	 {
+	     if ((keyCode == KeyEvent.KEYCODE_BACK))
+	     {
+	         finish();
+	     }
+	     return super.onKeyDown(keyCode, event);
+	 }
+	 	 
+	 @Override
+	 public void finish() {
+		// TODO Auto-generated method stub
+		verbindung.sendKommando("exit");
+		verbindung.disconnect();
+		super.finish();
+	}
+	 
 }
