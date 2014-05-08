@@ -18,6 +18,7 @@ import android.widget.VideoView;
 
 public class ViewActivity extends Activity {
 	
+	public KontrollConnector verbindung;
 	private String videoPath ="https://archive.org/download/Pbtestfilemp4videotestmp4/video_test.mp4";
 
 	 private static ProgressDialog progressDialog;
@@ -34,14 +35,19 @@ public class ViewActivity extends Activity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
+		Bundle b = getIntent().getExtras();
+		int port = b.getInt("port");
+		String ip = b.getString("ip");
 		videoView = (VideoView) findViewById(R.id.videoView1);
+		verbindung = new KontrollConnector(ip, port);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.stream, menu);
+		getMenuInflater().inflate(R.menu.view, menu);
 		return true;
 	}
 
@@ -64,6 +70,24 @@ public class ViewActivity extends Activity {
 			PlayVideo();
 			return true;
 		}
+		if (id == R.id.auto_mode) {
+			verbindung.sendKommando("[commando:automode];");
+			return true;
+		}
+		if (id == R.id.manual_mode) {
+			verbindung.sendKommando("[commando:manualmode];");
+			return true;
+		}
+		if (id == R.id.settingBack) {
+			setContentView(R.layout.activity_main);
+			verbindung.sendKommando("exit");
+			return true;
+		}
+		if (id == R.id.connect) {
+			//verbindung = new KontrollConnector(ip, Integer.parseInt(port));
+			return true;
+		}
+		
 		
 		return super.onOptionsItemSelected(item);
 	}

@@ -17,7 +17,7 @@ import android.os.Build;
 
 public class MainActivity extends Activity {
 
-	public KontrollConnector verbindung;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,6 @@ public class MainActivity extends Activity {
 		}
 		Log.i("Programm", "Start Programm");
 		btnConnectSetup();
-		//verbindung = new KontrollConnector("192.168.1.40", 5000);
 		btnIPAutoFill();
 		
 	}
@@ -75,11 +74,18 @@ public class MainActivity extends Activity {
 				
 				Log.i("BtnConnect", "IP:" + ip + " Port:" + port);
 				Log.i("MY", "IP:" + ip + " Port:" + port);
-				//verbindung = new KontrollConnector(ip, Integer.parseInt(port));
+				
 				
 				//setContentView(R.layout.steam_view);
 				
-			    startActivity(new Intent(MainActivity.this, ViewActivity.class ));
+			    Intent intent = new Intent(MainActivity.this, ViewActivity.class);
+			    Bundle b = new Bundle();
+			    b.putInt("port", Integer.parseInt(port)); //Your id
+			    b.putString("ip", ip);
+			    intent.putExtras(b); //Put your id to your next Intent
+			    startActivity(intent);
+			    finish();
+			    
 			}
 		});
 		
@@ -103,25 +109,11 @@ public class MainActivity extends Activity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
-		if (id == R.id.auto_mode) {
-			verbindung.sendKommando("[commando:automode];");
-			return true;
-		}
-		if (id == R.id.manual_mode) {
-			verbindung.sendKommando("[commando:manualmode];");
-			return true;
-		}
+		
 		if (id == R.id.debug_run_verbindung) {
-			((Runnable)verbindung).run();
 			return true;
 		}
 		
-		
-		if (id == R.id.settingBack) {
-			setContentView(R.layout.activity_main);
-			verbindung.sendKommando("exit");
-			return true;
-		}
 		return super.onOptionsItemSelected(item);
 	}
 

@@ -6,6 +6,19 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/action_settings">
+        <menu>
+            <item android:id="@+id/auto_mode" android:title="Auto Mode"/>
+            <item android:id="@+id/manual_mode" android:title="Manual Mode"/>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/trennen"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Trennen"/>
+    <item android:id="@+id/kamera" android:title="Kamera"></item>
+    <item android:id="@+id/startStream" android:title="Stream Anfordern"></item>
+    <item android:id="@+id/connect" android:title="ConnectServer"></item>
 
 </menu>
