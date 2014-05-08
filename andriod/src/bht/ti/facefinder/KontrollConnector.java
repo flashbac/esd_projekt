@@ -55,6 +55,16 @@ public class KontrollConnector implements Runnable{
 			e.printStackTrace();
 		}
 		
+		try {
+			socket = new Socket(getIP(),getPort());
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		reciver = new ReciveData();
 		runningThread = new Thread(this);
 		reciverThread = new Thread(reciver);
@@ -89,16 +99,6 @@ public class KontrollConnector implements Runnable{
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		try {
-			socket = new Socket(getIP(),getPort());
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		PrintWriter out = null;
 		
