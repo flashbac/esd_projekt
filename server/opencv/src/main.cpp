@@ -156,17 +156,13 @@ unsigned char testbuffer[TEST_SIZE];
 int main(int argc, char** argv) {
 
 	Helper h = Helper();
-	cout << h.getMTUsize();
 
 	UDPClient client = UDPClient("192.168.178.1", 5000);
 	UDPProtkoll protokoll = UDPProtkoll(&client, h.getMTUsize());
 
 	memset(testbuffer, 't', TEST_SIZE);
-	for(int i=0;i<65537;i++)
-	{
-		if (protokoll.sendInChunks(0, testbuffer, TEST_SIZE) != TEST_SIZE)
+	if (protokoll.sendInChunks(0, testbuffer, TEST_SIZE) != TEST_SIZE)
 				printf("\nsenden nicht okay\n");
-	}
 
 	return 0;
 }
