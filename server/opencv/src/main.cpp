@@ -5,12 +5,26 @@
  *      Author: dennis
  */
 
+#include "Helper.h"
+#include "UDPClient.h"
+#include "UDPProtkoll.h"
+#include <opencv2/core/core.hpp>
+#include <opencv2/core/types_c.h>
+#include <opencv2/highgui/highgui_c.h>
+#include <opencv2/imgproc/types_c.h>
+#include <stddef.h>
+#include <vector>
+
+class Helper;
+
 /*
  * main.cpp
  *
  *  Created on: 08.05.2014
  *      Author: dennis
  */
+
+#define debug true
 
 #include "opencv2/objdetect/objdetect.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -27,6 +41,11 @@
 
 #include <cv.h>
 #include <highgui.h>
+
+// message queues
+#include <sys/ipc.h>;
+#include <sys/msg.h>;
+#include <sys/types.h>
 
 using namespace std;
 using namespace cv;
@@ -90,48 +109,65 @@ void *reader(void * arg) {
 
 void *writer(void * arg) {
 	/*
-	Mat image;
-	image = imread("test.jpg", 1);
+	 Mat image;
+	 image = imread("test.jpg", 1);
 
-	//-- 1. Load the cascades
-	if (!face_cascade.load(face_cascade_name)) {
-		printf("--(!)Error loading\n");
-		return NULL;
-	};
-	if (!eyes_cascade.load(eyes_cascade_name)) {
-		printf("--(!)Error loading\n");
-		return NULL;
-	};
+	 //-- 1. Load the cascades
+	 if (!face_cascade.load(face_cascade_name)) {
+	 printf("--(!)Error loading\n");
+	 return NULL;
+	 };
+	 if (!eyes_cascade.load(eyes_cascade_name)) {
+	 printf("--(!)Error loading\n");
+	 return NULL;
+	 };
 
-	if (image.data) {
-		while (true) {
-			Mat image2;
-			image.copyTo(image2);
-			image = imread("test.jpg", 1);
-			detectAndDisplay (image2, true);
+	 if (image.data) {
+	 while (true) {
+	 Mat image2;
+	 image.copyTo(image2);
+	 image = imread("test.jpg", 1);
+	 detectAndDisplay (image2, true);
 
-			int c = waitKey(10);
-			if ((char) c == 'c') {
-				break;
-			}
-		}
-	}
-	*/
-	while(1);
+	 int c = waitKey(10);
+	 if ((char) c == 'c') {
+	 break;
+	 }
+	 }
+	 }
+	 */
+	while (1)
+		;
 }
 
-int main(int argc, char** argv) {
-
+void start_opencv_threads(void) {
 	if (pthread_create(&Treader, NULL, reader, (void*) NULL) == -1) {
 		perror("Error: can't create producer Thread\n");
-		return 3; // define
+		return; // define
 	}
 	if (pthread_create(&Twriter, NULL, writer, (void*) NULL) == -1) {
 		perror("Error: can't create consumer Thread\n");
-		return 3; //define
+		return; //define
 	}
-	while (1)
-		;
+}
+#define TEST_SIZE 3000
+unsigned char testbuffer[TEST_SIZE];
+
+int main(int argc, char** argv) {
+
+	Helper h = Helper();
+	cout << h.getMTUsize();
+
+	UDPClient client = UDPClient("192.168.178.1", 5000);
+	UDPProtkoll protokoll = UDPProtkoll(&client, h.getMTUsize());
+
+	memset(testbuffer, 't', TEST_SIZE);
+	for(int i=0;i<65537;i++)
+	{
+		if (protokoll.sendInChunks(0, testbuffer, TEST_SIZE) != TEST_SIZE)
+				printf("\nsenden nicht okay\n");
+	}
+
 	return 0;
 }
 
@@ -204,9 +240,9 @@ void detectAndDisplay(Mat frame, bool save) {
 	 }
 	 */
 	//-- Show what you got
-	if(save) imwrite( "testoutput.jpg", frame );
-	else imshow(window_name, frame);
+	if (save)
+		imwrite("testoutput.jpg", frame);
+	else
+		imshow(window_name, frame);
 }
-
-
 
