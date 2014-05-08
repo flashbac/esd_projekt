@@ -27,6 +27,7 @@ public class ViewActivity extends Activity {
 	 private static ProgressDialog progressDialog;
 	 private String videourl;  
 	 private VideoView videoView;
+	 private UdpServer udp;
 	 
 
 	@Override
@@ -73,12 +74,14 @@ public class ViewActivity extends Activity {
 		}
 		if(id == R.id.startStream)
 		{
-			
-			progressDialog = ProgressDialog.show(ViewActivity.this, "", "Buffering video...", true);
-			progressDialog.setCancelable(true);  
+			udp	= new UdpServer();
+			Thread udpthread = new Thread(udp);
+			udpthread.start();
+			//progressDialog = ProgressDialog.show(ViewActivity.this, "", "Buffering video...", true);
+			//progressDialog.setCancelable(true);  
 
 
-			PlayVideo();
+			//PlayVideo();
 			return true;
 		}
 		if (id == R.id.auto_mode) {

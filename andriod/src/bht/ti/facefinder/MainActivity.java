@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends Activity {
@@ -123,7 +124,21 @@ public class MainActivity extends Activity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
-				
+		if (id == R.id.ipInfo) {
+			
+			String ip = Helper.getLocalIpAddress();
+			Toast.makeText(MainActivity.this, "You IP is: " + ip + "", Toast.LENGTH_SHORT).show();
+			return true;
+		}
+		if (id == R.id.startUdp) {
+			UdpServer udp;
+			udp	= new UdpServer();
+			Thread udpthread = new Thread(udp);
+			udpthread.start();
+			return true;
+		}
+		
+		
 		return super.onOptionsItemSelected(item);
 	}
 
