@@ -9,7 +9,7 @@
 #define UDPPROTKOLL_H_
 
 #define UDP_DATAGRAMM_LENGTH 28 // iPv4 Header(20) + UDP Header (8)
-#define UDP_HEADER_LENGTH 5 	//Protokoll-Version[1Byte];Bildnummer[2Byte];Paketnummer[1Byte];Kamera-ID[1Byte];Bild-Payload[~1468Bytes]
+#define UDP_HEADER_LENGTH 6 	//Protokoll-Version[1Byte];Bildnummer[2Byte];Paketnummer[1Byte];Kamera-ID[1Byte];Paketanzahl[1Byte];Bild-Payload[~1468Bytes]
 #define UDP_PROTOKOLL_VERSION 1
 
 #include "UDPClient.h"
