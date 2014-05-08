@@ -106,11 +106,14 @@ void *connection_handler(void *socket_desc)
 		message = client_message;
 		printf("Sende    : %s\n", message);
 		//Send the message back to client
-        write(sock , message , strlen(message)+1);
+        write(sock , message , strlen(message));
 
 
 		//clear the message buffer
 		memset(client_message, 0, 2000);
+
+		if (zustand == -1)
+			break;
     }
 
     if(read_size == 0)
