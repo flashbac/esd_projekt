@@ -157,12 +157,15 @@ int main(int argc, char** argv) {
 
 	Helper h = Helper();
 
-	UDPClient client = UDPClient("192.168.178.1", 5000);
+	UDPClient client = UDPClient("192.168.178.75", 50000);
 	UDPProtkoll protokoll = UDPProtkoll(&client, h.getMTUsize());
 
 	memset(testbuffer, 't', TEST_SIZE);
 	if (protokoll.sendInChunks(0, testbuffer, TEST_SIZE) != TEST_SIZE)
 				printf("\nsenden nicht okay\n");
+
+	if (protokoll.sendInChunks(0, testbuffer, TEST_SIZE) != TEST_SIZE)
+					printf("\nsenden nicht okay\n");
 
 	return 0;
 }

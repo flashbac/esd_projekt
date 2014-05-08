@@ -22,7 +22,7 @@
 
 class UDPClient {
 public:
-	UDPClient(std::string ipadress, int port=5000);
+	UDPClient(std::string ipadress, int port=50000);
 	virtual ~UDPClient();
 
 	int sendData(void* buffer, size_t length);
