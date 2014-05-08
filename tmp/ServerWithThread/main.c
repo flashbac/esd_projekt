@@ -99,11 +99,15 @@ void *connection_handler(void *socket_desc)
     {
         //end of string marker
 		client_message[read_size] = '\0';
+		printf("Empfangen: %s\n", client_message);
 
 		zustand = commando(client_message);
 
+		message = client_message;
+		printf("Sende    : %s\n", message);
 		//Send the message back to client
-        write(sock , client_message , strlen(client_message));
+        write(sock , message , strlen(message)+1);
+
 
 		//clear the message buffer
 		memset(client_message, 0, 2000);
