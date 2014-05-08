@@ -2,11 +2,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="bht.ti.facefinder.MainActivity" >
 
-    <item android:id="@+id/settingBack" android:orderInCategory="1" android:title="Trennen"></item>
-    <item android:id="@+id/debug" android:title="Debug">
-        <menu>
-            <item android:id="@+id/debug_run_verbindung" android:title="Verbinden"/>
-        </menu>
-    </item>
 
 </menu>

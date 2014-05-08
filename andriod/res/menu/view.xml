@@ -19,6 +19,5 @@
         android:title="Trennen"/>
     <item android:id="@+id/kamera" android:title="Kamera"></item>
     <item android:id="@+id/startStream" android:title="Stream Anfordern"></item>
-    <item android:id="@+id/connect" android:title="ConnectServer"></item>
 
 </menu>

@@ -81,20 +81,33 @@ public class KontrollConnector {
 		}
 		if (socket == null)
 		{
-				return -1;
+			return -1;
 		}
 		return 0;
 	}
 
 	public void disconnect() {
+		
+		if (socket != null)
+		{
+			sendKommando("exit");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				socket.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		senderThread = null;
 		reciverThread = null;
-		try {
-			socket.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		socket = null;
 	}
 
