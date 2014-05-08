@@ -123,11 +123,7 @@ public class MainActivity extends Activity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
-		
-		if (id == R.id.debug_run_verbindung) {
-			return true;
-		}
-		
+				
 		return super.onOptionsItemSelected(item);
 	}
 

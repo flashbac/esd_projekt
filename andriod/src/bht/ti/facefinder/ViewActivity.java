@@ -43,10 +43,8 @@ public class ViewActivity extends Activity {
 		int port = b.getInt("port");
 		String ip = b.getString("ip");
 		videoView = (VideoView) findViewById(R.id.videoView1);
-		if (verbindung == null)
-		{
-			verbindung = new KontrollConnector(ip, port);
-		}
+		verbindung = new KontrollConnector(ip, port);
+		
 		if (verbindung.connect() == -1)
 		{
 			Toast.makeText(ViewActivity.this, "Can´t Connect to " + verbindung.getIP() + ".", Toast.LENGTH_SHORT).show();
@@ -73,7 +71,7 @@ public class ViewActivity extends Activity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
-		if(id == R.id.kamera)
+		if(id == R.id.startStream)
 		{
 			
 			progressDialog = ProgressDialog.show(ViewActivity.this, "", "Buffering video...", true);
@@ -101,11 +99,6 @@ public class ViewActivity extends Activity {
 			
 			return true;
 		}
-		if (id == R.id.connect) {
-			//verbindung = new KontrollConnector(ip, Integer.parseInt(port));
-			return true;
-		}
-		
 		
 		return super.onOptionsItemSelected(item);
 	}
@@ -174,7 +167,6 @@ public class ViewActivity extends Activity {
 	 @Override
 	 public void finish() {
 		// TODO Auto-generated method stub
-		verbindung.sendKommando("exit");
 		verbindung.disconnect();
 		super.finish();
 	}
