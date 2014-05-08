@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="bht.ti.facefinder.ViewActivity" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings">
+        <menu>
+            <item android:id="@+id/auto_mode" android:title="Auto Mode"/>
+            <item android:id="@+id/manual_mode" android:title="Manual Mode"/>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/trennen"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Trennen"/>
+    <item android:id="@+id/kamera" android:title="Kamera"></item>
+    <item android:id="@+id/startStream" android:title="Stream Anfordern"></item>
+
+</menu>

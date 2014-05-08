@@ -12,26 +12,43 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import android.util.Log;
+import android.widget.Toast;
 
-public class KontrollConnector implements Runnable{
-	
+public class KontrollConnector {
+
 	private String IP;
 	private int Port;
 	private Socket socket;
-	//private ClientThread client;
-	private Thread runningThread;
+	// private ClientThread client;
 	private PipedWriter pw;
 	private PipedReader pr;
+	private PipedWriter RecivePW;
+	private PipedReader RecivePR;
+
+	private ReciveData reciver;
+	private Thread reciverThread;
 	
+	private SendData sender;
+	private Thread senderThread;
+
 	public KontrollConnector(String ip, int Port) {
 		// TODO Auto-generated constructor stub
 		setIP(ip);
-		setPort(Port);		
-		connect();
+		setPort(Port);
+		//connect();
 	}
-	
-	public void connect() {
-		//client = new ClientThread();
+
+	public int connect() {
+		// client = new ClientThread();
+		if (socket != null)
+		{
+			try {
+				socket.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		pr = new PipedReader();
 		pw = new PipedWriter();
 		try {
@@ -40,98 +57,185 @@ public class KontrollConnector implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		runningThread = new Thread(this);
-		runningThread.start();
-	}	
-	
-	public void disconnect() {
+
+		RecivePR = new PipedReader();
+		RecivePW = new PipedWriter();
 		try {
-			socket.close();
+			RecivePW.connect(RecivePR);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		reciver = new ReciveData();
+		sender = new SendData();
+		senderThread = new Thread (sender);
+		reciverThread = new Thread(reciver);
+		senderThread.start();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (socket == null)
+		{
+			return -1;
+		}
+		return 0;
 	}
 
-	public void sendKommando(String jsonString){
-			
+	public void disconnect() {
+		
+		if (socket != null)
+		{
+			sendKommando("exit");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				socket.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		senderThread = null;
+		reciverThread = null;
+		
+		socket = null;
+	}
+
+	public void sendKommando(String jsonString) {
+
 		try {
 			pw.write(jsonString);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// Stream befüllen
-		
 	}
-	
-	
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		try {
-			socket = new Socket(getIP(),getPort());
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		PrintWriter out = null;
-		
-		try {
-			out = new PrintWriter(socket.getOutputStream(), true);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		int item;
-		String tosend;
-		while(socket != null)
-		{	
-			try {
-			tosend = "";
-				while ((item = pr.read()) != -1 && pr.ready())
-				{
-					System.out.print((char) item);
-					tosend += (char)item;
 
-				}
-				out.println(tosend);
-				Log.d("MY", "Socket Send: " + tosend);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			BufferedReader br;
+	class SendData implements Runnable {
+
+		
+		@Override
+		public void run() {
+
+			PrintWriter out = null;
+
 			try {
-				br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				String read = br.readLine();
-				Log.d("MY", "Socket Read: " + read);
+				socket = new Socket(getIP(), getPort());
+			} catch (UnknownHostException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}			
+				
+			}
+			if (socket != null)
+			{
+				reciverThread.start();
+	
+				try {
+					out = new PrintWriter(socket.getOutputStream(), true);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	
+				int item;
+				String tosend;
+				while (socket != null) {
+					try {
+						tosend = "";
+						while ((item = pr.read()) != -1 ) {
+							System.out.print((char) item);
+							tosend += (char) item;
+							
+							if (!pr.ready())
+							{
+								break;
+							}
+						}
+						out.println(tosend);
+						Log.d("MY", "Socket Send: " + tosend);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 	}
 	
-	
+	class ReciveData implements Runnable {
+
+		public ReciveData() {
+
+		}
+
+		@Override
+		public void run() {
+
+			if (socket != null) {
+				BufferedReader br = null;
+				try {
+					br = new BufferedReader(new InputStreamReader(
+							socket.getInputStream()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					String read = "";
+					int item;
+					while (socket != null) {
+						read = "";
+						while ((item = br.read()) != -1 ) {
+							System.out.print((char) item);
+							read += (char) item;
+							if (!br.ready())
+							{
+								break;
+							}
+						}
+						if (read.compareTo("")!=0)
+						{
+							RecivePW.write(read);
+							Log.d("MY", "Socket Read: " + read);
+						}
+						
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	
 	public int getPort() {
 		return Port;
 	}
+
 	public void setPort(int port) {
 		Port = port;
 	}
+
 	public String getIP() {
 		return IP;
 	}
+
 	public void setIP(String iP) {
 		IP = iP;
 	}
+	
 	
 }

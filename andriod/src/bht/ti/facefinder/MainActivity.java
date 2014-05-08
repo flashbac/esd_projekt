@@ -3,6 +3,7 @@ package bht.ti.facefinder;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import android.os.Build;
 
 public class MainActivity extends Activity {
 
-	public KontrollConnector verbindung;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +30,42 @@ public class MainActivity extends Activity {
 		}
 		Log.i("Programm", "Start Programm");
 		btnConnectSetup();
-		//verbindung = new KontrollConnector("192.168.1.40", 5000);
+		btnIPAutoFill();
 		
+	}
+
+
+	private void btnIPAutoFill() {
+		// TODO Auto-generated method stub
+		Button rensky = (Button)findViewById(R.id.rensky_net);
+		rensky.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				EditText etip = (EditText) findViewById(R.id.editTextIpAddress);
+				EditText etport = (EditText) findViewById(R.id.editTextPort);
+				etip.getText().clear();
+				etport.getText().clear();
+				etip.getText().append("88.198.13.243");
+				etport.getText().append("5000");
+			}
+		});
 		
+		Button home = (Button)findViewById(R.id.home_server);
+		home.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				EditText etip = (EditText) findViewById(R.id.editTextIpAddress);
+				EditText etport = (EditText) findViewById(R.id.editTextPort);
+				etip.getText().clear();
+				etport.getText().clear();
+				etip.getText().append("192.168.1.40");
+				etport.getText().append("5000");
+			}
+		});
 	}
 
 
@@ -57,8 +91,15 @@ public class MainActivity extends Activity {
 				
 				Log.i("BtnConnect", "IP:" + ip + " Port:" + port);
 				Log.i("MY", "IP:" + ip + " Port:" + port);
-				verbindung = new KontrollConnector(ip, Integer.parseInt(port));
-				setContentView(R.layout.steam_view);
+				
+			    Intent intent = new Intent(MainActivity.this, ViewActivity.class);
+			    Bundle b = new Bundle();
+			    b.putInt("port", Integer.parseInt(port)); //Your id
+			    b.putString("ip", ip);
+			    intent.putExtras(b); //Put your id to your next Intent
+			    startActivity(intent);
+			    finish();
+			    
 			}
 		});
 		
@@ -82,23 +123,7 @@ public class MainActivity extends Activity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
-		if (id == R.id.auto_mode) {
-			verbindung.sendKommando("[commando:automode];");
-			return true;
-		}
-		if (id == R.id.manual_mode) {
-			verbindung.sendKommando("[commando:manualmode];");
-			return true;
-		}
-		if (id == R.id.debug_run_verbindung) {
-			((Runnable)verbindung).run();
-			return true;
-		}
-		
-		if (id == R.id.settingBack) {
-			setContentView(R.layout.activity_main);
-			return true;
-		}
+				
 		return super.onOptionsItemSelected(item);
 	}
 

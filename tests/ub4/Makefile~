@@ -1,0 +1,9 @@
+# Makefile Uebung4
+# Dennis Rump
+# S771004
+uebung4:	ub4_cvtest.cpp fileio.c
+	g++ -Wall -g -o ub4 ub4_cvtest.cpp fileio.c -lpthread -Iusr/include/opencv2 $(pkg-config opencv --libs) std=c++11
+helper: helper.c
+	gcc -Wall -g -o helper helper.c
+tar: ub4.c fileio.c Makefile
+	tar cfv s771004-EzsA4.tar ub4.c fileio.h fileio.c Makefile
