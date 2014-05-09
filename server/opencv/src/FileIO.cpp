@@ -22,7 +22,7 @@ FileIO::FileIO(string filename) {
 	file.seekg(0, ios::end);
 	int end = file.tellg();
 	size = end - begin;
-	printf("filesize: %d\n", (int) size);
+	//printf("filesize: %d\n", (int) size);
 	// psoition wieder auf anfang
 	file.seekg(0, ios::beg);
 	buffer = (unsigned char*) malloc(sizeof(unsigned char) * size);

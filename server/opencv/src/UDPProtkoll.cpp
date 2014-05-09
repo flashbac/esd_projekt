@@ -37,9 +37,8 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 	if (buffer == NULL)
 		return -1;
 
-	printf(
-			"\nsend: buffer to send are %lu\npayload of one package max: %d, bild_id: %d; anzahl der packete %d",
-			length, this->maxPackageSize, bild_id, packageCount);
+	printf("\n[send] bild_id: %d; anzahl der packete %d", bild_id,
+			packageCount);
 
 	do {
 		// wipe chunkBuffer
@@ -74,7 +73,7 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 	} while ((byteCounter < length) && (errorFree));
 
 	//bild_id = (bild_id + 1) % sizeof(uint16_t);
-	bild_id = (bild_id + 1) % 65535;
+	bild_id = (bild_id + 1) % 65536;
 	// free allocate space
 	free(chunkBuffer);
 

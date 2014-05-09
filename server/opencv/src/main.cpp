@@ -71,6 +71,26 @@ RNG rng(12345);
 pthread_t Treader;
 pthread_t Twriter;
 
+#include <termios.h>
+
+int kbhit(void) {
+	struct termios term, oterm;
+	int fd = 0;
+	int c = 0;
+
+	tcgetattr(fd, &oterm);
+	memcpy(&term, &oterm, sizeof(term));
+	term.c_lflag = term.c_lflag & (!ICANON);
+	term.c_cc[VMIN] = 0;
+	term.c_cc[VTIME] = 1;
+	tcsetattr(fd, TCSANOW, &term);
+	c = getchar();
+	tcsetattr(fd, TCSANOW, &oterm);
+	if (c != -1)
+		ungetc(c, stdin);
+	return ((c != -1) ? 1 : 0);
+}
+
 void *reader(void * arg) {
 	CvCapture* capture;
 	Mat frame;
@@ -152,10 +172,10 @@ void start_opencv_threads(void) {
 		return; //define
 	}
 }
-#define TEST_SIZE 3000
-unsigned char testbuffer[TEST_SIZE];
+
 #define ANZAHL_DATEIN 60
 #define FILEPATH "../testbilder/"
+//#define FILEPATH "/home/dennis/git/esd_projekt/server/opencv/testbilder/"
 #define FILEBASENAME "test"
 #define FILEEXTENSION ".jpg"
 
@@ -175,10 +195,13 @@ int main(int argc, char** argv) {
 			printf("\ncan't load %s\n", str.str().c_str());
 	}
 
-	for (int i = 0; i < ANZAHL_DATEIN; i++) {
-		if (protokoll.sendInChunks(0, files[i]->getBuffer(),
-				files[i]->getBufferSize()) != files[i]->getBufferSize())
-			printf("\nsenden nicht okay\n");
+	while (!kbhit()) {
+		for (int i = 0; i < ANZAHL_DATEIN; i++) {
+			if (protokoll.sendInChunks(0, files[i]->getBuffer(),
+					files[i]->getBufferSize()) != files[i]->getBufferSize())
+				printf("\nsenden nicht okay\n");
+			usleep(33000);
+		}
 	}
 
 	// free filespace
