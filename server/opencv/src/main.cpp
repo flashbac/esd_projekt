@@ -5,15 +5,17 @@
  *      Author: dennis
  */
 
-#include "Helper.h"
-#include "UDPClient.h"
-#include "UDPProtkoll.h"
 #include <opencv2/core/core.hpp>
 #include <opencv2/core/types_c.h>
 #include <opencv2/highgui/highgui_c.h>
 #include <opencv2/imgproc/types_c.h>
 #include <stddef.h>
 #include <vector>
+
+#include "FileIO.h"
+#include "Helper.h"
+#include "UDPClient.h"
+#include "UDPProtkoll.h"
 
 class Helper;
 
@@ -152,6 +154,10 @@ void start_opencv_threads(void) {
 }
 #define TEST_SIZE 3000
 unsigned char testbuffer[TEST_SIZE];
+#define ANZAHL_DATEIN 60
+#define FILEPATH "../testbilder/"
+#define FILEBASENAME "test"
+#define FILEEXTENSION ".jpg"
 
 int main(int argc, char** argv) {
 
@@ -159,14 +165,27 @@ int main(int argc, char** argv) {
 
 	UDPClient client = UDPClient("192.168.178.75", 50000);
 	UDPProtkoll protokoll = UDPProtkoll(&client, h.getMTUsize());
+	FileIO* files[ANZAHL_DATEIN];
 
-	memset(testbuffer, 't', TEST_SIZE);
-	if (protokoll.sendInChunks(0, testbuffer, TEST_SIZE) != TEST_SIZE)
-				printf("\nsenden nicht okay\n");
+	for (int i = 0; i < ANZAHL_DATEIN; i++) {
+		stringstream str("");
+		str << FILEPATH << FILEBASENAME << i << FILEEXTENSION;
+		files[i] = new FileIO(str.str());
+		if (!files[i]->isFileLoaded())
+			printf("\ncan't load %s\n", str.str().c_str());
+	}
 
-	if (protokoll.sendInChunks(0, testbuffer, TEST_SIZE) != TEST_SIZE)
-					printf("\nsenden nicht okay\n");
+	for (int i = 0; i < ANZAHL_DATEIN; i++) {
+		if (protokoll.sendInChunks(0, files[i]->getBuffer(),
+				files[i]->getBufferSize()) != files[i]->getBufferSize())
+			printf("\nsenden nicht okay\n");
+	}
 
+	// free filespace
+	for (int i = 0; i < ANZAHL_DATEIN; i++) {
+		free(files[i]);
+	}
+	printf("\n");
 	return 0;
 }
 

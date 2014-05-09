@@ -69,7 +69,7 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 
 		byteCounter += lengthOfSendingContent;
 		chunkCounter++;
-		printf("\nsend chunk packageID: %d", chunkCounter);
+		//printf("\nsend chunk packageID: %d", chunkCounter);
 
 	} while ((byteCounter < length) && (errorFree));
 
@@ -79,7 +79,7 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 	free(chunkBuffer);
 
 	if (errorFree) {
-		printf("\nsuccessfule send data with ID: %d", bild_id);
+		//printf("\nsuccessfule send data with ID: %d", bild_id);
 	}
 	return byteCounter;
 }
