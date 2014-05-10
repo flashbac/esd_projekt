@@ -1,14 +1,26 @@
 package bht.esd;
 
+import java.awt.Color;
+import java.awt.Panel;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.SocketException;
+
+import javax.swing.JFrame;
 
 public class UDPserver {
 
 	public static void main(String[] args) throws IOException {
+		
+		JFrame frame = new JFrame("Display image");
+		  Panel panel = new ImagePanel();
+		  panel.setSize(688,488);
+		  panel.setBackground(Color.CYAN);
+		  frame.getContentPane().add(panel);
+		  frame.setSize(650, 490);
+		  frame.setVisible(true);
+		
 		// TODO Auto-generated method stub
 		System.out.println("test");
 		DatagramSocket serverSocket = null;
@@ -20,6 +32,7 @@ public class UDPserver {
 		}
         byte[] receiveData = new byte[1500];
         UDPProtokoll p = new UDPProtokoll();
+        p.setPanel((ImagePanel)panel);
         
         while(true)
            {

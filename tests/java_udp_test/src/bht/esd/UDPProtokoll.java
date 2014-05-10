@@ -13,11 +13,13 @@ public class UDPProtokoll {
 
 	LinkedList<UDPProtokollChunk> chunkList;
 	LinkedList<UDPProtokollBlob> blobList;
+	ImagePanel panel;
 
 	public UDPProtokoll() {
 		// TODO Auto-generated constructor stub
 		chunkList = new LinkedList<UDPProtokollChunk>();
 		blobList = new LinkedList<UDPProtokollBlob>();
+		panel = null;
 	}
 
 	void receive(DatagramPacket receivePacket) {
@@ -80,8 +82,19 @@ public class UDPProtokoll {
 				tmp_bild_id = chunk.getBild_id();
 			}
 			chunkList.removeAll(result);
-			blobList.add(new UDPProtokollBlob(tmp_bild_id, data));
+			//blobList.add(new UDPProtokollBlob(tmp_bild_id, data));
+			
+			/*
+			 * 
+			 * nicht schön was jetzt kommt
+			 */
+			panel.showPic(new UDPProtokollBlob(tmp_bild_id, data));
 		}
+	}
+	
+	public void setPanel(ImagePanel p)
+	{
+		panel = p;
 	}
 	
 	void printBlobs()
