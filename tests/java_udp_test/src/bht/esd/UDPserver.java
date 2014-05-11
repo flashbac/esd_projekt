@@ -44,7 +44,7 @@ public class UDPserver {
 				e.printStackTrace();
 			}
               String sentence = new String( receivePacket.getData());
-              System.out.println("from " +receivePacket.getAddress() +" RECEIVED: " + sentence);
+              //System.out.println("from " +receivePacket.getAddress() +" RECEIVED: " + sentence);
               
               p.receive(receivePacket);
               p.printBlobs();
