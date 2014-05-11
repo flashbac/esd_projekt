@@ -173,7 +173,7 @@ void start_opencv_threads(void) {
 	}
 }
 
-#define ANZAHL_DATEIN 60
+#define ANZAHL_DATEIN 10
 #define FILEPATH "../testbilder/"
 //#define FILEPATH "/home/dennis/git/esd_projekt/server/opencv/testbilder/"
 #define FILEBASENAME "test"
