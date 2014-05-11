@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.os.Build;
 
@@ -132,7 +133,7 @@ public class MainActivity extends Activity {
 		}
 		if (id == R.id.startUdp) {
 			UdpServer udp;
-			udp	= new UdpServer();
+			udp	= new UdpServer((ImageView)findViewById(R.id.imageStream2));
 			Thread udpthread = new Thread(udp);
 			udpthread.start();
 			return true;

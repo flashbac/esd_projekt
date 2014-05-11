@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -74,7 +75,7 @@ public class ViewActivity extends Activity {
 		}
 		if(id == R.id.startStream)
 		{
-			udp	= new UdpServer();
+			udp	= new UdpServer((ImageView)findViewById(R.id.imageStream2));
 			Thread udpthread = new Thread(udp);
 			udpthread.start();
 			//progressDialog = ProgressDialog.show(ViewActivity.this, "", "Buffering video...", true);

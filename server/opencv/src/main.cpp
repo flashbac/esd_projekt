@@ -173,6 +173,7 @@ void start_opencv_threads(void) {
 	}
 }
 
+
 #define ANZAHL_DATEIN 60
 //#define FILEPATH "../testbilder/"
 #define FILEPATH "/home/rensky/git/esd_projekt/server/opencv/testbilder/"
@@ -183,7 +184,8 @@ int main(int argc, char** argv) {
 
 	Helper h = Helper();
 
-	UDPClient client = UDPClient("192.168.1.230", 50000);
+	UDPClient client = UDPClient("192.168.1.126", 50000);
+
 	//UDPClient client = UDPClient("192.168.178.75", 50000);
 	UDPProtkoll protokoll = UDPProtkoll(&client, h.getMTUsize());
 	FileIO* files[ANZAHL_DATEIN];
