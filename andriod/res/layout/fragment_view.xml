@@ -8,14 +8,4 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="bht.ti.facefinder.ViewActivity$PlaceholderFragment" >
 
-    <ImageView
-        android:id="@+id/imageStream"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="144dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/ic_launcher" />
-
 </RelativeLayout>

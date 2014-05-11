@@ -22,7 +22,7 @@ public class MediaClient extends Activity implements Runnable {
 	
 	public void MediaClient(int Port, ImageView view)
 	{
-		this.view = (ImageView)findViewById(R.id.imageStream);
+		this.view = (ImageView)findViewById(R.id.imageStream2);
 				
 		this.bmImage = bmImage;
 	}

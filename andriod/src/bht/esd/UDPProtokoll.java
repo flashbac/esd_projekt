@@ -1,11 +1,22 @@
 package bht.esd;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.DatagramPacket;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.widget.ImageView;
 
 public class UDPProtokoll {
 	private static final byte UDP_HEADER_VERSION_1 = 0x01;
@@ -13,7 +24,8 @@ public class UDPProtokoll {
 
 	LinkedList<UDPProtokollChunk> chunkList;
 	LinkedList<UDPProtokollBlob> blobList;
-
+	ImageView panel;
+	
 	public UDPProtokoll() {
 		// TODO Auto-generated constructor stub
 		chunkList = new LinkedList<UDPProtokollChunk>();
@@ -69,25 +81,58 @@ public class UDPProtokoll {
 		byte[] data = new byte[blobSize];
 		int aktuellePos = 0;
 		
+		ByteBuffer b = ByteBuffer.allocate(blobSize+1);
+		
 		if ((!result.isEmpty())
 				&& (result.size() == result.get(0).getPaket_anzahl())) {
 			Collections.sort(result);
 			// alle daten zusammenfassen
 			int tmp_bild_id = -1;
-			for (UDPProtokollChunk chunk : chunkList) {
-				System.arraycopy(chunk.getData(), 0, data, aktuellePos, chunk.getData().length);
-				aktuellePos += chunk.getData().length;
+			for (UDPProtokollChunk chunk : result)
+			{
+				b.put(chunk.getData(), 0, chunk.getData().length-UDP_HEADER_VERSION_1_OFFSET);
+				System.arraycopy(chunk.getData(), 0, data, aktuellePos, chunk.getData().length-UDP_HEADER_VERSION_1_OFFSET);
+				aktuellePos += chunk.getData().length-UDP_HEADER_VERSION_1_OFFSET;
 				tmp_bild_id = chunk.getBild_id();
 			}
 			chunkList.removeAll(result);
-			blobList.add(new UDPProtokollBlob(tmp_bild_id, data));
+			//blobList.add(new UDPProtokollBlob(tmp_bild_id, data));
+			
+			/*
+			 * 
+			 * nicht schn was jetzt kommt
+			 */
+			/*
+			File file = new File("/home/dennis/git/esd_projekt/tests/java_udp_test/" + "t"+tmp_bild_id+".jpg");
+			b.rewind();
+			try{
+				FileOutputStream asd = new FileOutputStream(file, false);
+				FileChannel wc = asd.getChannel();
+				wc.write(b);
+				wc.close();
+				asd.close();
+			}catch(IOException e){
+				
+			}
+			*/
+			b.rewind();
+			Bitmap bmp;
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			options.inMutable = true;
+			bmp = BitmapFactory.decodeStream(new ByteArrayInputStream(b.array())); // decodeByteArray(data, 0, data.length, options);
+			
+			panel.setImageBitmap(bmp);
 		}
 	}
+
+	public void setPanel(ImageView p) {
+		panel = p;
+	}
 	
-	public void printBlobs()
-	{
+	public void printBlobs() {
 		for (UDPProtokollBlob blob : blobList) {
-			System.out.println("Blob: bild_id: "+blob.getId()+" datalength: "+blob.getData().length);
+			System.out.println("Blob: bild_id: " + blob.getId()
+					+ " datalength: " + blob.getData().length);
 		}
 	}
 }
