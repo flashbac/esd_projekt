@@ -1,6 +1,7 @@
 package bht.esd;
 
 import java.net.DatagramPacket;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -71,12 +72,16 @@ public class UDPProtokoll {
 		byte[] data = new byte[blobSize];
 		int aktuellePos = 0;
 		
+		ByteBuffer b = ByteBuffer.allocate(blobSize);
+		
 		if ((!result.isEmpty())
 				&& (result.size() == result.get(0).getPaket_anzahl())) {
 			Collections.sort(result);
 			// alle daten zusammenfassen
 			int tmp_bild_id = -1;
-			for (UDPProtokollChunk chunk : chunkList) {
+			for (UDPProtokollChunk chunk : chunkList)
+			{
+				b.put(chunk.getData(), 0, chunk.getData().length);
 				System.arraycopy(chunk.getData(), 0, data, aktuellePos, chunk.getData().length);
 				aktuellePos += chunk.getData().length;
 				tmp_bild_id = chunk.getBild_id();
