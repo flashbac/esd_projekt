@@ -97,7 +97,7 @@ public class UDPProtokoll {
 			 * 
 			 * nicht schn was jetzt kommt
 			 */
-			File file = new File("t"+tmp_bild_id+".jpg");
+			File file = new File("/home/dennis/git/esd_projekt/tests/java_udp_test/" + "t"+tmp_bild_id+".jpg");
 			b.rewind();
 			try{
 				FileOutputStream asd = new FileOutputStream(file, false);
@@ -109,21 +109,20 @@ public class UDPProtokoll {
 				
 			}
 			b.rewind();
-				panel.showPicByteBuffer(b);
+				//panel.showPicByteBuffer(b);
 				//panel.showPic(new UDPProtokollBlob(tmp_bild_id, data));
 			
 		}
 	}
-	
-	public void setPanel(ImagePanel p)
-	{
+
+	public void setPanel(ImagePanel p) {
 		panel = p;
 	}
-	
-	void printBlobs()
-	{
+
+	void printBlobs() {
 		for (UDPProtokollBlob blob : blobList) {
-			System.out.println("Blob: bild_id: "+blob.getId()+" datalength: "+blob.getData().length);
+			System.out.println("Blob: bild_id: " + blob.getId()
+					+ " datalength: " + blob.getData().length);
 		}
 	}
 }

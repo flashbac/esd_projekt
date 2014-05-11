@@ -46,8 +46,8 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 		unsigned int lengthOfSendingContent = 0;
 
 		chunkBuffer[0] = UDP_PROTOKOLL_VERSION;
-		chunkBuffer[1] = (bild_id && 0xFF00) >> 8;
-		chunkBuffer[2] = (bild_id && 0xFF);
+		chunkBuffer[1] = (uint8_t)((bild_id & 0xFF00) >> 8);
+		chunkBuffer[2] = (uint8_t)(bild_id & 0x00FF);
 		chunkBuffer[3] = chunkCounter;
 		chunkBuffer[4] = kamera_id;
 		chunkBuffer[5] = packageCount;
