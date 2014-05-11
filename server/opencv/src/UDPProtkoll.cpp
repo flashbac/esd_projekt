@@ -60,8 +60,8 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 		memcpy(chunkBuffer + UDP_HEADER_LENGTH, buffer + byteCounter,
 				lengthOfSendingContent);
 
-		if (client->sendData(chunkBuffer, lengthOfSendingContent)
-				!= lengthOfSendingContent) {
+		if (client->sendData(chunkBuffer, lengthOfSendingContent+UDP_HEADER_LENGTH)
+				!= lengthOfSendingContent+UDP_HEADER_LENGTH) {
 			errorFree = false;
 			printf("\nError while sending via UDP\n");
 		}
