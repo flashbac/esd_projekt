@@ -97,6 +97,7 @@ public class UDPProtokoll {
 			 * 
 			 * nicht schn was jetzt kommt
 			 */
+			/*
 			File file = new File("/home/dennis/git/esd_projekt/tests/java_udp_test/" + "t"+tmp_bild_id+".jpg");
 			b.rewind();
 			try{
@@ -108,8 +109,9 @@ public class UDPProtokoll {
 			}catch(IOException e){
 				
 			}
+			*/
 			b.rewind();
-				//panel.showPicByteBuffer(b);
+				panel.showPicByteBuffer(b);
 				//panel.showPic(new UDPProtokollBlob(tmp_bild_id, data));
 			
 		}
