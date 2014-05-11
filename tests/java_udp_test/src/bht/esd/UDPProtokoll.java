@@ -1,7 +1,11 @@
 package bht.esd;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -72,18 +76,18 @@ public class UDPProtokoll {
 		byte[] data = new byte[blobSize];
 		int aktuellePos = 0;
 		
-		ByteBuffer b = ByteBuffer.allocate(blobSize);
+		ByteBuffer b = ByteBuffer.allocate(blobSize+1);
 		
 		if ((!result.isEmpty())
 				&& (result.size() == result.get(0).getPaket_anzahl())) {
 			Collections.sort(result);
 			// alle daten zusammenfassen
 			int tmp_bild_id = -1;
-			for (UDPProtokollChunk chunk : chunkList)
+			for (UDPProtokollChunk chunk : result)
 			{
-				b.put(chunk.getData(), 0, chunk.getData().length);
-				System.arraycopy(chunk.getData(), 0, data, aktuellePos, chunk.getData().length);
-				aktuellePos += chunk.getData().length;
+				b.put(chunk.getData(), 0, chunk.getData().length-UDP_HEADER_VERSION_1_OFFSET);
+				System.arraycopy(chunk.getData(), 0, data, aktuellePos, chunk.getData().length-UDP_HEADER_VERSION_1_OFFSET);
+				aktuellePos += chunk.getData().length-UDP_HEADER_VERSION_1_OFFSET;
 				tmp_bild_id = chunk.getBild_id();
 			}
 			chunkList.removeAll(result);
@@ -91,9 +95,23 @@ public class UDPProtokoll {
 			
 			/*
 			 * 
-			 * nicht schön was jetzt kommt
+			 * nicht schn was jetzt kommt
 			 */
-			panel.showPic(new UDPProtokollBlob(tmp_bild_id, data));
+			File file = new File("t"+tmp_bild_id+".jpg");
+			b.rewind();
+			try{
+				FileOutputStream asd = new FileOutputStream(file, false);
+				FileChannel wc = asd.getChannel();
+				wc.write(b);
+				wc.close();
+				asd.close();
+			}catch(IOException e){
+				
+			}
+			b.rewind();
+				panel.showPicByteBuffer(b);
+				//panel.showPic(new UDPProtokollBlob(tmp_bild_id, data));
+			
 		}
 	}
 	
