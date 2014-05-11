@@ -183,8 +183,8 @@ int main(int argc, char** argv) {
 
 	Helper h = Helper();
 
-	//UDPClient client = UDPClient("192.168.178.42", 50000);
-	UDPClient client = UDPClient("192.168.178.75", 50000);
+	UDPClient client = UDPClient("192.168.178.42", 50000);
+	//UDPClient client = UDPClient("192.168.178.75", 50000);
 	UDPProtkoll protokoll = UDPProtkoll(&client, h.getMTUsize());
 	FileIO* files[ANZAHL_DATEIN];
 
@@ -196,14 +196,14 @@ int main(int argc, char** argv) {
 			printf("\ncan't load %s\n", str.str().c_str());
 	}
 
-	//while (!kbhit()) {
+	while (!kbhit()) {
 		for (int i = 0; i < ANZAHL_DATEIN; i++) {
 			if (protokoll.sendInChunks(0, files[i]->getBuffer(),
 					files[i]->getBufferSize()) != files[i]->getBufferSize())
 				printf("\nsenden nicht okay\n");
 			usleep(33000);
 		}
-	//}
+	}
 
 	// free filespace
 	for (int i = 0; i < ANZAHL_DATEIN; i++) {
