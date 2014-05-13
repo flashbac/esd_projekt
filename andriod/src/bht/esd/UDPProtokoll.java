@@ -13,9 +13,11 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import android.R;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.webkit.WebView.FindListener;
 import android.widget.ImageView;
 
 public class UDPProtokoll {
@@ -116,13 +118,7 @@ public class UDPProtokoll {
 			}
 			*/
 			b.rewind();
-			Bitmap bmp;
-			BitmapFactory.Options options = new BitmapFactory.Options();
-			options.inMutable = true;
-			bmp = BitmapFactory.decodeStream(new ByteArrayInputStream(b.array())); // decodeByteArray(data, 0, data.length, options);
-			
-			panel.setImageBitmap(bmp);
-			
+			BlobFinish( new ByteArrayInputStream(b.array()));
 		}
 	}
 
@@ -135,5 +131,18 @@ public class UDPProtokoll {
 			System.out.println("Blob: bild_id: " + blob.getId()
 					+ " datalength: " + blob.getData().length);
 		}
+	}
+	
+	public void BlobFinish ( ByteArrayInputStream b)
+	{
+		
+		// geht hier nicht das es im view thread passieren muss
+        //Bitmap bmp;
+        //BitmapFactory.Options options = new BitmapFactory.Options();
+        //options.inMutable = true;
+        //bmp = BitmapFactory.decodeStream(new ByteArrayInputStream(b.array())); // decodeByteArray(data, 0, data.length, options);
+     			
+        //panel.setImageBitmap(bmp);
+	
 	}
 }
