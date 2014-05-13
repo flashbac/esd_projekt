@@ -49,7 +49,7 @@ public class ViewActivity extends Activity {
 		
 		if (verbindung.connect() == -1)
 		{
-			Toast.makeText(ViewActivity.this, "Can´t Connect to " + verbindung.getIP() + ".", Toast.LENGTH_SHORT).show();
+			Toast.makeText(ViewActivity.this, "Canï¿½t Connect to " + verbindung.getIP() + ".", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(ViewActivity.this, MainActivity.class);
 		    startActivity(intent);
 		    finish();

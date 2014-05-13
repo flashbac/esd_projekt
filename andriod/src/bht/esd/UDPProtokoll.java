@@ -122,6 +122,7 @@ public class UDPProtokoll {
 			bmp = BitmapFactory.decodeStream(new ByteArrayInputStream(b.array())); // decodeByteArray(data, 0, data.length, options);
 			
 			panel.setImageBitmap(bmp);
+			
 		}
 	}
 
