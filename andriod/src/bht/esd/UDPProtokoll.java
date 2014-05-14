@@ -4,8 +4,11 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PipedReader;
+import java.io.PipedWriter;
 import java.net.DatagramPacket;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +30,7 @@ public class UDPProtokoll {
 	LinkedList<UDPProtokollChunk> chunkList;
 	LinkedList<UDPProtokollBlob> blobList;
 	ImageView panel;
+	PipedWriter pw;
 	
 	public UDPProtokoll() {
 		// TODO Auto-generated constructor stub
@@ -118,12 +122,16 @@ public class UDPProtokoll {
 			}
 			*/
 			b.rewind();
-			BlobFinish( new ByteArrayInputStream(b.array()));
+			BlobFinish(b);
 		}
 	}
 
 	public void setPanel(ImageView p) {
 		panel = p;
+	}
+	
+	public void setPipedWriter(PipedWriter pw) {
+		this.pw = pw;
 	}
 	
 	public void printBlobs() {
@@ -133,8 +141,20 @@ public class UDPProtokoll {
 		}
 	}
 	
-	public void BlobFinish ( ByteArrayInputStream b)
+	public void BlobFinish ( ByteBuffer b)
 	{
+		if (pw !=null)
+		{
+			CharBuffer bArray = b.asCharBuffer();
+			try {
+				pw.append(bArray, 0, bArray.length());
+				pw.flush();
+				// Endezeichen einführen
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 		// geht hier nicht das es im view thread passieren muss
         //Bitmap bmp;

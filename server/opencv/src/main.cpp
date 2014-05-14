@@ -185,6 +185,7 @@ int main(int argc, char** argv) {
 	Helper h = Helper();
 
 	UDPClient client = UDPClient("127.0.0.1", 50000);
+	//UDPClient client = UDPClient("192.168.1.126", 50000);
 
 	//UDPClient client = UDPClient("192.168.178.75", 50000);
 	UDPProtkoll protokoll = UDPProtkoll(&client, h.getMTUsize());

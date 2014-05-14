@@ -1,6 +1,7 @@
 package bht.ti.facefinder;
 
 import java.io.IOException;
+import java.io.PipedWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
@@ -11,11 +12,11 @@ import bht.esd.UDPProtokoll;
 
 public class UdpServer implements Runnable{
 	
-	private ImageView image;
+	private PipedWriter pw;
 	
-	public UdpServer (ImageView i)
+	public UdpServer (PipedWriter pw)
 	{
-		image = i;
+		this.pw = pw;
 	}
 		
 	public void run()
@@ -32,7 +33,7 @@ public class UdpServer implements Runnable{
 		}
       byte[] receiveData = new byte[1500];
       UDPProtokoll p = new UDPProtokoll();
-      p.setPanel(image);            
+      //p.setPanel(image);            
       while(true)
          {
             DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);

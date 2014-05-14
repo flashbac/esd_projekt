@@ -3,6 +3,7 @@
     tools:context="bht.ti.facefinder.MainActivity" >
     <item android:id="@+id/ipInfo" android:title="Show IP"></item>
     <item android:id="@+id/startUdp" android:title="Activate UDP Server"></item>
+    <item android:id="@+id/getImage" android:title="Aktualisieren"></item>
 
 
 </menu>

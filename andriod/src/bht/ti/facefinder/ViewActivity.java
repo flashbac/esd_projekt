@@ -28,7 +28,7 @@ public class ViewActivity extends Activity {
 	 private static ProgressDialog progressDialog;
 	 private String videourl;  
 	 private VideoView videoView;
-	 private UdpServer udp;
+	 private MediaClient mediaClient;
 	 
 
 	@Override
@@ -75,9 +75,8 @@ public class ViewActivity extends Activity {
 		}
 		if(id == R.id.startStream)
 		{
-			udp	= new UdpServer((ImageView)findViewById(R.id.imageStream2));
-			Thread udpthread = new Thread(udp);
-			udpthread.start();
+			mediaClient	= new MediaClient((ImageView)findViewById(R.id.imageStream2));
+			mediaClient.Start();
 			//progressDialog = ProgressDialog.show(ViewActivity.this, "", "Buffering video...", true);
 			//progressDialog.setCancelable(true);  
 

@@ -1,55 +1,71 @@
 package bht.ti.facefinder;
 
-import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketException;
+import java.io.PipedReader;
+import java.io.PipedWriter;
+import java.nio.CharBuffer;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
-import android.webkit.WebView.FindListener;
 import android.widget.ImageView;
-import android.widget.VideoView;
 
-public class MediaClient extends Activity implements Runnable {
+public class MediaClient {
 	
-	protected ImageView view;
-	ImageView bmImage;
+	private ImageView leimwand;
+	private PipedWriter pw;
+	private PipedReader pr;  
 	
-	public void MediaClient(int Port, ImageView view)
+	public MediaClient(ImageView l)
 	{
-		this.view = (ImageView)findViewById(R.id.imageStream2);
+		leimwand = l;
+	}
+	
+	public void Start()
+	{
+		pr = new PipedReader();
+		pw = new PipedWriter();
+		try {
+			pw.connect(pr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		UdpServer udp;
+		udp	= new UdpServer(pw);
+		Thread udpthread = new Thread(udp);
+		udpthread.start();
+	}
+	
+	public void DrawNewImage()
+	{
+		try{
+			int item;
+			String tosend = "";
+			while ((item = pr.read()) != -1 ) {
+				System.out.print((char) item);
+				tosend += (char) item;
 				
-		this.bmImage = bmImage;
-	}
-	
-	protected Bitmap doInBackground(String... urls) {
-	    String urldisplay = urls[0];
-	    Bitmap mIcon11 = null;
-	    try {
-	        InputStream in = new java.net.URL(urldisplay).openStream();
-	        mIcon11 = BitmapFactory.decodeStream(in);
-	    } catch (Exception e) {
-	        Log.e("Error", e.getMessage());
-	        e.printStackTrace();
-	    }
-	    return mIcon11;
-	}
-
-	protected void onPostExecute(Bitmap result) {
-	    bmImage.setImageBitmap(result);
-	}
-	
-	@Override
-	public void run() {
-
-
-		
-		
+				//Endezeichen abfragen
+				if (item == EOF)
+				{
+					break;
+				}
+				
+				if (!pr.ready())
+				{
+					break;
+				}
+			}
+			byte[] imageAsBytes = tosend.getBytes();
+			Bitmap bp = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+			leimwand.setImageBitmap(bp);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

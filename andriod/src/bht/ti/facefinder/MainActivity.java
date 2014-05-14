@@ -19,7 +19,7 @@ import android.os.Build;
 
 public class MainActivity extends Activity {
 
-	
+	public MediaClient mediaClient;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -132,17 +132,19 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		if (id == R.id.startUdp) {
-			UdpServer udp;
-			udp	= new UdpServer((ImageView)findViewById(R.id.imageStream2));
-			Thread udpthread = new Thread(udp);
-			udpthread.start();
+			mediaClient = new MediaClient((ImageView)findViewById(R.id.imageStream2));
+			mediaClient.Start();
 			return true;
 		}
-		
+		if (id == R.id.getImage) {
+			mediaClient.DrawNewImage();
+			return true;
+		}
+			
 		
 		return super.onOptionsItemSelected(item);
 	}
-
+	
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
@@ -159,5 +161,7 @@ public class MainActivity extends Activity {
 			return rootView;
 		}
 	}
+	
+	
 
 }
