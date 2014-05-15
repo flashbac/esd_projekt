@@ -86,10 +86,8 @@ void *connection_handler(void *socket_desc)
     char *message , client_message[2000];
 
     //Send some messages to the client
-    message = "Greetings! I am your connection handler\n";
-    write(sock , message , strlen(message));
 
-    message = "Now type something and i shall repeat what you type \n";
+    message = "{\" \"";
     write(sock , message , strlen(message));
 
     int zustand;
