@@ -28,6 +28,7 @@ private:
 	unsigned int maxPackageSize;
 	UDPClient *client;
 	uint16_t bild_id;
+	unsigned int mtu;
 
 };
 

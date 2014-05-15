@@ -204,7 +204,7 @@ int main(int argc, char** argv) {
 			if (protokoll.sendInChunks(0, files[i]->getBuffer(),
 					files[i]->getBufferSize()) != files[i]->getBufferSize())
 				printf("\nsenden nicht okay\n");
-			usleep(40000);
+			usleep(25000);
 		}
 	}
 

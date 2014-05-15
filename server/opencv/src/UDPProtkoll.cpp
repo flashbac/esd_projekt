@@ -7,6 +7,7 @@
 
 #include "UDPProtkoll.h"
 
+
 UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize) {
 	// TODO Auto-generated constructor stub
 	if (client == NULL)
@@ -15,6 +16,7 @@ UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize) {
 
 	this->maxPackageSize = MTUsize - UDP_DATAGRAMM_LENGTH - UDP_HEADER_LENGTH;
 	this->bild_id = 0;
+	this->mtu = MTUsize;
 }
 
 UDPProtkoll::~UDPProtkoll() {
@@ -29,6 +31,7 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 	unsigned int byteCounter = 0;
 	unsigned char *chunkBuffer = (unsigned char*) malloc(maxPackageSize);
 	uint8_t packageCount = (uint8_t) ((length / maxPackageSize) + 1);
+	int pauseZaehler = 0;
 
 	if (kamera_id < 0)
 		return -1;
@@ -59,7 +62,7 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 
 		memcpy(chunkBuffer + UDP_HEADER_LENGTH, buffer + byteCounter,
 				lengthOfSendingContent);
-		printf(".");
+
 		if (client->sendData(chunkBuffer, lengthOfSendingContent+UDP_HEADER_LENGTH)
 				!= lengthOfSendingContent+UDP_HEADER_LENGTH) {
 			errorFree = false;
@@ -68,6 +71,13 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 
 		byteCounter += lengthOfSendingContent;
 		chunkCounter++;
+		printf(".");
+		pauseZaehler = pauseZaehler + mtu;
+		if (pauseZaehler >= 10000)
+		{
+			usleep(3000);
+			pauseZaehler = 0;
+		}
 		//printf("\nsend chunk packageID: %d", chunkCounter);
 
 	} while ((byteCounter < length) && (errorFree));
