@@ -37,7 +37,7 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 	if (buffer == NULL)
 		return -1;
 
-	printf("\n[send] bild_id: %d; anzahl der packete %d", bild_id,
+	printf("\n[send] bild_id: %d; anzahl der packete %d\n", bild_id,
 			packageCount);
 
 	do {
@@ -59,7 +59,7 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 
 		memcpy(chunkBuffer + UDP_HEADER_LENGTH, buffer + byteCounter,
 				lengthOfSendingContent);
-
+		printf(".");
 		if (client->sendData(chunkBuffer, lengthOfSendingContent+UDP_HEADER_LENGTH)
 				!= lengthOfSendingContent+UDP_HEADER_LENGTH) {
 			errorFree = false;
