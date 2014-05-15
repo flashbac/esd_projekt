@@ -19,7 +19,7 @@ import android.os.Build;
 
 public class MainActivity extends Activity {
 
-	public MediaClient mediaClient;
+	public MediaClient mediaClient = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -132,12 +132,11 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		if (id == R.id.startUdp) {
-			mediaClient = new MediaClient((ImageView)findViewById(R.id.imageStream2));
-			mediaClient.Start();
-			return true;
-		}
-		if (id == R.id.getImage) {
-			mediaClient.DrawNewImage();
+			if (mediaClient == null)
+			{
+				mediaClient = new MediaClient((ImageView)findViewById(R.id.imageStream2));
+				mediaClient.Start();
+			}
 			return true;
 		}
 			

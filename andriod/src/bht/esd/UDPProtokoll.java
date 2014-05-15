@@ -1,36 +1,32 @@
 package bht.esd;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PipedReader;
-import java.io.PipedWriter;
+import java.io.PipedOutputStream;
 import java.net.DatagramPacket;
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import android.R;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.webkit.WebView.FindListener;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.widget.ImageView;
 
 public class UDPProtokoll {
 	private static final byte UDP_HEADER_VERSION_1 = 0x01;
 	private static final int UDP_HEADER_VERSION_1_OFFSET = 6;
-
+	private Handler handler;
+	
 	LinkedList<UDPProtokollChunk> chunkList;
 	LinkedList<UDPProtokollBlob> blobList;
 	ImageView panel;
-	PipedWriter pw;
+	PipedOutputStream pos;
 	
 	public UDPProtokoll() {
 		// TODO Auto-generated constructor stub
@@ -57,6 +53,11 @@ public class UDPProtokoll {
 			chunkList.add(new UDPProtokollChunk(data[0],
 					((data[1] << 8) & 0xff00) + (data[2] & 0xff), data[3],
 					data[4], data[5], data2));
+			
+			Log.i("MY","Empfange Bild_ID:" + chunkList.getLast().bild_id + " (" + 
+						chunkList.getLast().chunk_id + "/" +
+					    chunkList.getLast().paket_anzahl + ")");
+			
 			break;
 		default:
 			return;
@@ -122,7 +123,15 @@ public class UDPProtokoll {
 			}
 			*/
 			b.rewind();
-			BlobFinish(b);
+			
+			Bitmap bmp;
+	        BitmapFactory.Options options = new BitmapFactory.Options();
+	        options.inMutable = true;
+	        bmp = BitmapFactory.decodeStream(new ByteArrayInputStream(b.array())); // decodeByteArray(data, 0, data.length, options);
+	        Message message = handler.obtainMessage();
+	        message.obj = bmp;
+	        Log.i("MY","Send Picture to Activity Thread.");
+	        handler.sendMessage(message);
 		}
 	}
 
@@ -130,8 +139,8 @@ public class UDPProtokoll {
 		panel = p;
 	}
 	
-	public void setPipedWriter(PipedWriter pw) {
-		this.pw = pw;
+	public void setHeandler(Handler handler) {
+		this.handler = handler;
 	}
 	
 	public void printBlobs() {
@@ -139,30 +148,5 @@ public class UDPProtokoll {
 			System.out.println("Blob: bild_id: " + blob.getId()
 					+ " datalength: " + blob.getData().length);
 		}
-	}
-	
-	public void BlobFinish ( ByteBuffer b)
-	{
-		if (pw !=null)
-		{
-			CharBuffer bArray = b.asCharBuffer();
-			try {
-				pw.append(bArray, 0, bArray.length());
-				pw.flush();
-				// Endezeichen einführen
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		// geht hier nicht das es im view thread passieren muss
-        //Bitmap bmp;
-        //BitmapFactory.Options options = new BitmapFactory.Options();
-        //options.inMutable = true;
-        //bmp = BitmapFactory.decodeStream(new ByteArrayInputStream(b.array())); // decodeByteArray(data, 0, data.length, options);
-     			
-        //panel.setImageBitmap(bmp);
-	
 	}
 }

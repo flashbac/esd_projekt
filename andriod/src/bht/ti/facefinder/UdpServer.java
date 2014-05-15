@@ -1,22 +1,24 @@
 package bht.ti.facefinder;
 
 import java.io.IOException;
+import java.io.PipedOutputStream;
 import java.io.PipedWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 
+import android.os.Handler;
 import android.widget.ImageView;
 import bht.esd.UDPProtokoll;
 
 public class UdpServer implements Runnable{
 	
-	private PipedWriter pw;
+	private Handler handler;
 	
-	public UdpServer (PipedWriter pw)
+	public UdpServer (Handler handler)
 	{
-		this.pw = pw;
+		this.handler = handler;
 	}
 		
 	public void run()
@@ -33,7 +35,8 @@ public class UdpServer implements Runnable{
 		}
       byte[] receiveData = new byte[1500];
       UDPProtokoll p = new UDPProtokoll();
-      //p.setPanel(image);            
+      //p.setPanel(image);
+      p.setHeandler(handler);
       while(true)
          {
             DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
