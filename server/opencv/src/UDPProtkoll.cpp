@@ -7,8 +7,10 @@
 
 #include "UDPProtkoll.h"
 
-
-UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize) {
+/*
+ *
+ */
+UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize, int andriodTimeout, int andriodMaxBytesToTimeout) {
 	// TODO Auto-generated constructor stub
 	if (client == NULL)
 		this->~UDPProtkoll();
@@ -17,6 +19,8 @@ UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize) {
 	this->maxPackageSize = MTUsize - UDP_DATAGRAMM_LENGTH - UDP_HEADER_LENGTH;
 	this->bild_id = 0;
 	this->mtu = MTUsize;
+	this->andriodTimeout = andriodTimeout;
+	this->andriodMaxBytesToTimeout = andriodMaxBytesToTimeout;
 }
 
 UDPProtkoll::~UDPProtkoll() {
@@ -73,9 +77,9 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 		chunkCounter++;
 		printf(".");
 		pauseZaehler = pauseZaehler + mtu;
-		if (pauseZaehler >= 10000)
+		if (pauseZaehler >= andriodMaxBytesToTimeout)
 		{
-			usleep(3000);
+			usleep(andriodTimeout);
 			pauseZaehler = 0;
 		}
 		//printf("\nsend chunk packageID: %d", chunkCounter);

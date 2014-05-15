@@ -19,7 +19,7 @@
 
 class UDPProtkoll {
 public:
-	UDPProtkoll(UDPClient *client, int MTUsize = 1500);
+	UDPProtkoll(UDPClient *client, int MTUsize = 1500, int andriodTimeout = 3000, int andriodMaxBytesToTimeout = 10240);
 	virtual ~UDPProtkoll();
 
 	int sendInChunks(uint8_t kamera_id, unsigned char *buffer, size_t length);
@@ -28,7 +28,9 @@ private:
 	unsigned int maxPackageSize;
 	UDPClient *client;
 	uint16_t bild_id;
-	unsigned int mtu;
+	int mtu;
+	int andriodMaxBytesToTimeout;
+	int andriodTimeout;
 
 };
 
