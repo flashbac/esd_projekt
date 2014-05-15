@@ -22,14 +22,8 @@ import android.widget.VideoView;
 
 public class ViewActivity extends Activity {
 	
-	public KontrollConnector verbindung = null;
-	private String videoPath ="https://archive.org/download/Pbtestfilemp4videotestmp4/video_test.mp4";
-
-	 private static ProgressDialog progressDialog;
-	 private String videourl;  
-	 private VideoView videoView;
-	 private MediaClient mediaClient;
-	 
+	public ClientController verbindung = null;
+	public KontrollProtokoll kontrollProtokoll;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +38,13 @@ public class ViewActivity extends Activity {
 		Bundle b = getIntent().getExtras();
 		int port = b.getInt("port");
 		String ip = b.getString("ip");
-		videoView = (VideoView) findViewById(R.id.videoView1);
-		verbindung = new KontrollConnector(ip, port);
+		verbindung = new ClientController(ip, port);
+		kontrollProtokoll = new KontrollProtokoll(verbindung);
+		
 		
 		if (verbindung.connect() == -1)
 		{
-			Toast.makeText(ViewActivity.this, "Can�t Connect to " + verbindung.getIP() + ".", Toast.LENGTH_SHORT).show();
+			Toast.makeText(ViewActivity.this, "Can not Connect to " + verbindung.getIP() + ".", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(ViewActivity.this, MainActivity.class);
 		    startActivity(intent);
 		    finish();
@@ -75,27 +70,21 @@ public class ViewActivity extends Activity {
 		}
 		if(id == R.id.startStream)
 		{
-			mediaClient	= new MediaClient((ImageView)findViewById(R.id.imageStream2));
-			mediaClient.Start();
-			//progressDialog = ProgressDialog.show(ViewActivity.this, "", "Buffering video...", true);
-			//progressDialog.setCancelable(true);  
-
-
-			//PlayVideo();
 			return true;
 		}
 		if (id == R.id.auto_mode) {
-			verbindung.sendKommando("[commando:automode];");
+			kontrollProtokoll.Mode(KameraMode.Auto);
 			return true;
 		}
 		if (id == R.id.manual_mode) {
-			verbindung.sendKommando("[commando:manualmode];");
+			kontrollProtokoll.Mode(KameraMode.Manual);
 			return true;
 		}
 		if (id == R.id.trennen) {
 						
+			kontrollProtokoll.TrenneVerbindung();
 			Intent intent = new Intent(ViewActivity.this, MainActivity.class);
-		    Bundle b = new Bundle();
+			Bundle b = new Bundle();
 		    b.putBoolean("exit", true);
 		    startActivity(intent);
 		    finish();
@@ -122,41 +111,7 @@ public class ViewActivity extends Activity {
 			return rootView;
 		}
 	}
-	
-
-	 private void PlayVideo()
-	 {
-	  try
-	       {      
-	              getWindow().setFormat(PixelFormat.TRANSLUCENT);
-	              MediaController mediaController = new MediaController(ViewActivity.this);
-	              mediaController.setAnchorView(videoView);           
-
-	               Uri video = Uri.parse(videoPath );             
-	               videoView.setMediaController(mediaController);
-	               videoView.setVideoURI(video);
-	               videoView.requestFocus();              
-	               videoView.setOnPreparedListener(new OnPreparedListener()
-	               {
-
-	                   public void onPrepared(MediaPlayer mp)
-	                   {                  
-	                       progressDialog.dismiss();     
-	                       videoView.start();
-	                   }
-	               });           
-
-
-	            }
-	       catch(Exception e)
-	       {
-	                progressDialog.dismiss();
-	                System.out.println("Video Play Error :"+e.toString());
-	                finish();
-	       }   
-
-	 }
-	 
+		 
 	 @Override
 	 public boolean onKeyDown(int keyCode, KeyEvent event)
 	 {

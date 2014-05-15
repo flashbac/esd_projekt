@@ -43,7 +43,7 @@ public class UDPserver {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-              String sentence = new String( receivePacket.getData());
+              //String sentence = new String( receivePacket.getData());
               //System.out.println("from " +receivePacket.getAddress() +" RECEIVED: " + sentence);
               
               p.receive(receivePacket);

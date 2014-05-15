@@ -6,15 +6,11 @@
     tools:context="bht.ti.facefinder.ViewActivity"
     tools:ignore="MergeRootFrame" >
 
-    <VideoView
-        android:id="@+id/videoView1"
-        android:layout_width="176dp"
-        android:layout_height="168dp" />
-
-    <View
-        android:id="@+id/view1"
+    <ImageView
+        android:id="@+id/streamingImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:src="@drawable/test" />
 
 </FrameLayout>
 

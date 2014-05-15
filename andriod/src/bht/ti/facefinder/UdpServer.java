@@ -9,6 +9,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketException;
 
 import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 import bht.esd.UDPProtokoll;
 
@@ -29,11 +30,14 @@ public class UdpServer implements Runnable{
 		DatagramSocket serverSocket = null;
 		try {
 			serverSocket = new DatagramSocket(50000);
+			Log.i("MY", "Size: " + serverSocket.getReceiveBufferSize());
+			Log.i("MY", "Timeout: " + serverSocket.getSoTimeout());
+			
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-      byte[] receiveData = new byte[1500];
+      byte[] receiveData = new byte[10240];
       UDPProtokoll p = new UDPProtokoll();
       //p.setPanel(image);
       p.setHeandler(handler);
@@ -46,7 +50,7 @@ public class UdpServer implements Runnable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            String sentence = new String( receivePacket.getData());
+            //String sentence = new String( receivePacket.getData());
             //System.out.println("from " +receivePacket.getAddress() +" RECEIVED: " + sentence);
             
             
