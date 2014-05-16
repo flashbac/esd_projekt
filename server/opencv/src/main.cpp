@@ -89,29 +89,6 @@ int kbhit(void) {
 	if (c != -1)
 		ungetc(c, stdin);
 	return ((c != -1) ? 1 : 0);
-
-	/*
-	 * // decode jpg (or other image from a pointer)
-	 // imageBuf contains the jpg image
-	 cv::Mat imgbuf = cv::Mat(480, 640, CV_8U, imageBuf);
-	 cv::Mat imgMat = cv::imdecode(imgbuf, CV_LOAD_IMAGE_COLOR);
-	 // imgMat is the decoded image
-
-	 // encode image into jpg
-	 cv::vector<uchar> buf;
-	 cv::imencode(".jpg", imgMat, buf, std::vector<int>() );
-	 // encoded image is now in buf (a vector)
-	 imageBuf = (unsigned char *) realloc(imageBuf, buf.size());
-	 memcpy(imageBuf, &buf[0], buf.size());
-	 //  size of imageBuf is buf.size();
-	 *
-	 *
-	 *
-	 *
-	 *
-	 *
-	 *
-	 */
 }
 
 void *reader(void * arg) {
@@ -196,6 +173,7 @@ void start_opencv_threads(void) {
 	}
 }
 
+
 #define ANZAHL_DATEIN 60
 //#define FILEPATH "../testbilder/"
 #define FILEPATH "/home/rensky/git/esd_projekt/server/opencv/testbilder/"
@@ -210,11 +188,7 @@ int main(int argc, char** argv) {
 	UDPClient client = UDPClient("192.168.1.126", 50000);
 
 	//UDPClient client = UDPClient("192.168.178.75", 50000);
-<<<<<<< HEAD
-	UDPProtkoll protokoll = UDPProtkoll(&client, 10240); //h.getMTUsize());
-=======
 	UDPProtkoll protokoll = UDPProtkoll(&client, 10240, 3000, 10240);//h.getMTUsize());
->>>>>>> 915408be130676d12490e788c35d42e04b73c35f
 	FileIO* files[ANZAHL_DATEIN];
 
 	for (int i = 0; i < ANZAHL_DATEIN; i++) {
@@ -319,4 +293,5 @@ void detectAndDisplay(Mat frame, bool save) {
 	else
 		imshow(window_name, frame);
 }
+
 

@@ -6,6 +6,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+//#include <array>
 
 //using namespace boost::interprocess;
 using namespace std;
@@ -18,7 +19,9 @@ using namespace std;
 
 //variablen
 //char* ringpuffer[MAX_BUFFER_PIC_COUNT][MAX_PIC_SIZE_IN_BYTE];
+//std::array<std::vector<unsigned char>, MAX_BUFFER_PIC_COUNT> ringpuffer;
 std::vector<unsigned char> ringpuffer[MAX_BUFFER_PIC_COUNT];
+std::vector<unsigned char> global_faces;
 sem_t sem_freeSpace;
 sem_t sem_numberToWrite;
 
@@ -27,8 +30,7 @@ sem_t sem_faceDetectionVector;
 sem_t sem_print;
 //--------<
 
-void thread_safe_print(string str)
-{
+void thread_safe_print(string str) {
 	sem_wait(&sem_print);
 	std::cout << str;
 	sem_post(&sem_print);
@@ -49,14 +51,17 @@ bool isFaceDetectionReady() {
 
 void setFaceDetectionVector(std::vector<unsigned char> faces) {
 	sem_wait(&sem_faceDetectionVector);
-
+	global_faces = faces;
 	sem_post(&sem_faceDetectionVector);
 }
 
-void getFaceDetectionVector(std::vector<unsigned char> *faces) {
+std::vector<unsigned char> getFaceDetectionVector() {
+	std::vector<unsigned char> faces;
 	sem_wait(&sem_faceDetectionVector);
-
+	faces = global_faces;
 	sem_post(&sem_faceDetectionVector);
+
+	return faces;
 }
 
 std::vector<unsigned char> * getNextFreeToWriteImage() {
@@ -94,17 +99,24 @@ void wait(int seconds) {
 	boost::this_thread::sleep(boost::posix_time::seconds(seconds));
 }
 
-unsigned char tmp[10] ={'a'};
+unsigned char tmp[10] = { 'a', 'a','a','a','a','a','a','a','a','a' };
+
+void paintRectFromFaces()
+{
+}
 
 void thread_kamera_reader() {
 	try {
 		while (1) {
-			std::vector<unsigned char> *nextPic = NULL;
-			nextPic = getNextFreeToWriteImage();
+			//std::vector<unsigned char> *nextPic = NULL;
+			//nextPic = getNextFreeToWriteImage();
+			std::vector<unsigned char>& nextPic = *getNextFreeToWriteImage();
 
-			nextPic->clear();
-			nextPic->resize( 10 );
-			memcpy( nextPic, tmp, 10 );
+			paintRectFromFaces();
+
+			nextPic.clear();
+			nextPic.resize(10);
+			memcpy(&nextPic[0], tmp, 10);
 
 			sem_post(&sem_numberToWrite);
 		}
@@ -118,15 +130,18 @@ void thread_face_detection() {
 
 	thread_safe_print("\nGesicht erkannt");
 	// gesichtserkennung hier rein
-	for(long l;l<9999999999999;l++);
+	for (long l; l < 9999999999999; l++)
+		;
 	sem_post(&sem_faceDetectionBusy);
 }
 
 void thread_send_pic() {
 	try {
 		while (1) {
-			std::vector<unsigned char> *nextPic = NULL;
-			nextPic = getNextToReadToSend();
+			//std::vector<unsigned char> *nextPic = NULL;
+			// keine kopie, ist noch call by reference
+			std::vector<unsigned char>& nextPic = *getNextToReadToSend();
+			//nextPic = *getNextToReadToSend();
 
 			//frage ob faceDetection nicht beschäftigt ist?
 			if (isFaceDetectionReady()) {
@@ -137,9 +152,8 @@ void thread_send_pic() {
 			std::stringstream str;
 
 			str << "\nInhalt: ";
-			for(int i=0;i<nextPic->size();i++)
-			{
-			   str << (*nextPic)[i];
+			for (int i = 0; i < nextPic.size(); i++) {
+				str << nextPic[i];
 			}
 			thread_safe_print(str.str());
 
@@ -148,6 +162,8 @@ void thread_send_pic() {
 		}
 	} catch (boost::thread_interrupted&) {
 		thread_safe_print("\nthread_send_pic interrupted!");
+	} catch (std::exception &e) {
+		thread_safe_print(e.what());
 	}
 }
 
@@ -173,7 +189,7 @@ int main() {
 	}
 	cout << "\n5";
 	if (sem_init(&sem_print, 0, 1) < 0) {
-			std::cout << "Error: init sem_print";
+		std::cout << "Error: init sem_print";
 	}
 	thread_safe_print("\nthread_safe: test");
 
@@ -186,7 +202,8 @@ int main() {
 	//t.interrupt();
 	//t.join();
 
-	while(1);
+	while (1)
+		;
 	cout << "\n9";
 	return 0;
 }
