@@ -210,7 +210,11 @@ int main(int argc, char** argv) {
 	UDPClient client = UDPClient("192.168.1.126", 50000);
 
 	//UDPClient client = UDPClient("192.168.178.75", 50000);
+<<<<<<< HEAD
 	UDPProtkoll protokoll = UDPProtkoll(&client, 10240); //h.getMTUsize());
+=======
+	UDPProtkoll protokoll = UDPProtkoll(&client, 10240, 3000, 10240);//h.getMTUsize());
+>>>>>>> 915408be130676d12490e788c35d42e04b73c35f
 	FileIO* files[ANZAHL_DATEIN];
 
 	for (int i = 0; i < ANZAHL_DATEIN; i++) {
@@ -222,11 +226,14 @@ int main(int argc, char** argv) {
 	}
 
 	while (!kbhit()) {
-		for (int i = 0; i < ANZAHL_DATEIN; i++) {
+		for (int i = 0; i < ANZAHL_DATEIN; i++)
+		{
 			if (protokoll.sendInChunks(0, files[i]->getBuffer(),
 					files[i]->getBufferSize()) != files[i]->getBufferSize())
+			{
 				printf("\nsenden nicht okay\n");
-			usleep(40000);
+			}
+			usleep(25000);
 		}
 	}
 

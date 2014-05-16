@@ -9,26 +9,29 @@ position
 
 
 cmd detaliert:
-	
-	{"exit":1}		// Trennt die Kontroll Verbindung
-	
-	[{"des":"192.168.1.1"},{"port",5000}] //sende udp pakete an dieses ziel
 
-	{"camera":1}		// Kamera 1 auswählen
+	{"cmd":"cams","value":[1,2,3,4]}
 	
-	{"mode":"manual"}   // Mode setzen
+	
+	{"cmd":"exit","value":1}		// Trennt die Kontroll Verbindung
+	
+	{"cmd":"udp","value":{"des":"192.168.1.1","port":5000}} //sende udp pakete an dieses ziel
+
+	{"cmd":"camera","value":1}		// Kamera 1 auswählen
+	
+	{"cmd":"mode","value":"manual"}   	// Mode setzen
 						// Mögliche Modes:
 						// 1. manual	
 						// 2. auto
 						// 3. compass
 					
-	{"left":1}			// Setzt servo um 1 step nach links (Werte von 1-100)
+	{"cmd":"position","value":{"direction":"left","steps":1}	// Setzt servo um 1 step nach links (Werte von 1-100)
 	
-	{"right":1}			// Setzt servo um 1 step nach rechts
+	{"cmd":"position","value":{"direction":"right","steps":1}	// Setzt servo um 1 step nach rechts
 
-	{"top":1}			// Setzt servo um 1 step nach oben
+	{"cmd":"position","value":{"direction":"top","steps":1}		// Setzt servo um 1 step nach oben
 	
-	{"button":1}		// Setzt servo um 1 step nach unten
+	{"cmd":"position","value":{"direction":"bottom","steps":1}	// Setzt servo um 1 step nach unten
 	
 	
 					
