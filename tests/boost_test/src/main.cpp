@@ -149,6 +149,7 @@ void thread_send_pic() {
 			}
 			// send pic
 
+			/*
 			std::stringstream str;
 
 			str << "\nInhalt: ";
@@ -156,7 +157,7 @@ void thread_send_pic() {
 				str << nextPic[i];
 			}
 			thread_safe_print(str.str());
-
+			*/
 			// free sem
 			sem_post(&sem_numberToWrite);
 		}
