@@ -34,6 +34,7 @@ class Client {
 public:
 	Client(std::string ipadress, int port, unsigned char kamerID, std::string outgoingDeviceName);
 	virtual ~Client();
+	void setSafePrintSemaphore(sem_t *sem);
 	void thread_safe_print(std::string str);
 	void setMTUsize(int MTUsize);
 	int getMTUsize();
@@ -53,7 +54,7 @@ private:
 	sem_t sem_faceDetectionBusy;
 	sem_t sem_faceDetectionVector;
 	sem_t sem_faceDetectionNewPicAvailable;
-	sem_t sem_print;
+	sem_t *sem_print;
 
 	UDPClient *udpClient;
 	UDPProtkoll *udpProtokoll;

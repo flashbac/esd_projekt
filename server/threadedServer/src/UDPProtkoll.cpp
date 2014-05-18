@@ -10,7 +10,8 @@
 /*
  *
  */
-UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize, int andriodTimeout, int andriodMaxBytesToTimeout) {
+UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize, int andriodTimeout,
+		int andriodMaxBytesToTimeout) {
 	// TODO Auto-generated constructor stub
 	if (client == NULL)
 		this->~UDPProtkoll();
@@ -44,8 +45,7 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 	if (buffer == NULL)
 		return -1;
 
-	printf("\n[send] bild_id: %d; anzahl der packete %d\n", bild_id,
-			packageCount);
+	//printf("\n[send] bild_id: %d; anzahl der packete %d\n", bild_id, packageCount);
 
 	do {
 		// wipe chunkBuffer
@@ -53,8 +53,8 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 		unsigned int lengthOfSendingContent = 0;
 
 		chunkBuffer[0] = UDP_PROTOKOLL_VERSION;
-		chunkBuffer[1] = (uint8_t)((bild_id & 0xFF00) >> 8);
-		chunkBuffer[2] = (uint8_t)(bild_id & 0x00FF);
+		chunkBuffer[1] = (uint8_t) ((bild_id & 0xFF00) >> 8);
+		chunkBuffer[2] = (uint8_t) (bild_id & 0x00FF);
 		chunkBuffer[3] = chunkCounter;
 		chunkBuffer[4] = kamera_id;
 		chunkBuffer[5] = packageCount;
@@ -67,8 +67,8 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 		memcpy(chunkBuffer + UDP_HEADER_LENGTH, buffer + byteCounter,
 				lengthOfSendingContent);
 
-		if (client->sendData(chunkBuffer, lengthOfSendingContent+UDP_HEADER_LENGTH)
-				!= lengthOfSendingContent+UDP_HEADER_LENGTH) {
+		if (client->sendData(chunkBuffer,
+				lengthOfSendingContent + UDP_HEADER_LENGTH) != lengthOfSendingContent+UDP_HEADER_LENGTH) {
 			errorFree = false;
 			printf("\nError while sending via UDP\n");
 		}
@@ -77,8 +77,7 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 		chunkCounter++;
 		printf(".");
 		pauseZaehler = pauseZaehler + mtu;
-		if (pauseZaehler >= andriodMaxBytesToTimeout)
-		{
+		if (pauseZaehler >= andriodMaxBytesToTimeout) {
 			usleep(andriodTimeout);
 			pauseZaehler = 0;
 		}
@@ -97,11 +96,10 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 	return byteCounter;
 }
 
-void UDPProtkoll::setMTUsize(int MTUsize)
-{
+void UDPProtkoll::setMTUsize(int MTUsize) {
 	this->mtu = MTUsize;
 }
 
-int UDPProtkoll::getMTUsize(){
+int UDPProtkoll::getMTUsize() {
 	return this->mtu;
 }

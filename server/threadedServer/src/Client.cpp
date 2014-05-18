@@ -53,10 +53,10 @@ Client::~Client() {
 }
 
 void Client::thread_safe_print(string str) {
-	sem_wait(&sem_print);
+	sem_wait(this->sem_print);
 	std::cout << str;
 	cout.flush();
-	sem_post(&sem_print);
+	sem_post(this->sem_print);
 }
 
 bool Client::isFaceDetectionReady() {
@@ -182,6 +182,10 @@ void Client::thread_send_pic() {
 	}
 }
 
+void Client::setSafePrintSemaphore(sem_t *sem){
+	this->sem_print = sem;
+}
+
 void Client::setMTUsize(int MTUsize) {
 	this->udpProtokoll->setMTUsize(MTUsize);
 }
@@ -211,11 +215,6 @@ int Client::init() {
 		return -1;
 		std::cout << "Error: init sem_faceDetectionVector";
 	}
-	if (sem_init(&sem_print, 0, 1) < 0) {
-		return -1;
-		std::cout << "Error: init sem_print";
-	}
-	thread_safe_print("\nClient init ok.");
 	return 0;
 }
 
