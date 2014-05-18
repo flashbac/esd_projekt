@@ -33,7 +33,7 @@ public:
 
 private:
 	bool running;
-
+	int numberOffClients;
 	sem_t sem_print;
 
 	boost::thread *thread_TcpSend;

@@ -9,7 +9,7 @@
 
 Kommunikation::Kommunikation() {
 	// TODO Auto-generated constructor stub
-
+	numberOffClients = 0;
 }
 
 Kommunikation::~Kommunikation() {
@@ -92,29 +92,39 @@ int Kommunikation::thread_Binder() {
 		thread_safe_print("Connection accepted ");
 
 		int state = 0;
-		if (!running) {
-			running = true;
-			this->thread_TcpSend = new boost::thread(boost::bind(&Kommunikation::thread_Sender, this, client_sock));
+		if (running) {
+			if (thread_TcpSend != NULL && thread_TcpRecive != NULL)
+			{
+				this->thread_TcpSend = new boost::thread(boost::bind(&Kommunikation::thread_Sender, this, client_sock));
 
-			if (this->thread_TcpSend == NULL)
-				state = -1;
+				if (this->thread_TcpSend == NULL)
+					state = -1;
 
-			this->thread_TcpRecive = new boost::thread(boost::bind(
-					&Kommunikation::thread_Recive, this, client_sock));
-			if (this->thread_TcpRecive == NULL)
-				state = -1;
+				this->thread_TcpRecive = new boost::thread(boost::bind(
+						&Kommunikation::thread_Recive, this, client_sock));
+				if (this->thread_TcpRecive == NULL)
+					state = -1;
 
-			if (state != 0) {
-				this->stop();
+				if (state != 0) {
+					this->stop();
+				}
+				else
+				{
+					numberOffClients = 1;
+				}
+			}
+			else
+			{
+				std::string msg("Server accept only one Client.");
+				send(client_sock, msg.c_str(), msg.length(), 0);
+				close(client_sock);
 			}
 		} else {
-			std::string msg("Server accept only one Client.");
-			send(client_sock, msg.c_str(), msg.length(), 0);
-			close(client_sock);
+			thread_safe_print("Can not connect bind socket is not in lissen mode.");
 		}
 
 		if (client_sock < 0) {
-			perror("accept failed");
+			thread_safe_print("accept failed");
 			return 1;
 		}
 		return 0;
