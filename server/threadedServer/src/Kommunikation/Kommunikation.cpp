@@ -94,13 +94,13 @@ int Kommunikation::thread_Binder() {
 		int state = 0;
 		if (!running) {
 			running = true;
-			this->thread_TcpSend = new boost::bind(&Kommunikation::thread_Sender, this, client_sock);
+			this->thread_TcpSend = new boost::thread(boost::bind(&Kommunikation::thread_Sender, this, &client_sock));
 
 			if (this->thread_TcpSend == NULL)
 				state = -1;
 
-			this->thread_TcpRecive = new boost::bind(
-					&Kommunikation::thread_Recive, this, client_sock);
+			this->thread_TcpRecive = new boost::thread(boost::bind(
+					&Kommunikation::thread_Recive, this, &client_sock));
 			if (this->thread_TcpRecive == NULL)
 				state = -1;
 
@@ -156,7 +156,7 @@ void Kommunikation::thread_Recive(void *socket_desc) {
 	}
 }
 
-void Kommunikation::thread_Sender(void *socket_desc) {
+void Kommunikation::thread_Sender(int *socket_desc) {
 	try {
 		while (1) {
 
