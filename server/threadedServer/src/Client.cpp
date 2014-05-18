@@ -7,12 +7,14 @@
 
 #include "Client.h"
 
-Client::Client(std::string ipadress, int port, std::string outgoingDeviceName) {
+Client::Client(std::string ipadress, int port, unsigned char kamerID,
+		std::string outgoingDeviceName) {
 
 	this->running = false;
 	this->thread_cam = NULL;
 	this->thread_face = NULL;
 	this->thread_UDPsend = NULL;
+	this->kameraID = kamerID;
 
 	if (ipadress.empty() || (port <= 0) || outgoingDeviceName.empty())
 		this->~Client();
@@ -51,10 +53,10 @@ Client::~Client() {
 }
 
 void Client::thread_safe_print(string str) {
-	sem_wait(&sem_print);
+	sem_wait(this->sem_print);
 	std::cout << str;
 	cout.flush();
-	sem_post(&sem_print);
+	sem_post(this->sem_print);
 }
 
 bool Client::isFaceDetectionReady() {
@@ -120,8 +122,6 @@ void Client::wait(int seconds) {
 	boost::this_thread::sleep(boost::posix_time::seconds(seconds));
 }
 
-unsigned char tmp[10] = { 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a' };
-
 void Client::thread_kamera_reader() {
 	try {
 		while (running) {
@@ -170,7 +170,8 @@ void Client::thread_send_pic() {
 				sem_post(&sem_faceDetectionNewPicAvailable);
 			}
 			// send pic
-			this->udpProtokoll->sendInChunks(0, &nextPic[0], nextPic.size());
+			this->udpProtokoll->sendInChunks(this->kameraID, &nextPic[0],
+					nextPic.size());
 
 			sem_post(&sem_freeSpace);
 		}
@@ -179,6 +180,10 @@ void Client::thread_send_pic() {
 	} catch (std::exception &e) {
 		thread_safe_print(e.what());
 	}
+}
+
+void Client::setSafePrintSemaphore(sem_t *sem){
+	this->sem_print = sem;
 }
 
 void Client::setMTUsize(int MTUsize) {
@@ -210,11 +215,6 @@ int Client::init() {
 		return -1;
 		std::cout << "Error: init sem_faceDetectionVector";
 	}
-	if (sem_init(&sem_print, 0, 1) < 0) {
-		return -1;
-		std::cout << "Error: init sem_print";
-	}
-	thread_safe_print("\nClient init ok.");
 	return 0;
 }
 
