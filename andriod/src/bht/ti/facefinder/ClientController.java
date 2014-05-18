@@ -35,7 +35,6 @@ public class ClientController {
 		setIP(ip);
 		setPort(Port);
 		
-		
 		reciveHandler = new Handler()
 		{
 			@Override
@@ -44,12 +43,9 @@ public class ClientController {
 				String read = (String)msg.obj;
 		    	Log.d("MY", "Heander Read: " + read);
 		    	// do something with read
-		    	kontrollProtokoll.VerarbeiteAnfrage(read);
-		    	
-		    	
+		    	kontrollProtokoll.VerarbeiteAnfrage(read);	
 			}
-		};
-		
+		};	
 	}
 
 	public void sendKommando(String jsonString) {
@@ -57,8 +53,6 @@ public class ClientController {
 		msg.obj = jsonString; // Some Arbitrary object
 		sendHandler.sendMessage(msg);
 	}
-	
-	
 
 	public int connect() {
 		// client = new ClientThread();
