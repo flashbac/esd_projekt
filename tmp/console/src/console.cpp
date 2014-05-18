@@ -28,7 +28,7 @@ int main() {
 
  		printf("%s", input );
 
- 		zustand = commando(input);
+ 		//zustand = commando(input);
 	}
  	printf("\nProgramm Ende\n");
  	return 0;
