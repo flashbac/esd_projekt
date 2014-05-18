@@ -115,7 +115,7 @@ public class KontrollConnector {
 	public void sendKommando(String jsonString) {
 
 		try {
-			pw.write(jsonString);
+			pw.write(jsonString+";");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

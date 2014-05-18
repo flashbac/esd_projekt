@@ -125,6 +125,16 @@ public class ClientController {
 		public void run() {
 			try {
 				socket = new Socket(getIP(), getPort());
+				
+				try {
+					out = new PrintWriter(socket.getOutputStream(), true);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				senderThread.start();
+				reciverThread.start();
+				
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -132,15 +142,7 @@ public class ClientController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			try {
-				out = new PrintWriter(socket.getOutputStream(), true);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			senderThread.start();
-			reciverThread.start();
+
 		}
 		
 	}
@@ -158,7 +160,7 @@ public class ClientController {
 					if (socket != null)
 					{   
 						Log.d("MY", "Socket Send: " + tosend);
-						out.println(tosend);
+						out.println(tosend + ";");
 					}    	   
 				}   
 			};
