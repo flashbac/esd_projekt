@@ -11,7 +11,7 @@
 
 
 int main(int argc, char** argv) {
-	Client a("127.0.0.1",50000, "eth0");
+	Client a("192.168.178.42",50000, "eth0");
 	a.init();
 	a.start();
 

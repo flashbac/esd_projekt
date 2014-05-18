@@ -29,6 +29,11 @@ Client::Client(std::string ipadress, int port, std::string outgoingDeviceName) {
 			helper->getMTUsize(outgoingDeviceName));
 	if (this->udpProtokoll == NULL)
 		this->~Client();
+
+	if (openCVforFaceDetection.addCascade(
+			"/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml")
+			!= 0)
+		this->~Client();
 }
 
 Client::~Client() {
@@ -48,6 +53,7 @@ Client::~Client() {
 void Client::thread_safe_print(string str) {
 	sem_wait(&sem_print);
 	std::cout << str;
+	cout.flush();
 	sem_post(&sem_print);
 }
 
@@ -64,14 +70,14 @@ bool Client::isFaceDetectionReady() {
 	}
 }
 
-void Client::setFaceDetectionVector(std::vector<unsigned char> faces) {
+void Client::setFaceDetectionVector(std::vector<cv::Rect> faces) {
 	sem_wait(&sem_faceDetectionVector);
 	global_faces = faces;
 	sem_post(&sem_faceDetectionVector);
 }
 
-std::vector<unsigned char> Client::getFaceDetectionVector() {
-	std::vector<unsigned char> faces;
+std::vector<cv::Rect> Client::getFaceDetectionVector() {
+	std::vector<cv::Rect> faces;
 	sem_wait(&sem_faceDetectionVector);
 	faces = global_faces;
 	sem_post(&sem_faceDetectionVector);
@@ -116,21 +122,18 @@ void Client::wait(int seconds) {
 
 unsigned char tmp[10] = { 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a' };
 
-void Client::paintRectFromFaces() {
-}
-
 void Client::thread_kamera_reader() {
 	try {
-		while (1) {
-			//std::vector<unsigned char> *nextPic = NULL;
-			//nextPic = getNextFreeToWriteImage();
+		while (running) {
+			// ist trozdem call by referenz!
 			std::vector<unsigned char>& nextPic = *getNextFreeToWriteImage();
 
-			paintRectFromFaces();
+			if (!openCVforCapture.queryFrame())
+				this->thread_safe_print("\nbild query fehlgeschlagen");
 
-			nextPic.clear();
-			nextPic.resize(10);
-			memcpy(&nextPic[0], tmp, 10);
+			openCVforCapture.drawRects(this->getFaceDetectionVector());
+
+			openCVforCapture.MatToJPEG(&nextPic);
 
 			sem_post(&sem_numberToWrite);
 		}
@@ -140,40 +143,36 @@ void Client::thread_kamera_reader() {
 }
 
 void Client::thread_face_detection() {
-	sem_wait(&sem_faceDetectionBusy);
+	while (running) {
+		sem_wait(&sem_faceDetectionNewPicAvailable);
+		sem_wait(&sem_faceDetectionBusy);
 
-	thread_safe_print("\nGesicht erkannt");
-	// gesichtserkennung hier rein
-	for (long l; l < 9999999999999; l++)
-		;
-	sem_post(&sem_faceDetectionBusy);
+		this->openCVforFaceDetection.loadFromJPEG(&copyOfPicForDetection);
+		this->setFaceDetectionVector(
+				openCVforFaceDetection.detect(
+						openCVforFaceDetection.getCascades()[0]));
+
+		sem_post(&sem_faceDetectionBusy);
+	}
 }
 
 void Client::thread_send_pic() {
 	try {
-		while (1) {
-			//std::vector<unsigned char> *nextPic = NULL;
+		while (running) {
 			// keine kopie, ist noch call by reference
 			std::vector<unsigned char>& nextPic = *getNextToReadToSend();
-			//nextPic = *getNextToReadToSend();
 
 			//frage ob faceDetection nicht beschäftigt ist?
 			if (isFaceDetectionReady()) {
-				//memcopy of pic for face detection
+				// kopie vom bild anlegen, copyOfPicForDetection wird durch sem_faceDetectionNewPicAvailable geschuetzt
+				copyOfPicForDetection.resize(nextPic.size());
+				memcpy(&copyOfPicForDetection[0], &nextPic[0], nextPic.size());
+				sem_post(&sem_faceDetectionNewPicAvailable);
 			}
 			// send pic
+			this->udpProtokoll->sendInChunks(0, &nextPic[0], nextPic.size());
 
-/*
-			 std::stringstream str;
-
-			 str << "\nInhalt: ";
-			 for (int i = 0; i < nextPic.size(); i++) {
-			 str << nextPic[i];
-			 }
-			 thread_safe_print(str.str());
-*/
-			// free sem
-			sem_post(&sem_numberToWrite);
+			sem_post(&sem_freeSpace);
 		}
 	} catch (boost::thread_interrupted&) {
 		thread_safe_print("\nthread_send_pic interrupted!");
@@ -204,6 +203,10 @@ int Client::init() {
 		return -1; // durch define ersetzten
 	}
 	if (sem_init(&sem_faceDetectionVector, 0, 1) < 0) {
+		return -1;
+		std::cout << "Error: init sem_faceDetectionVector";
+	}
+	if (sem_init(&sem_faceDetectionNewPicAvailable, 0, 0) < 0) {
 		return -1;
 		std::cout << "Error: init sem_faceDetectionVector";
 	}
