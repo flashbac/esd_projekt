@@ -32,7 +32,7 @@ using namespace std;
 
 class Client {
 public:
-	Client(std::string ipadress, int port, std::string outgoingDeviceName);
+	Client(std::string ipadress, int port, unsigned char kamerID, std::string outgoingDeviceName);
 	virtual ~Client();
 	void thread_safe_print(std::string str);
 	void setMTUsize(int MTUsize);
@@ -42,9 +42,12 @@ public:
 	void stop();
 
 private:
+	unsigned char kameraID;
+
 	std::vector<unsigned char> ringpuffer[CLIENT_MAX_BUFFER_PIC_COUNT];
 	std::vector<unsigned char> copyOfPicForDetection;
 	std::vector<cv::Rect> global_faces;
+
 	sem_t sem_freeSpace;
 	sem_t sem_numberToWrite;
 	sem_t sem_faceDetectionBusy;

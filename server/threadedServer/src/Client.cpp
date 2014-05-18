@@ -7,12 +7,14 @@
 
 #include "Client.h"
 
-Client::Client(std::string ipadress, int port, std::string outgoingDeviceName) {
+Client::Client(std::string ipadress, int port, unsigned char kamerID,
+		std::string outgoingDeviceName) {
 
 	this->running = false;
 	this->thread_cam = NULL;
 	this->thread_face = NULL;
 	this->thread_UDPsend = NULL;
+	this->kameraID = kamerID;
 
 	if (ipadress.empty() || (port <= 0) || outgoingDeviceName.empty())
 		this->~Client();
@@ -120,8 +122,6 @@ void Client::wait(int seconds) {
 	boost::this_thread::sleep(boost::posix_time::seconds(seconds));
 }
 
-unsigned char tmp[10] = { 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a' };
-
 void Client::thread_kamera_reader() {
 	try {
 		while (running) {
@@ -170,7 +170,8 @@ void Client::thread_send_pic() {
 				sem_post(&sem_faceDetectionNewPicAvailable);
 			}
 			// send pic
-			this->udpProtokoll->sendInChunks(0, &nextPic[0], nextPic.size());
+			this->udpProtokoll->sendInChunks(this->kameraID, &nextPic[0],
+					nextPic.size());
 
 			sem_post(&sem_freeSpace);
 		}
