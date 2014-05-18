@@ -3,15 +3,13 @@ String übertragen wird.
 
 Mögliche Objekte:
 cmd			- Kommando welches ausgeführt wird
-left
-right
-position
+status
 
+Wichtig: endezeichen eines json string wird mit ... terminiert (\n, ;,!ENDE!)
 
 cmd detaliert:
 
-	{"cmd":"cams","value":[1,2,3,4]}
-	
+Client Commandos
 	
 	{"cmd":"exit","value":1}		// Trennt die Kontroll Verbindung
 	
@@ -33,5 +31,20 @@ cmd detaliert:
 	
 	{"cmd":"position","value":{"direction":"bottom","steps":1}	// Setzt servo um 1 step nach unten
 	
-	
+Server Commandos
+
+	{"cmd":"exit","value":1}		// Trennt die Kontroll Verbindung
+
+	{"cmd":"cams","value":[1,2,3,4]}
 					
+	{"status":"camera","value":1}	// Kamera 1 ist ausgewählt
+
+	{"status":"udp","value":{"des":"192.168.1.1","port":5000}} //sende udp pakete an dieses ziel
+
+	{"status":"server",} ??
+
+	{"status":"face","value":[{"name":"unknown","id":1234567890,"x":30,"y":20,"width":30,"height":30},
+							  {"name":"hanz","id":123,"x":30,"y":20,"width":30,"height":30}]}
+	
+	{"status":"trak","value":123}	// value gleichbedeutetnd mit einer face id
+

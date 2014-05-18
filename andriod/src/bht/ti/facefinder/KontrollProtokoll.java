@@ -81,9 +81,15 @@ public class KontrollProtokoll {
 	{
 		try {
 			JSONObject jsonObject = new JSONObject(json);
+			String cmd = jsonObject.getString("cmd");
+			JSONObject value = jsonObject.getJSONObject("value");
 			Log.i("MY","Value: " + jsonObject.getString("mode"));
+		
+		
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 }
