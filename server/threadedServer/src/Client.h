@@ -22,6 +22,7 @@
 #include "UDPClient.h"
 #include "UDPProtkoll.h"
 #include "Helper.h"
+#include "OpenCVWarpper.h"
 
 //defines
 #define CLIENT_MAX_BUFFER_PIC_COUNT 20
@@ -42,16 +43,20 @@ public:
 
 private:
 	std::vector<unsigned char> ringpuffer[CLIENT_MAX_BUFFER_PIC_COUNT];
-	std::vector<unsigned char> global_faces;
+	std::vector<unsigned char> copyOfPicForDetection;
+	std::vector<cv::Rect> global_faces;
 	sem_t sem_freeSpace;
 	sem_t sem_numberToWrite;
 	sem_t sem_faceDetectionBusy;
 	sem_t sem_faceDetectionVector;
+	sem_t sem_faceDetectionNewPicAvailable;
 	sem_t sem_print;
 
 	UDPClient *udpClient;
 	UDPProtkoll *udpProtokoll;
 	Helper *helper;
+	OpenCVWarpper openCVforCapture;
+	OpenCVWarpper openCVforFaceDetection;
 
 	boost::thread *thread_cam;
 	boost::thread *thread_face;
@@ -60,12 +65,11 @@ private:
 	bool running;
 
 	bool isFaceDetectionReady();
-	void setFaceDetectionVector(std::vector<unsigned char> faces);
-	std::vector<unsigned char> getFaceDetectionVector();
+	void setFaceDetectionVector(std::vector<cv::Rect> faces);
+	std::vector<cv::Rect> getFaceDetectionVector();
 	std::vector<unsigned char> * getNextFreeToWriteImage();
 	std::vector<unsigned char> * getNextToReadToSend();
 	void wait(int seconds);
-	void paintRectFromFaces();
 	void thread_kamera_reader();
 	void thread_face_detection();
 	void thread_send_pic();
