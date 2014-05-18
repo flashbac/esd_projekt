@@ -13,8 +13,8 @@
 int main(int argc, char** argv) {
 	Client a("192.168.178.42",50000, "eth0");
 	a.init();
-	a.start();
-	Kommunikation TcpSocket;// = new Kommunikation();
+//	a.start();
+	Kommunikation TcpSocket;
 	TcpSocket.start();
 
 

@@ -94,13 +94,13 @@ int Kommunikation::thread_Binder() {
 		int state = 0;
 		if (!running) {
 			running = true;
-			this->thread_TcpSend = new boost::thread(boost::bind(&Kommunikation::thread_Sender, this, &client_sock));
+			this->thread_TcpSend = new boost::thread(boost::bind(&Kommunikation::thread_Sender, this, client_sock));
 
 			if (this->thread_TcpSend == NULL)
 				state = -1;
 
 			this->thread_TcpRecive = new boost::thread(boost::bind(
-					&Kommunikation::thread_Recive, this, &client_sock));
+					&Kommunikation::thread_Recive, this, client_sock));
 			if (this->thread_TcpRecive == NULL)
 				state = -1;
 
@@ -123,11 +123,12 @@ int Kommunikation::thread_Binder() {
 	return 1;
 }
 
-void Kommunikation::thread_Recive(void *socket_desc) {
+void Kommunikation::thread_Recive(int socket_desc) {
 	try {
 	    //Get the socket descriptor
-	    int sock = *(int*)socket_desc;
+	    int sock = socket_desc;
 	    int read_size;
+	    //std::vector<unsigned char> v;
 	    char *message , client_message[2000];
 		//Receive a message from client
 		while( (read_size = recv(sock , client_message , 2000 , 0)) > 0 )
@@ -156,7 +157,7 @@ void Kommunikation::thread_Recive(void *socket_desc) {
 	}
 }
 
-void Kommunikation::thread_Sender(int *socket_desc) {
+void Kommunikation::thread_Sender(int socket_desc) {
 	try {
 		while (1) {
 

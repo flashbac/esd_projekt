@@ -39,8 +39,8 @@ private:
 	boost::thread *thread_TcpSend;
 	boost::thread *thread_TcpRecive;
 	boost::thread *thread_TcpBinder;
-	void thread_Sender(int *socket_desc);
-	void thread_Recive(void *socket_desc);
+	void thread_Sender(int socket_desc);
+	void thread_Recive(int socket_desc);
 	int thread_Binder();
 
 };
