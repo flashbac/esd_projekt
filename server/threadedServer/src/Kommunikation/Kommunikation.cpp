@@ -93,7 +93,7 @@ int Kommunikation::thread_Binder() {
 
 		int state = 0;
 		if (running) {
-			if (thread_TcpSend != NULL && thread_TcpRecive != NULL)
+			if (numberOffClients <= 0)
 			{
 				this->thread_TcpSend = new boost::thread(boost::bind(&Kommunikation::thread_Sender, this, client_sock));
 
@@ -140,30 +140,51 @@ void Kommunikation::thread_Recive(int socket_desc) {
 	    int read_size;
 	    //std::vector<unsigned char> v;
 	    char *message , client_message[2000];
-		//Receive a message from client
+	    std::string json = "";
+		int ende; // letzte fund eines Simikolons
+		int i;	  // laufvariable
+	    //Receive a message from client
 		while( (read_size = recv(sock , client_message , 2000 , 0)) > 0 )
 		{
-			//end of string marker
-			client_message[read_size] = '\0';
-			printf("Empfangen: %s\n", client_message);
+			ende = 0;
+			for(i=0;i<=read_size;i++)
+			{
+				if (client_message[i] == ';')
+				{ //Befehl vollständig
 
-			//zustand = commando(client_message);
+					json.append(client_message, i-ende);
 
-			message = client_message;
-			printf("Sende    : %s\n", message);
-			//Send the message back to client
-			write(sock , message , strlen(message));
+					// Befehl ausführen
+					{
+						printf("Empfangen: %s\n", json.c_str());
 
-
+						printf("Sende    : %s\n", json.c_str());
+						//Send the message back to client
+						send(sock , json.c_str() , json.length(),0);
+					}
+					json = "";
+					i++; // simikolon entfernen
+					i++; // \n entfernen
+					ende = i;
+				}
+			}
+			if (!(i==(ende+1)))
+			{ // nur in dem fall wo auch wirklich noch daten kamen
+				json.append(client_message, i-ende-1);
+			}
 			//clear the message buffer
 			memset(client_message, 0, 2000);
 
 			//if (zustand == -1)
 			//	break;
 		}
+		thread_safe_print("Client disconnected.");
+		numberOffClients --;
+		close(sock);
 
 	} catch (boost::thread_interrupted&) {
 		thread_safe_print("\nthread_kamera_reader interrupted!");
+		numberOffClients --;
 	}
 }
 
@@ -172,13 +193,18 @@ void Kommunikation::thread_Sender(int socket_desc) {
 		while (1) {
 
 		}
+		//close(sock);
 	} catch (boost::thread_interrupted&) {
 		thread_safe_print("\nthread_kamera_reader interrupted!");
 	}
 }
 
+void Kommunikation::setSafePrintSemaphore(sem_t *sem){
+	this->sem_print = sem;
+}
+
 void Kommunikation::thread_safe_print(std::string str) {
-	sem_wait(&sem_print);
+	sem_wait(sem_print);
 	std::cout << str;
-	sem_post(&sem_print);
+	sem_post(sem_print);
 }

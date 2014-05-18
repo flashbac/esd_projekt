@@ -24,8 +24,9 @@ int main(int argc, char** argv) {
 	Client a("192.168.178.42",50000, 0, "eth0");
 	a.setSafePrintSemaphore(&sem_print);
 	a.init();
-	a.start();
+	//a.start();
 	Kommunikation TcpSocket;
+	TcpSocket.setSafePrintSemaphore(&sem_print);
 	TcpSocket.start();
 
 

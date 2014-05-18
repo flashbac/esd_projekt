@@ -25,6 +25,7 @@ class Kommunikation {
 public:
 	Kommunikation();
 	virtual ~Kommunikation();
+	void setSafePrintSemaphore(sem_t *sem);
 	void thread_safe_print(std::string str);
 	int start();
 	void stop();
@@ -34,7 +35,7 @@ public:
 private:
 	bool running;
 	int numberOffClients;
-	sem_t sem_print;
+	sem_t *sem_print;
 
 	boost::thread *thread_TcpSend;
 	boost::thread *thread_TcpRecive;
