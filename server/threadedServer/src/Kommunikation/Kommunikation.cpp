@@ -182,6 +182,7 @@ void Kommunikation::thread_Recive(int socket_desc) {
 		numberOffClients --;
 		close(sock);
 
+
 	} catch (boost::thread_interrupted&) {
 		thread_safe_print("\nthread_kamera_reader interrupted!");
 		numberOffClients --;
@@ -189,8 +190,13 @@ void Kommunikation::thread_Recive(int socket_desc) {
 }
 
 void Kommunikation::thread_Sender(int socket_desc) {
+	//Get the socket descriptor
+	int sock = socket_desc;
+	int read_size;
+	char *message , client_message[2000];
 	try {
 		while (1) {
+			//read from pipe bis \n danach an socket senden
 
 		}
 		//close(sock);

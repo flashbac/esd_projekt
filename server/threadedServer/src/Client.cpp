@@ -15,6 +15,8 @@ Client::Client(std::string ipadress, int port, unsigned char kamerID,
 	this->thread_face = NULL;
 	this->thread_UDPsend = NULL;
 	this->kameraID = kamerID;
+	this->sem_print = NULL;
+	this->jpgQuality = 100;
 
 	if (ipadress.empty() || (port <= 0) || outgoingDeviceName.empty())
 		this->~Client();
@@ -33,7 +35,8 @@ Client::Client(std::string ipadress, int port, unsigned char kamerID,
 		this->~Client();
 
 	if (openCVforFaceDetection.addCascade(
-			"/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml")
+			"/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml")
+			//"/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml")
 			!= 0)
 		this->~Client();
 }
@@ -133,8 +136,10 @@ void Client::thread_kamera_reader() {
 
 			openCVforCapture.drawRects(this->getFaceDetectionVector());
 
-			openCVforCapture.MatToJPEG(&nextPic);
-
+			openCVforCapture.MatToJPEG(&nextPic, this->jpgQuality);
+			std::stringstream str;
+			str << "\nBild Size: " << nextPic.size() << "bytes";
+			this->thread_safe_print(str.str());
 			sem_post(&sem_numberToWrite);
 		}
 	} catch (boost::thread_interrupted&) {
@@ -163,7 +168,7 @@ void Client::thread_send_pic() {
 			std::vector<unsigned char>& nextPic = *getNextToReadToSend();
 
 			//frage ob faceDetection nicht beschäftigt ist?
-			if (isFaceDetectionReady()) {
+			if (isFaceDetectionReady() ){
 				// kopie vom bild anlegen, copyOfPicForDetection wird durch sem_faceDetectionNewPicAvailable geschuetzt
 				copyOfPicForDetection.resize(nextPic.size());
 				memcpy(&copyOfPicForDetection[0], &nextPic[0], nextPic.size());
@@ -264,4 +269,8 @@ void Client::stop() {
 			delete (this->thread_UDPsend);
 		}
 	}
+}
+
+void Client::setJpgQuality(int prozent){
+	this->jpgQuality = prozent;
 }

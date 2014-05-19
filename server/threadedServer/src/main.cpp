@@ -21,10 +21,13 @@ int main(int argc, char** argv) {
 		std::cout << "Error: init sem_print";
 	}
 
-	Client a("192.168.178.42",50000, 0, "eth0");
+	//Client a("141.64.164.112",50000, 0, "eth0");
+	Client a("127.0.0.1",50000, 0, "eth0");
 	a.setSafePrintSemaphore(&sem_print);
 	a.init();
-	//a.start();
+	a.setJpgQuality(10);
+	a.setMTUsize(10240);
+	a.start();
 	Kommunikation TcpSocket;
 	TcpSocket.setSafePrintSemaphore(&sem_print);
 	TcpSocket.start();

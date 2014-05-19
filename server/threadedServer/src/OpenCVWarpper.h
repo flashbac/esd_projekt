@@ -36,8 +36,8 @@ public:
 	void display(std::string windowName);
 	void display(std::string windowName, Mat *frame);
 	void loadFromJPEG(std::vector<unsigned char> *buffer);
-	void MatToJPEG(std::vector<unsigned char> *buffer);
-	void MatToJPEG(Mat *frame, std::vector<unsigned char> *buffer);
+	void MatToJPEG(std::vector<unsigned char> *buffer, int quality = 100);
+	void MatToJPEG(Mat *frame, std::vector<unsigned char> *buffer, int quality = 100);
 	void QueryDetectAllToJPEG(std::vector<unsigned char> *buffer);
 	void QueryAndDrawToJPEG(std::vector<Rect> detectedObjects,
 			std::vector<unsigned char> *buffer);

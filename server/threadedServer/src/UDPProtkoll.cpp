@@ -75,7 +75,6 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 
 		byteCounter += lengthOfSendingContent;
 		chunkCounter++;
-		printf(".");
 		pauseZaehler = pauseZaehler + mtu;
 		if (pauseZaehler >= andriodMaxBytesToTimeout) {
 			usleep(andriodTimeout);

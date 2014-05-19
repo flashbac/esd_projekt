@@ -148,11 +148,11 @@ void OpenCVWarpper::loadFromJPEG(std::vector<unsigned char> *buffer) {
 	// imgMat is the decoded image
 }
 
-void OpenCVWarpper::MatToJPEG(std::vector<unsigned char> *buffer) {
-	this->MatToJPEG(&frame, buffer);
+void OpenCVWarpper::MatToJPEG(std::vector<unsigned char> *buffer, int quality) {
+	this->MatToJPEG(&frame, buffer, quality);
 }
 
-void OpenCVWarpper::MatToJPEG(Mat *frame, std::vector<unsigned char> *buffer) {
+void OpenCVWarpper::MatToJPEG(Mat *frame, std::vector<unsigned char> *buffer, int quality) {
 	if (frame->empty()) {
 		buffer->resize(0);
 		buffer->clear();
@@ -161,7 +161,11 @@ void OpenCVWarpper::MatToJPEG(Mat *frame, std::vector<unsigned char> *buffer) {
 
 	// encode image into jpg
 	//cv::vector<uchar> buf;
-	cv::imencode(".jpg", *frame, *buffer, std::vector<int>());
+	vector<int> params = vector<int>(2);
+	params[0] = CV_IMWRITE_JPEG_QUALITY;
+	params[1] = quality;
+
+	cv::imencode(".jpg", *frame, *buffer, params);
 	// encoded image is now in buf (a vector)
 	//imageBuf = (unsigned char *) realloc(imageBuf, buf.size());
 	//memcpy(imageBuf, &buf[0], buf.size());

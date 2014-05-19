@@ -41,6 +41,7 @@ public:
 	int init();
 	int start();
 	void stop();
+	void setJpgQuality(int prozent);
 
 private:
 	unsigned char kameraID;
@@ -48,6 +49,7 @@ private:
 	std::vector<unsigned char> ringpuffer[CLIENT_MAX_BUFFER_PIC_COUNT];
 	std::vector<unsigned char> copyOfPicForDetection;
 	std::vector<cv::Rect> global_faces;
+	int jpgQuality;
 
 	sem_t sem_freeSpace;
 	sem_t sem_numberToWrite;
