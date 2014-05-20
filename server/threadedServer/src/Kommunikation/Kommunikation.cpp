@@ -55,6 +55,10 @@ void Kommunikation::stop() {
 	}
 }
 
+void sendMessage(std::string str){
+
+}
+
 int Kommunikation::thread_Binder() {
 
 	int socket_desc, client_sock, c;

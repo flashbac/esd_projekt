@@ -9,6 +9,8 @@
 #define KOMMUNIKATION_H_
 
 #include <boost/thread/thread.hpp>
+#include <boost/lockfree/queue.hpp>
+#include <boost/atomic/atomic.hpp>
 #include <semaphore.h>
 #include <iostream>
 #include <sstream>
@@ -36,6 +38,8 @@ private:
 	bool running;
 	int numberOffClients;
 	sem_t *sem_print;
+	boost::atomic<bool> done;
+	//boost::lockfree::queue queue;
 
 	boost::thread *thread_TcpSend;
 	boost::thread *thread_TcpRecive;
@@ -43,6 +47,7 @@ private:
 	void thread_Sender(int socket_desc);
 	void thread_Recive(int socket_desc);
 	int thread_Binder();
+	void sendMessage(std::string str);
 
 };
 

@@ -185,10 +185,10 @@ int main(int argc, char** argv) {
 	Helper h = Helper();
 
 	//UDPClient client = UDPClient("127.0.0.1", 50000);
-	UDPClient client = UDPClient("192.168.1.126", 50000);
+	UDPClient client = UDPClient("141.64.171.47", 50000);
 
 	//UDPClient client = UDPClient("192.168.178.75", 50000);
-	UDPProtkoll protokoll = UDPProtkoll(&client, 10240, 3000, 10240);//h.getMTUsize());
+	UDPProtkoll protokoll = UDPProtkoll(&client, 10, 3000, 10240);//h.getMTUsize());
 	FileIO* files[ANZAHL_DATEIN];
 
 	for (int i = 0; i < ANZAHL_DATEIN; i++) {

@@ -22,12 +22,13 @@ int main(int argc, char** argv) {
 	}
 
 	//Client a("141.64.164.112",50000, 0, "eth0");
-	Client a("127.0.0.1",50000, 0, "eth0");
+	Client a("192.168.1.126",50000, 0, "eth0");
 	a.setSafePrintSemaphore(&sem_print);
 	a.init();
 	a.setJpgQuality(10);
 	a.setMTUsize(10240);
 	a.start();
+
 	Kommunikation TcpSocket;
 	TcpSocket.setSafePrintSemaphore(&sem_print);
 	TcpSocket.start();
