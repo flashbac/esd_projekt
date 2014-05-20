@@ -38,16 +38,21 @@ private:
 	bool running;
 	int numberOffClients;
 	sem_t *sem_print;
+	sem_t sem_message_vector;
 	boost::atomic<bool> done;
 	//boost::lockfree::queue queue;
 
 	boost::thread *thread_TcpSend;
 	boost::thread *thread_TcpRecive;
 	boost::thread *thread_TcpBinder;
+	std::vector<std::string> messages;
+
+
 	void thread_Sender(int socket_desc);
 	void thread_Recive(int socket_desc);
 	int thread_Binder();
 	void sendMessage(std::string str);
+	std::string getMessage();
 
 };
 

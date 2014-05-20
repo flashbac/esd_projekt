@@ -10,6 +10,11 @@
 Kommunikation::Kommunikation() {
 	// TODO Auto-generated constructor stub
 	numberOffClients = 0;
+
+	if (sem_init(&sem_message_vector, 0, 1) < 0) {
+		std::cout << "Error: init sem_message_vector";
+	}
+
 }
 
 Kommunikation::~Kommunikation() {
@@ -21,8 +26,8 @@ int Kommunikation::start() {
 	int return_value = 0;
 	if (!running) {
 		running = true;
-		this->thread_TcpBinder = new boost::thread(&Kommunikation::thread_Binder,
-				this);
+		this->thread_TcpBinder = new boost::thread(
+				&Kommunikation::thread_Binder, this);
 		if (this->thread_TcpBinder == NULL)
 			return_value = -1;
 
@@ -55,8 +60,28 @@ void Kommunikation::stop() {
 	}
 }
 
-void sendMessage(std::string str){
+void Kommunikation::sendMessage(std::string str) {
 
+	sem_wait(&sem_message_vector);
+	messages.push_back("{test}");
+	sem_post(&sem_message_vector);
+}
+
+std::string Kommunikation::getMessage() {
+
+	if (messages.size() < 0) {
+		std::string s;
+		sem_wait(&sem_message_vector);
+		for (int i = 0; i < messages.size(); ++i) {
+
+			s = s.append(messages.at(i).c_str());
+		}
+		sem_post(&sem_message_vector);
+		return s;
+	}
+	else
+		return NULL;
+	// s an socket schicken
 }
 
 int Kommunikation::thread_Binder() {
@@ -97,34 +122,33 @@ int Kommunikation::thread_Binder() {
 
 		int state = 0;
 		if (running) {
-			if (numberOffClients <= 0)
-			{
-				this->thread_TcpSend = new boost::thread(boost::bind(&Kommunikation::thread_Sender, this, client_sock));
+			if (numberOffClients <= 0) {
+				this->thread_TcpSend = new boost::thread(
+						boost::bind(&Kommunikation::thread_Sender, this,
+								client_sock));
 
 				if (this->thread_TcpSend == NULL)
 					state = -1;
 
-				this->thread_TcpRecive = new boost::thread(boost::bind(
-						&Kommunikation::thread_Recive, this, client_sock));
+				this->thread_TcpRecive = new boost::thread(
+						boost::bind(&Kommunikation::thread_Recive, this,
+								client_sock));
 				if (this->thread_TcpRecive == NULL)
 					state = -1;
 
 				if (state != 0) {
 					this->stop();
-				}
-				else
-				{
+				} else {
 					numberOffClients = 1;
 				}
-			}
-			else
-			{
+			} else {
 				std::string msg("Server accept only one Client.");
 				send(client_sock, msg.c_str(), msg.length(), 0);
 				close(client_sock);
 			}
 		} else {
-			thread_safe_print("Can not connect bind socket is not in lissen mode.");
+			thread_safe_print(
+					"Can not connect bind socket is not in lissen mode.");
 		}
 
 		if (client_sock < 0) {
@@ -139,32 +163,33 @@ int Kommunikation::thread_Binder() {
 
 void Kommunikation::thread_Recive(int socket_desc) {
 	try {
-	    //Get the socket descriptor
-	    int sock = socket_desc;
-	    int read_size;
-	    //std::vector<unsigned char> v;
-	    char *message , client_message[2000];
-	    std::string json = "";
+		//Get the socket descriptor
+		int sock = socket_desc;
+		int read_size;
+		//std::vector<unsigned char> v;
+		char *message, client_message[2000];
+		std::string json = "";
 		int ende; // letzte fund eines Simikolons
 		int i;	  // laufvariable
-	    //Receive a message from client
-		while( (read_size = recv(sock , client_message , 2000 , 0)) > 0 )
-		{
+		//Receive a message from client
+		while ((read_size = recv(sock, client_message, 2000, 0)) > 0) {
 			ende = 0;
-			for(i=0;i<=read_size;i++)
-			{
-				if (client_message[i] == ';')
-				{ //Befehl vollständig
+			for (i = 0; i <= read_size; i++) {
+				if (client_message[i] == ';') { //Befehl vollständig
 
-					json.append(client_message, i-ende);
+					json.append(client_message, i - ende);
 
 					// Befehl ausführen
 					{
 						printf("Empfangen: %s\n", json.c_str());
 
 						printf("Sende    : %s\n", json.c_str());
+
+
 						//Send the message back to client
-						send(sock , json.c_str() , json.length(),0);
+						//send(sock, json.c_str(), json.length(), 0);
+
+						sendMessage(json);
 					}
 					json = "";
 					i++; // simikolon entfernen
@@ -172,9 +197,8 @@ void Kommunikation::thread_Recive(int socket_desc) {
 					ende = i;
 				}
 			}
-			if (!(i==(ende+1)))
-			{ // nur in dem fall wo auch wirklich noch daten kamen
-				json.append(client_message, i-ende-1);
+			if (!(i == (ende + 1))) { // nur in dem fall wo auch wirklich noch daten kamen
+				json.append(client_message, i - ende - 1);
 			}
 			//clear the message buffer
 			memset(client_message, 0, 2000);
@@ -183,13 +207,12 @@ void Kommunikation::thread_Recive(int socket_desc) {
 			//	break;
 		}
 		thread_safe_print("Client disconnected.");
-		numberOffClients --;
+		numberOffClients--;
 		close(sock);
-
 
 	} catch (boost::thread_interrupted&) {
 		thread_safe_print("\nthread_kamera_reader interrupted!");
-		numberOffClients --;
+		numberOffClients--;
 	}
 }
 
@@ -197,10 +220,14 @@ void Kommunikation::thread_Sender(int socket_desc) {
 	//Get the socket descriptor
 	int sock = socket_desc;
 	int read_size;
-	char *message , client_message[2000];
+	char *message, client_message[2000];
 	try {
 		while (1) {
-			//read from pipe bis \n danach an socket senden
+			std::string s;
+			s = getMessage();
+
+				std::cout << s;
+
 
 		}
 		//close(sock);
@@ -209,7 +236,7 @@ void Kommunikation::thread_Sender(int socket_desc) {
 	}
 }
 
-void Kommunikation::setSafePrintSemaphore(sem_t *sem){
+void Kommunikation::setSafePrintSemaphore(sem_t *sem) {
 	this->sem_print = sem;
 }
 
