@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
 	a.init();
 	a.setJpgQuality(10);
 	a.setMTUsize(10240);
-	a.start();
+	//a.start();
 
 	Kommunikation TcpSocket;
 	TcpSocket.setSafePrintSemaphore(&sem_print);
