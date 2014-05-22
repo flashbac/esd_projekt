@@ -22,11 +22,12 @@ void KommunikationsProtokoll::sendMessageToSenderThread(std::string json){
 }
 
 void KommunikationsProtokoll::cmdExit(){
-	json::Object obj;
-	obj["cmd"] = "exit";
-	obj["value"] = 1;
-	std::string str = json::Serialize(obj);
-	TCP_Kommunikation.sendMessage(str);
+	Json::Value jo;
+
+	jo["cmd"] = "exit";
+	jo["value"] = 1;
+
+	TCP_Kommunikation.sendMessage(jo.asCString());
 }
 
 void KommunikationsProtokoll::camAvalible(int anzahlKamera){
