@@ -21,6 +21,7 @@
 #include <stdlib.h>
 #include <sys/socket.h>
 #include <arpa/inet.h> //inet_addr
+#include "KommunikationsProtokoll.h"
 
 
 class Kommunikation {
@@ -32,6 +33,8 @@ public:
 	int start();
 	void stop();
 	void sendMessage(std::string str);
+	//KommunikationsProtokoll cp;
+
 
 
 private:

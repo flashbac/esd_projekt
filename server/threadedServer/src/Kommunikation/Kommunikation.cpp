@@ -14,13 +14,15 @@ Kommunikation::Kommunikation() {
 	if (sem_init(&sem_message_vector, 0, 1) < 0) {
 		std::cout << "Error: init sem_message_vector";
 	}
-
+	//cp = KommunikationsProtokoll(this);
 }
 
 Kommunikation::~Kommunikation() {
 	// TODO Auto-generated destructor stub
 	this->stop();
 }
+
+
 
 int Kommunikation::start() {
 	int return_value = 0;

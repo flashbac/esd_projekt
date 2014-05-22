@@ -10,7 +10,9 @@
 
 #include "../SuperEasyJson/json.h"
 #include <jsoncpp/value.h>
+#include <jsoncpp/reader.h>
 #include "Kommunikation.h"
+
 
 typedef struct face_str {
 	int face_id;
@@ -24,10 +26,14 @@ typedef struct face_str {
 class KommunikationsProtokoll {
 public:
 
-	Kommunikation TCP_Kommunikation;
-
 	KommunikationsProtokoll();
 	virtual ~KommunikationsProtokoll();
+
+
+
+	void commandoProzess(std::string json);
+	//void setTcpSenderClass(const Kommunikation k);
+	void init ();
 
 	void cmdExit();
 	void camAvalible(int anzahlKamera);
@@ -36,10 +42,12 @@ public:
 	void statusServos(int x, int y);
 	void statusFace(std::vector<face_t> faces);
 	void statusTrack(int face_id);
-	void commandoProzess(std::string json);
+
 
 
 private:
+
+
 	void sendMessageToSenderThread(std::string json);
 
 };
