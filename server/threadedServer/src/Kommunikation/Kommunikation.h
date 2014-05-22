@@ -31,7 +31,7 @@ public:
 	void thread_safe_print(std::string str);
 	int start();
 	void stop();
-
+	void sendMessage(std::string str);
 
 
 private:
@@ -51,7 +51,6 @@ private:
 	void thread_Sender(int socket_desc);
 	void thread_Recive(int socket_desc);
 	int thread_Binder();
-	void sendMessage(std::string str);
 	std::string getMessage();
 
 };
