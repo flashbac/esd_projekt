@@ -9,7 +9,7 @@
 #define KOMMUNIKATIONSPROTOKOLL_H_
 
 #include "../SuperEasyJson/json.h"
-#include <json/json.h>
+#include <jsoncpp/value.h>
 #include "Kommunikation.h"
 
 typedef struct face_str {
