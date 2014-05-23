@@ -14,7 +14,11 @@ Kommunikation::Kommunikation() {
 	if (sem_init(&sem_message_vector, 0, 1) < 0) {
 		std::cout << "Error: init sem_message_vector";
 	}
-	//cp = KommunikationsProtokoll(this);
+	thread_TcpBinder = NULL;
+	thread_TcpRecive = NULL;
+	thread_TcpSend = NULL;
+	running = 0;
+	sem_print = NULL;
 }
 
 Kommunikation::~Kommunikation() {
@@ -23,6 +27,10 @@ Kommunikation::~Kommunikation() {
 }
 
 
+void Kommunikation::setKommunikationsProtokoll(KommunikationsProtokoll *k)
+{
+	this->cp = k;
+}
 
 int Kommunikation::start() {
 	int return_value = 0;
@@ -75,7 +83,7 @@ std::string Kommunikation::getMessage() {
 	if (messages.size() < 0) {
 		std::string s;
 		sem_wait(&sem_message_vector);
-		for (int i = 0; i < messages.size(); ++i) {
+		for (unsigned int i = 0; i < messages.size(); ++i) {
 
 			s = s.append(messages.at(i).c_str());
 		}
@@ -169,7 +177,7 @@ void Kommunikation::thread_Recive(int socket_desc) {
 		int sock = socket_desc;
 		int read_size;
 		//std::vector<unsigned char> v;
-		char *message, client_message[2000];
+		char client_message[2000];
 		std::string json = "";
 		int ende; // letzte fund eines Simikolons
 		int i;	  // laufvariable
@@ -185,6 +193,7 @@ void Kommunikation::thread_Recive(int socket_desc) {
 					{
 						printf("Empfangen: %s\n", json.c_str());
 						sendMessage(json);
+
 					}
 					json.clear();
 					i++; // simikolon entfernen
@@ -225,7 +234,7 @@ void Kommunikation::thread_Sender(int socket_desc) {
 			if (messages.size() > 0) {
 					std::string s;
 					sem_wait(&sem_message_vector);
-					for (int i = 0; i<messages.size();i++)
+					for (unsigned int i = 0; i<messages.size();i++)
 					//while ( messages.size() > 0)
 					{
 						s.append(messages[i]);
@@ -251,7 +260,12 @@ void Kommunikation::setSafePrintSemaphore(sem_t *sem) {
 }
 
 void Kommunikation::thread_safe_print(std::string str) {
-	sem_wait(sem_print);
-	std::cout << str;
-	sem_post(sem_print);
+	if (sem_print != NULL)
+	{
+		sem_wait(sem_print);
+		std::cout << str;
+		sem_post(sem_print);
+	}
+	else
+		printf("%s",str.c_str());
 }

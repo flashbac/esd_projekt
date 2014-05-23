@@ -33,7 +33,8 @@ public:
 	int start();
 	void stop();
 	void sendMessage(std::string str);
-	//KommunikationsProtokoll cp;
+	void setKommunikationsProtokoll(KommunikationsProtokoll *k);
+	KommunikationsProtokoll *cp;
 
 
 

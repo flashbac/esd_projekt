@@ -29,8 +29,6 @@ public:
 	KommunikationsProtokoll();
 	virtual ~KommunikationsProtokoll();
 
-
-
 	void commandoProzess(std::string json);
 	//void setTcpSenderClass(const Kommunikation k);
 	void init ();
