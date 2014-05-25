@@ -70,7 +70,8 @@ public class KontrollProtokoll {
 	{
 		JSONObject jsonobject = new JSONObject();
 		try {
-			jsonobject.put("exit", 1);
+			jsonobject.put("cmd", "exit");
+			jsonobject.put("value", 1);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
