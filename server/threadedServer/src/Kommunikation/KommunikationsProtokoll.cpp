@@ -16,9 +16,9 @@ KommunikationsProtokoll::~KommunikationsProtokoll() {
 	// TODO Auto-generated destructor stub
 }
 
-//void KommunikationsProtokoll::setTcpSenderClass(const Kommunikation k){
-//	tcpKommunikation = k;
-//}
+void KommunikationsProtokoll::setTcpSenderClass(Kommunikation* k){
+	tcpKommunikation = k;
+}
 
 void KommunikationsProtokoll::sendMessageToSenderThread(std::string json){
 
@@ -30,7 +30,7 @@ void KommunikationsProtokoll::cmdExit(){
 	jo["cmd"] = "exit";
 	jo["value"] = 1;
 
-	//tcpKommunikation->sendMessage(jo.asCString());
+	tcpKommunikation->sendMessage(jo.asCString());
 }
 
 void KommunikationsProtokoll::camAvalible(int anzahlKamera){
@@ -66,16 +66,16 @@ void KommunikationsProtokoll::commandoProzess(std::string json){
 	}
 	std::string cmd = root.get("cmd","").asString();
 
-/*	switch (std::string(cmd))
-	{
-		case "exit":
-			int value = root.get("value","").Int;
+	printf("%s", cmd.c_str());
+
+	if (cmd == "exit" ){
+			int value = root.get("value","").asInt();
 			if (value == 1)
 			{
 				//disconnect
 				cmdExit();
 
 			}
-	} */
+	}
 }
 

@@ -11,6 +11,7 @@
 
 #include "Client.h"
 #include "Kommunikation/Kommunikation.h"
+#include "Kommunikation/KommunikationsProtokoll.h"
 
 int main(int argc, char** argv) {
 
@@ -29,7 +30,10 @@ int main(int argc, char** argv) {
 	a.setMTUsize(10240);
 	//a.start();
 
-	Kommunikation TcpSocket;
+	KommunikationsProtokoll kp;
+
+	Kommunikation TcpSocket(&kp);
+
 	TcpSocket.setSafePrintSemaphore(&sem_print);
 	TcpSocket.start();
 

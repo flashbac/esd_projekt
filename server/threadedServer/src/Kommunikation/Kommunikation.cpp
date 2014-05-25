@@ -7,13 +7,17 @@
 
 #include "Kommunikation.h"
 
-Kommunikation::Kommunikation() {
-	// TODO Auto-generated constructor stub
+Kommunikation::Kommunikation(KommunikationsProtokoll* k) {
+
 	numberOffClients = 0;
 
 	if (sem_init(&sem_message_vector, 0, 1) < 0) {
 		std::cout << "Error: init sem_message_vector";
 	}
+	this->kp = k;
+	k->setTcpSenderClass(this);
+	//this->cp->setTcpSenderClass(this);
+
 	thread_TcpBinder = NULL;
 	thread_TcpRecive = NULL;
 	thread_TcpSend = NULL;
@@ -24,12 +28,6 @@ Kommunikation::Kommunikation() {
 Kommunikation::~Kommunikation() {
 	// TODO Auto-generated destructor stub
 	this->stop();
-}
-
-
-void Kommunikation::setKommunikationsProtokoll(KommunikationsProtokoll *k)
-{
-	this->cp = k;
 }
 
 int Kommunikation::start() {
@@ -192,7 +190,8 @@ void Kommunikation::thread_Recive(int socket_desc) {
 					// Befehl ausführen
 					{
 						printf("Empfangen: %s\n", json.c_str());
-						sendMessage(json);
+						//sendMessage(json);
+						kp->commandoProzess(json);
 
 					}
 					json.clear();

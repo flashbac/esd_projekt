@@ -12,25 +12,19 @@
 #include <jsoncpp/value.h>
 #include <jsoncpp/reader.h>
 #include "Kommunikation.h"
+#include "KommunikationTypes.h"
 
-
-typedef struct face_str {
-	int face_id;
-	std::string name;
-	int x;
-	int y;
-	int width;
-	int height;
-} face_t;
+class Kommunikation;
 
 class KommunikationsProtokoll {
+
 public:
 
 	KommunikationsProtokoll();
 	virtual ~KommunikationsProtokoll();
 
 	void commandoProzess(std::string json);
-	//void setTcpSenderClass(const Kommunikation k);
+	void setTcpSenderClass(Kommunikation *k);
 	void init ();
 
 	void cmdExit();
@@ -45,9 +39,9 @@ public:
 
 private:
 
-
 	void sendMessageToSenderThread(std::string json);
-
+	Kommunikation *tcpKommunikation;
 };
+
 
 #endif /* KOMMUNIKATIONSPROTOKOLL_H_ */

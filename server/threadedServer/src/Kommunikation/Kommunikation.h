@@ -21,20 +21,20 @@
 #include <stdlib.h>
 #include <sys/socket.h>
 #include <arpa/inet.h> //inet_addr
-#include "KommunikationsProtokoll.h"
+#include "./KommunikationsProtokoll.h"
 
+class KommunikationsProtokoll;
 
 class Kommunikation {
 public:
-	Kommunikation();
+	Kommunikation(KommunikationsProtokoll *k);
 	virtual ~Kommunikation();
 	void setSafePrintSemaphore(sem_t *sem);
 	void thread_safe_print(std::string str);
 	int start();
 	void stop();
 	void sendMessage(std::string str);
-	void setKommunikationsProtokoll(KommunikationsProtokoll *k);
-	KommunikationsProtokoll *cp;
+
 
 
 
@@ -50,7 +50,7 @@ private:
 	boost::thread *thread_TcpRecive;
 	boost::thread *thread_TcpBinder;
 	std::vector<std::string> messages;
-
+	KommunikationsProtokoll *kp;
 
 	void thread_Sender(int socket_desc);
 	void thread_Recive(int socket_desc);
