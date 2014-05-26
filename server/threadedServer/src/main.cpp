@@ -9,7 +9,7 @@
 //#include <stddef.h>
 #include <iostream>
 
-#include "Client.h"
+#include "Stream/Client.h"
 #include "Kommunikation/TcpConnection.h"
 #include "Kommunikation/KommunikationsProtokoll.h"
 
