@@ -35,7 +35,7 @@ Server Commandos
 
 	{"cmd":"exit","value":1}		// Trennt die Kontroll Verbindung
 
-	{"cmd":"cams","value":[1,2,3,4]}
+	{"status":"cams","value":[1,2,3,4]}
 					
 	{"status":"camera","value":1}	// Kamera 1 ist ausgewählt
 

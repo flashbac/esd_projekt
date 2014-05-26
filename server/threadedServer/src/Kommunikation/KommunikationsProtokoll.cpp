@@ -21,7 +21,7 @@ void KommunikationsProtokoll::setTcpSenderClass(TcpConnection* k){
 }
 
 void KommunikationsProtokoll::sendMessageToSenderThread(std::string json){
-
+	tcpKommunikation->sendMessage(json);
 }
 
 void KommunikationsProtokoll::cmdExit(){
@@ -30,16 +30,16 @@ void KommunikationsProtokoll::cmdExit(){
 	jo["cmd"] = "exit";
 	jo["value"] = 1;
 
-	tcpKommunikation->sendMessage(jo.asCString());
+	sendMessageToSenderThread(jo.asCString());
 }
 
 void KommunikationsProtokoll::camAvalible(int anzahlKamera){
 
 	Json::Value jo;
 
-	jo["cmd"] = "cams";
+	jo["status"] = "cams";
 	jo["value"] = anzahlKamera;
-	tcpKommunikation->sendMessage(jo.asCString());
+	sendMessageToSenderThread(jo.asCString());
 
 }
 void KommunikationsProtokoll::statusCamera(int currentCam){
@@ -47,7 +47,7 @@ void KommunikationsProtokoll::statusCamera(int currentCam){
 
 	jo["status"] = "camera";
 	jo["value"] = currentCam;
-	tcpKommunikation->sendMessage(jo.asCString());
+	sendMessageToSenderThread(jo.asCString());
 }
 void KommunikationsProtokoll::statusUDP(std::string ip, int port){
 
@@ -58,7 +58,7 @@ void KommunikationsProtokoll::statusUDP(std::string ip, int port){
 	io["port"] = port;
 	jo["value"] = io;
 
-	tcpKommunikation->sendMessage(jo.asCString());
+	sendMessageToSenderThread(jo.asCString());
 }
 void KommunikationsProtokoll::statusServos(int x, int y){
 	Json::Value jo;
@@ -68,7 +68,7 @@ void KommunikationsProtokoll::statusServos(int x, int y){
 	io["y"] = y;
 	jo["value"] = io;
 
-	tcpKommunikation->sendMessage(jo.asCString());
+	sendMessageToSenderThread(jo.asCString());
 
 }
 void KommunikationsProtokoll::statusFace(std::vector<face_t> faces){
@@ -87,14 +87,14 @@ void KommunikationsProtokoll::statusFace(std::vector<face_t> faces){
 		array.append(io);
 	}
 	jo["value"] = array;
-	tcpKommunikation->sendMessage(jo.asCString());
+	sendMessageToSenderThread(jo.asCString());
 }
 void KommunikationsProtokoll::statusTrack(int face_id){
 	Json::Value jo;
 
 	jo["status"] = "track";
 	jo["value"] = face_id;
-	tcpKommunikation->sendMessage(jo.asCString());
+	sendMessageToSenderThread(jo.asCString());
 }
 
 void KommunikationsProtokoll::commandoProzess(std::string json){
@@ -142,7 +142,7 @@ void KommunikationsProtokoll::commandoProzess(std::string json){
 
 	if (cmd == "mode" ){
 		std::string value = root.get("value","").asString();
-
+		sendMessageToSenderThread("{\"angekommen\":\"ja\"}");
 		return;
 	}
 

@@ -1,8 +1,12 @@
 package bht.ti.facefinder;
 
+import java.util.ArrayList;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.JsonReader;
 import android.util.Log;
 
 public class KontrollProtokoll {
@@ -24,7 +28,8 @@ public class KontrollProtokoll {
 	{
 		JSONObject jsonobject = new JSONObject();
 		try {
-			jsonobject.put("mode", mode.toString());
+			jsonobject.put("cmd", "mode");
+			jsonobject.put("value", mode.toString());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -35,7 +40,8 @@ public class KontrollProtokoll {
 	{
 		JSONObject jsonobject = new JSONObject();
 		try {
-			jsonobject.put("camera", kameraID);
+			jsonobject.put("cmd", "camera");
+			jsonobject.put("value", kameraID);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -45,9 +51,12 @@ public class KontrollProtokoll {
 	public void StreamAnfordern(String ip, int port)
 	{
 		JSONObject jsonobject = new JSONObject();
+		JSONObject innerob = new JSONObject();
 		try {
-			jsonobject.put("des", ip);
-			jsonobject.put("port", port);
+			jsonobject.put("cmd", "udp");
+			innerob.put("des", ip);
+			innerob.put("port", port);
+			jsonobject.put("value", innerob);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -57,9 +66,12 @@ public class KontrollProtokoll {
 	public void Position(KameraPosition p, int Steps)
 	{
 		JSONObject jsonobject = new JSONObject();
+		JSONObject innerob = new JSONObject();
 		try {
-			jsonobject.put("position", p.toString());
-			jsonobject.put("steps", Steps);
+			jsonobject.put("cmd", "position");
+			innerob.put("direction", p.toString());
+			innerob.put("steps", Steps);
+			jsonobject.put("value", innerob);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -82,9 +94,89 @@ public class KontrollProtokoll {
 	{
 		try {
 			JSONObject jsonObject = new JSONObject(json);
-			String cmd = jsonObject.getString("cmd");
-			JSONObject value = jsonObject.getJSONObject("value");
-			Log.i("MY","Value: " + jsonObject.getString("mode"));
+			
+			if (jsonObject.has("status"))
+			{
+				String cmd = jsonObject.getString("status");
+				
+				switch (cmd)
+				{
+					case "cams": 
+					{
+						JSONArray innerArray = jsonObject.getJSONArray("value");
+						ArrayList<Integer> cams = new ArrayList<Integer>();
+						for (int i = 0; i< innerArray.length();i++ )
+						{
+							cams.add(innerArray.getInt(0));	
+						}
+						break;
+					}
+					case "camera":
+					{
+						int value = jsonObject.getInt("value");
+						
+						Log.i("MY","Current Camera is Camera "+ value + "." );
+						break;
+					}
+					case "udp":
+					{
+						JSONObject innerOb = jsonObject.getJSONObject("value");
+						String des = jsonObject.getString("des");
+						int port = jsonObject.getInt("port");
+						Log.i("MY","Udp package sent to " + des + ":" + port );
+						break;
+					}
+					case "face":
+					{
+						JSONArray innerArray = jsonObject.getJSONArray("value");
+					
+						ArrayList<Face> faces = new ArrayList<Face>();
+						for (int i = 0; i< innerArray.length();i++ )
+						{
+							JSONObject innerOb = innerArray.getJSONObject(i);
+							faces.add(new Face(innerOb.getInt("id"),
+									innerOb.getString("name"),
+									innerOb.getInt("x"),
+									innerOb.getInt("y"),
+									innerOb.getInt("width"),
+									innerOb.getInt("height")));
+						}
+						Log.i("MY","Empfange " + faces.size() + " Faces.");
+						break;
+					}
+					case "track":
+					{
+						int value = jsonObject.getInt("value");
+						Log.i("MY","Track Camera with ID " + value );
+						break;
+					}
+					case "track":
+					{
+						JSONObject value = jsonObject.getJSONObject("value");
+						int x = value.getInt("x");
+						int y = value.getInt("y");
+						Log.i("MY","Camera Position x: " + x + " y:" + y );
+						break;
+					}
+					
+					
+				}
+			}
+				
+			if (jsonObject.has("cmd"))
+			{
+				String cmd = jsonObject.getString("cmd");
+				if ( cmd.endsWith("exit"))
+				{
+					JSONObject value = jsonObject.getJSONObject("value");
+					Log.i("MY","Exit Client.");
+					//do
+				}
+			}
+			
+			
+			
+			
 		
 		
 		} catch (JSONException e) {

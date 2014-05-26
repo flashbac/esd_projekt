@@ -37,8 +37,6 @@ int main(int argc, char** argv) {
 	TcpSocket.setSafePrintSemaphore(&sem_print);
 	TcpSocket.start();
 
-
-
 	while(1);
 
 	return 0;
