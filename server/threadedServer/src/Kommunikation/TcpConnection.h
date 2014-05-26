@@ -25,10 +25,10 @@
 
 class KommunikationsProtokoll;
 
-class Kommunikation {
+class TcpConnection {
 public:
-	Kommunikation(KommunikationsProtokoll *k);
-	virtual ~Kommunikation();
+	TcpConnection(KommunikationsProtokoll *k);
+	virtual ~TcpConnection();
 	void setSafePrintSemaphore(sem_t *sem);
 	void thread_safe_print(std::string str);
 	int start();

@@ -48,3 +48,5 @@ Server Commandos
 	
 	{"status":"trak","value":123}	// value gleichbedeutetnd mit einer face id
 
+	{"status":"position","value":{"x":1,"y":1}}
+

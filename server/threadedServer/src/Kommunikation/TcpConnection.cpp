@@ -5,9 +5,9 @@
  *      Author: rensky
  */
 
-#include "Kommunikation.h"
+#include "TcpConnection.h"
 
-Kommunikation::Kommunikation(KommunikationsProtokoll* k) {
+TcpConnection::TcpConnection(KommunikationsProtokoll* k) {
 
 	numberOffClients = 0;
 
@@ -25,17 +25,17 @@ Kommunikation::Kommunikation(KommunikationsProtokoll* k) {
 	sem_print = NULL;
 }
 
-Kommunikation::~Kommunikation() {
+TcpConnection::~TcpConnection() {
 	// TODO Auto-generated destructor stub
 	this->stop();
 }
 
-int Kommunikation::start() {
+int TcpConnection::start() {
 	int return_value = 0;
 	if (!running) {
 		running = true;
 		this->thread_TcpBinder = new boost::thread(
-				&Kommunikation::thread_Binder, this);
+				&TcpConnection::thread_Binder, this);
 		if (this->thread_TcpBinder == NULL)
 			return_value = -1;
 
@@ -47,7 +47,7 @@ int Kommunikation::start() {
 	return return_value;
 }
 
-void Kommunikation::stop() {
+void TcpConnection::stop() {
 	if (running) {
 		running = false;
 		if (this->thread_TcpSend != NULL) {
@@ -68,7 +68,7 @@ void Kommunikation::stop() {
 	}
 }
 
-void Kommunikation::sendMessage(std::string str) {
+void TcpConnection::sendMessage(std::string str) {
 
 	sem_wait(&sem_message_vector);
 	printf("Push to Vector: %s\n", str.c_str());
@@ -76,7 +76,7 @@ void Kommunikation::sendMessage(std::string str) {
 	sem_post(&sem_message_vector);
 }
 
-std::string Kommunikation::getMessage() {
+std::string TcpConnection::getMessage() {
 
 	if (messages.size() < 0) {
 		std::string s;
@@ -93,7 +93,7 @@ std::string Kommunikation::getMessage() {
 	// s an socket schicken
 }
 
-int Kommunikation::thread_Binder() {
+int TcpConnection::thread_Binder() {
 
 	int socket_desc, client_sock, c;
 	struct sockaddr_in server, client;
@@ -133,7 +133,7 @@ int Kommunikation::thread_Binder() {
 		if (running) {
 			if (numberOffClients <= 0) {
 				this->thread_TcpSend = new boost::thread(
-						boost::bind(&Kommunikation::thread_Sender, this,
+						boost::bind(&TcpConnection::thread_Sender, this,
 								client_sock));
 
 
@@ -141,7 +141,7 @@ int Kommunikation::thread_Binder() {
 					state = -1;
 
 				this->thread_TcpRecive = new boost::thread(
-						boost::bind(&Kommunikation::thread_Recive, this,
+						boost::bind(&TcpConnection::thread_Recive, this,
 								client_sock));
 				if (this->thread_TcpRecive == NULL)
 					state = -1;
@@ -169,7 +169,7 @@ int Kommunikation::thread_Binder() {
 	return 0;
 }
 
-void Kommunikation::thread_Recive(int socket_desc) {
+void TcpConnection::thread_Recive(int socket_desc) {
 	try {
 		//Get the socket descriptor
 		int sock = socket_desc;
@@ -223,7 +223,7 @@ void Kommunikation::thread_Recive(int socket_desc) {
 	}
 }
 
-void Kommunikation::thread_Sender(int socket_desc) {
+void TcpConnection::thread_Sender(int socket_desc) {
 
 	int sock = socket_desc;
 	std::string s;
@@ -254,11 +254,11 @@ void Kommunikation::thread_Sender(int socket_desc) {
 	}
 }
 
-void Kommunikation::setSafePrintSemaphore(sem_t *sem) {
+void TcpConnection::setSafePrintSemaphore(sem_t *sem) {
 	this->sem_print = sem;
 }
 
-void Kommunikation::thread_safe_print(std::string str) {
+void TcpConnection::thread_safe_print(std::string str) {
 	if (sem_print != NULL)
 	{
 		sem_wait(sem_print);

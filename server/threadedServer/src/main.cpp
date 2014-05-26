@@ -10,7 +10,7 @@
 #include <iostream>
 
 #include "Client.h"
-#include "Kommunikation/Kommunikation.h"
+#include "Kommunikation/TcpConnection.h"
 #include "Kommunikation/KommunikationsProtokoll.h"
 
 int main(int argc, char** argv) {
@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
 
 	KommunikationsProtokoll kp;
 
-	Kommunikation TcpSocket(&kp);
+	TcpConnection TcpSocket(&kp);
 
 	TcpSocket.setSafePrintSemaphore(&sem_print);
 	TcpSocket.start();

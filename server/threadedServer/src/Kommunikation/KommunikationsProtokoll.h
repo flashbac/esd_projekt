@@ -11,10 +11,10 @@
 #include "../SuperEasyJson/json.h"
 #include <jsoncpp/value.h>
 #include <jsoncpp/reader.h>
-#include "Kommunikation.h"
+#include "TcpConnection.h"
 #include "KommunikationTypes.h"
 
-class Kommunikation;
+class TcpConnection;
 
 class KommunikationsProtokoll {
 
@@ -24,7 +24,7 @@ public:
 	virtual ~KommunikationsProtokoll();
 
 	void commandoProzess(std::string json);
-	void setTcpSenderClass(Kommunikation *k);
+	void setTcpSenderClass(TcpConnection *k);
 	void init ();
 
 	void cmdExit();
@@ -40,7 +40,7 @@ public:
 private:
 
 	void sendMessageToSenderThread(std::string json);
-	Kommunikation *tcpKommunikation;
+	TcpConnection *tcpKommunikation;
 };
 
 
