@@ -25,11 +25,11 @@ public:
 
 	// Functions
 
-	TcpProtokoll();
+	TcpProtokoll(TcpConnection* tcpConnection);
 	virtual ~TcpProtokoll();
 
 	void commandoProzess(std::string json);
-	void setTcpSenderClass(TcpConnection *k);
+	void setTcpConnectionClass(TcpConnection* tcpConnection);
 	void init ();
 
 	void cmdExit();
@@ -40,13 +40,11 @@ public:
 	void statusFace(std::vector<face_t> faces);
 	void statusTrack(int face_id);
 
-
-
 private:
 
 	void sendMessageToSenderThread(std::string json);
 	void CloseConnection();
-	TcpConnection *tcpKommunikation;
+	TcpConnection *tcpConnection;
 };
 
 

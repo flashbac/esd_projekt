@@ -7,21 +7,22 @@
 
 #include "TcpProtokoll.h"
 
-TcpProtokoll::TcpProtokoll() {
 
-
+TcpProtokoll::TcpProtokoll(TcpConnection* tcpConnection)
+{
+	this->tcpConnection = tcpConnection;
 }
 
 TcpProtokoll::~TcpProtokoll() {
 
 }
 
-void TcpProtokoll::setTcpSenderClass(TcpConnection* k){
-	tcpKommunikation = k;
+void TcpProtokoll::setTcpConnectionClass(TcpConnection* tcpConnection){
+	this->tcpConnection = tcpConnection;
 }
 
 void TcpProtokoll::sendMessageToSenderThread(std::string json){
-	tcpKommunikation->sendMessage(json);
+	tcpConnection->sendMessage(json);
 }
 
 void TcpProtokoll::cmdExit(){

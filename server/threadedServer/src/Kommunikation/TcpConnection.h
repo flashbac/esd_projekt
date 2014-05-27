@@ -1,16 +1,14 @@
 /*
- * Kommunikation.h
+ * TcpClient.h
  *
- *  Created on: 18.05.2014
+ *  Created on: 27.05.2014
  *      Author: rensky
  */
 
-#ifndef KOMMUNIKATION_H_
-#define KOMMUNIKATION_H_
+#ifndef TCPCLIENT_H_
+#define TCPCLIENT_H_
 
 #include <boost/thread/thread.hpp>
-#include <boost/lockfree/queue.hpp>
-#include <boost/atomic/atomic.hpp>
 #include <semaphore.h>
 #include <iostream>
 #include <sstream>
@@ -22,32 +20,37 @@
 #include <sys/socket.h>
 #include <arpa/inet.h> //inet_addr
 #include "./TcpProtokoll.h"
-#include "../Session.h"
 
 class TcpProtokoll;
+class FugexySession;
 
 class TcpConnection {
 public:
-	TcpConnection();
+	TcpConnection(int sock, TcpProtokoll *tcpP, FugexySession *session);
 	virtual ~TcpConnection();
+	void sendMessage(std::string str);
 	void setSafePrintSemaphore(sem_t *sem);
 	void thread_safe_print(std::string str);
-	int start();
 	void stop();
-	void sendMessage(std::string str);
-
-	std::vector<Session> sessions;
 
 private:
 	bool running;
-	int numberOffClients;
+
+	boost::thread *thread_TcpSend;
+	boost::thread *thread_TcpRecive;
+	std::vector<std::string> messages;
+	TcpProtokoll *kp;
+	FugexySession *session;
+	int sock;
+
 	sem_t *sem_print;
 	sem_t sem_message_vector;
 
-	boost::thread *thread_TcpBinder;
+	void thread_Sender(int socket_desc);
+	void thread_Recive(int socket_desc);
+	int init();
 
-	int thread_Binder();
 
 };
 
-#endif /* KOMMUNIKATION_H_ */
+#endif /* TCPCLIENT_H_ */

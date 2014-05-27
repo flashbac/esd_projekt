@@ -1,34 +1,39 @@
 /*
- * Session.h
+ * FugexySession.h
  *
  *  Created on: 26.05.2014
  *      Author: rensky
  */
 
-#ifndef SESSION_H_
-#define SESSION_H_
+#ifndef FUGEXYSESSION_H_
+#define FUGEXYSESSION_H_
 
-#endif /* SESSION_H_ */
+
 #include "Kommunikation/TcpProtokoll.h"
 #include "Stream/Client.h"
 
 
 class TcpProtokoll;
-//class Client;
+class TcpConnection;
+class Client;
 
-class Session {
+class FugexySession {
 public:
+
+	FugexySession();
+	FugexySession(int Sock);
+	virtual ~FugexySession();
 
 	//Member
 
 	TcpProtokoll *kp;
 	Client *client;
+	TcpConnection *tcpC;
 	int kameraID;
 	// Servo *servo;
 
 	//Functions
-	Session(int Sock);
-	virtual ~Session();
+
 	void StartClient();
 
 private:
@@ -36,3 +41,5 @@ private:
 	void initCamera();
 	void intiTCP();
 };
+
+#endif /* FUGEXYSESSION_H_ */
