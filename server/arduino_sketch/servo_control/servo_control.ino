@@ -19,8 +19,7 @@ servoGroup servosGroups[SERVOS_MAX];
 
 char inData[PROTOKOLL_LENGTH]; // Allocate some space for the string
 unsigned char outData[10];
-char inChar; // Where to store the character read
-byte index = 0; // Index into array; where to store the character
+int dataIndex = 0; // Index into array; where to store the character
 
 int pos = 0;    // variable to store the servo position
 
@@ -69,17 +68,17 @@ void loop() {
 	while (Serial.available() > 0) // Don't read unless
 								   // there you know there is data
 	{
-		if (index < PROTOKOLL_LENGTH) // One less than the size of the array
+		if (dataIndex < PROTOKOLL_LENGTH) // One less than the size of the array
 		{
-			inData[index] = Serial.read();
-			index++; // Increment where to write next
+			inData[dataIndex] = Serial.read();
+			dataIndex++; // Increment where to write next
 		}
 	}
-	if ((index > 3) && (inData[PROTOKOLL_LENGTH - 3] == 0xff)
+	if ((dataIndex > 3) && (inData[PROTOKOLL_LENGTH - 3] == 0xff)
 			&& (inData[PROTOKOLL_LENGTH - 3] == 0x0)
 			&& (inData[PROTOKOLL_LENGTH - 3] == 0xff)) {
 		// handelt es sich um eine gültige uebertragung?
-		if (index == PROTOKOLL_LENGTH) {
+		if (dataIndex == PROTOKOLL_LENGTH) {
 			if (inData[0] < SERVOS_MAX) {
 				if ((inData[1] < 180) && (inData[2] < 180)) {
 					servosGroups[inData[0]].desiredX = inData[1];
@@ -92,7 +91,7 @@ void loop() {
 				}
 			}
 		}  // alive check
-		else if ((index == 4) && (inData[0] == 255)) {
+		else if ((dataIndex == 4) && (inData[0] == 255)) {
 			outData[0] = 0xfa;
 			outData[1] = 0xff;
 			outData[2] = 0x0;
@@ -101,6 +100,6 @@ void loop() {
 		}
 	}
 	// wieder auf anfang
-	index = 0;
+	dataIndex = 0;
 }
 
