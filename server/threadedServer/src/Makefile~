@@ -1,0 +1,3 @@
+# Makefile server
+server:	main.cpp Client.cpp Helper.cpp OpenCVWarpper.cpp UDPClient.cpp UDPProtkoll.cpp Kommunikation/Kommunikation.cpp Kommunikation/KommunikationsProtokoll.cpp
+	g++ main.cpp Client.cpp Helper.cpp OpenCVWarpper.cpp UDPClient.cpp UDPProtkoll.cpp Kommunikation/Kommunikation.cpp Kommunikation/KommunikationsProtokoll.cpp -I/usr/include/opencv2 -L/usr/lib -lboost_system -lboost_thread -lopencv_calib3d -lopencv_highgui -lopencv_contrib -lopencv_imgproc -lopencv_core -lopencv_legacy -lopencv_features2d -lopencv_ml -lopencv_flann -lopencv_objdetect -lopencv_gpu -lopencv_video -lpthread -o server
