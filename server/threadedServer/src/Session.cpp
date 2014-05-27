@@ -9,9 +9,15 @@
 #include "Session.h"
 
 
-class TcpConnection {
-public:
+Session::Session(int Sock, int KameraID)
+{
+	kp = KommunikationsProtokoll;
+	this->kameraID = KameraID;
 
-private:
+}
 
-};
+void Session::StartClient()
+{
+
+}
+

@@ -8,7 +8,6 @@
 #ifndef KOMMUNIKATIONSPROTOKOLL_H_
 #define KOMMUNIKATIONSPROTOKOLL_H_
 
-#include "../SuperEasyJson/json.h"
 #include <jsoncpp/value.h>
 #include <jsoncpp/reader.h>
 #include "TcpConnection.h"
@@ -19,6 +18,12 @@ class TcpConnection;
 class KommunikationsProtokoll {
 
 public:
+
+	// Variablen
+
+	int sock;
+
+	// Functions
 
 	KommunikationsProtokoll();
 	virtual ~KommunikationsProtokoll();
@@ -40,6 +45,7 @@ public:
 private:
 
 	void sendMessageToSenderThread(std::string json);
+	void CloseConnection();
 	TcpConnection *tcpKommunikation;
 };
 

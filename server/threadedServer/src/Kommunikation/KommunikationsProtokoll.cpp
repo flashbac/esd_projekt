@@ -8,12 +8,12 @@
 #include "KommunikationsProtokoll.h"
 
 KommunikationsProtokoll::KommunikationsProtokoll() {
-	// TODO Auto-generated constructor stub
+
 
 }
 
 KommunikationsProtokoll::~KommunikationsProtokoll() {
-	// TODO Auto-generated destructor stub
+
 }
 
 void KommunikationsProtokoll::setTcpSenderClass(TcpConnection* k){
@@ -171,4 +171,6 @@ void KommunikationsProtokoll::commandoProzess(std::string json){
 		}
 	}
 }
+
+
 

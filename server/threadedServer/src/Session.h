@@ -9,22 +9,29 @@
 #define SESSION_H_
 
 #endif /* SESSION_H_ */
+#include "Kommunikation/KommunikationsProtokoll.h"
+#include "Stream/Client.h"
 
+class KommunikationsProtokoll;
+class Client;
 
-class TcpConnection {
+class Session {
 public:
 
 	//Member
 
 	KommunikationsProtokoll *kp;
 	Client *client;
-	int kammeraID;
+	int kameraID;
 	// Servo *servo;
 
 	//Functions
+	Session(int Sock, int KameraID);
+	virtual ~Session();
 	void StartClient();
 
-
 private:
-
+	void initServo();
+	void initCamera();
+	void intiTCP();
 };
