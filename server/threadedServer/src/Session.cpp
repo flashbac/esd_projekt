@@ -9,10 +9,10 @@
 #include "Session.h"
 
 
-Session::Session(int Sock, int KameraID)
+Session::Session(int Sock)
 {
-	kp = KommunikationsProtokoll;
-	this->kameraID = KameraID;
+	kp = TcpProtokoll;
+
 
 }
 

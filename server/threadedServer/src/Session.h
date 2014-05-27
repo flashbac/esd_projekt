@@ -9,11 +9,12 @@
 #define SESSION_H_
 
 #endif /* SESSION_H_ */
-#include "Kommunikation/KommunikationsProtokoll.h"
+#include "Kommunikation/TcpProtokoll.h"
 #include "Stream/Client.h"
 
+
 class TcpProtokoll;
-class Client;
+//class Client;
 
 class Session {
 public:
@@ -26,7 +27,7 @@ public:
 	// Servo *servo;
 
 	//Functions
-	Session(int Sock, int KameraID);
+	Session(int Sock);
 	virtual ~Session();
 	void StartClient();
 

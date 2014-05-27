@@ -96,7 +96,10 @@ int TcpConnection::thread_Binder() {
 
 				// Session erstellen
 
-				Session s(client_sock, 0);
+				Session s(client_sock);
+
+				sessions.push_back(s);
+
 
 				if (state != 0) {
 					this->stop();
