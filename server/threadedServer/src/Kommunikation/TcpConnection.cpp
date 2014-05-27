@@ -7,20 +7,16 @@
 
 #include "TcpConnection.h"
 
-TcpConnection::TcpConnection(KommunikationsProtokoll* k) {
+TcpConnection::TcpConnection() {
 
 	numberOffClients = 0;
 
 	if (sem_init(&sem_message_vector, 0, 1) < 0) {
 		std::cout << "Error: init sem_message_vector";
 	}
-	this->kp = k;
-	k->setTcpSenderClass(this);
-	//this->cp->setTcpSenderClass(this);
 
 	thread_TcpBinder = NULL;
-	thread_TcpRecive = NULL;
-	thread_TcpSend = NULL;
+
 	running = 0;
 	sem_print = NULL;
 }
@@ -50,47 +46,13 @@ int TcpConnection::start() {
 void TcpConnection::stop() {
 	if (running) {
 		running = false;
-		if (this->thread_TcpSend != NULL) {
-			this->thread_TcpSend->interrupt();
-			this->thread_TcpSend->join();
-			delete (this->thread_TcpSend);
-		}
-		if (this->thread_TcpRecive != NULL) {
-			this->thread_TcpRecive->interrupt();
-			this->thread_TcpRecive->join();
-			delete (this->thread_TcpRecive);
-		}
+
 		if (this->thread_TcpBinder != NULL) {
 			this->thread_TcpBinder->interrupt();
 			this->thread_TcpBinder->join();
 			delete (this->thread_TcpBinder);
 		}
 	}
-}
-
-void TcpConnection::sendMessage(std::string str) {
-
-	sem_wait(&sem_message_vector);
-	printf("Push to Vector: %s\n", str.c_str());
-	messages.push_back(str);
-	sem_post(&sem_message_vector);
-}
-
-std::string TcpConnection::getMessage() {
-
-	if (messages.size() < 0) {
-		std::string s;
-		sem_wait(&sem_message_vector);
-		for (unsigned int i = 0; i < messages.size(); ++i) {
-
-			s = s.append(messages.at(i).c_str());
-		}
-		sem_post(&sem_message_vector);
-		return s;
-	}
-	else
-		return NULL;
-	// s an socket schicken
 }
 
 int TcpConnection::thread_Binder() {
@@ -106,7 +68,6 @@ int TcpConnection::thread_Binder() {
 	}
 	thread_safe_print("Socket created.");
 
-	//Prepare the sockaddr_in structure
 	server.sin_family = AF_INET;
 	server.sin_addr.s_addr = INADDR_ANY;
 	server.sin_port = htons(5000);
@@ -132,19 +93,10 @@ int TcpConnection::thread_Binder() {
 		int state = 0;
 		if (running) {
 			if (numberOffClients <= 0) {
-				this->thread_TcpSend = new boost::thread(
-						boost::bind(&TcpConnection::thread_Sender, this,
-								client_sock));
 
+				// Session erstellen
 
-				if (this->thread_TcpSend == NULL)
-					state = -1;
-
-				this->thread_TcpRecive = new boost::thread(
-						boost::bind(&TcpConnection::thread_Recive, this,
-								client_sock));
-				if (this->thread_TcpRecive == NULL)
-					state = -1;
+				Session s(client_sock, 0);
 
 				if (state != 0) {
 					this->stop();
@@ -167,91 +119,6 @@ int TcpConnection::thread_Binder() {
 		}
 	}
 	return 0;
-}
-
-void TcpConnection::thread_Recive(int socket_desc) {
-	try {
-		//Get the socket descriptor
-		int sock = socket_desc;
-		int read_size;
-		//std::vector<unsigned char> v;
-		char client_message[2000];
-		std::string json = "";
-		int ende; // letzte fund eines Simikolons
-		int i;	  // laufvariable
-		//Receive a message from client
-		while ((read_size = recv(sock, client_message, 2000, 0)) > 0) {
-			ende = 0;
-			for (i = 0; i <= read_size; i++) {
-				if (client_message[i] == ';') { //Befehl vollständig
-
-					json.append(client_message, ende,i - ende);
-
-					// Befehl ausführen
-					{
-						printf("Empfangen: %s\n", json.c_str());
-						//sendMessage(json);
-						kp->commandoProzess(json);
-
-					}
-					json.clear();
-					i++; // simikolon entfernen
-					i++; // \n entfernen
-					ende = i;
-				}
-			}
-			if (!(i == (ende + 1))) { // nur in dem fall wo auch wirklich noch daten kamen
-				json.append(client_message, i - ende - 1);
-			}
-			//clear the message buffer
-			memset(client_message, 0, 2000);
-
-			//if (zustand == -1)
-			//	break;
-			boost::this_thread::interruption_point();
-		}
-		thread_safe_print("Client disconnected.");
-		numberOffClients--;
-		this->thread_TcpSend->interrupt();
-		this->thread_TcpSend->join();
-
-		close(sock);
-
-	} catch (boost::thread_interrupted&) {
-		thread_safe_print("\nTcpSocket reader interrupted!");
-		numberOffClients--;
-	}
-}
-
-void TcpConnection::thread_Sender(int socket_desc) {
-
-	int sock = socket_desc;
-	std::string s;
-	try {
-		while (1) {
-
-			if (messages.size() > 0) {
-					std::string s;
-					sem_wait(&sem_message_vector);
-					for (unsigned int i = 0; i<messages.size();i++)
-					//while ( messages.size() > 0)
-					{
-						s.append(messages[i]);
-						s.append(";");
-						//messages.erase(messages.begin());
-					}
-					messages.clear();
-					sem_post(&sem_message_vector);
-					//std::cout << s;
-					printf("Sende    : %s\n", s.c_str());
-					send(sock,s.c_str(),s.length(),0);
-			}
-			boost::this_thread::interruption_point();
-		}
-		//close(sock);
-	} catch (boost::thread_interrupted&) {
-		thread_safe_print("\nTcpSocket writer interrupted!");
-	}
 }
 
 void TcpConnection::setSafePrintSemaphore(sem_t *sem) {

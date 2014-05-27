@@ -15,7 +15,7 @@
 
 class TcpConnection;
 
-class KommunikationsProtokoll {
+class TcpProtokoll {
 
 public:
 
@@ -25,8 +25,8 @@ public:
 
 	// Functions
 
-	KommunikationsProtokoll();
-	virtual ~KommunikationsProtokoll();
+	TcpProtokoll();
+	virtual ~TcpProtokoll();
 
 	void commandoProzess(std::string json);
 	void setTcpSenderClass(TcpConnection *k);

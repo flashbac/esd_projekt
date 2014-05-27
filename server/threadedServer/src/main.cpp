@@ -30,7 +30,7 @@ int main(int argc, char** argv) {
 	a.setMTUsize(10240);
 	//a.start();
 
-	KommunikationsProtokoll kp;
+	TcpProtokoll kp;
 
 	TcpConnection TcpSocket(&kp);
 

@@ -12,7 +12,7 @@
 #include "Kommunikation/KommunikationsProtokoll.h"
 #include "Stream/Client.h"
 
-class KommunikationsProtokoll;
+class TcpProtokoll;
 class Client;
 
 class Session {
@@ -20,7 +20,7 @@ public:
 
 	//Member
 
-	KommunikationsProtokoll *kp;
+	TcpProtokoll *kp;
 	Client *client;
 	int kameraID;
 	// Servo *servo;

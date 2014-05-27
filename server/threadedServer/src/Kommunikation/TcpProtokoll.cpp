@@ -5,26 +5,26 @@
  *      Author: rensky
  */
 
-#include "KommunikationsProtokoll.h"
+#include "TcpProtokoll.h"
 
-KommunikationsProtokoll::KommunikationsProtokoll() {
+TcpProtokoll::TcpProtokoll() {
 
-
-}
-
-KommunikationsProtokoll::~KommunikationsProtokoll() {
 
 }
 
-void KommunikationsProtokoll::setTcpSenderClass(TcpConnection* k){
+TcpProtokoll::~TcpProtokoll() {
+
+}
+
+void TcpProtokoll::setTcpSenderClass(TcpConnection* k){
 	tcpKommunikation = k;
 }
 
-void KommunikationsProtokoll::sendMessageToSenderThread(std::string json){
+void TcpProtokoll::sendMessageToSenderThread(std::string json){
 	tcpKommunikation->sendMessage(json);
 }
 
-void KommunikationsProtokoll::cmdExit(){
+void TcpProtokoll::cmdExit(){
 	Json::Value jo;
 
 	jo["cmd"] = "exit";
@@ -33,7 +33,7 @@ void KommunikationsProtokoll::cmdExit(){
 	sendMessageToSenderThread(jo.asCString());
 }
 
-void KommunikationsProtokoll::camAvalible(int anzahlKamera){
+void TcpProtokoll::camAvalible(int anzahlKamera){
 
 	Json::Value jo;
 
@@ -42,14 +42,14 @@ void KommunikationsProtokoll::camAvalible(int anzahlKamera){
 	sendMessageToSenderThread(jo.asCString());
 
 }
-void KommunikationsProtokoll::statusCamera(int currentCam){
+void TcpProtokoll::statusCamera(int currentCam){
 	Json::Value jo;
 
 	jo["status"] = "camera";
 	jo["value"] = currentCam;
 	sendMessageToSenderThread(jo.asCString());
 }
-void KommunikationsProtokoll::statusUDP(std::string ip, int port){
+void TcpProtokoll::statusUDP(std::string ip, int port){
 
 	Json::Value jo;
 	Json::Value io;
@@ -60,7 +60,7 @@ void KommunikationsProtokoll::statusUDP(std::string ip, int port){
 
 	sendMessageToSenderThread(jo.asCString());
 }
-void KommunikationsProtokoll::statusServos(int x, int y){
+void TcpProtokoll::statusServos(int x, int y){
 	Json::Value jo;
 	Json::Value io;
 	jo["status"] = "position";
@@ -71,7 +71,7 @@ void KommunikationsProtokoll::statusServos(int x, int y){
 	sendMessageToSenderThread(jo.asCString());
 
 }
-void KommunikationsProtokoll::statusFace(std::vector<face_t> faces){
+void TcpProtokoll::statusFace(std::vector<face_t> faces){
 	Json::Value jo;
 	Json::Value array;
 	Json::Value io;
@@ -89,7 +89,7 @@ void KommunikationsProtokoll::statusFace(std::vector<face_t> faces){
 	jo["value"] = array;
 	sendMessageToSenderThread(jo.asCString());
 }
-void KommunikationsProtokoll::statusTrack(int face_id){
+void TcpProtokoll::statusTrack(int face_id){
 	Json::Value jo;
 
 	jo["status"] = "track";
@@ -97,7 +97,7 @@ void KommunikationsProtokoll::statusTrack(int face_id){
 	sendMessageToSenderThread(jo.asCString());
 }
 
-void KommunikationsProtokoll::commandoProzess(std::string json){
+void TcpProtokoll::commandoProzess(std::string json){
 	Json::Value root;
 	Json::Reader reader;
 
