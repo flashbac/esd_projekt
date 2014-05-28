@@ -20,13 +20,14 @@
 #include <sys/socket.h>
 #include <arpa/inet.h> //inet_addr
 #include "./TcpProtokoll.h"
+#include "../FugexySession.h"
 
 class TcpProtokoll;
 class FugexySession;
 
 class TcpConnection {
 public:
-	TcpConnection(int sock, TcpProtokoll *tcpP, FugexySession *session);
+	TcpConnection(int sock, TcpProtokoll *tcpP);
 	virtual ~TcpConnection();
 	void sendMessage(std::string str);
 	void setSafePrintSemaphore(sem_t *sem);
@@ -39,8 +40,7 @@ private:
 	boost::thread *thread_TcpSend;
 	boost::thread *thread_TcpRecive;
 	std::vector<std::string> messages;
-	TcpProtokoll *kp;
-	FugexySession *session;
+	TcpProtokoll *tcpP;
 	int sock;
 
 	sem_t *sem_print;

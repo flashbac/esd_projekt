@@ -10,29 +10,23 @@
 
 FugexySession::FugexySession(int Sock)
 {
-	kp = new TcpProtokoll(tcpC);
+	tcpP = new TcpProtokoll(this);
 
-	tcpC = new TcpConnection(Sock, kp, this);
-	kp->setTcpConnectionClass(tcpC);
+	tcpC = new TcpConnection(Sock, tcpP);
+	tcpP->setTcpConnectionClass(tcpC);
 
 
 	client = NULL;
 	kameraID = 0;
 
-}
-
-FugexySession::FugexySession()
-{
-	kp = NULL;
-	client = NULL;
-	kameraID = 0;
 }
 
 FugexySession::~FugexySession()
 {
 }
 
-void FugexySession::StartClient()
+void FugexySession::StartClient(std::string ip, int port)
 {
-	Client a("141.64.166.22",50000, 0, "eth0");
+	// Kamera.get(KameraID);
+	Client a(ip,port, 0, "eth0");
 }

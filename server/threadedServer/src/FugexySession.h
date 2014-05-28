@@ -20,13 +20,12 @@ class Client;
 class FugexySession {
 public:
 
-	FugexySession();
 	FugexySession(int Sock);
 	virtual ~FugexySession();
 
 	//Member
 
-	TcpProtokoll *kp;
+	TcpProtokoll *tcpP;
 	Client *client;
 	TcpConnection *tcpC;
 	int kameraID;
@@ -34,7 +33,7 @@ public:
 
 	//Functions
 
-	void StartClient();
+	void StartClient(std::string ip, int port);
 
 private:
 	void initServo();

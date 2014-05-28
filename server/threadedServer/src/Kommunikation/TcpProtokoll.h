@@ -14,18 +14,19 @@
 #include "KommunikationTypes.h"
 
 class TcpConnection;
+class FugexySession;
 
 class TcpProtokoll {
 
 public:
 
 	// Variablen
-
-	int sock;
+	TcpConnection *tcpConnection;
+	FugexySession *session;
 
 	// Functions
 
-	TcpProtokoll(TcpConnection* tcpConnection);
+	TcpProtokoll(FugexySession *session);
 	virtual ~TcpProtokoll();
 
 	void commandoProzess(std::string json);
@@ -44,7 +45,7 @@ private:
 
 	void sendMessageToSenderThread(std::string json);
 	void CloseConnection();
-	TcpConnection *tcpConnection;
+
 };
 
 

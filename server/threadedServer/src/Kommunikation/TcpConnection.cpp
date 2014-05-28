@@ -7,10 +7,9 @@
 
 #include "TcpConnection.h"
 
-TcpConnection::TcpConnection(int sock, TcpProtokoll *tcpP, FugexySession *session) {
+TcpConnection::TcpConnection(int sock, TcpProtokoll *tcpP) {
 	this->sock = sock;
-	this->session = session;
-	this->kp = tcpP;
+	this->tcpP = tcpP;
 
 	if (sem_init(&sem_message_vector, 0, 1) < 0) {
 		thread_safe_print("Error: init sem_message_vector");
@@ -98,7 +97,7 @@ void TcpConnection::thread_Recive(int socket_desc) {
 					{
 						printf("Empfangen: %s\n", json.c_str());
 						//sendMessage(json);
-						kp->commandoProzess(json);
+						tcpP->commandoProzess(json);
 
 					}
 					json.clear();
