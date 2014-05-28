@@ -9,8 +9,6 @@
 #define KOMMUNIKATION_H_
 
 #include <boost/thread/thread.hpp>
-#include <boost/lockfree/queue.hpp>
-#include <boost/atomic/atomic.hpp>
 #include <semaphore.h>
 #include <iostream>
 #include <sstream>

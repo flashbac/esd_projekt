@@ -1,0 +1,2140 @@
+In file included from /usr/include/semaphore.h:23:0,
+                 from main.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/types.h:158:20: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cwchar:46:0,
+                 from /usr/include/c++/4.6/bits/postypes.h:42,
+                 from /usr/include/c++/4.6/iosfwd:42,
+                 from /usr/include/c++/4.6/ios:39,
+                 from /usr/include/c++/4.6/ostream:40,
+                 from /usr/include/c++/4.6/iostream:40,
+                 from main.cpp:10:
+/usr/include/wchar.h:75:43: error: missing binary operator before token "("
+In file included from /usr/include/sched.h:43:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/ios_base.h:41,
+                 from /usr/include/c++/4.6/ios:43,
+                 from /usr/include/c++/4.6/ostream:40,
+                 from /usr/include/c++/4.6/iostream:40,
+                 from main.cpp:10:
+/usr/include/arm-linux-gnueabi/bits/sched.h:133:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/sched.h:171:20: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:29,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:10,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/enable_shared_from_this.hpp:18,
+                 from /usr/include/boost/enable_shared_from_this.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:11,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/math.h:34:0,
+                 from /usr/include/c++/4.6/cmath:46,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:28:18: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:30:20: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cmath:46:0,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/math.h:404:42: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cstring:44:0,
+                 from /usr/include/boost/date_time/posix_time/conversion.hpp:12,
+                 from /usr/include/boost/thread/xtime.hpp:15,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:14,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/string.h:37:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:15,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/pthread_mutex_scoped_lock.hpp:10,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:18,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/optional/optional.hpp:22,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:13,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:15,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/condition_variable_fwd.hpp:8,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:16,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/detail/thread.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:22,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/shared_mutex.hpp:10,
+                 from /usr/include/boost/thread/shared_mutex.hpp:16,
+                 from /usr/include/boost/thread/detail/thread_group.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:24,
+                 from Stream/Client.h:14,
+                 from main.cpp:12:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from Stream/UDPClient.h:14:0,
+                 from Stream/Client.h:22,
+                 from main.cpp:12:
+/usr/include/arm-linux-gnueabi/sys/socket.h:70:43: error: missing binary operator before token "("
+In file included from /usr/include/libio.h:62:0,
+                 from /usr/include/stdio.h:75,
+                 from Stream/UDPClient.h:18,
+                 from Stream/Client.h:22,
+                 from main.cpp:12:
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:43:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:56:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:61:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:149:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:162:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:224:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:233:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:240:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:249:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:258:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:270:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:280:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:289:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:297:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:311:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:319:43: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:342:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:351:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:356:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:363:19: error: missing binary operator before token "("
+In file included from Stream/Client.h:25:0,
+                 from main.cpp:12:
+Stream/OpenCVWarpper.h:11:16: fatal error: cv.h: No such file or directory
+compilation terminated.
+In file included from /usr/include/c++/4.6/cwchar:46:0,
+                 from /usr/include/c++/4.6/bits/postypes.h:42,
+                 from /usr/include/c++/4.6/bits/char_traits.h:42,
+                 from /usr/include/c++/4.6/string:42,
+                 from /usr/include/jsoncpp/value.h:5,
+                 from Kommunikation/TcpProtokoll.h:11,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/wchar.h:75:43: error: missing binary operator before token "("
+In file included from /usr/include/sched.h:43:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from /usr/include/jsoncpp/value.h:5,
+                 from Kommunikation/TcpProtokoll.h:11,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/sched.h:133:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/sched.h:171:20: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:29,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:10,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/enable_shared_from_this.hpp:18,
+                 from /usr/include/boost/enable_shared_from_this.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:11,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/math.h:34:0,
+                 from /usr/include/c++/4.6/cmath:46,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:28:18: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:30:20: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cmath:46:0,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/math.h:404:42: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cstring:44:0,
+                 from /usr/include/boost/date_time/posix_time/conversion.hpp:12,
+                 from /usr/include/boost/thread/xtime.hpp:15,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:14,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/string.h:37:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:15,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/pthread_mutex_scoped_lock.hpp:10,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:18,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/optional/optional.hpp:22,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:13,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:15,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/condition_variable_fwd.hpp:8,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:16,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/detail/thread.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:22,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/shared_mutex.hpp:10,
+                 from /usr/include/boost/thread/shared_mutex.hpp:16,
+                 from /usr/include/boost/thread/detail/thread_group.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:24,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/semaphore.h:23:0,
+                 from Kommunikation/TcpConnection.h:12,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/types.h:158:20: error: missing binary operator before token "("
+In file included from /usr/include/libio.h:62:0,
+                 from /usr/include/stdio.h:75,
+                 from /usr/include/c++/4.6/cstdio:44,
+                 from Kommunikation/TcpConnection.h:17,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:43:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:56:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:61:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:149:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:162:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:224:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:233:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:240:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:249:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:258:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:270:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:280:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:289:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:297:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:311:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:319:43: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:342:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:351:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:356:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:363:19: error: missing binary operator before token "("
+In file included from Kommunikation/TcpConnection.h:20:0,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from FugexySession.h:12,
+                 from FugexySession.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/socket.h:70:43: error: missing binary operator before token "("
+In file included from Stream/Client.h:25:0,
+                 from FugexySession.h:13,
+                 from FugexySession.cpp:8:
+Stream/OpenCVWarpper.h:11:16: fatal error: cv.h: No such file or directory
+compilation terminated.
+In file included from /usr/include/c++/4.6/cwchar:46:0,
+                 from /usr/include/c++/4.6/bits/postypes.h:42,
+                 from /usr/include/c++/4.6/bits/char_traits.h:42,
+                 from /usr/include/c++/4.6/string:42,
+                 from /usr/include/boost/thread/exceptions.hpp:19,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/wchar.h:75:43: error: missing binary operator before token "("
+In file included from /usr/include/sched.h:43:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from /usr/include/boost/thread/exceptions.hpp:19,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/sched.h:133:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/sched.h:171:20: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:29,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:10,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/enable_shared_from_this.hpp:18,
+                 from /usr/include/boost/enable_shared_from_this.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:11,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/math.h:34:0,
+                 from /usr/include/c++/4.6/cmath:46,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:28:18: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:30:20: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cmath:46:0,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/math.h:404:42: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cstring:44:0,
+                 from /usr/include/boost/date_time/posix_time/conversion.hpp:12,
+                 from /usr/include/boost/thread/xtime.hpp:15,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:14,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/string.h:37:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:15,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/pthread_mutex_scoped_lock.hpp:10,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:18,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/optional/optional.hpp:22,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:13,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:15,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/condition_variable_fwd.hpp:8,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:16,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/detail/thread.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:22,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/shared_mutex.hpp:10,
+                 from /usr/include/boost/thread/shared_mutex.hpp:16,
+                 from /usr/include/boost/thread/detail/thread_group.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:24,
+                 from ./Stream/Client.h:14,
+                 from ./Stream/Client.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/semaphore.h:23:0,
+                 from ./Stream/Client.h:15,
+                 from ./Stream/Client.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/types.h:158:20: error: missing binary operator before token "("
+In file included from ./Stream/UDPClient.h:14:0,
+                 from ./Stream/Client.h:22,
+                 from ./Stream/Client.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/socket.h:70:43: error: missing binary operator before token "("
+In file included from /usr/include/libio.h:62:0,
+                 from /usr/include/stdio.h:75,
+                 from ./Stream/UDPClient.h:18,
+                 from ./Stream/Client.h:22,
+                 from ./Stream/Client.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:43:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:56:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:61:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:149:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:162:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:224:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:233:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:240:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:249:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:258:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:270:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:280:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:289:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:297:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:311:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:319:43: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:342:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:351:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:356:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:363:19: error: missing binary operator before token "("
+In file included from ./Stream/Client.h:25:0,
+                 from ./Stream/Client.cpp:8:
+./Stream/OpenCVWarpper.h:11:16: fatal error: cv.h: No such file or directory
+compilation terminated.
+In file included from /usr/include/c++/4.6/cwchar:46:0,
+                 from /usr/include/c++/4.6/bits/postypes.h:42,
+                 from /usr/include/c++/4.6/bits/char_traits.h:42,
+                 from /usr/include/c++/4.6/string:42,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/wchar.h:75:43: error: missing binary operator before token "("
+In file included from /usr/include/sched.h:43:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/sched.h:133:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/sched.h:171:20: error: missing binary operator before token "("
+In file included from ./Stream/Helper.cpp:11:0:
+/usr/include/arm-linux-gnueabi/sys/types.h:158:20: error: missing binary operator before token "("
+In file included from /usr/include/libio.h:62:0,
+                 from /usr/include/stdio.h:75,
+                 from /usr/include/c++/4.6/cstdio:44,
+                 from ./Stream/Helper.cpp:12:
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:43:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:56:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:61:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:149:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:162:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:224:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:233:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:240:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:249:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:258:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:270:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:280:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:289:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:297:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:311:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:319:43: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:342:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:351:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:356:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:363:19: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cwchar:46:0,
+                 from /usr/include/c++/4.6/bits/postypes.h:42,
+                 from /usr/include/c++/4.6/bits/char_traits.h:42,
+                 from /usr/include/c++/4.6/string:42,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/wchar.h:104:1: error: '__BEGIN_NAMESPACE_C99' does not name a type
+/usr/include/wchar.h:107:1: error: '__END_NAMESPACE_C99' does not name a type
+/usr/include/wchar.h:135:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/wchar.h:149:6: error: expected initializer before '__THROW'
+/usr/include/wchar.h:153:39: error: expected initializer before '__THROW'
+/usr/include/wchar.h:157:6: error: expected initializer before '__THROW'
+/usr/include/wchar.h:161:6: error: expected initializer before '__THROW'
+/usr/include/wchar.h:164:6: error: expected initializer before '__THROW'
+/usr/include/wchar.h:165:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/wchar.h:194:56: error: expected initializer before '__THROW'
+/usr/include/wchar.h:195:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/wchar.h:235:6: error: expected initializer before '__THROW'
+/usr/include/wchar.h:237:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/wchar.h:254:6: error: expected initializer before '__THROW'
+/usr/include/wchar.h:264:6: error: expected initializer before '__THROW'
+/usr/include/wchar.h:275:6: error: expected initializer before '__THROW'
+/usr/include/wchar.h:281:32: error: expected initializer before '__THROW'
+/usr/include/wchar.h:284:45: error: expected initializer before '__THROW'
+/usr/include/wchar.h:285:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/wchar.h:323:6: error: expected initializer before '__THROW'
+/usr/include/wchar.h:327:51: error: expected initializer before '__THROW'
+/usr/include/wchar.h:332:6: error: expected initializer before '__THROW'
+/usr/include/wchar.h:335:65: error: expected initializer before '__THROW'
+/usr/include/wchar.h:336:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/wchar.h:354:31: error: expected initializer before '__THROW'
+/usr/include/wchar.h:358:29: error: 'mbstate_t' does not name a type
+/usr/include/wchar.h:358:46: error: expected initializer before '__THROW'
+/usr/include/wchar.h:364:10: error: 'mbstate_t' has not been declared
+/usr/include/wchar.h:364:26: error: expected initializer before '__THROW'
+/usr/include/wchar.h:368:10: error: 'mbstate_t' has not been declared
+/usr/include/wchar.h:368:38: error: expected initializer before '__THROW'
+/usr/include/wchar.h:372:4: error: 'mbstate_t' has not been declared
+/usr/include/wchar.h:372:32: error: expected initializer before '__THROW'
+/usr/include/wchar.h:374:9: error: 'mbstate_t' has not been declared
+/usr/include/wchar.h:374:37: error: expected initializer before '__THROW'
+/usr/include/wchar.h:375:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/wchar.h:413:5: error: 'mbstate_t' has not been declared
+/usr/include/wchar.h:413:33: error: expected initializer before '__THROW'
+/usr/include/wchar.h:414:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/wchar.h:449:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/wchar.h:472:6: error: expected initializer before '__THROW'
+/usr/include/wchar.h:473:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/wchar.h:787:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/wchar.h:855:1: error: '__END_NAMESPACE_C99' does not name a type
+In file included from /usr/include/c++/4.6/bits/postypes.h:42:0,
+                 from /usr/include/c++/4.6/bits/char_traits.h:42,
+                 from /usr/include/c++/4.6/string:42,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/c++/4.6/cwchar:143:11: error: '::btowc' has not been declared
+/usr/include/c++/4.6/cwchar:144:11: error: '::fgetwc' has not been declared
+/usr/include/c++/4.6/cwchar:148:11: error: '::fwide' has not been declared
+/usr/include/c++/4.6/cwchar:149:11: error: '::fwprintf' has not been declared
+/usr/include/c++/4.6/cwchar:150:11: error: '::fwscanf' has not been declared
+/usr/include/c++/4.6/cwchar:153:11: error: '::mbrlen' has not been declared
+/usr/include/c++/4.6/cwchar:154:11: error: '::mbrtowc' has not been declared
+/usr/include/c++/4.6/cwchar:155:11: error: '::mbsinit' has not been declared
+/usr/include/c++/4.6/cwchar:156:11: error: '::mbsrtowcs' has not been declared
+/usr/include/c++/4.6/cwchar:160:11: error: '::swprintf' has not been declared
+/usr/include/c++/4.6/cwchar:162:11: error: '::swscanf' has not been declared
+/usr/include/c++/4.6/cwchar:164:11: error: '::vfwprintf' has not been declared
+/usr/include/c++/4.6/cwchar:166:11: error: '::vfwscanf' has not been declared
+/usr/include/c++/4.6/cwchar:169:11: error: '::vswprintf' has not been declared
+/usr/include/c++/4.6/cwchar:172:11: error: '::vswscanf' has not been declared
+/usr/include/c++/4.6/cwchar:174:11: error: '::vwprintf' has not been declared
+/usr/include/c++/4.6/cwchar:176:11: error: '::vwscanf' has not been declared
+/usr/include/c++/4.6/cwchar:178:11: error: '::wcrtomb' has not been declared
+/usr/include/c++/4.6/cwchar:179:11: error: '::wcscat' has not been declared
+/usr/include/c++/4.6/cwchar:180:11: error: '::wcscmp' has not been declared
+/usr/include/c++/4.6/cwchar:181:11: error: '::wcscoll' has not been declared
+/usr/include/c++/4.6/cwchar:182:11: error: '::wcscpy' has not been declared
+/usr/include/c++/4.6/cwchar:183:11: error: '::wcscspn' has not been declared
+/usr/include/c++/4.6/cwchar:184:11: error: '::wcsftime' has not been declared
+/usr/include/c++/4.6/cwchar:185:11: error: '::wcslen' has not been declared
+/usr/include/c++/4.6/cwchar:186:11: error: '::wcsncat' has not been declared
+/usr/include/c++/4.6/cwchar:187:11: error: '::wcsncmp' has not been declared
+/usr/include/c++/4.6/cwchar:188:11: error: '::wcsncpy' has not been declared
+/usr/include/c++/4.6/cwchar:189:11: error: '::wcsrtombs' has not been declared
+/usr/include/c++/4.6/cwchar:190:11: error: '::wcsspn' has not been declared
+/usr/include/c++/4.6/cwchar:191:11: error: '::wcstod' has not been declared
+/usr/include/c++/4.6/cwchar:193:11: error: '::wcstof' has not been declared
+/usr/include/c++/4.6/cwchar:195:11: error: '::wcstok' has not been declared
+/usr/include/c++/4.6/cwchar:196:11: error: '::wcstol' has not been declared
+/usr/include/c++/4.6/cwchar:197:11: error: '::wcstoul' has not been declared
+/usr/include/c++/4.6/cwchar:198:11: error: '::wcsxfrm' has not been declared
+/usr/include/c++/4.6/cwchar:199:11: error: '::wctob' has not been declared
+/usr/include/c++/4.6/cwchar:200:11: error: '::wmemcmp' has not been declared
+/usr/include/c++/4.6/cwchar:201:11: error: '::wmemcpy' has not been declared
+/usr/include/c++/4.6/cwchar:202:11: error: '::wmemmove' has not been declared
+/usr/include/c++/4.6/cwchar:203:11: error: '::wmemset' has not been declared
+/usr/include/c++/4.6/cwchar:204:11: error: '::wprintf' has not been declared
+/usr/include/c++/4.6/cwchar:205:11: error: '::wscanf' has not been declared
+/usr/include/c++/4.6/cwchar:206:11: error: '::wcschr' has not been declared
+/usr/include/c++/4.6/cwchar:207:11: error: '::wcspbrk' has not been declared
+/usr/include/c++/4.6/cwchar:208:11: error: '::wcsrchr' has not been declared
+/usr/include/c++/4.6/cwchar:209:11: error: '::wcsstr' has not been declared
+/usr/include/c++/4.6/cwchar:210:11: error: '::wmemchr' has not been declared
+/usr/include/c++/4.6/cwchar: In function 'wchar_t* std::wcschr(wchar_t*, wchar_t)':
+/usr/include/c++/4.6/cwchar:215:55: error: invalid conversion from 'const wchar_t*' to 'wchar_t*' [-fpermissive]
+/usr/include/c++/4.6/cwchar:214:3: error:   initializing argument 1 of 'wchar_t* std::wcschr(wchar_t*, wchar_t)' [-fpermissive]
+/usr/include/c++/4.6/cwchar: In function 'wchar_t* std::wcspbrk(wchar_t*, const wchar_t*)':
+/usr/include/c++/4.6/cwchar:219:58: error: invalid conversion from 'const wchar_t*' to 'wchar_t*' [-fpermissive]
+/usr/include/c++/4.6/cwchar:218:3: error:   initializing argument 1 of 'wchar_t* std::wcspbrk(wchar_t*, const wchar_t*)' [-fpermissive]
+/usr/include/c++/4.6/cwchar: In function 'wchar_t* std::wcsrchr(wchar_t*, wchar_t)':
+/usr/include/c++/4.6/cwchar:223:56: error: invalid conversion from 'const wchar_t*' to 'wchar_t*' [-fpermissive]
+/usr/include/c++/4.6/cwchar:222:3: error:   initializing argument 1 of 'wchar_t* std::wcsrchr(wchar_t*, wchar_t)' [-fpermissive]
+/usr/include/c++/4.6/cwchar: In function 'wchar_t* std::wcsstr(wchar_t*, const wchar_t*)':
+/usr/include/c++/4.6/cwchar:227:57: error: invalid conversion from 'const wchar_t*' to 'wchar_t*' [-fpermissive]
+/usr/include/c++/4.6/cwchar:226:3: error:   initializing argument 1 of 'wchar_t* std::wcsstr(wchar_t*, const wchar_t*)' [-fpermissive]
+/usr/include/c++/4.6/cwchar: In function 'wchar_t* std::wmemchr(wchar_t*, wchar_t, std::size_t)':
+/usr/include/c++/4.6/cwchar:231:61: error: invalid conversion from 'const wchar_t*' to 'wchar_t*' [-fpermissive]
+/usr/include/c++/4.6/cwchar:230:3: error:   initializing argument 1 of 'wchar_t* std::wmemchr(wchar_t*, wchar_t, std::size_t)' [-fpermissive]
+/usr/include/c++/4.6/cwchar: At global scope:
+/usr/include/c++/4.6/cwchar:250:11: error: '::wcstold' has not been declared
+/usr/include/c++/4.6/cwchar:259:11: error: '::wcstoll' has not been declared
+/usr/include/c++/4.6/cwchar:260:11: error: '::wcstoull' has not been declared
+/usr/include/c++/4.6/cwchar:266:22: error: '__gnu_cxx::wcstold' has not been declared
+/usr/include/c++/4.6/cwchar:267:22: error: '__gnu_cxx::wcstoll' has not been declared
+/usr/include/c++/4.6/cwchar:268:22: error: '__gnu_cxx::wcstoull' has not been declared
+In file included from /usr/include/c++/4.6/bits/char_traits.h:42:0,
+                 from /usr/include/c++/4.6/string:42,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/c++/4.6/bits/postypes.h:230:16: error: 'mbstate_t' was not declared in this scope
+/usr/include/c++/4.6/bits/postypes.h:230:25: error: template argument 1 is invalid
+/usr/include/c++/4.6/bits/postypes.h:230:36: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/bits/postypes.h:232:16: error: 'mbstate_t' was not declared in this scope
+/usr/include/c++/4.6/bits/postypes.h:232:25: error: template argument 1 is invalid
+/usr/include/c++/4.6/bits/postypes.h:232:37: error: invalid type in declaration before ';' token
+In file included from /usr/include/c++/4.6/string:42:0,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/c++/4.6/bits/char_traits.h:65:15: error: 'mbstate_t' in namespace 'std' does not name a type
+/usr/include/c++/4.6/bits/char_traits.h:241:15: error: 'mbstate_t' does not name a type
+/usr/include/c++/4.6/bits/char_traits.h:312:15: error: 'mbstate_t' does not name a type
+/usr/include/c++/4.6/bits/char_traits.h: In static member function 'static int std::char_traits<wchar_t>::compare(const char_type*, const char_type*, std::size_t)':
+/usr/include/c++/4.6/bits/char_traits.h:328:39: error: 'wmemcmp' was not declared in this scope
+/usr/include/c++/4.6/bits/char_traits.h: In static member function 'static std::size_t std::char_traits<wchar_t>::length(const char_type*)':
+/usr/include/c++/4.6/bits/char_traits.h:332:26: error: 'wcslen' was not declared in this scope
+/usr/include/c++/4.6/bits/char_traits.h: In static member function 'static const char_type* std::char_traits<wchar_t>::find(const char_type*, std::size_t, const char_type&)':
+/usr/include/c++/4.6/bits/char_traits.h:336:37: error: invalid conversion from 'const char_type* {aka const wchar_t*}' to 'wchar_t*' [-fpermissive]
+/usr/include/c++/4.6/cwchar:230:3: error:   initializing argument 1 of 'wchar_t* std::wmemchr(wchar_t*, wchar_t, std::size_t)' [-fpermissive]
+/usr/include/c++/4.6/bits/char_traits.h: In static member function 'static std::char_traits<wchar_t>::char_type* std::char_traits<wchar_t>::move(std::char_traits<wchar_t>::char_type*, const char_type*, std::size_t)':
+/usr/include/c++/4.6/bits/char_traits.h:340:40: error: 'wmemmove' was not declared in this scope
+/usr/include/c++/4.6/bits/char_traits.h: In static member function 'static std::char_traits<wchar_t>::char_type* std::char_traits<wchar_t>::copy(std::char_traits<wchar_t>::char_type*, const char_type*, std::size_t)':
+/usr/include/c++/4.6/bits/char_traits.h:344:39: error: 'wmemcpy' was not declared in this scope
+/usr/include/c++/4.6/bits/char_traits.h: In static member function 'static std::char_traits<wchar_t>::char_type* std::char_traits<wchar_t>::assign(std::char_traits<wchar_t>::char_type*, std::size_t, std::char_traits<wchar_t>::char_type)':
+/usr/include/c++/4.6/bits/char_traits.h:348:37: error: 'wmemset' was not declared in this scope
+In file included from /usr/include/c++/4.6/clocale:44:0,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/c++locale.h:42,
+                 from /usr/include/c++/4.6/bits/localefwd.h:42,
+                 from /usr/include/c++/4.6/string:45,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/locale.h: At global scope:
+/usr/include/locale.h:32:1: error: '__BEGIN_DECLS' does not name a type
+/usr/include/locale.h:125:65: error: expected initializer before '__THROW'
+/usr/include/locale.h:128:40: error: expected initializer before '__THROW'
+/usr/include/locale.h:130:1: error: '__END_NAMESPACE_STD' does not name a type
+In file included from /usr/include/c++/4.6/bits/localefwd.h:42:0,
+                 from /usr/include/c++/4.6/string:45,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/c++locale.h:63:11: error: '__locale_t' does not name a type
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/c++locale.h:70:26: error: '__c_locale' does not name a type
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/c++locale.h: In function 'int std::__convert_from_v(const int&, char*, int, const char*, ...)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/c++locale.h:78:19: error: 'setlocale' is not a member of 'std'
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/c++locale.h:85:2: error: 'setlocale' is not a member of 'std'
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/c++locale.h:105:2: error: 'setlocale' is not a member of 'std'
+In file included from /usr/include/c++/4.6/cctype:44:0,
+                 from /usr/include/c++/4.6/bits/localefwd.h:44,
+                 from /usr/include/c++/4.6/string:45,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/ctype.h: At global scope:
+/usr/include/ctype.h:30:1: error: '__BEGIN_DECLS' does not name a type
+In file included from /usr/include/c++/4.6/cctype:44:0,
+                 from /usr/include/c++/4.6/bits/localefwd.h:44,
+                 from /usr/include/c++/4.6/string:45,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/ctype.h:82:6: error: expected initializer before '__THROW'
+/usr/include/ctype.h:84:6: error: expected initializer before '__THROW'
+/usr/include/ctype.h:86:6: error: expected initializer before '__THROW'
+/usr/include/ctype.h:106:1: error: '__BEGIN_NAMESPACE_STD' does not name a type
+/usr/include/ctype.h:113:1: error: expected initializer before '__THROW'
+/usr/include/ctype.h:114:1: error: expected initializer before '__THROW'
+/usr/include/ctype.h:115:1: error: expected initializer before '__THROW'
+/usr/include/ctype.h:116:1: error: expected initializer before '__THROW'
+/usr/include/ctype.h:117:1: error: expected initializer before '__THROW'
+/usr/include/ctype.h:118:1: error: expected initializer before '__THROW'
+/usr/include/ctype.h:119:1: error: expected initializer before '__THROW'
+/usr/include/ctype.h:120:1: error: expected initializer before '__THROW'
+/usr/include/ctype.h:121:1: error: expected initializer before '__THROW'
+/usr/include/ctype.h:122:1: error: expected initializer before '__THROW'
+/usr/include/ctype.h:126:30: error: expected initializer before '__THROW'
+/usr/include/ctype.h:129:30: error: expected initializer before '__THROW'
+/usr/include/ctype.h:131:1: error: '__END_NAMESPACE_STD' does not name a type
+In file included from /usr/include/c++/4.6/string:45:0,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/c++/4.6/bits/localefwd.h:135:40: error: 'mbstate_t' was not declared in this scope
+/usr/include/c++/4.6/bits/localefwd.h:135:49: error: template argument 3 is invalid
+/usr/include/c++/4.6/bits/localefwd.h:137:43: error: 'mbstate_t' was not declared in this scope
+/usr/include/c++/4.6/bits/localefwd.h:137:52: error: template argument 3 is invalid
+In file included from /usr/include/sched.h:34:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/time.h:74:1: error: '__BEGIN_NAMESPACE_STD' does not name a type
+/usr/include/time.h:77:1: error: '__END_NAMESPACE_STD' does not name a type
+In file included from /usr/include/sched.h:43:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/sched.h:79:1: error: '__BEGIN_DECLS' does not name a type
+/usr/include/arm-linux-gnueabi/bits/sched.h:203:1: error: '__BEGIN_DECLS' does not name a type
+/usr/include/arm-linux-gnueabi/bits/sched.h:207:53: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/bits/sched.h:208:48: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/bits/sched.h:210:1: error: '__END_DECLS' does not name a type
+In file included from /usr/include/pthread.h:25:0,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/sched.h:55:72: error: expected initializer before '__THROW'
+/usr/include/sched.h:59:48: error: expected initializer before '__THROW'
+/usr/include/sched.h:62:47: error: expected initializer before '__THROW'
+/usr/include/sched.h:65:31: error: expected initializer before '__THROW'
+/usr/include/sched.h:68:53: error: expected initializer before '__THROW'
+/usr/include/sched.h:71:53: error: expected initializer before '__THROW'
+/usr/include/sched.h:74:72: error: expected initializer before '__THROW'
+/usr/include/sched.h:126:1: error: '__END_DECLS' does not name a type
+In file included from /usr/include/pthread.h:26:0,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/time.h:58:1: error: '__BEGIN_NAMESPACE_STD' does not name a type
+/usr/include/time.h:61:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/time.h:153:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/time.h:186:8: error: 'time_t' does not name a type
+/usr/include/time.h:189:25: error: 'time_t' was not declared in this scope
+/usr/include/time.h:189:41: error: 'time_t' was not declared in this scope
+/usr/include/time.h:189:55: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/time.h:190:6: error: expected ',' or ';' before '__THROW'
+/usr/include/time.h:193:8: error: 'time_t' does not name a type
+/usr/include/time.h:201:40: error: expected initializer before '__THROW'
+/usr/include/time.h:202:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/time.h:237:38: error: 'time_t' does not name a type
+/usr/include/time.h:237:55: error: expected initializer before '__THROW'
+/usr/include/time.h:238:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/time.h:258:29: error: 'time_t' does not name a type
+/usr/include/time.h:258:46: error: expected initializer before '__THROW'
+/usr/include/time.h:259:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/time.h:417:1: error: '__END_DECLS' does not name a type
+In file included from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41:0,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/pthread.h:220:1: error: '__BEGIN_DECLS' does not name a type
+/usr/include/pthread.h:242:26: error: 'pthread_t' was not declared in this scope
+/usr/include/pthread.h:242:42: error: expected primary-expression before 'void'
+/usr/include/pthread.h:242:64: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/pthread.h:263:28: error: 'pthread_t' was not declared in this scope
+/usr/include/pthread.h:263:44: error: expected ',' or ';' before '__THROW'
+/usr/include/pthread.h:267:8: error: 'pthread_t' does not name a type
+/usr/include/pthread.h:270:27: error: 'pthread_t' was not declared in this scope
+/usr/include/pthread.h:270:48: error: 'pthread_t' was not declared in this scope
+/usr/include/pthread.h:270:67: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/pthread.h:270:69: error: expected ',' or ';' before '__THROW'
+/usr/include/pthread.h:278:55: error: expected initializer before '__THROW'
+/usr/include/pthread.h:282:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:287:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:292:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:298:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:303:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:310:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:315:21: error: expected initializer before '__THROW'
+/usr/include/pthread.h:320:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:324:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:329:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:334:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:340:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:344:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:349:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:357:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:362:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:369:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:413:35: error: 'pthread_t' was not declared in this scope
+/usr/include/pthread.h:413:62: error: expected primary-expression before 'int'
+/usr/include/pthread.h:414:7: error: expected primary-expression before '__const'
+/usr/include/pthread.h:414:42: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/pthread.h:415:6: error: expected ',' or ';' before '__THROW'
+/usr/include/pthread.h:418:35: error: 'pthread_t' was not declared in this scope
+/usr/include/pthread.h:419:7: error: expected primary-expression before 'int'
+/usr/include/pthread.h:420:7: error: expected primary-expression before 'struct'
+/usr/include/pthread.h:420:45: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/pthread.h:421:6: error: expected ',' or ';' before '__THROW'
+/usr/include/pthread.h:424:34: error: 'pthread_t' was not declared in this scope
+/usr/include/pthread.h:424:61: error: expected primary-expression before 'int'
+/usr/include/pthread.h:424:71: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/pthread.h:425:6: error: expected ',' or ';' before '__THROW'
+/usr/include/pthread.h:479:36: error: expected initializer before '__nonnull'
+/usr/include/pthread.h:497:28: error: 'pthread_t' was not declared in this scope
+/usr/include/pthread.h:727:70: error: expected initializer before '__THROW'
+/usr/include/pthread.h:735:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:739:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:743:6: error: expected initializer before '__THROWNL'
+/usr/include/pthread.h:747:6: error: expected initializer before '__THROWNL'
+/usr/include/pthread.h:758:6: error: expected initializer before '__THROWNL'
+/usr/include/pthread.h:765:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:772:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:791:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:795:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:801:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:806:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:825:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:831:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:837:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:842:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:954:23: error: expected initializer before '__THROW'
+/usr/include/pthread.h:958:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:962:6: error: expected initializer before '__THROWNL'
+/usr/include/pthread.h:966:6: error: expected initializer before '__THROWNL'
+/usr/include/pthread.h:975:6: error: expected initializer before '__nonnull'
+/usr/include/pthread.h:987:19: error: expected initializer before '__nonnull'
+/usr/include/pthread.h:993:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:997:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:1003:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:1007:21: error: expected initializer before '__THROW'
+/usr/include/pthread.h:1097:6: error: expected initializer before '__THROW'
+/usr/include/pthread.h:1100:53: error: expected initializer before '__THROW'
+/usr/include/pthread.h:1103:56: error: expected initializer before '__THROW'
+/usr/include/pthread.h:1107:30: error: expected initializer before '__THROW'
+/usr/include/pthread.h:1131:31: error: expected initializer before '__THROW'
+/usr/include/pthread.h:1143:1: error: '__END_DECLS' does not name a type
+In file included from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:42:0,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/unistd.h:288:54: error: expected initializer before '__THROW'
+/usr/include/unistd.h:335:65: error: expected initializer before '__THROW'
+/usr/include/unistd.h:361:8: error: 'ssize_t' does not name a type
+/usr/include/unistd.h:367:8: error: 'ssize_t' does not name a type
+/usr/include/unistd.h:418:36: error: expected initializer before '__THROW'
+/usr/include/unistd.h:433:52: error: expected initializer before '__THROW'
+/usr/include/unistd.h:475:6: error: expected initializer before '__THROW'
+/usr/include/unistd.h:498:41: error: expected initializer before '__THROW'
+/usr/include/unistd.h:512:50: error: expected initializer before '__THROW'
+/usr/include/unistd.h:532:27: error: expected initializer before '__THROW'
+/usr/include/unistd.h:535:39: error: expected initializer before '__THROW'
+/usr/include/unistd.h:553:30: error: expected initializer before '__THROW'
+/usr/include/unistd.h:565:6: error: expected initializer before '__THROW'
+/usr/include/unistd.h:570:6: error: expected initializer before '__THROW'
+/usr/include/unistd.h:575:6: error: expected initializer before '__THROW'
+/usr/include/unistd.h:580:6: error: expected initializer before '__THROW'
+/usr/include/unistd.h:586:6: error: expected initializer before '__THROW'
+In file included from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:42:0,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/unistd.h:614:6: error: expected initializer before '__THROW'
+/usr/include/unistd.h:617:50: error: expected initializer before '__THROW'
+/usr/include/unistd.h:620:38: error: expected initializer before '__THROW'
+/usr/include/unistd.h:629:30: error: expected initializer before '__THROW'
+/usr/include/unistd.h:632:31: error: expected initializer before '__THROW'
+/usr/include/unistd.h:637:31: error: expected initializer before '__THROW'
+/usr/include/unistd.h:647:42: error: expected initializer before '__THROW'
+/usr/include/unistd.h:656:52: error: expected initializer before '__THROW'
+/usr/include/unistd.h:690:30: error: expected initializer before '__THROW'
+/usr/include/unistd.h:698:30: error: expected initializer before '__THROW'
+/usr/include/unistd.h:701:31: error: expected initializer before '__THROW'
+/usr/include/unistd.h:704:30: error: expected initializer before '__THROW'
+/usr/include/unistd.h:707:31: error: expected initializer before '__THROW'
+/usr/include/unistd.h:712:53: error: expected initializer before '__THROW'
+/usr/include/unistd.h:723:35: error: expected initializer before '__THROW'
+/usr/include/unistd.h:740:35: error: expected initializer before '__THROW'
+/usr/include/unistd.h:779:28: error: expected initializer before '__THROWNL'
+/usr/include/unistd.h:793:33: error: expected initializer before '__THROW'
+/usr/include/unistd.h:798:6: error: expected initializer before '__THROW'
+/usr/include/unistd.h:802:30: error: expected initializer before '__THROW'
+/usr/include/unistd.h:814:6: error: expected initializer before '__THROW'
+/usr/include/unistd.h:849:42: error: expected initializer before '__THROW'
+/usr/include/unistd.h:858:41: error: expected initializer before '__THROW'
+/usr/include/unistd.h:862:37: error: expected initializer before '__THROW'
+/usr/include/unistd.h:865:52: error: expected initializer before '__THROW'
+/usr/include/unistd.h:1174:1: error: '__END_DECLS' does not name a type
+In file included from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170:0,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from ./Stream/Helper.h:11,
+                 from ./Stream/Helper.cpp:8:
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:118:1: error: 'pthread_once' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:118:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:119:1: error: 'pthread_getspecific' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:119:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:120:1: error: 'pthread_setspecific' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:120:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:122:1: error: 'pthread_create' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:122:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:125:1: error: 'pthread_self' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:125:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:130:1: error: 'sched_yield' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:130:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:132:1: error: 'pthread_mutex_lock' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:132:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:133:1: error: 'pthread_mutex_trylock' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:133:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:136:1: error: 'pthread_mutex_timedlock' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:136:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:139:1: error: 'pthread_mutex_unlock' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:139:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:140:1: error: 'pthread_mutex_init' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:140:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:141:1: error: 'pthread_mutex_destroy' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:141:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:143:1: error: 'pthread_cond_broadcast' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:143:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:144:1: error: 'pthread_cond_signal' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:144:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:145:1: error: 'pthread_cond_wait' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:145:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:146:1: error: 'pthread_cond_timedwait' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:146:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:147:1: error: 'pthread_cond_destroy' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:147:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:150:1: error: 'pthread_key_create' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:150:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:151:1: error: 'pthread_key_delete' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:151:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:152:1: error: 'pthread_mutexattr_init' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:152:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:153:1: error: 'pthread_mutexattr_settype' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:153:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:154:1: error: 'pthread_mutexattr_destroy' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:154:1: error: invalid type in declaration before ';' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:660:19: error: '__gthread_create' declared as an 'inline' variable
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:660:19: error: '__gthread_t' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:660:32: error: '__threadid' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:660:44: error: expected primary-expression before 'void'
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:661:5: error: expected primary-expression before 'void'
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:661:17: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:662:1: error: expected ',' or ';' before '{' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:667:17: error: '__gthread_join' declared as an 'inline' variable
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:667:17: error: '__gthread_t' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:667:41: error: expected primary-expression before 'void'
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:667:59: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:668:1: error: expected ',' or ';' before '{' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:673:19: error: '__gthread_detach' declared as an 'inline' variable
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:673:19: error: '__gthread_t' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:674:1: error: expected ',' or ';' before '{' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:679:18: error: '__gthread_equal' declared as an 'inline' variable
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:679:18: error: '__gthread_t' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:679:36: error: '__gthread_t' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:679:52: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:680:1: error: expected ',' or ';' before '{' token
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:684:15: error: '__gthread_t' does not name a type
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_yield()':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:693:33: error: '__gthrw_sched_yield' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_once(__gthread_once_t*, void (*)())':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:700:50: error: '__gthrw_pthread_once' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_key_create(__gthread_key_t*, void (*)(void*))':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:708:53: error: '__gthrw_pthread_key_create' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_key_delete(__gthread_key_t)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:714:45: error: '__gthrw_pthread_key_delete' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'void* __gthread_getspecific(__gthread_key_t)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:720:46: error: '__gthrw_pthread_getspecific' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_setspecific(__gthread_key_t, const void*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:726:53: error: '__gthrw_pthread_setspecific' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_mutex_destroy(__gthread_mutex_t*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:733:52: error: '__gthrw_pthread_mutex_destroy' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_mutex_lock(__gthread_mutex_t*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:742:49: error: '__gthrw_pthread_mutex_lock' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_mutex_trylock(__gthread_mutex_t*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:751:52: error: '__gthrw_pthread_mutex_trylock' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_mutex_timedlock(__gthread_mutex_t*, const __gthread_time_t*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:763:69: error: '__gthrw_pthread_mutex_timedlock' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_mutex_unlock(__gthread_mutex_t*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:774:51: error: '__gthrw_pthread_mutex_unlock' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_recursive_mutex_init_function(__gthread_recursive_mutex_t*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:788:54: error: '__gthrw_pthread_mutexattr_init' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:791:10: error: 'PTHREAD_MUTEX_RECURSIVE' was not declared in this scope
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:791:33: error: '__gthrw_pthread_mutexattr_settype' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:793:54: error: '__gthrw_pthread_mutex_init' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:795:52: error: '__gthrw_pthread_mutexattr_destroy' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_cond_broadcast(__gthread_cond_t*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:834:50: error: '__gthrw_pthread_cond_broadcast' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_cond_signal(__gthread_cond_t*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:840:47: error: '__gthrw_pthread_cond_signal' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_cond_wait(__gthread_cond_t*, __gthread_mutex_t*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:846:54: error: '__gthrw_pthread_cond_wait' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_cond_timedwait(__gthread_cond_t*, __gthread_mutex_t*, const __gthread_time_t*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:853:74: error: '__gthrw_pthread_cond_timedwait' cannot be used as a function
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h: In function 'int __gthread_cond_destroy(__gthread_cond_t*)':
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:874:48: error: '__gthrw_pthread_cond_destroy' cannot be used as a function
+In file included from ./Stream/Helper.cpp:11:0:
+/usr/include/arm-linux-gnueabi/sys/types.h: At global scope:
+/usr/include/arm-linux-gnueabi/sys/types.h:28:1: error: '__BEGIN_DECLS' does not name a type
+In file included from ./Stream/Helper.cpp:11:0:
+/usr/include/arm-linux-gnueabi/sys/types.h:274:1: error: '__END_DECLS' does not name a type
+In file included from /usr/include/c++/4.6/cstdio:44:0,
+                 from ./Stream/Helper.cpp:12:
+/usr/include/stdio.h:47:1: error: '__BEGIN_NAMESPACE_STD' does not name a type
+/usr/include/stdio.h:50:1: error: '__END_NAMESPACE_STD' does not name a type
+In file included from /usr/include/libio.h:32:0,
+                 from /usr/include/stdio.h:75,
+                 from /usr/include/c++/4.6/cstdio:44,
+                 from ./Stream/Helper.cpp:12:
+/usr/include/_G_config.h:26:3: error: '_G_fpos_t' does not name a type
+In file included from /usr/include/c++/4.6/cstdio:44:0,
+                 from ./Stream/Helper.cpp:12:
+/usr/include/stdio.h:111:9: error: '_G_fpos_t' does not name a type
+In file included from /usr/include/c++/4.6/cstdio:44:0,
+                 from ./Stream/Helper.cpp:12:
+/usr/include/stdio.h:196:8: error: 'FILE' does not name a type
+/usr/include/stdio.h:238:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:238:26: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:243:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:243:26: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:273:8: error: 'FILE' does not name a type
+/usr/include/stdio.h:279:8: error: 'FILE' does not name a type
+/usr/include/stdio.h:333:21: error: variable or field 'setbuf' declared void
+/usr/include/stdio.h:333:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:333:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:333:48: error: expected primary-expression before 'char'
+/usr/include/stdio.h:337:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:337:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:337:48: error: expected primary-expression before 'char'
+/usr/include/stdio.h:338:7: error: expected primary-expression before 'int'
+/usr/include/stdio.h:338:27: error: expected primary-expression before '__n'
+/usr/include/stdio.h:338:30: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:357:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:357:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:358:7: error: expected primary-expression before '__const'
+/usr/include/stdio.h:358:42: error: expected primary-expression before '...' token
+/usr/include/stdio.h:358:45: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:372:22: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:372:28: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:372:44: error: expected primary-expression before '__const'
+/usr/include/stdio.h:373:19: error: expected primary-expression before '__arg'
+/usr/include/stdio.h:373:24: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:431:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:431:26: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:432:6: error: expected primary-expression before '__const'
+/usr/include/stdio.h:432:41: error: expected primary-expression before '...' token
+/usr/include/stdio.h:432:44: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:537:19: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:537:25: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:538:18: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:538:24: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:579:28: error: 'FILE' has not been declared
+/usr/include/stdio.h:580:27: error: 'FILE' has not been declared
+/usr/include/stdio.h:628:52: error: 'FILE' has not been declared
+/usr/include/stdio.h:686:49: error: 'FILE' has not been declared
+/usr/include/stdio.h:699:29: error: 'FILE' has not been declared
+/usr/include/stdio.h:707:20: error: 'FILE' has not been declared
+/usr/include/stdio.h:713:21: error: 'FILE' has not been declared
+/usr/include/stdio.h:746:19: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:746:25: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:746:35: error: expected primary-expression before 'long'
+/usr/include/stdio.h:746:51: error: expected primary-expression before 'int'
+/usr/include/stdio.h:746:63: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:751:24: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:751:30: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:756:21: error: variable or field 'rewind' declared void
+/usr/include/stdio.h:756:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:756:27: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:795:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:795:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:795:48: error: 'fpos_t' was not declared in this scope
+/usr/include/stdio.h:795:56: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:795:72: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:800:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:800:27: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:800:37: error: expected primary-expression before '__const'
+/usr/include/stdio.h:800:58: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:823:23: error: variable or field 'clearerr' declared void
+/usr/include/stdio.h:823:23: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:823:29: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:825:18: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:825:24: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:827:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:827:26: error: '__stream' was not declared in this scope
+In file included from /usr/include/c++/4.6/cstdio:44:0,
+                 from ./Stream/Helper.cpp:12:
+/usr/include/stdio.h:940:1: error: expected declaration before '}' token
+In file included from ./Stream/OpenCVWarpper.cpp:8:0:
+./Stream/OpenCVWarpper.h:11:16: fatal error: cv.h: No such file or directory
+compilation terminated.
+In file included from ./Stream/UDPClient.h:13:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/types.h:158:20: error: missing binary operator before token "("
+In file included from ./Stream/UDPClient.h:14:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/socket.h:70:43: error: missing binary operator before token "("
+In file included from ./Stream/UDPClient.h:17:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/string.h:37:42: error: missing binary operator before token "("
+In file included from /usr/include/libio.h:62:0,
+                 from /usr/include/stdio.h:75,
+                 from ./Stream/UDPClient.h:18,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:43:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:56:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:61:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:149:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:162:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:224:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:233:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:240:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:249:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:258:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:270:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:280:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:289:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:297:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:311:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:319:43: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:342:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:351:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:356:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:363:19: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cwchar:46:0,
+                 from /usr/include/c++/4.6/bits/postypes.h:42,
+                 from /usr/include/c++/4.6/bits/char_traits.h:42,
+                 from /usr/include/c++/4.6/string:42,
+                 from ./Stream/UDPClient.h:21,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/wchar.h:75:43: error: missing binary operator before token "("
+In file included from /usr/include/sched.h:43:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from ./Stream/UDPClient.h:21,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/sched.h:133:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/sched.h:171:20: error: missing binary operator before token "("
+In file included from ./Stream/UDPClient.h:13:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/types.h:28:1: error: '__BEGIN_DECLS' does not name a type
+In file included from /usr/include/arm-linux-gnueabi/sys/types.h:133:0,
+                 from ./Stream/UDPClient.h:13,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/time.h:74:1: error: '__BEGIN_NAMESPACE_STD' does not name a type
+/usr/include/time.h:77:1: error: '__END_NAMESPACE_STD' does not name a type
+In file included from ./Stream/UDPClient.h:13:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/types.h:274:1: error: '__END_DECLS' does not name a type
+In file included from /usr/include/arm-linux-gnueabi/sys/uio.h:29:0,
+                 from /usr/include/arm-linux-gnueabi/sys/socket.h:28,
+                 from ./Stream/UDPClient.h:14,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/uio.h:55:1: error: '__BEGIN_DECLS' does not name a type
+/usr/include/arm-linux-gnueabi/bits/uio.h:71:3: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/bits/uio.h:73:1: error: '__END_DECLS' does not name a type
+In file included from /usr/include/arm-linux-gnueabi/sys/socket.h:28:0,
+                 from ./Stream/UDPClient.h:14,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/uio.h:52:3: error: expected initializer before '__wur'
+/usr/include/arm-linux-gnueabi/sys/uio.h:121:1: error: '__END_DECLS' does not name a type
+In file included from /usr/include/arm-linux-gnueabi/sys/socket.h:40:0,
+                 from ./Stream/UDPClient.h:14,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/socket.h:256:5: error: 'socklen_t' does not name a type
+/usr/include/arm-linux-gnueabi/bits/socket.h:290:33: error: expected ';' at end of member declaration
+/usr/include/arm-linux-gnueabi/bits/socket.h:290:45: error: '__flexarr' does not name a type
+/usr/include/arm-linux-gnueabi/bits/socket.h:311:35: error: expected initializer before '__THROW'
+In file included from /usr/include/arm-linux-gnueabi/sys/socket.h:40:0,
+                 from ./Stream/UDPClient.h:14,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/socket.h:424:1: error: '__BEGIN_DECLS' does not name a type
+/usr/include/arm-linux-gnueabi/bits/socket.h:442:1: error: '__END_DECLS' does not name a type
+In file included from ./Stream/UDPClient.h:14:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/socket.h:105:62: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/sys/socket.h:112:24: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/sys/socket.h:115:57: error: 'socklen_t' has not been declared
+/usr/include/arm-linux-gnueabi/sys/socket.h:116:6: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/sys/socket.h:120:4: error: 'socklen_t' has not been declared
+/usr/include/arm-linux-gnueabi/sys/socket.h:120:33: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/sys/socket.h:129:60: error: 'socklen_t' has not been declared
+/usr/include/arm-linux-gnueabi/sys/socket.h:134:4: error: 'socklen_t' has not been declared
+/usr/include/arm-linux-gnueabi/sys/socket.h:134:33: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/sys/socket.h:157:10: error: 'socklen_t' has not been declared
+/usr/include/arm-linux-gnueabi/sys/socket.h:168:5: error: 'socklen_t' has not been declared
+/usr/include/arm-linux-gnueabi/sys/socket.h:192:10: error: 'socklen_t' has not been declared
+/usr/include/arm-linux-gnueabi/sys/socket.h:192:42: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/sys/socket.h:198:34: error: 'socklen_t' has not been declared
+/usr/include/arm-linux-gnueabi/sys/socket.h:198:54: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/sys/socket.h:204:39: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/sys/socket.h:215:6: error: 'socklen_t' has not been declared
+/usr/include/arm-linux-gnueabi/sys/socket.h:232:43: error: expected initializer before '__THROW'
+/usr/include/arm-linux-gnueabi/sys/socket.h:254:1: error: '__END_DECLS' does not name a type
+In file included from ./Stream/UDPClient.h:15:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/netinet/in.h:29:1: error: '__BEGIN_DECLS' does not name a type
+/usr/include/netinet/in.h:202:2: error: 'uint8_t' does not name a type
+In file included from ./Stream/UDPClient.h:15:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/netinet/in.h:365:44: error: expected initializer before '__THROW'
+/usr/include/netinet/in.h:367:6: error: expected initializer before '__THROW'
+/usr/include/netinet/in.h:369:6: error: expected initializer before '__THROW'
+/usr/include/netinet/in.h:371:6: error: expected initializer before '__THROW'
+In file included from ./Stream/UDPClient.h:15:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/netinet/in.h:617:1: error: '__END_DECLS' does not name a type
+In file included from ./Stream/UDPClient.h:16:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/arpa/inet.h:38:51: error: expected initializer before '__THROW'
+/usr/include/arpa/inet.h:43:6: error: expected initializer before '__THROW'
+/usr/include/arpa/inet.h:46:51: error: expected initializer before '__THROW'
+/usr/include/arpa/inet.h:50:52: error: expected initializer before '__THROW'
+/usr/include/arpa/inet.h:54:46: error: expected initializer before '__THROW'
+/usr/include/arpa/inet.h:60:33: error: expected initializer before '__THROW'
+/usr/include/arpa/inet.h:66:29: error: 'socklen_t' has not been declared
+/usr/include/arpa/inet.h:67:6: error: expected initializer before '__THROW'
+/usr/include/arpa/inet.h:104:1: error: '__END_DECLS' does not name a type
+In file included from ./Stream/UDPClient.h:17:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/string.h:50:6: error: expected initializer before '__THROW'
+/usr/include/string.h:51:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/string.h:69:6: error: expected initializer before '__THROW'
+/usr/include/string.h:96:7: error: expected initializer before '__THROW'
+/usr/include/string.h:98:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/string.h:133:6: error: expected initializer before '__THROW'
+/usr/include/string.h:137:6: error: expected initializer before '__THROW'
+/usr/include/string.h:140:21: error: expected initializer before '__THROW'
+/usr/include/string.h:144:6: error: expected initializer before '__THROW'
+/usr/include/string.h:147:6: error: expected initializer before '__THROW'
+/usr/include/string.h:151:6: error: expected initializer before '__THROW'
+/usr/include/string.h:155:6: error: expected initializer before '__THROW'
+/usr/include/string.h:156:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/string.h:263:6: error: expected initializer before '__THROW'
+/usr/include/string.h:265:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/string.h:289:6: error: expected initializer before '__THROW'
+/usr/include/string.h:315:6: error: expected initializer before '__THROW'
+/usr/include/string.h:343:6: error: expected initializer before '__THROW'
+/usr/include/string.h:349:6: error: expected initializer before '__THROW'
+/usr/include/string.h:350:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/string.h:397:1: error: '__BEGIN_NAMESPACE_STD' does not name a type
+/usr/include/string.h:401:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/string.h:414:1: error: '__END_NAMESPACE_STD' does not name a type
+/usr/include/string.h:646:1: error: '__END_DECLS' does not name a type
+In file included from ./Stream/UDPClient.h:18:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/stdio.h:47:1: error: '__BEGIN_NAMESPACE_STD' does not name a type
+/usr/include/stdio.h:50:1: error: '__END_NAMESPACE_STD' does not name a type
+In file included from ./Stream/UDPClient.h:18:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/stdio.h:196:8: error: 'FILE' does not name a type
+/usr/include/stdio.h:238:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:238:26: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:243:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:243:26: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:273:8: error: 'FILE' does not name a type
+/usr/include/stdio.h:279:8: error: 'FILE' does not name a type
+/usr/include/stdio.h:333:21: error: variable or field 'setbuf' declared void
+/usr/include/stdio.h:333:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:333:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:333:48: error: expected primary-expression before 'char'
+/usr/include/stdio.h:337:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:337:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:337:48: error: expected primary-expression before 'char'
+/usr/include/stdio.h:338:7: error: expected primary-expression before 'int'
+/usr/include/stdio.h:338:27: error: expected primary-expression before '__n'
+/usr/include/stdio.h:338:30: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:357:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:357:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:358:7: error: expected primary-expression before '__const'
+/usr/include/stdio.h:358:42: error: expected primary-expression before '...' token
+/usr/include/stdio.h:358:45: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:372:22: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:372:28: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:372:44: error: expected primary-expression before '__const'
+/usr/include/stdio.h:373:19: error: expected primary-expression before '__arg'
+/usr/include/stdio.h:373:24: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:431:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:431:26: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:432:6: error: expected primary-expression before '__const'
+/usr/include/stdio.h:432:41: error: expected primary-expression before '...' token
+/usr/include/stdio.h:432:44: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:537:19: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:537:25: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:538:18: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:538:24: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:579:28: error: 'FILE' has not been declared
+/usr/include/stdio.h:580:27: error: 'FILE' has not been declared
+/usr/include/stdio.h:628:52: error: 'FILE' has not been declared
+/usr/include/stdio.h:686:49: error: 'FILE' has not been declared
+/usr/include/stdio.h:699:29: error: 'FILE' has not been declared
+/usr/include/stdio.h:707:20: error: 'FILE' has not been declared
+/usr/include/stdio.h:713:21: error: 'FILE' has not been declared
+/usr/include/stdio.h:746:19: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:746:25: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:746:35: error: expected primary-expression before 'long'
+/usr/include/stdio.h:746:51: error: expected primary-expression before 'int'
+/usr/include/stdio.h:746:63: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:751:24: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:751:30: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:756:21: error: variable or field 'rewind' declared void
+/usr/include/stdio.h:756:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:756:27: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:795:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:795:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:795:55: error: expected primary-expression before '*' token
+/usr/include/stdio.h:795:56: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:795:72: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:800:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:800:27: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:800:37: error: expected primary-expression before '__const'
+/usr/include/stdio.h:800:58: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:823:23: error: variable or field 'clearerr' declared void
+/usr/include/stdio.h:823:23: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:823:29: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:825:18: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:825:24: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:827:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:827:26: error: '__stream' was not declared in this scope
+In file included from ./Stream/UDPClient.h:18:0,
+                 from ./Stream/UDPClient.cpp:8:
+/usr/include/stdio.h:940:1: error: expected declaration before '}' token
+In file included from /usr/include/libio.h:62:0,
+                 from /usr/include/stdio.h:75,
+                 from /usr/include/c++/4.6/cstdio:44,
+                 from ./Stream/UDPProtkoll.h:15,
+                 from ./Stream/UDPProtkoll.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:43:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:56:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:61:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:149:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:162:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:224:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:233:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:240:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:249:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:258:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:270:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:280:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:289:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:297:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:311:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:319:43: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:342:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:351:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:356:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:363:19: error: missing binary operator before token "("
+In file included from ./Stream/UDPClient.h:13:0,
+                 from ./Stream/UDPProtkoll.h:18,
+                 from ./Stream/UDPProtkoll.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/types.h:158:20: error: missing binary operator before token "("
+In file included from ./Stream/UDPClient.h:14:0,
+                 from ./Stream/UDPProtkoll.h:18,
+                 from ./Stream/UDPProtkoll.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/socket.h:70:43: error: missing binary operator before token "("
+In file included from ./Stream/UDPClient.h:17:0,
+                 from ./Stream/UDPProtkoll.h:18,
+                 from ./Stream/UDPProtkoll.cpp:8:
+/usr/include/string.h:37:42: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cwchar:46:0,
+                 from /usr/include/c++/4.6/bits/postypes.h:42,
+                 from /usr/include/c++/4.6/bits/char_traits.h:42,
+                 from /usr/include/c++/4.6/string:42,
+                 from ./Stream/UDPClient.h:21,
+                 from ./Stream/UDPProtkoll.h:18,
+                 from ./Stream/UDPProtkoll.cpp:8:
+/usr/include/wchar.h:75:43: error: missing binary operator before token "("
+In file included from /usr/include/sched.h:43:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from ./Stream/UDPClient.h:21,
+                 from ./Stream/UDPProtkoll.h:18,
+                 from ./Stream/UDPProtkoll.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/sched.h:133:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/sched.h:171:20: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cstdio:44:0,
+                 from ./Stream/UDPProtkoll.h:15,
+                 from ./Stream/UDPProtkoll.cpp:8:
+/usr/include/stdio.h:30:1: error: '__BEGIN_DECLS' does not name a type
+In file included from /usr/include/c++/4.6/cstdio:44:0,
+                 from ./Stream/UDPProtkoll.h:15,
+                 from ./Stream/UDPProtkoll.cpp:8:
+/usr/include/stdio.h:47:1: error: '__BEGIN_NAMESPACE_STD' does not name a type
+/usr/include/stdio.h:50:1: error: '__END_NAMESPACE_STD' does not name a type
+In file included from /usr/include/stdio.h:75:0,
+                 from /usr/include/c++/4.6/cstdio:44,
+                 from ./Stream/UDPProtkoll.h:15,
+                 from ./Stream/UDPProtkoll.cpp:8:
+/usr/include/libio.h:334:3: error: 'size_t' does not name a type
+/usr/include/libio.h:338:67: error: 'size_t' was not declared in this scope
+/usr/include/libio.h:338:67: note: suggested alternative:
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/c++config.h:155:26: note:   'std::size_t'
+/usr/include/libio.h:366:62: error: 'size_t' has not been declared
+/usr/include/libio.h:375:6: error: 'size_t' has not been declared
+/usr/include/libio.h:497:8: error: 'size_t' does not name a type
+In file included from /usr/include/c++/4.6/cstdio:44:0,
+                 from ./Stream/UDPProtkoll.h:15,
+                 from ./Stream/UDPProtkoll.cpp:8:
+/usr/include/stdio.h:196:8: error: 'FILE' does not name a type
+/usr/include/stdio.h:238:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:238:26: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:243:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:243:26: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:273:8: error: 'FILE' does not name a type
+/usr/include/stdio.h:279:8: error: 'FILE' does not name a type
+/usr/include/stdio.h:333:21: error: variable or field 'setbuf' declared void
+/usr/include/stdio.h:333:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:333:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:333:48: error: expected primary-expression before 'char'
+/usr/include/stdio.h:337:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:337:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:337:48: error: expected primary-expression before 'char'
+/usr/include/stdio.h:338:7: error: expected primary-expression before 'int'
+/usr/include/stdio.h:338:20: error: 'size_t' was not declared in this scope
+/usr/include/stdio.h:338:20: note: suggested alternative:
+/usr/include/c++/4.6/arm-linux-gnueabi/./bits/c++config.h:155:26: note:   'std::size_t'
+/usr/include/stdio.h:338:30: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:357:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:357:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:358:7: error: expected primary-expression before '__const'
+/usr/include/stdio.h:358:42: error: expected primary-expression before '...' token
+/usr/include/stdio.h:358:45: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:372:22: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:372:28: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:372:44: error: expected primary-expression before '__const'
+/usr/include/stdio.h:373:19: error: expected primary-expression before '__arg'
+/usr/include/stdio.h:373:24: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:431:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:431:26: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:432:6: error: expected primary-expression before '__const'
+/usr/include/stdio.h:432:41: error: expected primary-expression before '...' token
+/usr/include/stdio.h:432:44: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:537:19: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:537:25: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:538:18: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:538:24: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:579:28: error: 'FILE' has not been declared
+/usr/include/stdio.h:580:27: error: 'FILE' has not been declared
+/usr/include/stdio.h:628:52: error: 'FILE' has not been declared
+/usr/include/stdio.h:686:49: error: 'FILE' has not been declared
+/usr/include/stdio.h:699:29: error: 'FILE' has not been declared
+/usr/include/stdio.h:706:8: error: 'size_t' does not name a type
+/usr/include/stdio.h:712:8: error: 'size_t' does not name a type
+/usr/include/stdio.h:746:19: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:746:25: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:746:35: error: expected primary-expression before 'long'
+/usr/include/stdio.h:746:51: error: expected primary-expression before 'int'
+/usr/include/stdio.h:746:63: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:751:24: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:751:30: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:756:21: error: variable or field 'rewind' declared void
+/usr/include/stdio.h:756:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:756:27: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:795:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:795:27: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:795:55: error: expected primary-expression before '*' token
+/usr/include/stdio.h:795:56: error: expected primary-expression before '__restrict'
+/usr/include/stdio.h:795:72: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:800:21: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:800:27: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:800:37: error: expected primary-expression before '__const'
+/usr/include/stdio.h:800:58: error: expression list treated as compound expression in initializer [-fpermissive]
+/usr/include/stdio.h:823:23: error: variable or field 'clearerr' declared void
+/usr/include/stdio.h:823:23: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:823:29: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:825:18: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:825:24: error: '__stream' was not declared in this scope
+/usr/include/stdio.h:827:20: error: 'FILE' was not declared in this scope
+/usr/include/stdio.h:827:26: error: '__stream' was not declared in this scope
+In file included from /usr/include/c++/4.6/cstdio:44:0,
+                 from ./Stream/UDPProtkoll.h:15,
+                 from ./Stream/UDPProtkoll.cpp:8:
+/usr/include/stdio.h:940:1: error: expected declaration before '}' token
+In file included from /usr/include/c++/4.6/cwchar:46:0,
+                 from /usr/include/c++/4.6/bits/postypes.h:42,
+                 from /usr/include/c++/4.6/bits/char_traits.h:42,
+                 from /usr/include/c++/4.6/string:42,
+                 from /usr/include/boost/thread/exceptions.hpp:19,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/wchar.h:75:43: error: missing binary operator before token "("
+In file included from /usr/include/sched.h:43:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from /usr/include/boost/thread/exceptions.hpp:19,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/sched.h:133:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/sched.h:171:20: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:29,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:10,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/enable_shared_from_this.hpp:18,
+                 from /usr/include/boost/enable_shared_from_this.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:11,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/math.h:34:0,
+                 from /usr/include/c++/4.6/cmath:46,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:28:18: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:30:20: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cmath:46:0,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/math.h:404:42: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cstring:44:0,
+                 from /usr/include/boost/date_time/posix_time/conversion.hpp:12,
+                 from /usr/include/boost/thread/xtime.hpp:15,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:14,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/string.h:37:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:15,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/pthread_mutex_scoped_lock.hpp:10,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:18,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/optional/optional.hpp:22,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:13,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:15,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/condition_variable_fwd.hpp:8,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:16,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/detail/thread.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:22,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/shared_mutex.hpp:10,
+                 from /usr/include/boost/thread/shared_mutex.hpp:16,
+                 from /usr/include/boost/thread/detail/thread_group.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:24,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/semaphore.h:23:0,
+                 from Kommunikation/TcpConnection.h:12,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/types.h:158:20: error: missing binary operator before token "("
+In file included from /usr/include/libio.h:62:0,
+                 from /usr/include/stdio.h:75,
+                 from /usr/include/c++/4.6/cstdio:44,
+                 from Kommunikation/TcpConnection.h:17,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:43:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:56:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:61:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:149:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:162:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:224:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:233:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:240:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:249:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:258:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:270:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:280:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:289:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:297:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:311:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:319:43: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:342:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:351:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:356:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:363:19: error: missing binary operator before token "("
+In file included from Kommunikation/TcpConnection.h:20:0,
+                 from Kommunikation/TcpConnection.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/socket.h:70:43: error: missing binary operator before token "("
+In file included from Kommunikation/../Stream/Client.h:25:0,
+                 from Kommunikation/../FugexySession.h:13,
+                 from Kommunikation/TcpConnection.h:23,
+                 from Kommunikation/TcpConnection.cpp:8:
+Kommunikation/../Stream/OpenCVWarpper.h:11:16: fatal error: cv.h: No such file or directory
+compilation terminated.
+In file included from /usr/include/c++/4.6/cwchar:46:0,
+                 from /usr/include/c++/4.6/bits/postypes.h:42,
+                 from /usr/include/c++/4.6/bits/char_traits.h:42,
+                 from /usr/include/c++/4.6/string:42,
+                 from /usr/include/boost/thread/exceptions.hpp:19,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/wchar.h:75:43: error: missing binary operator before token "("
+In file included from /usr/include/sched.h:43:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from /usr/include/boost/thread/exceptions.hpp:19,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/sched.h:133:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/sched.h:171:20: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:29,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:10,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/enable_shared_from_this.hpp:18,
+                 from /usr/include/boost/enable_shared_from_this.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:11,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/math.h:34:0,
+                 from /usr/include/c++/4.6/cmath:46,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:28:18: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:30:20: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cmath:46:0,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/math.h:404:42: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cstring:44:0,
+                 from /usr/include/boost/date_time/posix_time/conversion.hpp:12,
+                 from /usr/include/boost/thread/xtime.hpp:15,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:14,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/string.h:37:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:15,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/pthread_mutex_scoped_lock.hpp:10,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:18,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/optional/optional.hpp:22,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:13,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:15,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/condition_variable_fwd.hpp:8,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:16,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/detail/thread.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:22,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/shared_mutex.hpp:10,
+                 from /usr/include/boost/thread/shared_mutex.hpp:16,
+                 from /usr/include/boost/thread/detail/thread_group.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:24,
+                 from Kommunikation/TcpListenner.h:11,
+                 from Kommunikation/TcpListenner.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from Kommunikation/TcpListenner.cpp:8:0:
+Kommunikation/TcpListenner.h:12:36: fatal error: boost/lockfree/queue.hpp: No such file or directory
+compilation terminated.
+In file included from /usr/include/c++/4.6/cwchar:46:0,
+                 from /usr/include/c++/4.6/bits/postypes.h:42,
+                 from /usr/include/c++/4.6/bits/char_traits.h:42,
+                 from /usr/include/c++/4.6/string:42,
+                 from /usr/include/jsoncpp/value.h:5,
+                 from Kommunikation/TcpProtokoll.h:11,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/wchar.h:75:43: error: missing binary operator before token "("
+In file included from /usr/include/sched.h:43:0,
+                 from /usr/include/pthread.h:25,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr-default.h:41,
+                 from /usr/include/c++/4.6/arm-linux-gnueabi/./bits/gthr.h:170,
+                 from /usr/include/c++/4.6/ext/atomicity.h:34,
+                 from /usr/include/c++/4.6/bits/basic_string.h:41,
+                 from /usr/include/c++/4.6/string:54,
+                 from /usr/include/jsoncpp/value.h:5,
+                 from Kommunikation/TcpProtokoll.h:11,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/sched.h:133:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/sched.h:171:20: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:29,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:10,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/smart_ptr/enable_shared_from_this.hpp:18,
+                 from /usr/include/boost/enable_shared_from_this.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:11,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/math.h:34:0,
+                 from /usr/include/c++/4.6/cmath:46,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:28:18: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/bits/huge_val.h:30:20: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cmath:46:0,
+                 from /usr/include/boost/config/no_tr1/cmath.hpp:21,
+                 from /usr/include/boost/date_time/posix_time/posix_time_config.hpp:15,
+                 from /usr/include/boost/date_time/posix_time/posix_time_system.hpp:13,
+                 from /usr/include/boost/date_time/posix_time/ptime.hpp:12,
+                 from /usr/include/boost/date_time/posix_time/posix_time_types.hpp:12,
+                 from /usr/include/boost/thread/thread_time.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:12,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:12,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/math.h:404:42: error: missing binary operator before token "("
+In file included from /usr/include/c++/4.6/cstring:44:0,
+                 from /usr/include/boost/date_time/posix_time/conversion.hpp:12,
+                 from /usr/include/boost/thread/xtime.hpp:15,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:14,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/string.h:37:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:15,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/pthread_mutex_scoped_lock.hpp:10,
+                 from /usr/include/boost/thread/pthread/mutex.hpp:18,
+                 from /usr/include/boost/thread/mutex.hpp:16,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:12,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/optional/optional.hpp:22,
+                 from /usr/include/boost/optional.hpp:15,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:13,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:15,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/condition_variable_fwd.hpp:8,
+                 from /usr/include/boost/thread/pthread/thread_data.hpp:16,
+                 from /usr/include/boost/thread/thread.hpp:17,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/detail/thread.hpp:17,
+                 from /usr/include/boost/thread/thread.hpp:22,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/boost/assert.hpp:50:0,
+                 from /usr/include/boost/thread/pthread/shared_mutex.hpp:10,
+                 from /usr/include/boost/thread/shared_mutex.hpp:16,
+                 from /usr/include/boost/thread/detail/thread_group.hpp:9,
+                 from /usr/include/boost/thread/thread.hpp:24,
+                 from Kommunikation/TcpConnection.h:11,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/assert.h:39:42: error: missing binary operator before token "("
+/usr/include/assert.h:108:42: error: missing binary operator before token "("
+In file included from /usr/include/semaphore.h:23:0,
+                 from Kommunikation/TcpConnection.h:12,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/types.h:158:20: error: missing binary operator before token "("
+In file included from /usr/include/libio.h:62:0,
+                 from /usr/include/stdio.h:75,
+                 from /usr/include/c++/4.6/cstdio:44,
+                 from Kommunikation/TcpConnection.h:17,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:43:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:56:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:61:44: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:149:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:162:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:224:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:233:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:240:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:249:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:258:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:270:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:280:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:289:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:297:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:311:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:319:43: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:342:19: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:351:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:356:20: error: missing binary operator before token "("
+/usr/include/arm-linux-gnueabi/sys/cdefs.h:363:19: error: missing binary operator before token "("
+In file included from Kommunikation/TcpConnection.h:20:0,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+/usr/include/arm-linux-gnueabi/sys/socket.h:70:43: error: missing binary operator before token "("
+In file included from Kommunikation/../Stream/Client.h:25:0,
+                 from Kommunikation/../FugexySession.h:13,
+                 from Kommunikation/TcpConnection.h:23,
+                 from Kommunikation/TcpProtokoll.h:13,
+                 from Kommunikation/TcpProtokoll.cpp:8:
+Kommunikation/../Stream/OpenCVWarpper.h:11:16: fatal error: cv.h: No such file or directory
+compilation terminated.
+make: *** [server] Error 1
