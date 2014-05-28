@@ -64,8 +64,7 @@ void TC6_Handler()
 
 void setup() {
 	Serial.begin(115200);
-	while (!Serial)
-		;
+	while (!Serial);
 
 	servosGroups[0].servoX.attach(9); // attaches the servo on pin 9 to the servo object
 	servosGroups[0].servoY.attach(10);
@@ -95,9 +94,9 @@ void loop() {
 			dataIndex++; // Increment where to write next
 		}
 	}
-	if ((dataIndex > 3))/* && (inData[PROTOKOLL_LENGTH - 3] == 0xff)
+	if ((dataIndex > 3) && (inData[PROTOKOLL_LENGTH - 3] == 0xff)
 			&& (inData[PROTOKOLL_LENGTH - 3] == 0x0)
-			&& (inData[PROTOKOLL_LENGTH - 3] == 0xff))*/ {
+			&& (inData[PROTOKOLL_LENGTH - 3] == 0xff)) {
 		// handelt es sich um eine gültige uebertragung?
 		if (dataIndex == PROTOKOLL_LENGTH) {
 			if (inData[0] < SERVOS_MAX) {
