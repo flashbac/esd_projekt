@@ -14,22 +14,23 @@
 #include "KommunikationTypes.h"
 
 class TcpConnection;
+class FugexySession;
 
 class TcpProtokoll {
 
 public:
 
 	// Variablen
-
-	int sock;
+	TcpConnection *tcpConnection;
+	FugexySession *session;
 
 	// Functions
 
-	TcpProtokoll();
+	TcpProtokoll(FugexySession *session);
 	virtual ~TcpProtokoll();
 
 	void commandoProzess(std::string json);
-	void setTcpSenderClass(TcpConnection *k);
+	void setTcpConnectionClass(TcpConnection* tcpConnection);
 	void init ();
 
 	void cmdExit();
@@ -40,13 +41,11 @@ public:
 	void statusFace(std::vector<face_t> faces);
 	void statusTrack(int face_id);
 
-
-
 private:
 
 	void sendMessageToSenderThread(std::string json);
 	void CloseConnection();
-	TcpConnection *tcpKommunikation;
+
 };
 
 

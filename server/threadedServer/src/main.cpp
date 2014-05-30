@@ -10,8 +10,8 @@
 #include <iostream>
 
 #include "Stream/Client.h"
-#include "Kommunikation/TcpConnection.h"
-#include "Kommunikation/KommunikationsProtokoll.h"
+#include "Kommunikation/TcpListenner.h"
+
 
 int main(int argc, char** argv) {
 
@@ -22,20 +22,16 @@ int main(int argc, char** argv) {
 		std::cout << "Error: init sem_print";
 	}
 
-	Client a("141.64.166.22",50000, 0, "eth0");
+	//Client a("141.64.166.22",50000, 0, "eth0");
 	//Client a("192.168.1.126",50000, 0, "eth0");
-	a.setSafePrintSemaphore(&sem_print);
-	a.init();
-	a.setJpgQuality(10);
-	a.setMTUsize(10240);
+	//a.setSafePrintSemaphore(&sem_print);
+	//a.init();
+	//a.setJpgQuality(10);
+	//a.setMTUsize(10240);
 	//a.start();
 
-	TcpProtokoll kp;
-
-	TcpConnection TcpSocket(&kp);
-
-	TcpSocket.setSafePrintSemaphore(&sem_print);
-	TcpSocket.start();
+	TcpListenner tcpL;
+	tcpL.start();
 
 	while(1);
 

@@ -7,21 +7,24 @@
 
 #include "TcpProtokoll.h"
 
-TcpProtokoll::TcpProtokoll() {
 
-
+TcpProtokoll::TcpProtokoll(FugexySession *session)
+{
+	this->tcpConnection = NULL;
+	this->session = session;
 }
 
 TcpProtokoll::~TcpProtokoll() {
 
 }
 
-void TcpProtokoll::setTcpSenderClass(TcpConnection* k){
-	tcpKommunikation = k;
+void TcpProtokoll::setTcpConnectionClass(TcpConnection* tcpConnection){
+	this->tcpConnection = tcpConnection;
+
 }
 
 void TcpProtokoll::sendMessageToSenderThread(std::string json){
-	tcpKommunikation->sendMessage(json);
+	tcpConnection->sendMessage(json);
 }
 
 void TcpProtokoll::cmdExit(){
@@ -76,7 +79,7 @@ void TcpProtokoll::statusFace(std::vector<face_t> faces){
 	Json::Value array;
 	Json::Value io;
 	jo["status"] = "face";
-	for (int i = 0; i<faces.size();i++)
+	for (unsigned int i = 0; i<faces.size();i++)
 	{
 		io["id"] = faces[i].face_id;
 		io["name"] = faces[i].name;
@@ -157,7 +160,7 @@ void TcpProtokoll::commandoProzess(std::string json){
 		value = root.get("value","");
 		std::string des = value.get("des","").asString();
 		int port = value.get("port","").asInt();
-
+		session->StartClient(des,port);
 		return;
 	}
 
