@@ -16,6 +16,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include "UDPClient.h"
+#include <vector>
 
 class UDPProtkoll {
 public:
@@ -33,6 +34,7 @@ private:
 	int mtu;
 	int andriodMaxBytesToTimeout;
 	int andriodTimeout;
+	std::vector<unsigned char> chunkBuffer;
 
 };
 

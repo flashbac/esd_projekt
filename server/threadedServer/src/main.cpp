@@ -24,14 +24,15 @@ int main(int argc, char** argv) {
 
 	//Client a("141.64.166.22",50000, 0, "eth0");
 	//Client a("192.168.1.126",50000, 0, "eth0");
-	//a.setSafePrintSemaphore(&sem_print);
-	//a.init();
-	//a.setJpgQuality(10);
+	Client a("192.168.178.42",50000, 0, "eth0");
+	a.setSafePrintSemaphore(&sem_print);
+	a.init();
+	a.setJpgQuality(50);
 	//a.setMTUsize(10240);
-	//a.start();
+	a.start();
 
-	TcpListenner tcpL;
-	tcpL.start();
+	//TcpListenner tcpL;
+	//tcpL.start();
 
 	while(1);
 

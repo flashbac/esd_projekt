@@ -65,7 +65,7 @@ std::vector<Rect> OpenCVWarpper::detect(Mat *frame, CascadeClassifier cascade) {
 	detectedRects.clear();
 	//find faces and store them in the vector array
 	//face_cascade.detectMultiScale(frame_gray, faces, 1.1, 3, CV_HAAR_FIND_BIGGEST_OBJECT|CV_HAAR_SCALE_IMAGE, Size(30,30));
-	cascade.detectMultiScale(frame_gray, detectedRects, 1.1, 2, 0,
+	cascade.detectMultiScale(frame_gray, detectedRects, 1.1, 3, 0,
 			Size(30, 30));
 
 	return detectedRects;
@@ -110,7 +110,7 @@ void OpenCVWarpper::drawRects(Mat *frame, std::vector<Rect> rects) {
 		Point pt1(rects[i].x + rects[i].width, rects[i].y + rects[i].height);
 		Point pt2(rects[i].x, rects[i].y);
 
-		rectangle(*frame, pt1, pt2, cvScalar(0, 255, 0, 0), 1, 8, 0);
+		rectangle(*frame, pt1, pt2, cvScalar(0, 255, 0, 0), 2, 8, 0);
 	}
 }
 
@@ -126,6 +126,14 @@ void OpenCVWarpper::drawAllRects(Mat *frame,
 	for (int i = 0; i < rects.size(); i++) {
 		this->drawRects(frame, rects[i]);
 	}
+}
+
+void OpenCVWarpper::drawText(std::string str){
+	this->drawText(&frame, str);
+}
+
+void OpenCVWarpper::drawText(Mat *frame, std::string str){
+	putText(*frame, str, cvPoint(30,30), FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(204,102,0), 1, CV_AA);
 }
 
 void OpenCVWarpper::display(std::string windowName) {

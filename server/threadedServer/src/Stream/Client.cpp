@@ -35,8 +35,8 @@ Client::Client(std::string ipadress, int port, unsigned char kamerID,
 		this->~Client();
 
 	if (openCVforFaceDetection.addCascade(
-			"/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml")
-			//"/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml")
+			//"/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml")
+	"/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml")
 			!= 0)
 		this->~Client();
 }
@@ -126,20 +126,38 @@ void Client::wait(int seconds) {
 }
 
 void Client::thread_kamera_reader() {
+	static int lastFrameRate = 0;
+	static int lastFrameMS = 0;
 	try {
 		while (running) {
 			// ist trozdem call by referenz!
 			std::vector<unsigned char>& nextPic = *getNextFreeToWriteImage();
+
+			gettimeofday(&(this->frameRateMeasureStart), 0);
 
 			if (!openCVforCapture.queryFrame())
 				this->thread_safe_print("\nbild query fehlgeschlagen");
 
 			openCVforCapture.drawRects(this->getFaceDetectionVector());
 
+			std::stringstream frameText;
+			frameText << "FrameRate: " << lastFrameRate << " Bilder/sec == " << lastFrameMS << "ms/Bild";
+			openCVforCapture.drawText(frameText.str());
+
 			openCVforCapture.MatToJPEG(&nextPic, this->jpgQuality);
+
+			gettimeofday(&(this->frameRateMeasureEnd), 0);
+
 			std::stringstream str;
-			str << "\nBild Size: " << nextPic.size() << "bytes";
-			this->thread_safe_print(str.str());
+			if(this->frameRateMeasureEnd.tv_usec < this->frameRateMeasureStart.tv_usec){
+				this->frameRateMeasureEnd.tv_usec = this->frameRateMeasureEnd.tv_usec + 1000000;
+			}
+			lastFrameMS = this->frameRateMeasureEnd.tv_usec - this->frameRateMeasureStart.tv_usec;
+			lastFrameMS = lastFrameMS / 1000;
+			lastFrameRate = 1000/lastFrameMS;
+
+			/*str << "\nBild Size: " << nextPic.size() << "bytes zeit: " << lastFrameMS << "ms bilder/sec: " << lastFrameRate;
+			this->thread_safe_print(str.str());*/
 			sem_post(&sem_numberToWrite);
 		}
 	} catch (boost::thread_interrupted&) {
@@ -168,7 +186,7 @@ void Client::thread_send_pic() {
 			std::vector<unsigned char>& nextPic = *getNextToReadToSend();
 
 			//frage ob faceDetection nicht beschäftigt ist?
-			if (isFaceDetectionReady() ){
+			if (isFaceDetectionReady()) {
 				// kopie vom bild anlegen, copyOfPicForDetection wird durch sem_faceDetectionNewPicAvailable geschuetzt
 				copyOfPicForDetection.resize(nextPic.size());
 				memcpy(&copyOfPicForDetection[0], &nextPic[0], nextPic.size());
@@ -187,7 +205,7 @@ void Client::thread_send_pic() {
 	}
 }
 
-void Client::setSafePrintSemaphore(sem_t *sem){
+void Client::setSafePrintSemaphore(sem_t *sem) {
 	this->sem_print = sem;
 }
 
@@ -271,6 +289,6 @@ void Client::stop() {
 	}
 }
 
-void Client::setJpgQuality(int prozent){
+void Client::setJpgQuality(int prozent) {
 	this->jpgQuality = prozent;
 }

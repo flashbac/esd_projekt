@@ -8,7 +8,7 @@
 #ifndef OPENCVWARPPER_H_
 #define OPENCVWARPPER_H_
 
-#include <opencv.hpp>
+#include <opencv2/opencv.hpp>
 //#include <highgui.h>
 #include "opencv2/objdetect/objdetect.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -33,6 +33,8 @@ public:
 	void drawRects(Mat *frame, std::vector<Rect> rects);
 	void drawAllRects(std::vector<std::vector<Rect> > rects);
 	void drawAllRects(Mat *frame, std::vector<std::vector<Rect> > rects);
+	void drawText(std::string str);
+	void drawText(Mat *frame, std::string str);
 	void display(std::string windowName);
 	void display(std::string windowName, Mat *frame);
 	void loadFromJPEG(std::vector<unsigned char> *buffer);

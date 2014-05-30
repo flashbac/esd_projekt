@@ -23,6 +23,7 @@
 #include "UDPProtkoll.h"
 #include "Helper.h"
 #include "OpenCVWarpper.h"
+#include <sys/time.h>
 
 //defines
 #define CLIENT_MAX_BUFFER_PIC_COUNT 20
@@ -69,6 +70,7 @@ private:
 	boost::thread *thread_UDPsend;
 
 	bool running;
+	timeval frameRateMeasureStart, frameRateMeasureEnd;
 
 	bool isFaceDetectionReady();
 	void setFaceDetectionVector(std::vector<cv::Rect> faces);
