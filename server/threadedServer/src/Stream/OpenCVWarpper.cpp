@@ -9,11 +9,26 @@
 
 OpenCVWarpper::OpenCVWarpper() {
 	// TODO Auto-generated constructor stub
-	captureDevice = cvCaptureFromCAM(-1);
+	this->cameraID = -1;
 }
 
 OpenCVWarpper::~OpenCVWarpper() {
 	// TODO Auto-generated destructor stub
+	if (captureDevice.isOpened())
+		captureDevice.release();
+}
+
+int OpenCVWarpper::init(int device) {
+	this->cameraID = device;
+	captureDevice.open(device);
+	if (captureDevice.isOpened()) {
+		//setup
+		captureDevice.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+		captureDevice.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
+		captureDevice.set(CV_CAP_PROP_FPS, 25);
+		return 0;
+	} else
+		return -1;
 }
 
 int OpenCVWarpper::addCascade(std::string path) {
@@ -41,7 +56,8 @@ std::vector<CascadeClassifier> OpenCVWarpper::getCascades() {
 }
 
 bool OpenCVWarpper::queryFrame() {
-	frame = cvQueryFrame(captureDevice);
+	//frame = cvQueryFrame(captureDevice);
+	captureDevice.read(frame);
 	return !frame.empty();
 }
 
@@ -128,12 +144,13 @@ void OpenCVWarpper::drawAllRects(Mat *frame,
 	}
 }
 
-void OpenCVWarpper::drawText(std::string str){
+void OpenCVWarpper::drawText(std::string str) {
 	this->drawText(&frame, str);
 }
 
-void OpenCVWarpper::drawText(Mat *frame, std::string str){
-	putText(*frame, str, cvPoint(30,30), FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(204,102,0), 1, CV_AA);
+void OpenCVWarpper::drawText(Mat *frame, std::string str) {
+	putText(*frame, str, cvPoint(30, 30), FONT_HERSHEY_COMPLEX_SMALL, 0.8,
+			cvScalar(204, 102, 0), 1, CV_AA);
 }
 
 void OpenCVWarpper::display(std::string windowName) {
@@ -160,7 +177,8 @@ void OpenCVWarpper::MatToJPEG(std::vector<unsigned char> *buffer, int quality) {
 	this->MatToJPEG(&frame, buffer, quality);
 }
 
-void OpenCVWarpper::MatToJPEG(Mat *frame, std::vector<unsigned char> *buffer, int quality) {
+void OpenCVWarpper::MatToJPEG(Mat *frame, std::vector<unsigned char> *buffer,
+		int quality) {
 	if (frame->empty()) {
 		buffer->resize(0);
 		buffer->clear();

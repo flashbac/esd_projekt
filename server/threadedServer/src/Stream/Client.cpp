@@ -14,7 +14,7 @@ Client::Client(std::string ipadress, int port, unsigned char kamerID,
 	this->thread_cam = NULL;
 	this->thread_face = NULL;
 	this->thread_UDPsend = NULL;
-	this->kameraID = kamerID;
+	this->cameraID = kamerID;
 	this->sem_print = NULL;
 	this->jpgQuality = 100;
 
@@ -156,8 +156,8 @@ void Client::thread_kamera_reader() {
 			lastFrameMS = lastFrameMS / 1000;
 			lastFrameRate = 1000/lastFrameMS;
 
-			/*str << "\nBild Size: " << nextPic.size() << "bytes zeit: " << lastFrameMS << "ms bilder/sec: " << lastFrameRate;
-			this->thread_safe_print(str.str());*/
+			str << "\nBild Size: " << nextPic.size() << "bytes zeit: " << lastFrameMS << "ms bilder/sec: " << lastFrameRate;
+			this->thread_safe_print(str.str());
 			sem_post(&sem_numberToWrite);
 		}
 	} catch (boost::thread_interrupted&) {
@@ -193,7 +193,7 @@ void Client::thread_send_pic() {
 				sem_post(&sem_faceDetectionNewPicAvailable);
 			}
 			// send pic
-			this->udpProtokoll->sendInChunks(this->kameraID, &nextPic[0],
+			this->udpProtokoll->sendInChunks(this->cameraID, &nextPic[0],
 					nextPic.size());
 
 			sem_post(&sem_freeSpace);
@@ -238,6 +238,7 @@ int Client::init() {
 		return -1;
 		std::cout << "Error: init sem_faceDetectionVector";
 	}
+	openCVforCapture.init(this->cameraID);
 	return 0;
 }
 

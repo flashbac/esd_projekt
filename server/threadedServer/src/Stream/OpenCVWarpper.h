@@ -20,6 +20,7 @@ class OpenCVWarpper {
 public:
 	OpenCVWarpper();
 	virtual ~OpenCVWarpper();
+	int init(int device = 0);
 	int addCascade(std::string path);
 	int removeCascade(CascadeClassifier cascade);
 	std::vector<CascadeClassifier> getCascades();
@@ -46,9 +47,11 @@ public:
 	void saveToFile(std::string filename);
 
 private:
-	CvCapture* captureDevice;
+	CvCapture* captureDevice2;
+	VideoCapture captureDevice;
 	Mat frame;
 	std::vector<CascadeClassifier> loadedCascades;
+	int cameraID;
 
 };
 
