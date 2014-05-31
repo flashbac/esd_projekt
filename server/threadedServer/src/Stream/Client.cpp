@@ -194,7 +194,7 @@ void Client::thread_send_pic() {
 			// keine kopie, ist noch call by reference
 			std::vector<unsigned char>& nextPic = *getNextToReadToSend();
 			pic_counter++;
-			pic_counter = pic_counter%10;
+			pic_counter = pic_counter % 10;
 			//frage ob faceDetection nicht beschäftigt ist?
 			if (isFaceDetectionReady() && (pic_counter == 0)) {
 				// kopie vom bild anlegen, copyOfPicForDetection wird durch sem_faceDetectionNewPicAvailable geschuetzt
