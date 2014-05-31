@@ -26,6 +26,8 @@ int main(int argc, char** argv) {
 	//Client a("192.168.1.126",50000, 0, "eth0");
 	Client a("192.168.178.42",50000, 0, "eth0");
 	a.setSafePrintSemaphore(&sem_print);
+	//setup Logitech c270 -> 640x360 @ 25 fps
+	a.setVideoSettings(640, 360, 25);
 	a.init();
 	a.setJpgQuality(20);
 	//a.setMTUsize(10240);

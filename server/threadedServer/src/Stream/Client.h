@@ -43,6 +43,7 @@ public:
 	int start();
 	void stop();
 	void setJpgQuality(int prozent);
+	void setVideoSettings(double width,  double heigth, double frameRate);
 
 private:
 	unsigned char cameraID;
@@ -51,6 +52,9 @@ private:
 	std::vector<unsigned char> copyOfPicForDetection;
 	std::vector<cv::Rect> global_faces;
 	int jpgQuality;
+	double camera_width;
+	double camera_heigth;
+	double camera_frameRate;
 
 	sem_t sem_freeSpace;
 	sem_t sem_numberToWrite;

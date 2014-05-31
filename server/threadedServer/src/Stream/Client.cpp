@@ -17,6 +17,10 @@ Client::Client(std::string ipadress, int port, unsigned char kamerID,
 	this->cameraID = kamerID;
 	this->sem_print = NULL;
 	this->jpgQuality = 100;
+	//default: most cameras support this mode 320x240@25
+	this->camera_width = 320;
+	this->camera_heigth = 240;
+	this->camera_frameRate = 25;
 
 	if (ipadress.empty() || (port <= 0) || outgoingDeviceName.empty())
 		this->~Client();
@@ -35,8 +39,8 @@ Client::Client(std::string ipadress, int port, unsigned char kamerID,
 		this->~Client();
 
 	if (openCVforFaceDetection.addCascade(
-			//"/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml")
-	"/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml")
+			"/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml")
+	//"/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml")
 			!= 0)
 		this->~Client();
 }
@@ -141,23 +145,27 @@ void Client::thread_kamera_reader() {
 			openCVforCapture.drawRects(this->getFaceDetectionVector());
 
 			std::stringstream frameText;
-			frameText << "FrameRate: " << lastFrameRate << " Bilder/sec == " << lastFrameMS << "ms/Bild";
+			//frameText << "FrameRate: " << lastFrameRate << " Bilder/sec == " << lastFrameMS << "ms/Bild";
+			frameText << "FrameRate: " << lastFrameRate << " fps";
 			openCVforCapture.drawText(frameText.str());
 
 			openCVforCapture.MatToJPEG(&nextPic, this->jpgQuality);
 
 			gettimeofday(&(this->frameRateMeasureEnd), 0);
 
-			std::stringstream str;
-			if(this->frameRateMeasureEnd.tv_usec < this->frameRateMeasureStart.tv_usec){
-				this->frameRateMeasureEnd.tv_usec = this->frameRateMeasureEnd.tv_usec + 1000000;
+			if (this->frameRateMeasureEnd.tv_usec
+					< this->frameRateMeasureStart.tv_usec) {
+				this->frameRateMeasureEnd.tv_usec =
+						this->frameRateMeasureEnd.tv_usec + 1000000;
 			}
-			lastFrameMS = this->frameRateMeasureEnd.tv_usec - this->frameRateMeasureStart.tv_usec;
+			lastFrameMS = this->frameRateMeasureEnd.tv_usec
+					- this->frameRateMeasureStart.tv_usec;
 			lastFrameMS = lastFrameMS / 1000;
-			lastFrameRate = 1000/lastFrameMS;
+			lastFrameRate = 1000 / lastFrameMS;
 
-			str << "\nBild Size: " << nextPic.size() << "bytes zeit: " << lastFrameMS << "ms bilder/sec: " << lastFrameRate;
-			this->thread_safe_print(str.str());
+			/*std::stringstream str;
+			 str << "\nBild Size: " << nextPic.size() << "bytes zeit: " << lastFrameMS << "ms bilder/sec: " << lastFrameRate;
+			 this->thread_safe_print(str.str());*/
 			sem_post(&sem_numberToWrite);
 		}
 	} catch (boost::thread_interrupted&) {
@@ -180,13 +188,15 @@ void Client::thread_face_detection() {
 }
 
 void Client::thread_send_pic() {
+	static int pic_counter = 0;
 	try {
 		while (running) {
 			// keine kopie, ist noch call by reference
 			std::vector<unsigned char>& nextPic = *getNextToReadToSend();
-
+			pic_counter++;
+			pic_counter = pic_counter%10;
 			//frage ob faceDetection nicht beschäftigt ist?
-			if (isFaceDetectionReady()) {
+			if (isFaceDetectionReady() && (pic_counter == 0)) {
 				// kopie vom bild anlegen, copyOfPicForDetection wird durch sem_faceDetectionNewPicAvailable geschuetzt
 				copyOfPicForDetection.resize(nextPic.size());
 				memcpy(&copyOfPicForDetection[0], &nextPic[0], nextPic.size());
@@ -238,7 +248,10 @@ int Client::init() {
 		return -1;
 		std::cout << "Error: init sem_faceDetectionVector";
 	}
-	openCVforCapture.init(this->cameraID);
+
+	openCVforCapture.init(this->cameraID, this->camera_width,
+			this->camera_heigth, this->camera_frameRate);
+
 	return 0;
 }
 
@@ -292,4 +305,10 @@ void Client::stop() {
 
 void Client::setJpgQuality(int prozent) {
 	this->jpgQuality = prozent;
+}
+
+void Client::setVideoSettings(double width, double heigth, double frameRate) {
+	this->camera_width = width;
+	this->camera_heigth = heigth;
+	this->camera_frameRate = frameRate;
 }

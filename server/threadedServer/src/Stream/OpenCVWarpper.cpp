@@ -18,14 +18,13 @@ OpenCVWarpper::~OpenCVWarpper() {
 		captureDevice.release();
 }
 
-int OpenCVWarpper::init(int device) {
+int OpenCVWarpper::init(int device, double width, double heigth, double frameRate) {
 	this->cameraID = device;
 	captureDevice.open(device);
 	if (captureDevice.isOpened()) {
-		//setup
-		captureDevice.set(CV_CAP_PROP_FRAME_WIDTH, 640);
-		captureDevice.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
-		captureDevice.set(CV_CAP_PROP_FPS, 25);
+		captureDevice.set(CV_CAP_PROP_FRAME_WIDTH, width);
+		captureDevice.set(CV_CAP_PROP_FRAME_HEIGHT, heigth);
+		captureDevice.set(CV_CAP_PROP_FPS, frameRate);
 		return 0;
 	} else
 		return -1;
