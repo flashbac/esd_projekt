@@ -10,8 +10,8 @@
 
 // includes
 
-//#include <boost/thread.hpp>
-#include <boost/thread/thread.hpp>
+#include <boost/thread.hpp>
+//#include <boost/thread/thread.hpp>
 #include <semaphore.h>
 #include <iostream>
 #include <sstream>
