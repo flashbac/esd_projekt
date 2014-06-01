@@ -70,6 +70,7 @@ public class ViewActivity extends Activity {
 		}
 		if(id == R.id.startStream)
 		{
+			kontrollProtokoll.StreamAnfordern(Helper.getLocalIpAddress(), 50000);
 			return true;
 		}
 		if (id == R.id.auto_mode) {
