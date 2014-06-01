@@ -14,6 +14,8 @@
 
 int main(int argc, char** argv) {
 
+
+
 	sem_t sem_print;
 	//std::string ip = "141.64.166.22";
 	//std::string ip = "192.168.1.126";
@@ -30,6 +32,12 @@ int main(int argc, char** argv) {
 		return -1;
 		std::cout << "Error: init sem_print";
 	}
+
+
+	TcpListenner tcpL;
+	tcpL.start();
+
+	while (1)
 
 	//argv auswertung
 	// ip
