@@ -29,7 +29,6 @@
 								<option id="gnu.cpp.compiler.option.debugging.level.159986165" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.448319124" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="/usr/include"/>
-									<listOptionValue builtIn="false" value="/home/rensky/git/esd_projekt/libs/boost_install/include"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.other.other.786196560" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" useByScannerDiscovery="false" value="-c -fmessage-length=0 -std=c++0x" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.468968152" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
@@ -64,7 +63,6 @@
 								</option>
 								<option id="gnu.cpp.link.option.paths.721929466" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu/"/>
-									<listOptionValue builtIn="false" value="/home/rensky/git/esd_projekt/libs/boost_install/lib"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.327685590" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
