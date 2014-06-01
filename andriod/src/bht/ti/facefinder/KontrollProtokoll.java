@@ -99,9 +99,9 @@ public class KontrollProtokoll {
 			{
 				String cmd = jsonObject.getString("status");
 				
-				switch (cmd)
+				switch (TcpProtokollStatus.valueOf(cmd))
 				{
-					case "cams": 
+					case cams: 
 					{
 						JSONArray innerArray = jsonObject.getJSONArray("value");
 						ArrayList<Integer> cams = new ArrayList<Integer>();
@@ -111,14 +111,14 @@ public class KontrollProtokoll {
 						}
 						break;
 					}
-					case "camera":
+					case camera:
 					{
 						int value = jsonObject.getInt("value");
 						
 						Log.i("MY","Current Camera is Camera "+ value + "." );
 						break;
 					}
-					case "udp":
+					case udp:
 					{
 						JSONObject innerOb = jsonObject.getJSONObject("value");
 						String des = jsonObject.getString("des");
@@ -126,7 +126,7 @@ public class KontrollProtokoll {
 						Log.i("MY","Udp package sent to " + des + ":" + port );
 						break;
 					}
-					case "face":
+					case face:
 					{
 						JSONArray innerArray = jsonObject.getJSONArray("value");
 					
@@ -144,13 +144,13 @@ public class KontrollProtokoll {
 						Log.i("MY","Empfange " + faces.size() + " Faces.");
 						break;
 					}
-					case "track":
+					case track:
 					{
 						int value = jsonObject.getInt("value");
 						Log.i("MY","Track Camera with ID " + value );
 						break;
 					}
-					case "track":
+					case position:
 					{
 						JSONObject value = jsonObject.getJSONObject("value");
 						int x = value.getInt("x");
@@ -158,8 +158,7 @@ public class KontrollProtokoll {
 						Log.i("MY","Camera Position x: " + x + " y:" + y );
 						break;
 					}
-					
-					
+					default:
 				}
 			}
 				
@@ -173,12 +172,6 @@ public class KontrollProtokoll {
 					//do
 				}
 			}
-			
-			
-			
-			
-		
-		
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
