@@ -8,8 +8,10 @@
 #ifndef KOMMUNIKATIONSPROTOKOLL_H_
 #define KOMMUNIKATIONSPROTOKOLL_H_
 
-#include <jsoncpp/json/value.h>
-#include <jsoncpp/json/reader.h>
+//#include <jsoncpp/json/value.h>
+//#include <jsoncpp/json/reader.h>
+#include <jsoncpp/value.h>
+#include <jsoncpp/reader.h>
 #include "TcpConnection.h"
 #include "KommunikationTypes.h"
 
