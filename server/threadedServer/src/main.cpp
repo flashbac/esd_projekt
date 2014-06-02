@@ -18,8 +18,8 @@ int main(int argc, char** argv) {
 
 	sem_t sem_print;
 	//std::string ip = "141.64.166.22";
-	//std::string ip = "192.168.1.126";
-	std::string ip = "192.168.178.42";
+	std::string ip = "192.168.1.230";
+	//std::string ip = "192.168.178.42";
 	std::string device = "eth0";
 	int port = 50000;
 	int camID = 0;
@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
 	double cameraWidth = 640.0;
 	double cameraHeigth = 480.0;
 
-	double cameraFrameRate = 20.0;
+	double cameraFrameRate = 30.0;
 
 
 	if (sem_init(&sem_print, 0, 1) < 0) {
@@ -36,13 +36,13 @@ int main(int argc, char** argv) {
 	}
 
 
-	//TcpListenner tcpL;
-	//tcpL.start();
+	TcpListenner tcpL;
+	tcpL.start();
 
-//	while (1)
-//	{
-//	usleep(20);
-//	}
+	while (1)
+	{
+	usleep(20);
+	}
 
 
 	//argv auswertung

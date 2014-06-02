@@ -24,7 +24,7 @@ int OpenCVWarpper::init(int device, double width, double heigth, double frameRat
 	if (captureDevice.isOpened()) {
 		captureDevice.set(CV_CAP_PROP_FRAME_WIDTH, width);
 		captureDevice.set(CV_CAP_PROP_FRAME_HEIGHT, heigth);
-		//captureDevice.set(CV_CAP_PROP_FPS, frameRate);
+		captureDevice.set(CV_CAP_PROP_FPS, frameRate);
 		return 0;
 	} else
 		return -1;
