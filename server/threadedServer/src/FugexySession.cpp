@@ -30,7 +30,7 @@ void FugexySession::StartClient(std::string ip, int port)
 	std::string device = "eth0";
 	int MTU = 1500;
 	double cameraWidth = 640.0;
-	double cameraHeigth = 360.0;
+	double cameraHeigth = 480.0;
 	double cameraFrameRate = 25.0;
 
 	Client a(ip, port, kameraID, device);
