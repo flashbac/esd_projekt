@@ -6,3 +6,10 @@ typedef struct face_str {
 	int width;
 	int height;
 } face_t;
+
+typedef struct cam_str
+{
+	int id;
+	bool use;
+	std::string name;
+} cam_t;
