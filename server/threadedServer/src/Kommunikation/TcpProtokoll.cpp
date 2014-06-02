@@ -36,12 +36,12 @@ void TcpProtokoll::cmdExit(){
 	sendMessageToSenderThread(jo.asCString());
 }
 
-void TcpProtokoll::camAvalible(int anzahlKamera){
+void TcpProtokoll::camAvalible(cam_t cams){
 
 	Json::Value jo;
 
 	jo["status"] = "cams";
-	jo["value"] = anzahlKamera;
+	jo["value"] = cams.id;
 	sendMessageToSenderThread(jo.asCString());
 
 }
@@ -151,7 +151,7 @@ void TcpProtokoll::commandoProzess(std::string json){
 
 	if (cmd == "camera" ){
 		int value = root.get("value","").asInt();
-
+		session->kameraID = value;
 		return;
 	}
 

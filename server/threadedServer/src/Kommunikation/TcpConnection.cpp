@@ -21,7 +21,8 @@ TcpConnection::TcpConnection(int sock, TcpProtokoll *tcpP) {
 }
 
 TcpConnection::~TcpConnection() {
-	// TODO Auto-generated destructor stub
+	stop();
+	close(sock);
 }
 
 int TcpConnection::init()
