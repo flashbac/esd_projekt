@@ -26,7 +26,9 @@ int main(int argc, char** argv) {
 	int MTU = 1500;
 	double cameraWidth = 640.0;
 	double cameraHeigth = 480.0;
+
 	double cameraFrameRate = 20.0;
+
 
 	if (sem_init(&sem_print, 0, 1) < 0) {
 		return -1;
@@ -37,7 +39,11 @@ int main(int argc, char** argv) {
 	//TcpListenner tcpL;
 	//tcpL.start();
 
-	//while (1)
+//	while (1)
+//	{
+//	usleep(20);
+//	}
+
 
 	//argv auswertung
 	// ip

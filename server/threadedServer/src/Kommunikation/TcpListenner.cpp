@@ -92,9 +92,10 @@ int TcpListenner::thread_Binder() {
 
 					// Session erstellen
 
-					FugexySession s(client_sock);
+					FugexySession *s = new FugexySession(client_sock);
 
-					//sessions.push_back(&s);
+					sessions.push_back(s);
+					// TODO dieses objekte müssen abgeräumt werden
 
 				} else {
 					std::string msg("Server accept only one Client.");

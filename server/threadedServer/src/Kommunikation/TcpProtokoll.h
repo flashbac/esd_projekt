@@ -34,7 +34,7 @@ public:
 	void init ();
 
 	void cmdExit();
-	void camAvalible(int anzahlKamera);
+	void camAvalible(cam_t cams);
 	void statusCamera(int currentCam);
 	void statusUDP(std::string ip, int port);
 	void statusServos(int x, int y);

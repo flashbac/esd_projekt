@@ -34,11 +34,13 @@ public:
 	//Functions
 
 	void StartClient(std::string ip, int port);
+	void SetCamera(int camID);
 
 private:
 	void initServo();
 	void initCamera();
 	void intiTCP();
+	void disconnect();
 };
 
 #endif /* FUGEXYSESSION_H_ */
