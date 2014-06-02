@@ -12,6 +12,7 @@ import android.util.Log;
 public class KontrollProtokoll {
 	
 	private ClientController client;
+	public ArrayList<Kamera> kameras = new ArrayList<Kamera>();
 	
 	public KontrollProtokoll(ClientController c)
 	{
@@ -104,11 +105,17 @@ public class KontrollProtokoll {
 					case cams: 
 					{
 						JSONArray innerArray = jsonObject.getJSONArray("value");
-						ArrayList<Integer> cams = new ArrayList<Integer>();
+						
+						
 						for (int i = 0; i< innerArray.length();i++ )
 						{
-							cams.add(innerArray.getInt(0));	
+							JSONObject innerOb = innerArray.getJSONObject(i);
+							kameras.add(new Kamera(innerOb.getInt("id"),
+									innerOb.getString("name"),
+									innerOb.getBoolean("use")));	
 						}
+						
+						
 						break;
 					}
 					case camera:
@@ -121,8 +128,8 @@ public class KontrollProtokoll {
 					case udp:
 					{
 						JSONObject innerOb = jsonObject.getJSONObject("value");
-						String des = jsonObject.getString("des");
-						int port = jsonObject.getInt("port");
+						String des = innerOb.getString("des");
+						int port = innerOb.getInt("port");
 						Log.i("MY","Udp package sent to " + des + ":" + port );
 						break;
 					}
