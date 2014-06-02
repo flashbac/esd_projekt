@@ -36,13 +36,29 @@ void TcpProtokoll::cmdExit(){
 	sendMessageToSenderThread(jo.asCString());
 }
 
-void TcpProtokoll::camAvalible(cam_t cams){
+void TcpProtokoll::camAvalible(){
 
+	IKamera *ik = IKamera::getInstance();
 	Json::Value jo;
+	Json::Value ja;
 
+	std::vector<cam_t> cams = ik->getCams();
+	for (unsigned int i = 0; i<cams.size();i++)
+	{
+		Json::Value io;
+		io["id"] = cams[i].id;
+		io["name"] = cams[i].name;
+		io["use"] = cams[i].use;
+		ja.append(io);
+    }
 	jo["status"] = "cams";
-	jo["value"] = cams.id;
-	sendMessageToSenderThread(jo.asCString());
+	jo["value"] = ja;
+
+	Json::FastWriter fastWriter;
+	std::string s = fastWriter.write(jo);
+
+	printf("%s",s.c_str());
+	sendMessageToSenderThread(s);
 
 }
 void TcpProtokoll::statusCamera(int currentCam){

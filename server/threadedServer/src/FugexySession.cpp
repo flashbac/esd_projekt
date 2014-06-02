@@ -10,12 +10,12 @@
 
 FugexySession::FugexySession(int Sock)
 {
+	iKamera = IKamera::getInstance();
 	tcpP = new TcpProtokoll(this);
-
 	tcpC = new TcpConnection(Sock, tcpP);
 	tcpP->setTcpConnectionClass(tcpC);
 
-
+	tcpP->camAvalible();
 	client = NULL;
 	kameraID = 0;
 
@@ -59,9 +59,10 @@ void FugexySession::StartClient(std::string ip, int port)
 	int MTU = 1500;
 	double cameraWidth = 640.0;
 	double cameraHeigth = 480.0;
-	double cameraFrameRate = 15.0;
+	double cameraFrameRate = 25.0;
 
-	Client a(ip, port, 0, device);
+
+	Client a(ip, port, kameraID, device);
 	sem_t sem_print;
 	if (sem_init(&sem_print, 0, 1) < 0) {
 		std::cout << "Error: init sem_print";
