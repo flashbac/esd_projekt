@@ -18,7 +18,7 @@ struct CAMandServoGroup{
 };
 
 // init -> {{CamID,ServoGroupID},{CamID.ServoGroupID}...}
-CAMandServoGroup CAMtoServoGroupMapping[AvailabeServoGroups] = {{0,0}};
+//CAMandServoGroup CAMtoServoGroupMapping[AvailabeServoGroups] = {{0,0}};
 
 
 

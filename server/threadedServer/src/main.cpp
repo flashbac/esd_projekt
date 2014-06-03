@@ -11,9 +11,11 @@
 
 #include "Stream/Client.h"
 #include "Kommunikation/TcpListenner.h"
+#include "SerialWrapper.h"
 
 int main(int argc, char** argv) {
-
+	SerialWrapper& serial = SerialWrapper::instance();
+	serial.sendPos(0,180,0);
 	sem_t sem_print;
 	//std::string ip = "141.64.166.22";
 	//std::string ip = "192.168.1.126";
