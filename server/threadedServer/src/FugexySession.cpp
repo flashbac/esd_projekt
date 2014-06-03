@@ -10,12 +10,12 @@
 
 FugexySession::FugexySession(int Sock)
 {
+	iKamera = IKamera::getInstance();
 	tcpP = new TcpProtokoll(this);
-
 	tcpC = new TcpConnection(Sock, tcpP);
 	tcpP->setTcpConnectionClass(tcpC);
 
-
+	tcpP->camAvalible();
 	client = NULL;
 	kameraID = 0;
 
@@ -23,10 +23,59 @@ FugexySession::FugexySession(int Sock)
 
 FugexySession::~FugexySession()
 {
+
+}
+
+void FugexySession::disconnect(){
+
+	if (this->client != NULL) {
+			delete this->client;
+		}
+		if (this->tcpC != NULL) {
+				delete this->tcpC;
+			}
+		if (this->tcpP != NULL) {
+				delete this->tcpP;
+		}
+	// mich selbst entfernen
+	delete this;
+}
+
+void FugexySession::SetCamera(int camID)
+{
+	// Kamera wird freigegegebn 		  || Kamera ist noch nicht gesetzt
+	if (iKamera->unUseCam(kameraID) == 0 )
+	{
+		delete client;
+		if (iKamera->useCam(camID) == 0)
+		{
+			kameraID = camID;
+		}
+	}
 }
 
 void FugexySession::StartClient(std::string ip, int port)
 {
-	// Kamera.get(KameraID);
-	Client a(ip,port, 0, "eth0");
+	std::string device = "eth0";
+	int MTU = 1500;
+	double cameraWidth = 640.0;
+	double cameraHeigth = 480.0;
+	double cameraFrameRate = 25.0;
+
+
+	Client a(ip, port, kameraID, device);
+	sem_t sem_print;
+	if (sem_init(&sem_print, 0, 1) < 0) {
+		std::cout << "Error: init sem_print";
+	}
+	a.setSafePrintSemaphore(&sem_print);
+
+	//setup Logitech c270 -> 640x360 @ 25 fps
+	a.setVideoSettings(cameraWidth, cameraHeigth, cameraFrameRate);
+	//a.setVideoSettings(640, 480, 25);
+	a.init();
+	a.setJpgQuality(20);
+	a.setMTUsize(1500);
+	a.start();
+
 }

@@ -10,11 +10,14 @@
 
 #include <jsoncpp/json/value.h>
 #include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/writer.h>
 #include "TcpConnection.h"
 #include "KommunikationTypes.h"
+#include "../IKamera.h"
 
 class TcpConnection;
 class FugexySession;
+class IKamera;
 
 class TcpProtokoll {
 
@@ -34,7 +37,7 @@ public:
 	void init ();
 
 	void cmdExit();
-	void camAvalible(int anzahlKamera);
+	void camAvalible();
 	void statusCamera(int currentCam);
 	void statusUDP(std::string ip, int port);
 	void statusServos(int x, int y);
