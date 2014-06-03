@@ -131,15 +131,7 @@ public class MainActivity extends Activity {
 			Toast.makeText(MainActivity.this, "You IP is: " + ip + "", Toast.LENGTH_SHORT).show();
 			return true;
 		}
-		if (id == R.id.startUdp) {
-			if (mediaClient == null)
-			{
-				mediaClient = new MediaClient((ImageView)findViewById(R.id.imageStream2));
-				mediaClient.Start();
-			}
-			return true;
-		}
-			
+	
 		
 		return super.onOptionsItemSelected(item);
 	}
@@ -160,7 +152,6 @@ public class MainActivity extends Activity {
 			return rootView;
 		}
 	}
-	
-	
+		
 
 }

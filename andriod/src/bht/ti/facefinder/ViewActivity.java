@@ -1,30 +1,34 @@
 package bht.ti.facefinder;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.ProgressDialog;
+
 import android.content.Intent;
-import android.graphics.PixelFormat;
-import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnPreparedListener;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.MediaController;
-import android.widget.Toast;
-import android.widget.VideoView;
 
-public class ViewActivity extends Activity {
+import android.widget.Toast;
+
+
+public class ViewActivity extends Activity implements OnClickListener {
 	
 	public ClientController verbindung = null;
 	public KontrollProtokoll kontrollProtokoll;
+	public MediaClient mediaClient = null;
+	private static final int KAMERA_MENU = 10;
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,15 +53,25 @@ public class ViewActivity extends Activity {
 		    startActivity(intent);
 		    finish();
 		}
+		
+		initControllButtons();
+		
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.view, menu);
-		return true;
+	private void initControllButtons() {
+		ImageView buttonLeft = (ImageView) findViewById(R.id.buttonLeft);
+		buttonLeft.setOnClickListener(this);
+		
+		ImageView buttonRight = (ImageView) findViewById(R.id.buttonRight);
+		buttonRight.setOnClickListener(this);
+		
+		ImageView buttonBottom = (ImageView) findViewById(R.id.buttonBottom);
+		buttonBottom.setOnClickListener(this);
+		
+		ImageView buttonTop = (ImageView) findViewById(R.id.buttonTop);
+		buttonTop.setOnClickListener(this);
 	}
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -65,11 +79,22 @@ public class ViewActivity extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
+		int group =  item.getGroupId();
+		if (group == KAMERA_MENU)
+		{
+			kontrollProtokoll.Kamera(item.getItemId()); // TODO GEFÄHRLICH
+		}
+		
 		if (id == R.id.action_settings) {
 			return true;
 		}
 		if(id == R.id.startStream)
 		{
+			if (mediaClient == null)
+			{
+				mediaClient = new MediaClient((ImageView)findViewById(R.id.streamingImage));
+				mediaClient.Start();
+			}
 			kontrollProtokoll.StreamAnfordern(Helper.getLocalIpAddress(), 50000);
 			return true;
 		}
@@ -129,5 +154,49 @@ public class ViewActivity extends Activity {
 		verbindung.disconnect();
 		super.finish();
 	}
+
+	@Override
+	public void onClick(View v) {
+		switch ( v.getId())
+		{
+			case R.id.buttonTop:
+				kontrollProtokoll.Position(KameraPosition.Top, 1);
+				break;
+			case R.id.buttonBottom:
+				kontrollProtokoll.Position(KameraPosition.Bottom, 1);
+				break;
+			case R.id.buttonLeft:
+				kontrollProtokoll.Position(KameraPosition.Left, 1);
+				break;
+			case R.id.buttonRight:
+				kontrollProtokoll.Position(KameraPosition.Right, 1);
+				break;
+		}
+	}
 	 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.view, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		//menu.clear();
+		MenuItem kameraMenu = (MenuItem)menu.findItem(R.id.kamera);
+		if (kameraMenu != null && kontrollProtokoll.kameras.size()>0)
+		{
+			kameraMenu.getSubMenu().clear();
+			SubMenu sm =  kameraMenu.getSubMenu();
+			for (Kamera k : kontrollProtokoll.kameras) {
+				sm.add(KAMERA_MENU, k.id, k.id, k.name);
+				
+			}
+		}		
+
+		
+		return super.onPrepareOptionsMenu(menu);
+	}
 }

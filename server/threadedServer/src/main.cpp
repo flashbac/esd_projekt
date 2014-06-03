@@ -18,6 +18,8 @@ int main(int argc, char** argv) {
 	serial.sendPos(0,180,0);
 
 
+
+
 	sem_t sem_print;
 	//std::string ip = "141.64.166.22";
 	std::string ip = "192.168.1.230";
