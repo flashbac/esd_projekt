@@ -43,13 +43,14 @@ void FugexySession::disconnect(){
 
 void FugexySession::SetCamera(int camID)
 {
-	//if (getCameraFromSingelton(camID))
+	// Kamera wird freigegegebn 		  || Kamera ist noch nicht gesetzt
+	if (iKamera->unUseCam(kameraID) == 0 )
 	{
-		kameraID = camID;
-	}
-	//else
-	{
-		//tcpP->
+		delete client;
+		if (iKamera->useCam(camID) == 0)
+		{
+			kameraID = camID;
+		}
 	}
 }
 

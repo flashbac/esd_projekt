@@ -50,11 +50,33 @@ std::vector<cam_t> IKamera::getCams()
 
 int IKamera::useCam(int id)
 {
-	theInstance->cams[id].use = true;
+	if (id >= 0 && id < theInstance->cams.size())
+	{
+		if (theInstance->cams[id].use == false)
+		{
+			theInstance->cams[id].use = true;
+			return 0;
+		}
+		else
+			return -1;
+	}
+	else
+		return -2;
 }
 
 int IKamera::unUseCam(int id){
-	theInstance->cams[id].use = false;
 
+	if (id >= 0 && id < theInstance->cams.size())
+	{
+		if (theInstance->cams[id].use == true)
+		{
+			theInstance->cams[id].use = false;
+			return 0;
+		}
+		else
+			return -1;
+	}
+	else
+		return -2;
 }
 
