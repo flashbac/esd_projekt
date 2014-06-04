@@ -65,7 +65,7 @@ void FugexySession::StartClient(std::string ip, int port)
 {
 	//std::string device = "eth0";
 	//int MTU = 1500;
-	cam_t tmpCam = iKamera->getCams().at(iKamera->getCamInformations(kameraID));
+	cam_t tmpCam = iKamera->getCams().at(kameraID);
 	theClient = new Client(ip, port, kameraID, this->outgoingDevice);
 	sem_t sem_print;
 	if (sem_init(&sem_print, 0, 1) < 0) {
