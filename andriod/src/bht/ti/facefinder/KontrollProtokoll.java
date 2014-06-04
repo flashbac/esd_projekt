@@ -165,6 +165,14 @@ public class KontrollProtokoll {
 						Log.i("MY","Camera Position x: " + x + " y:" + y );
 						break;
 					}
+					case mtu:
+					{
+						int value = jsonObject.getInt("value");
+						Log.i("MY","MTU: " + value );
+						
+						
+						break;
+					}
 					default:
 				}
 			}
