@@ -7,11 +7,6 @@
 
 #include "SerialWrapper.h"
 
-#include <SerialStreamBuf.h>
-#include <cstdint>
-#include <iostream>
-#include <string>
-
 SerialWrapper& SerialWrapper::instance() {
 	static SerialWrapper _instance;
 	return _instance;

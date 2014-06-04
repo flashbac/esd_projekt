@@ -6,19 +6,15 @@
  */
 
 #include <semaphore.h>
-//#include <stddef.h>
-#include <iostream>
+//#include <iostream>
 
 #include "Stream/Client.h"
 #include "Kommunikation/TcpListenner.h"
-#include "SerialWrapper.h"
+//#include "SerialWrapper.h"
 
 int main(int argc, char** argv) {
-	SerialWrapper& serial = SerialWrapper::instance();
-	serial.sendPos(0,180,0);
-
-
-
+	//SerialWrapper& serial = SerialWrapper::instance();
+	//serial.sendPos(0,180,0);
 
 	sem_t sem_print;
 	//std::string ip = "141.64.166.22";
@@ -26,7 +22,7 @@ int main(int argc, char** argv) {
 	//std::string ip = "192.168.178.42";
 	std::string device = "eth0";
 	int port = 50000;
-	int camID = 1;
+	int camID = 0;
 	int MTU = 1500;
 	double cameraWidth = 640.0;
 	double cameraHeigth = 480.0;

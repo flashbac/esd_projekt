@@ -8,7 +8,7 @@
 #ifndef SETTINGS_H_
 #define SETTINGS_H_
 
-#define SerialPortForServoGroupCommunication "/dev/ttys0"
+#define SerialPortForServoGroupCommunication "/dev/ttyS0"
 #define AvailabeServoGroups 1
 
 
