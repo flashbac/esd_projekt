@@ -34,9 +34,11 @@ public:
 	// Servo *servo;
 
 	//Functions
-	void disconnect();
+	void disconnectUdp();
 	void StartClient(std::string ip, int port);
 	void SetCamera(int camID);
+	void disconnectedClient();
+	bool isClientConnected();
 
 private:
 	void initServo();
@@ -45,6 +47,7 @@ private:
 	Client* theClient;
 	int MTU;
 	std::string outgoingDevice;
+	bool clientConnected = true;
 };
 
 #endif /* FUGEXYSESSION_H_ */

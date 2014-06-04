@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
 				EditText etport = (EditText) findViewById(R.id.editTextPort);
 				etip.getText().clear();
 				etport.getText().clear();
-				etip.getText().append("192.168.1.209");
+				etip.getText().append("192.168.1.230");
 				etport.getText().append("5000");
 			}
 		});

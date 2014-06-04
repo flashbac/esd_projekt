@@ -67,7 +67,8 @@ int main(int argc, char** argv) {
 	tcpL.start();
 
 	while (1) {
-		usleep(20);
+		usleep(200);
+		tcpL.cleaning();
 	}
 	Client a(ip, port, camID, device);
 	//Client a("192.168.178.42", 50000, 0, "eth0");

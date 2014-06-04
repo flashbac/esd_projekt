@@ -7,6 +7,8 @@
 
 #include "TcpListenner.h"
 
+
+
 TcpListenner::TcpListenner(int globalMTU, std::string globalOutgoingDevice) {
 
 	numberOffClients = 0;
@@ -40,6 +42,24 @@ int TcpListenner::start() {
 		return_value = -2;
 	return return_value;
 }
+
+int TcpListenner::cleaning()
+{
+	for (unsigned int i = 0; i < sessions.size(); )
+	{
+		if (!sessions[i]->isClientConnected() && sessions[i] != NULL)
+		{
+			FugexySession *s = sessions[i];
+			sessions.erase(sessions.begin()+i);
+			numberOffClients--;
+			delete s;
+		}
+		else
+			i++;
+	}
+	return 0;
+}
+
 
 void TcpListenner::stop() {
 	if (running) {
@@ -92,16 +112,13 @@ int TcpListenner::thread_Binder() {
 			if (running) {
 				if (numberOffClients <= 0) {
 
-					// Session erstellen
-
 					FugexySession *s = new FugexySession(client_sock, this->globalMTU, this->globalOutgoingDevice);
-
 					sessions.push_back(s);
-					// TODO dieses objekte müssen abgeräumt werden
-
 				} else {
-					std::string msg("Server accept only one Client.");
-					send(client_sock, msg.c_str(), msg.length(), 0);
+					std::stringstream ss;
+					ss << "Server accept only " << numberOffClients << "Clients";
+
+					send(client_sock, ss.str().c_str(), ss.str().length(), 0);
 					close(client_sock);
 				}
 			} else {
