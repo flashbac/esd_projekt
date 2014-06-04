@@ -12,10 +12,4 @@ typedef struct face_str {
 	int height;
 } face_t;
 
-typedef struct cam_str {
-	int id;
-	bool use;
-	std::string name;
-} cam_t;
-
 #endif

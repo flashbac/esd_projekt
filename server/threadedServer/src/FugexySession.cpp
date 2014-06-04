@@ -8,7 +8,7 @@
 #include "FugexySession.h"
 
 
-FugexySession::FugexySession(int Sock)
+FugexySession::FugexySession(int Sock, int MTU, std::string outgoingDevice)
 {
 	iKamera = IKamera::getInstance();
 	tcpP = new TcpProtokoll(this);
@@ -18,6 +18,9 @@ FugexySession::FugexySession(int Sock)
 	tcpP->camAvalible();
 	client = NULL;
 	kameraID = 0;
+
+	this->MTU = MTU;
+	this->outgoingDevice = outgoingDevice;
 
 }
 
@@ -56,26 +59,23 @@ void FugexySession::SetCamera(int camID)
 
 void FugexySession::StartClient(std::string ip, int port)
 {
-	std::string device = "eth0";
-	int MTU = 1500;
-	double cameraWidth = 640.0;
-	double cameraHeigth = 480.0;
-	double cameraFrameRate = 25.0;
+	//std::string device = "eth0";
+	//int MTU = 1500;
+	cam_t tmpCam = iKamera->getCams().at(iKamera->getCamInformations(kameraID));
 
-
-	Client a(ip, port, kameraID, device);
+	theClient = Client(ip, port, kameraID, this->outgoingDevice);
 	sem_t sem_print;
 	if (sem_init(&sem_print, 0, 1) < 0) {
 		std::cout << "Error: init sem_print";
 	}
-	a.setSafePrintSemaphore(&sem_print);
+	theClient.setSafePrintSemaphore(&sem_print);
 
 	//setup Logitech c270 -> 640x360 @ 25 fps
-	a.setVideoSettings(cameraWidth, cameraHeigth, cameraFrameRate);
+	theClient.setVideoSettings(tmpCam.camWidth, tmpCam.camHeigth, tmpCam.camFrameRate);
 	//a.setVideoSettings(640, 480, 25);
-	a.init();
-	a.setJpgQuality(20);
-	a.setMTUsize(1500);
-	a.start();
+	theClient.init();
+	theClient.setJpgQuality(20);
+	theClient.setMTUsize(this->MTU);
+	theClient.start();
 
 }

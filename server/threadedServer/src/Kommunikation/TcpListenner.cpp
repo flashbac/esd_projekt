@@ -7,7 +7,7 @@
 
 #include "TcpListenner.h"
 
-TcpListenner::TcpListenner() {
+TcpListenner::TcpListenner(int globalMTU, std::string globalOutgoingDevice) {
 
 	numberOffClients = 0;
 
@@ -15,6 +15,8 @@ TcpListenner::TcpListenner() {
 
 	running = 0;
 	sem_print = NULL;
+	this->globalMTU = globalMTU;
+	this->globalOutgoingDevice = globalOutgoingDevice;
 }
 
 TcpListenner::~TcpListenner() {
@@ -92,7 +94,7 @@ int TcpListenner::thread_Binder() {
 
 					// Session erstellen
 
-					FugexySession *s = new FugexySession(client_sock);
+					FugexySession *s = new FugexySession(client_sock, this->globalMTU, this->globalOutgoingDevice);
 
 					sessions.push_back(s);
 					// TODO dieses objekte müssen abgeräumt werden
