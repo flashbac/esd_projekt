@@ -24,6 +24,7 @@ void TcpProtokoll::setTcpConnectionClass(TcpConnection* tcpConnection){
 }
 
 void TcpProtokoll::sendMessageToSenderThread(std::string json){
+	printf("Send: %s", json.c_str());
 	tcpConnection->sendMessage(json);
 }
 
@@ -33,7 +34,8 @@ void TcpProtokoll::cmdExit(){
 	jo["cmd"] = "exit";
 	jo["value"] = 1;
 
-	sendMessageToSenderThread(jo.asCString());
+	Json::FastWriter fastWriter;
+	sendMessageToSenderThread(fastWriter.write(jo));
 }
 
 void TcpProtokoll::camAvalible(){
@@ -55,10 +57,7 @@ void TcpProtokoll::camAvalible(){
 	jo["value"] = ja;
 
 	Json::FastWriter fastWriter;
-	std::string s = fastWriter.write(jo);
-
-	printf("%s",s.c_str());
-	sendMessageToSenderThread(s);
+	sendMessageToSenderThread(fastWriter.write(jo));
 
 }
 void TcpProtokoll::statusCamera(int currentCam){
@@ -66,7 +65,9 @@ void TcpProtokoll::statusCamera(int currentCam){
 
 	jo["status"] = "camera";
 	jo["value"] = currentCam;
-	sendMessageToSenderThread(jo.asCString());
+	Json::FastWriter fastWriter;
+	sendMessageToSenderThread(fastWriter.write(jo));
+
 }
 void TcpProtokoll::statusUDP(std::string ip, int port){
 
@@ -77,7 +78,8 @@ void TcpProtokoll::statusUDP(std::string ip, int port){
 	io["port"] = port;
 	jo["value"] = io;
 
-	sendMessageToSenderThread(jo.asCString());
+	Json::FastWriter fastWriter;
+	sendMessageToSenderThread(fastWriter.write(jo));
 }
 void TcpProtokoll::statusServos(int x, int y){
 	Json::Value jo;
@@ -87,7 +89,8 @@ void TcpProtokoll::statusServos(int x, int y){
 	io["y"] = y;
 	jo["value"] = io;
 
-	sendMessageToSenderThread(jo.asCString());
+	Json::FastWriter fastWriter;
+	sendMessageToSenderThread(fastWriter.write(jo));
 
 }
 void TcpProtokoll::statusFace(std::vector<face_t> faces){
@@ -106,14 +109,29 @@ void TcpProtokoll::statusFace(std::vector<face_t> faces){
 		array.append(io);
 	}
 	jo["value"] = array;
-	sendMessageToSenderThread(jo.asCString());
+
+	Json::FastWriter fastWriter;
+	sendMessageToSenderThread(fastWriter.write(jo));
 }
 void TcpProtokoll::statusTrack(int face_id){
 	Json::Value jo;
 
 	jo["status"] = "track";
 	jo["value"] = face_id;
-	sendMessageToSenderThread(jo.asCString());
+
+	Json::FastWriter fastWriter;
+	sendMessageToSenderThread(fastWriter.write(jo));
+}
+
+void TcpProtokoll::statusMTU(int mtu)
+{
+	Json::Value jo;
+
+	jo["status"] = "mtu";
+	jo["value"] = mtu;
+
+	Json::FastWriter fastWriter;
+	sendMessageToSenderThread(fastWriter.write(jo));
 }
 
 void TcpProtokoll::commandoProzess(std::string json){
@@ -161,7 +179,7 @@ void TcpProtokoll::commandoProzess(std::string json){
 
 	if (cmd == "mode" ){
 		std::string value = root.get("value","").asString();
-		sendMessageToSenderThread("{\"angekommen\":\"ja\"}");
+
 		return;
 	}
 
