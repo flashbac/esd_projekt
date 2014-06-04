@@ -6,16 +6,16 @@
  */
 
 #include <semaphore.h>
-//#include <stddef.h>
-#include <iostream>
+//#include <iostream>
 
 #include "Stream/Client.h"
 #include "Kommunikation/TcpListenner.h"
-#include "SerialWrapper.h"
+//#include "SerialWrapper.h"
 
 int main(int argc, char** argv) {
-	SerialWrapper& serial = SerialWrapper::instance();
-	serial.sendPos(0,180,0);
+
+	//SerialWrapper& serial = SerialWrapper::instance();
+	//serial.sendPos(0,180,0);
 
 	sem_t sem_print;
 	//std::string ip = "141.64.166.22";
@@ -37,13 +37,13 @@ int main(int argc, char** argv) {
 	}
 
 
-//	TcpListenner tcpL;
-//	tcpL.start();
-//
-//	while (1)
-//	{
-//	usleep(20);
-//	}
+	TcpListenner tcpL;
+	tcpL.start();
+
+	while (1)
+	{
+	usleep(20);
+	}
 
 
 	//argv auswertung

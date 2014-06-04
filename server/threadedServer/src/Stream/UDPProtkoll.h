@@ -34,7 +34,8 @@ private:
 	int mtu;
 	int andriodMaxBytesToTimeout;
 	int andriodTimeout;
-	std::vector<unsigned char> chunkBuffer;
+	//std::vector<unsigned char> chunkBuffer;
+	unsigned char *chunkBuffer;
 
 };
 

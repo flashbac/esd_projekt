@@ -15,6 +15,7 @@
 #include "settings.h"
 #include <SerialStream.h>
 #include <semaphore.h>
+#include <stdint.h>
 
 using namespace LibSerial;
 
