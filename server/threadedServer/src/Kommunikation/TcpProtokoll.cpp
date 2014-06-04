@@ -48,7 +48,7 @@ void TcpProtokoll::camAvalible(){
 	for (unsigned int i = 0; i<cams.size();i++)
 	{
 		Json::Value io;
-		io["id"] = cams[i].id;
+		io["id"] = i;
 		io["name"] = cams[i].name;
 		io["use"] = cams[i].use;
 		ja.append(io);
