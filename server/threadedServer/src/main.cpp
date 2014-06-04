@@ -11,8 +11,12 @@
 
 #include "Stream/Client.h"
 #include "Kommunikation/TcpListenner.h"
+#include "SerialWrapper.h"
 
 int main(int argc, char** argv) {
+	SerialWrapper& serial = SerialWrapper::instance();
+	serial.sendPos(0,180,0);
+
 
 
 
