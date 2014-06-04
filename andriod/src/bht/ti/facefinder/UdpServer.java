@@ -16,6 +16,8 @@ import bht.esd.UDPProtokoll;
 public class UdpServer implements Runnable{
 	
 	private Handler handler;
+	private int mtu = 1500;
+	
 	
 	public UdpServer (Handler handler)
 	{
@@ -37,7 +39,7 @@ public class UdpServer implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-      byte[] receiveData = new byte[10240];
+      byte[] receiveData = new byte[mtu];
       UDPProtokoll p = new UDPProtokoll();
       //p.setPanel(image);
       p.setHeandler(handler);
@@ -59,5 +61,13 @@ public class UdpServer implements Runnable{
             p.printBlobs();
             
          }
+	}
+
+	public int getMtu() {
+		return mtu;
+	}
+
+	public void setMtu(int mtu) {
+		this.mtu = mtu;
 	}
 }

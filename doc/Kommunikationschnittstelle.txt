@@ -30,6 +30,8 @@ Client Commandos
 	{"cmd":"position","value":{"direction":"top","steps":1}		// Setzt servo um 1 step nach oben
 	
 	{"cmd":"position","value":{"direction":"bottom","steps":1}	// Setzt servo um 1 step nach unten
+
+	{"cmd":"mtu","value":1500}									// Setzt mtu für UDP protokoll
 	
 Server Commandos
 
@@ -49,4 +51,6 @@ Server Commandos
 	{"status":"trak","value":123}	// value gleichbedeutetnd mit einer face id
 
 	{"status":"position","value":{"x":1,"y":1}}
+
+	{"status":"mtu","value":1500}
 

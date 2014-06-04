@@ -6,7 +6,8 @@ public enum TcpProtokollStatus {
 	udp("udp"),
 	face("face"),
 	track("track"),
-	position("position")
+	position("position"),
+	mtu("mtu")
 	;
 	
 	private TcpProtokollStatus(final String text) {
