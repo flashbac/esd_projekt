@@ -163,9 +163,9 @@ void Client::thread_kamera_reader() {
 			lastFrameMS = lastFrameMS / 1000;
 			lastFrameRate = 1000 / lastFrameMS;
 
-			std::stringstream str;
+			/*std::stringstream str;
 			 str << "\nBild Size: " << nextPic.size() << "bytes zeit: " << lastFrameMS << "ms bilder/sec: " << lastFrameRate;
-			 this->thread_safe_print(str.str());
+			 this->thread_safe_print(str.str());*/
 			sem_post(&sem_numberToWrite);
 		}
 	} catch (boost::thread_interrupted&) {

@@ -6,6 +6,7 @@
  */
 
 #include "UDPProtkoll.h"
+//#include <iostream>
 
 /*
  *
@@ -22,13 +23,16 @@ UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize, int andriodTimeout,
 	this->mtu = MTUsize;
 	this->andriodTimeout = andriodTimeout;
 	this->andriodMaxBytesToTimeout = andriodMaxBytesToTimeout;
-	this->chunkBuffer.resize(MTUsize);
+	this->setMTUsize(MTUsize);
 }
 
 UDPProtkoll::~UDPProtkoll() {
 	// TODO Auto-generated destructor stub
+	//std::cout << "\n destruct";
+	delete this->chunkBuffer;
 }
 
+//unsigned char chunkBuffer[10240];
 int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 		size_t length) {
 
@@ -50,8 +54,8 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 
 	do {
 		// wipe chunkBuffer
-		//memset(chunkBuffer, 0, maxPackageSize);
-		memset(&chunkBuffer[0], 0, maxPackageSize);
+		memset(chunkBuffer, 0, maxPackageSize);
+		//memset(&chunkBuffer[0], 0, maxPackageSize);
 		unsigned int lengthOfSendingContent = 0;
 
 		chunkBuffer[0] = UDP_PROTOKOLL_VERSION;
@@ -66,9 +70,9 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 		else
 			lengthOfSendingContent = maxPackageSize;
 
-		//memcpy(chunkBuffer + UDP_HEADER_LENGTH, buffer + byteCounter, lengthOfSendingContent);
-		memcpy(&chunkBuffer[UDP_HEADER_LENGTH], buffer + byteCounter,
-				lengthOfSendingContent);
+		memcpy(chunkBuffer + UDP_HEADER_LENGTH, buffer + byteCounter, lengthOfSendingContent);
+		/*memcpy(&chunkBuffer[UDP_HEADER_LENGTH], buffer + byteCounter,
+				lengthOfSendingContent);*/
 
 		//if (client->sendData(chunkBuffer,
 		if (client->sendData(&chunkBuffer[0],
@@ -91,7 +95,7 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 	//bild_id = (bild_id + 1) % sizeof(uint16_t);
 	bild_id = (bild_id + 1) % 65536;
 	// free allocate space
-	//free(chunkBuffer);
+	// //free(chunkBuffer);
 
 	if (errorFree) {
 		//printf("\nsuccessfule send data with ID: %d", bild_id);
@@ -101,7 +105,8 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 
 void UDPProtkoll::setMTUsize(int MTUsize) {
 	this->mtu = MTUsize;
-	this->chunkBuffer.resize(MTUsize);
+	//this->chunkBuffer.resize(MTUsize);
+	this->chunkBuffer = (unsigned char*) realloc(this->chunkBuffer, MTUsize);
 }
 
 int UDPProtkoll::getMTUsize() {

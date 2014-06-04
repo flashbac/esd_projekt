@@ -36,13 +36,13 @@ int main(int argc, char** argv) {
 	}
 
 
-//	TcpListenner tcpL;
-//	tcpL.start();
-//
-//	while (1)
-//	{
-//	usleep(20);
-//	}
+	TcpListenner tcpL;
+	tcpL.start();
+
+	while (1)
+	{
+	usleep(20);
+	}
 
 
 	//argv auswertung
