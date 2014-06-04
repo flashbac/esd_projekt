@@ -44,7 +44,7 @@ private:
 	void initCamera();
 	void intiTCP();
 	void disconnect();
-	Client theClient;
+	Client* theClient;
 	int MTU;
 	std::string outgoingDevice;
 };

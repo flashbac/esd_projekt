@@ -23,7 +23,8 @@ UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize, int andriodTimeout,
 	this->mtu = MTUsize;
 	this->andriodTimeout = andriodTimeout;
 	this->andriodMaxBytesToTimeout = andriodMaxBytesToTimeout;
-	this->setMTUsize(MTUsize);
+	//this->setMTUsize(MTUsize);
+	this->chunkBuffer = (unsigned char*) malloc(MTUsize);
 }
 
 UDPProtkoll::~UDPProtkoll() {
