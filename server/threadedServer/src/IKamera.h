@@ -13,6 +13,14 @@
 #define IKAMERA_H_
 
 struct cams_str;
+typedef struct cam_str {
+	int id;
+	bool use;
+	std::string name;
+	double camWidth;
+	double camHeigth;
+	double camFrameRate;
+} cam_t;
 
 class IKamera {
 public:
@@ -22,15 +30,15 @@ public:
 	std::vector<cam_t> getCams();
 	int useCam(int id);
 	int unUseCam(int id);
-
+	int getCamInformations(int systemID);
 
 private:
-    static IKamera* _instance;
-    IKamera(void);
-    virtual ~IKamera(void);
+	static IKamera* _instance;
+	IKamera(void);
+	virtual ~IKamera(void);
 
-    static IKamera* theInstance;
-    std::vector<cam_t> cams;
+	static IKamera* theInstance;
+	std::vector<cam_t> cams;
 };
 
 #endif /* IKAMERA_H_ */

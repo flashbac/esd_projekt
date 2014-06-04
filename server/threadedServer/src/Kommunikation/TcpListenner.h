@@ -27,7 +27,7 @@ class FugexySession;
 
 class TcpListenner {
 public:
-	TcpListenner();
+	TcpListenner(int globalMTU, std::string globalOutgoingDevice);
 	virtual ~TcpListenner();
 	void setSafePrintSemaphore(sem_t *sem);
 	void thread_safe_print(std::string str);
@@ -41,6 +41,9 @@ private:
 	bool running;
 	int numberOffClients;
 	sem_t *sem_print;
+
+	int globalMTU;
+	std::string globalOutgoingDevice;
 
 	boost::thread *thread_TcpBinder;
 

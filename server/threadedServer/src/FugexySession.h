@@ -22,7 +22,7 @@ class IKamera;
 class FugexySession {
 public:
 
-	FugexySession(int Sock);
+	FugexySession(int Sock, int MTU, std::string outgoingDevice);
 	virtual ~FugexySession();
 
 	//Member
@@ -44,6 +44,9 @@ private:
 	void initCamera();
 	void intiTCP();
 	void disconnect();
+	Client theClient;
+	int MTU;
+	std::string outgoingDevice;
 };
 
 #endif /* FUGEXYSESSION_H_ */
