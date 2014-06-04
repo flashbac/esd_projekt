@@ -17,8 +17,11 @@ import bht.esd.UDPProtokoll;
 public class UdpServer implements Runnable{
 	
 	private Handler handler;
+
 	private Boolean run = false;
 	private DatagramSocket serverSocket = null;
+	private int mtu = 1500;
+
 	
 	public UdpServer (Handler handler)
 	{
@@ -45,15 +48,16 @@ public class UdpServer implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		byte[] receiveData = new byte[10240];
-		UDPProtokoll p = new UDPProtokoll();
-		//p.setPanel(image);
-		p.setHeandler(handler);
-		while(run)
-		{
-			DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-		    try {
-		    	serverSocket.receive(receivePacket);
+
+      byte[] receiveData = new byte[mtu];
+      UDPProtokoll p = new UDPProtokoll();
+      //p.setPanel(image);
+      p.setHeandler(handler);
+      while(true)
+         {
+            DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+            try {
+				serverSocket.receive(receivePacket);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -64,5 +68,13 @@ public class UdpServer implements Runnable{
 		    p.printBlobs();
 		    
 		}
+	}
+
+	public int getMtu() {
+		return mtu;
+	}
+
+	public void setMtu(int mtu) {
+		this.mtu = mtu;
 	}
 }

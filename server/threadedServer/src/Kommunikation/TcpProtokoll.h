@@ -43,6 +43,7 @@ public:
 	void statusServos(int x, int y);
 	void statusFace(std::vector<face_t> faces);
 	void statusTrack(int face_id);
+	void statusMTU(int mtu);
 
 private:
 

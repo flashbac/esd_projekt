@@ -8,7 +8,7 @@
 #include "FugexySession.h"
 
 
-FugexySession::FugexySession(int Sock)
+FugexySession::FugexySession(int Sock, int MTU, std::string outgoingDevice)
 {
 	iKamera = IKamera::getInstance();
 	tcpP = new TcpProtokoll(this);
@@ -16,21 +16,26 @@ FugexySession::FugexySession(int Sock)
 	tcpP->setTcpConnectionClass(tcpC);
 
 	tcpP->camAvalible();
-	client = NULL;
+	//client = NULL;
+	theClient = NULL;
 	kameraID = 0;
+
+	this->MTU = MTU;
+	this->outgoingDevice = outgoingDevice;
 
 }
 
 FugexySession::~FugexySession()
 {
-
+	this->theClient->stop();
+	delete this->theClient;
 }
 
 void FugexySession::disconnect(){
 
-	if (this->client != NULL) {
+	/*if (this->client != NULL) {
 			delete this->client;
-		}
+		}*/
 		if (this->tcpC != NULL) {
 				delete this->tcpC;
 			}
@@ -38,43 +43,44 @@ void FugexySession::disconnect(){
 				delete this->tcpP;
 		}
 	// mich selbst entfernen
-	delete this;
+	//delete this;
 }
 
 void FugexySession::SetCamera(int camID)
 {
-	//if (getCameraFromSingelton(camID))
+	// Kamera wird freigegegebn 		  || Kamera ist noch nicht gesetzt
+	if (iKamera->unUseCam(kameraID) == 0 )
 	{
-		kameraID = camID;
-	}
-	//else
-	{
-		//tcpP->
+		//delete client;
+		this->theClient->stop();
+		delete this->theClient;
+		if (iKamera->useCam(camID) == 0)
+		{
+			kameraID = camID;
+		}
 	}
 }
 
 void FugexySession::StartClient(std::string ip, int port)
 {
-	std::string device = "eth0";
-	int MTU = 1500;
-	double cameraWidth = 640.0;
-	double cameraHeigth = 480.0;
-	double cameraFrameRate = 25.0;
+	//std::string device = "eth0";
+	//int MTU = 1500;
+	cam_t tmpCam = iKamera->getCams().at(kameraID);
 
+	theClient = new Client(ip, port, tmpCam.systemID, this->outgoingDevice);
 
-	Client a(ip, port, kameraID, device);
 	sem_t sem_print;
 	if (sem_init(&sem_print, 0, 1) < 0) {
 		std::cout << "Error: init sem_print";
 	}
-	a.setSafePrintSemaphore(&sem_print);
+	theClient->setSafePrintSemaphore(&sem_print);
 
 	//setup Logitech c270 -> 640x360 @ 25 fps
-	a.setVideoSettings(cameraWidth, cameraHeigth, cameraFrameRate);
+	theClient->setVideoSettings(tmpCam.camWidth, tmpCam.camHeigth, tmpCam.camFrameRate);
 	//a.setVideoSettings(640, 480, 25);
-	a.init();
-	a.setJpgQuality(20);
-	a.setMTUsize(1500);
-	a.start();
+	theClient->init();
+	theClient->setJpgQuality(20);
+	theClient->setMTUsize(this->MTU);
+	theClient->start();
 
 }

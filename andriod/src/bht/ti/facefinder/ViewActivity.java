@@ -27,6 +27,7 @@ public class ViewActivity extends Activity implements OnClickListener {
 	public KontrollProtokoll kontrollProtokoll;
 	public MediaClient mediaClient = null;
 	private static final int KAMERA_MENU = 10;
+	private int mtu = 1500;
 
 	
 	@Override
@@ -82,7 +83,7 @@ public class ViewActivity extends Activity implements OnClickListener {
 		int group =  item.getGroupId();
 		if (group == KAMERA_MENU)
 		{
-			kontrollProtokoll.Kamera(item.getItemId()); // TODO GEFÄHRLICH
+			kontrollProtokoll.Kamera(item.getItemId()); // TODO GEFï¿½HRLICH
 		}
 		
 		if (id == R.id.action_settings) {
@@ -199,8 +200,6 @@ public class ViewActivity extends Activity implements OnClickListener {
 				
 			}
 		}		
-
-		
 		return super.onPrepareOptionsMenu(menu);
 	}
 }

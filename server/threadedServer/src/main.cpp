@@ -6,15 +6,15 @@
  */
 
 #include <semaphore.h>
-//#include <stddef.h>
-#include <iostream>
+//#include <iostream>
 
 #include "Stream/Client.h"
 #include "Kommunikation/TcpListenner.h"
+//#include "SerialWrapper.h"
 
 int main(int argc, char** argv) {
-
-
+	//SerialWrapper& serial = SerialWrapper::instance();
+	//serial.sendPos(0,180,0);
 
 	sem_t sem_print;
 	//std::string ip = "141.64.166.22";
@@ -22,28 +22,17 @@ int main(int argc, char** argv) {
 	//std::string ip = "192.168.178.42";
 	std::string device = "eth0";
 	int port = 50000;
-	int camID = 1;
+	int camID = 0;
 	int MTU = 1500;
 	double cameraWidth = 640.0;
 	double cameraHeigth = 480.0;
 
 	double cameraFrameRate = 30.0;
 
-
 	if (sem_init(&sem_print, 0, 1) < 0) {
 		return -1;
 		std::cout << "Error: init sem_print";
 	}
-
-
-//	TcpListenner tcpL;
-//	tcpL.start();
-//
-//	while (1)
-//	{
-//	usleep(20);
-//	}
-
 
 	//argv auswertung
 	// ip
@@ -66,13 +55,20 @@ int main(int argc, char** argv) {
 	// <------------ argv
 
 	// print settings
-	std::cout << "\nUsed Settings:\n\n  Destination IP:\t\t" << ip << ":" << port
-			<< "\n  camID:\t\t\t" << camID << "\n  device for MTU info:\t\t" << device
-			<< "\n  cam settings:\t\t\t" << cameraWidth << "x" << cameraHeigth << "@"
-			<< cameraFrameRate << "\n" << std::endl;
+	std::cout << "\nUsed Settings:\n\n  Destination IP:\t\t" << ip << ":"
+			<< port << "\n  camID:\t\t\t" << camID
+			<< "\n  device for MTU info:\t\t" << device
+			<< "\n  cam settings:\t\t\t" << cameraWidth << "x" << cameraHeigth
+			<< "@" << cameraFrameRate << "\n" << std::endl;
 
 	// <----
 
+	TcpListenner tcpL(MTU, device);
+	tcpL.start();
+
+	while (1) {
+		usleep(20);
+	}
 	Client a(ip, port, camID, device);
 	//Client a("192.168.178.42", 50000, 0, "eth0");
 	a.setSafePrintSemaphore(&sem_print);
