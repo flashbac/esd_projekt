@@ -33,9 +33,9 @@ FugexySession::~FugexySession()
 
 void FugexySession::disconnect(){
 
-	/*if (this->client != NULL) {
-			delete this->client;
-		}*/
+	if (this->theClient != NULL) {
+			delete this->theClient;
+		}
 		if (this->tcpC != NULL) {
 				delete this->tcpC;
 			}
@@ -43,7 +43,7 @@ void FugexySession::disconnect(){
 				delete this->tcpP;
 		}
 	// mich selbst entfernen
-	//delete this;
+	delete this;
 }
 
 void FugexySession::SetCamera(int camID)

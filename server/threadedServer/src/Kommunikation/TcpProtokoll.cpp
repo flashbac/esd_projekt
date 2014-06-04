@@ -204,6 +204,7 @@ void TcpProtokoll::commandoProzess(std::string json){
 		{
 			//disconnect
 			cmdExit();
+			session->disconnect();
 			return;
 		}
 	}
