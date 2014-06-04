@@ -14,7 +14,7 @@
 
 struct cams_str;
 typedef struct cam_str {
-	int id;
+	int systemID;
 	bool use;
 	std::string name;
 	double camWidth;

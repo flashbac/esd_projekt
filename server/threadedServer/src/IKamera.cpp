@@ -22,28 +22,28 @@ IKamera* IKamera::getInstance() {
 	if (theInstance == NULL) {
 		theInstance = new IKamera();
 		cam_t cam;
-		cam.id = 0;
+		cam.systemID = 0;
 		cam.name = "Rene 0";
 		cam.use = false;
 		cam.camWidth = 640;
 		cam.camHeigth = 480;
 		cam.camFrameRate = 30;
 		cam_t cam2;
-		cam2.id = 1;
+		cam2.systemID = 1;
 		cam2.name = "Rene 1";
 		cam2.use = false;
 		cam2.camWidth = 640;
 		cam2.camHeigth = 480;
 		cam2.camFrameRate = 30;
 		cam_t cam3;
-		cam3.id = 3;
+		cam3.systemID = 3;
 		cam3.name = "Udoo id3";
 		cam3.use = false;
 		cam3.camWidth = 640;
 		cam3.camHeigth = 360;
 		cam3.camFrameRate = 25;
 		cam_t cam4;
-		cam4.id = 0;
+		cam4.systemID = 0;
 		cam4.name = "Dennis 0";
 		cam4.use = false;
 		cam4.camWidth = 640;
@@ -64,7 +64,7 @@ void IKamera::release() {
 
 int IKamera::getCamInformations(int systemID) {
 	for (int i = 0; i < cams.size(); i++) {
-		if (cams[i].id == systemID)
+		if (cams[i].systemID == systemID)
 			return i;
 	}
 	return -1;
