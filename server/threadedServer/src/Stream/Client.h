@@ -33,7 +33,6 @@ using namespace std;
 
 class Client {
 public:
-	Client(){};
 	Client(std::string ipadress, int port, unsigned char camerID, std::string outgoingDeviceName);
 	virtual ~Client();
 	void setSafePrintSemaphore(sem_t *sem);

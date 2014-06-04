@@ -24,6 +24,7 @@ void TcpProtokoll::setTcpConnectionClass(TcpConnection* tcpConnection){
 }
 
 void TcpProtokoll::sendMessageToSenderThread(std::string json){
+	printf("Send: %s", json.c_str());
 	tcpConnection->sendMessage(json);
 }
 
