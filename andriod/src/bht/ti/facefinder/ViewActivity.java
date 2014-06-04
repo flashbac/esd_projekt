@@ -92,9 +92,9 @@ public class ViewActivity extends Activity implements OnClickListener {
 		{
 			if (mediaClient == null)
 			{
-				mediaClient = new MediaClient((ImageView)findViewById(R.id.streamingImage));
-				mediaClient.Start();
+				mediaClient = new MediaClient((ImageView)findViewById(R.id.streamingImage));				
 			}
+			mediaClient.Start();
 			kontrollProtokoll.StreamAnfordern(Helper.getLocalIpAddress(), 50000);
 			return true;
 		}
@@ -107,7 +107,11 @@ public class ViewActivity extends Activity implements OnClickListener {
 			return true;
 		}
 		if (id == R.id.trennen) {
-						
+			
+			if (mediaClient != null)
+			{
+				mediaClient.Stop();
+			}
 			kontrollProtokoll.TrenneVerbindung();
 			Intent intent = new Intent(ViewActivity.this, MainActivity.class);
 			Bundle b = new Bundle();

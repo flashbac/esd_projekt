@@ -21,6 +21,7 @@ public class MainActivity extends Activity {
 
 	public MediaClient mediaClient = null;
 	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,7 +65,7 @@ public class MainActivity extends Activity {
 				EditText etport = (EditText) findViewById(R.id.editTextPort);
 				etip.getText().clear();
 				etport.getText().clear();
-				etip.getText().append("192.168.1.40");
+				etip.getText().append("192.168.1.209");
 				etport.getText().append("5000");
 			}
 		});
