@@ -28,7 +28,7 @@ public:
 	//Member
 
 	TcpProtokoll *tcpP;
-	Client *client;
+	//Client *client;
 	TcpConnection *tcpC;
 	IKamera *iKamera;
 	int kameraID;

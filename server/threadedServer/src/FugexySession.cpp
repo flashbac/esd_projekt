@@ -16,7 +16,7 @@ FugexySession::FugexySession(int Sock, int MTU, std::string outgoingDevice)
 	tcpP->setTcpConnectionClass(tcpC);
 
 	tcpP->camAvalible();
-	client = NULL;
+	//client = NULL;
 	theClient = NULL;
 	kameraID = 0;
 
@@ -33,9 +33,9 @@ FugexySession::~FugexySession()
 
 void FugexySession::disconnect(){
 
-	if (this->client != NULL) {
+	/*if (this->client != NULL) {
 			delete this->client;
-		}
+		}*/
 		if (this->tcpC != NULL) {
 				delete this->tcpC;
 			}
@@ -43,7 +43,7 @@ void FugexySession::disconnect(){
 				delete this->tcpP;
 		}
 	// mich selbst entfernen
-	delete this;
+	//delete this;
 }
 
 void FugexySession::SetCamera(int camID)
@@ -51,7 +51,9 @@ void FugexySession::SetCamera(int camID)
 	// Kamera wird freigegegebn 		  || Kamera ist noch nicht gesetzt
 	if (iKamera->unUseCam(kameraID) == 0 )
 	{
-		delete client;
+		//delete client;
+		this->theClient->stop();
+		delete this->theClient;
 		if (iKamera->useCam(camID) == 0)
 		{
 			kameraID = camID;
