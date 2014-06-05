@@ -27,26 +27,27 @@ public:
 
 	//Member
 
-	TcpProtokoll *tcpP;
-	//Client *client;
-	TcpConnection *tcpC;
+	TcpProtokoll* tcpP;
+	TcpConnection* tcpC;
 	IKamera *iKamera;
 	int kameraID;
 	// Servo *servo;
 
 	//Functions
-
+	void disconnectUdp();
 	void StartClient(std::string ip, int port);
 	void SetCamera(int camID);
+	void disconnectedClient();
+	bool isClientConnected();
 
 private:
 	void initServo();
 	void initCamera();
 	void intiTCP();
-	void disconnect();
 	Client* theClient;
 	int MTU;
 	std::string outgoingDevice;
+	bool clientConnected = true;
 };
 
 #endif /* FUGEXYSESSION_H_ */

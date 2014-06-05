@@ -33,9 +33,10 @@ public:
 	void thread_safe_print(std::string str);
 	int start();
 	void stop();
+	int cleaning();
 	void sendMessage(std::string str);
 
-	std::vector<FugexySession *> sessions;
+	std::vector<FugexySession*> sessions;
 
 private:
 	bool running;
@@ -44,9 +45,8 @@ private:
 
 	int globalMTU;
 	std::string globalOutgoingDevice;
-
 	boost::thread *thread_TcpBinder;
-
+	void createSession(int sock, boost::thread *thread);
 	int thread_Binder();
 
 };

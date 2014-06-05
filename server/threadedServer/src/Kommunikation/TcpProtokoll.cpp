@@ -203,7 +203,7 @@ void TcpProtokoll::commandoProzess(std::string json){
 		if (value == 1)
 		{
 			//disconnect
-			cmdExit();
+			session->disconnectedClient();
 			return;
 		}
 	}

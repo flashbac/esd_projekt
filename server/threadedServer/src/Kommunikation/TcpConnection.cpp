@@ -22,7 +22,6 @@ TcpConnection::TcpConnection(int sock, TcpProtokoll *tcpP) {
 
 TcpConnection::~TcpConnection() {
 	stop();
-	close(sock);
 }
 
 int TcpConnection::init() {
@@ -45,19 +44,24 @@ int TcpConnection::init() {
 }
 
 void TcpConnection::stop() {
+	close(sock);
 	if (running) {
 		running = false;
-		if (this->thread_TcpSend != NULL) {
-			this->thread_TcpSend->interrupt();
-			this->thread_TcpSend->join();
-			delete (this->thread_TcpSend);
-		}
 		if (this->thread_TcpRecive != NULL) {
 			this->thread_TcpRecive->interrupt();
+			//this->thread_TcpRecive->detach();
 			this->thread_TcpRecive->join();
 			delete (this->thread_TcpRecive);
 		}
+		if (this->thread_TcpSend != NULL) {
+			this->thread_TcpSend->interrupt();
+			//this->thread_TcpRecive->detach();
+			this->thread_TcpSend->join();
+			delete (this->thread_TcpSend);
+		}
+
 	}
+
 }
 
 void TcpConnection::sendMessage(std::string str) {
@@ -83,6 +87,7 @@ void TcpConnection::thread_Recive(int socket_desc) {
 		int i;	  // laufvariable
 		//Receive a message from client
 		while ((read_size = recv(sock, client_message, 2000, 0)) > 0) {
+
 			ende = 0;
 			for (i = 0; i <= read_size; i++) {
 				if (client_message[i] == ';') { //Befehl vollständig
@@ -112,17 +117,20 @@ void TcpConnection::thread_Recive(int socket_desc) {
 			//	break;
 			boost::this_thread::interruption_point();
 		}
-		thread_safe_print("Client disconnected.");
-
-		this->thread_TcpSend->interrupt();
-		this->thread_TcpSend->join();
-
-		close(sock);
-
+		if(read_size == 0)
+		    {
+		        puts("Client disconnected");
+		        fflush(stdout);
+		    }
+		    else if(read_size == -1)
+		    {
+		        perror("recv failed");
+		    }
 	} catch (boost::thread_interrupted&) {
 		thread_safe_print("\nTcpSocket reader interrupted!");
 
 	}
+	return;
 }
 
 void TcpConnection::thread_Sender(int socket_desc) {

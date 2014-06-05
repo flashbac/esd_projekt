@@ -27,23 +27,30 @@ FugexySession::FugexySession(int Sock, int MTU, std::string outgoingDevice)
 
 FugexySession::~FugexySession()
 {
-	this->theClient->stop();
-	delete this->theClient;
+	if (this->theClient != NULL) {
+		delete this->theClient;
+	}
+	if (this->tcpC != NULL) {
+			delete this->tcpC;
+		}
+	if (this->tcpP != NULL) {
+			delete this->tcpP;
+	}
 }
 
-void FugexySession::disconnect(){
+void FugexySession::disconnectedClient()
+{
+	clientConnected = false;
+}
+bool FugexySession::isClientConnected()
+{
+	return clientConnected;
+}
 
-	/*if (this->client != NULL) {
-			delete this->client;
-		}*/
-		if (this->tcpC != NULL) {
-				delete this->tcpC;
-			}
-		if (this->tcpP != NULL) {
-				delete this->tcpP;
+void FugexySession::disconnectUdp(){
+	if (this->theClient != NULL) {
+			delete this->theClient;
 		}
-	// mich selbst entfernen
-	//delete this;
 }
 
 void FugexySession::SetCamera(int camID)

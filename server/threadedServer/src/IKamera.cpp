@@ -27,14 +27,14 @@ IKamera* IKamera::getInstance() {
 		cam.use = false;
 		cam.camWidth = 640;
 		cam.camHeigth = 480;
-		cam.camFrameRate = 30;
+		cam.camFrameRate = 20;
 		cam_t cam2;
 		cam2.systemID = 1;
 		cam2.name = "Rene 1";
 		cam2.use = false;
 		cam2.camWidth = 640;
 		cam2.camHeigth = 480;
-		cam2.camFrameRate = 30;
+		cam2.camFrameRate = 20;
 		cam_t cam3;
 		cam3.systemID = 3;
 		cam3.name = "Udoo id3";

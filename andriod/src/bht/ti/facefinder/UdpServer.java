@@ -8,6 +8,7 @@ import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 
+import android.R.bool;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
@@ -16,20 +17,28 @@ import bht.esd.UDPProtokoll;
 public class UdpServer implements Runnable{
 	
 	private Handler handler;
+
+	private Boolean run = false;
+	private DatagramSocket serverSocket = null;
 	private int mtu = 1500;
-	
+
 	
 	public UdpServer (Handler handler)
 	{
 		this.handler = handler;
 	}
 		
-	public void run()
+	public void Stop()
 	{
-		
+		run = false;
+		serverSocket.close();
+	}
+	
+	public void run() 
+	{
+		run = true;
 		// TODO Auto-generated method stub
 		System.out.println("test");
-		DatagramSocket serverSocket = null;
 		try {
 			serverSocket = new DatagramSocket(50000);
 			Log.i("MY", "Size: " + serverSocket.getReceiveBufferSize());
@@ -39,6 +48,7 @@ public class UdpServer implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
       byte[] receiveData = new byte[mtu];
       UDPProtokoll p = new UDPProtokoll();
       //p.setPanel(image);
@@ -51,16 +61,13 @@ public class UdpServer implements Runnable{
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-            //String sentence = new String( receivePacket.getData());
-            //System.out.println("from " +receivePacket.getAddress() +" RECEIVED: " + sentence);
-            
-            
-            // mit dem Bild was machen
-            p.receive(receivePacket);
-            p.printBlobs();
-            
-         }
+			} 
+		
+		    // mit dem Bild was machen
+		    p.receive(receivePacket);
+		    p.printBlobs();
+		    
+		}
 	}
 
 	public int getMtu() {

@@ -184,7 +184,7 @@ public class KontrollProtokoll {
 				{
 					JSONObject value = jsonObject.getJSONObject("value");
 					Log.i("MY","Exit Client.");
-					//do
+					client.disconnect();
 				}
 			}
 		} catch (JSONException e) {

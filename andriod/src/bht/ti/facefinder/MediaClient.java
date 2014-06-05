@@ -9,6 +9,8 @@ import android.widget.ImageView;
 public class MediaClient {
 	
 	private ImageView leimwand;
+	private UdpServer udp = null;
+	private Thread udpthread = null;
 	
 	 protected Handler handler = new Handler() {
 		    @Override
@@ -31,11 +33,18 @@ public class MediaClient {
 	
 	public void Start()
 	{
-
-		UdpServer udp;
-		udp	= new UdpServer(handler);
-		Thread udpthread = new Thread(udp);
-		udpthread.start();
+		if (udp == null)
+		{
+			udp	= new UdpServer(handler);
+			udpthread = new Thread(udp);
+			udpthread.start();
+		}
+		
+	}
+	
+	public void Stop()
+	{
+		udp.Stop();
 	}
 		
 }
