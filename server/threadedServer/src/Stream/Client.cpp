@@ -47,6 +47,7 @@ Client::Client(std::string ipadress, int port, unsigned char kamerID,
 
 Client::~Client() {
 
+	stop();
 	if (this->udpClient != NULL) {
 		delete this->udpClient;
 	}
@@ -57,6 +58,8 @@ Client::~Client() {
 
 	if (this->helper != NULL)
 		delete this->helper;
+
+
 }
 
 void Client::thread_safe_print(string str) {
@@ -167,6 +170,7 @@ void Client::thread_kamera_reader() {
 			 str << "\nBild Size: " << nextPic.size() << "bytes zeit: " << lastFrameMS << "ms bilder/sec: " << lastFrameRate;
 			 this->thread_safe_print(str.str());*/
 			sem_post(&sem_numberToWrite);
+			boost::this_thread::interruption_point();
 		}
 	} catch (boost::thread_interrupted&) {
 		thread_safe_print("\nthread_kamera_reader interrupted!");
@@ -174,16 +178,21 @@ void Client::thread_kamera_reader() {
 }
 
 void Client::thread_face_detection() {
-	while (running) {
-		sem_wait(&sem_faceDetectionNewPicAvailable);
-		sem_wait(&sem_faceDetectionBusy);
+	try{
+		while (running) {
+			sem_wait(&sem_faceDetectionNewPicAvailable);
+			sem_wait(&sem_faceDetectionBusy);
 
-		this->openCVforFaceDetection.loadFromJPEG(&copyOfPicForDetection);
-		this->setFaceDetectionVector(
-				openCVforFaceDetection.detect(
-						openCVforFaceDetection.getCascades()[0]));
+			this->openCVforFaceDetection.loadFromJPEG(&copyOfPicForDetection);
+			this->setFaceDetectionVector(
+					openCVforFaceDetection.detect(
+							openCVforFaceDetection.getCascades()[0]));
 
-		sem_post(&sem_faceDetectionBusy);
+			sem_post(&sem_faceDetectionBusy);
+			boost::this_thread::interruption_point();
+		}
+	} catch (boost::thread_interrupted&) {
+		thread_safe_print("\nTcpSocket writer interrupted!");
 	}
 }
 
@@ -207,6 +216,7 @@ void Client::thread_send_pic() {
 					nextPic.size());
 
 			sem_post(&sem_freeSpace);
+			boost::this_thread::interruption_point();
 		}
 	} catch (boost::thread_interrupted&) {
 		thread_safe_print("\nthread_send_pic interrupted!");

@@ -82,7 +82,7 @@ void TcpConnection::thread_Recive(int socket_desc) {
 		//std::vector<unsigned char> v;
 		char client_message[2000];
 		std::string json = "";
-		json.resize(200);
+
 		int ende; // letzte fund eines Simikolons
 		int i;	  // laufvariable
 		//Receive a message from client

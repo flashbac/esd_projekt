@@ -21,7 +21,7 @@ public class KontrollProtokoll {
 	}
 	
 	private void SendeKommando(String json)
-	{
+	{	
 		client.sendKommando(json);
 	}
 		

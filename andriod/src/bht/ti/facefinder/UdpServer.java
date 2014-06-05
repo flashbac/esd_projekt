@@ -53,7 +53,7 @@ public class UdpServer implements Runnable{
       UDPProtokoll p = new UDPProtokoll();
       //p.setPanel(image);
       p.setHeandler(handler);
-      while(true)
+      while(run)
          {
             DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
             try {
