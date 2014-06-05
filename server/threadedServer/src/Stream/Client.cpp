@@ -180,7 +180,7 @@ void Client::thread_kamera_reader() {
 void Client::thread_face_detection() {
 	try{
 		while (running) {
-			sem_wait(&sem_faceDetectionNewPicAvailable);
+			sem_wait(&sem_faceDetectionNewPicAvailable); // TODO Hier wird der Thread geblockt und kann deshalb nicht ordnetlich beendet werden.
 			sem_wait(&sem_faceDetectionBusy);
 
 			this->openCVforFaceDetection.loadFromJPEG(&copyOfPicForDetection);
@@ -191,8 +191,9 @@ void Client::thread_face_detection() {
 			sem_post(&sem_faceDetectionBusy);
 			boost::this_thread::interruption_point();
 		}
+		thread_safe_print("\nFace detection wurde beeendet!");
 	} catch (boost::thread_interrupted&) {
-		thread_safe_print("\nTcpSocket writer interrupted!");
+		thread_safe_print("\nFace detection interruppted!");
 	}
 }
 
@@ -294,22 +295,39 @@ int Client::start() {
 
 void Client::stop() {
 	if (running) {
-		running = false;
-		if (this->thread_cam != NULL) {
-			this->thread_cam->interrupt();
-			this->thread_cam->join();
-			delete (this->thread_cam);
-		}
+		// erstmal die Facedetection abbrechen lassen
 		if (this->thread_face != NULL) {
 			this->thread_face->interrupt();
 			this->thread_face->join();
+//			if (this->thread_face->timed_join(boost::posix_time::seconds(5))){
+//				thread_safe_print("\nthread_face sucessfull joind");
+//			} else {
+//				thread_safe_print("\nthread_face joind Timed out!");
+//			}
 			delete (this->thread_face);
 		}
 		if (this->thread_UDPsend != NULL) {
 			this->thread_UDPsend->interrupt();
 			this->thread_UDPsend->join();
+//			if (this->thread_UDPsend->timed_join(boost::posix_time::seconds(5))){
+//				thread_safe_print("\nthread_UDPsend sucessfull joind");
+//			} else {
+//				thread_safe_print("\nthread_UDPsend joind Timed out!");
+//			}
 			delete (this->thread_UDPsend);
 		}
+		if (this->thread_cam != NULL) {
+			this->thread_cam->interrupt();
+			this->thread_cam->join();
+//			if (this->thread_cam->timed_join(boost::posix_time::seconds(5))){
+//				thread_safe_print("\nthread_cam sucessfull joind");
+//			} else {
+//				thread_safe_print("\nthread_cam joind Timed out!");
+//			}
+			delete (this->thread_cam);
+		}
+		running = false;
+
 	}
 }
 

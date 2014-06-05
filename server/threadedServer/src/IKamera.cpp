@@ -80,9 +80,9 @@ int IKamera::useCam(int id) {
 			theInstance->cams[id].use = true;
 			return 0;
 		} else
-			return -1;
+			return 0;
 	} else
-		return -2;
+		return -1;
 }
 
 int IKamera::unUseCam(int id) {
@@ -92,8 +92,8 @@ int IKamera::unUseCam(int id) {
 			theInstance->cams[id].use = false;
 			return 0;
 		} else
-			return -1;
+			return 0;
 	} else
-		return -2;
+		return -1;
 }
 

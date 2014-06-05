@@ -185,7 +185,7 @@ void TcpProtokoll::commandoProzess(std::string json){
 
 	if (cmd == "camera" ){
 		int value = root.get("value","").asInt();
-		session->kameraID = value;
+		session->SetCamera(value);
 		return;
 	}
 

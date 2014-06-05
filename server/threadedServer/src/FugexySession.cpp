@@ -27,6 +27,7 @@ FugexySession::FugexySession(int Sock, int MTU, std::string outgoingDevice)
 
 FugexySession::~FugexySession()
 {
+	theClient->stop();
 	if (this->theClient != NULL) {
 		delete this->theClient;
 	}
@@ -59,8 +60,11 @@ void FugexySession::SetCamera(int camID)
 	if (iKamera->unUseCam(kameraID) == 0 )
 	{
 		//delete client;
-		this->theClient->stop();
-		delete this->theClient;
+		if (theClient != NULL)
+		{
+			this->theClient->stop();
+			delete this->theClient;
+		}
 		if (iKamera->useCam(camID) == 0)
 		{
 			kameraID = camID;
