@@ -25,24 +25,20 @@ TcpConnection::~TcpConnection() {
 	close(sock);
 }
 
-int TcpConnection::init()
-{
+int TcpConnection::init() {
 	int state = 0;
 	this->thread_TcpSend = new boost::thread(
-	boost::bind(&TcpConnection::thread_Sender, this,
-		sock));
+			boost::bind(&TcpConnection::thread_Sender, this, sock));
 
 	if (this->thread_TcpSend == NULL)
 		state = -1;
 
 	this->thread_TcpRecive = new boost::thread(
-			boost::bind(&TcpConnection::thread_Recive, this,
-					sock));
+			boost::bind(&TcpConnection::thread_Recive, this, sock));
 	if (this->thread_TcpRecive == NULL)
 		state = -1;
 
-	if (state == 0)
-	{
+	if (state == 0) {
 		running = true;
 	}
 	return state;
@@ -64,11 +60,9 @@ void TcpConnection::stop() {
 	}
 }
 
-
 void TcpConnection::sendMessage(std::string str) {
 
-	if (running == true)
-	{
+	if (running == true) {
 		sem_wait(&sem_message_vector);
 		printf("Push to Vector: %s\n", str.c_str());
 		messages.push_back(str);
@@ -84,6 +78,7 @@ void TcpConnection::thread_Recive(int socket_desc) {
 		//std::vector<unsigned char> v;
 		char client_message[2000];
 		std::string json = "";
+		json.resize(200);
 		int ende; // letzte fund eines Simikolons
 		int i;	  // laufvariable
 		//Receive a message from client
@@ -92,7 +87,7 @@ void TcpConnection::thread_Recive(int socket_desc) {
 			for (i = 0; i <= read_size; i++) {
 				if (client_message[i] == ';') { //Befehl vollständig
 
-					json.append(client_message, ende,i - ende);
+					json.append(client_message, ende, i - ende);
 
 					// Befehl ausführen
 					{
@@ -138,22 +133,20 @@ void TcpConnection::thread_Sender(int socket_desc) {
 		while (1) {
 
 			if (messages.size() > 0) {
-					std::string s;
-					sem_wait(&sem_message_vector);
-					if (!messages.empty())
-					{
-						for (unsigned int i = 0; i<messages.size();i++)
-						{
-							s.append(messages[i]);
-							s.append(";");
-						}
+				std::string s;
+				sem_wait(&sem_message_vector);
+				if (!messages.empty()) {
+					for (unsigned int i = 0; i < messages.size(); i++) {
+						s.append(messages[i]);
+						s.append(";");
 					}
-					messages.clear();
-					sem_post(&sem_message_vector);
+				}
+				messages.clear();
+				sem_post(&sem_message_vector);
 
-					printf("Sende    : %s\n", s.c_str());
+				printf("Sende    : %s\n", s.c_str());
 
-					send(sock,s.c_str(),s.length(),0);
+				send(sock, s.c_str(), s.length(), 0);
 			}
 			boost::this_thread::interruption_point();
 		}
@@ -168,12 +161,10 @@ void TcpConnection::setSafePrintSemaphore(sem_t *sem) {
 }
 
 void TcpConnection::thread_safe_print(std::string str) {
-	if (sem_print != NULL)
-	{
+	if (sem_print != NULL) {
 		sem_wait(sem_print);
 		std::cout << str;
 		sem_post(sem_print);
-	}
-	else
-		printf("%s",str.c_str());
+	} else
+		printf("%s", str.c_str());
 }
