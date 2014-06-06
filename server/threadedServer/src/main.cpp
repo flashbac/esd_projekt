@@ -16,6 +16,7 @@ int main(int argc, char** argv) {
 	//SerialWrapper& serial = SerialWrapper::instance();
 	//serial.sendPos(0,180,0);
 
+	Helper h;
 	sem_t sem_print;
 	//std::string ip = "141.64.166.22";
 	std::string ip = "192.168.1.230";
@@ -66,10 +67,12 @@ int main(int argc, char** argv) {
 	TcpListenner tcpL(MTU, device);
 	tcpL.start();
 
-	while (1) {
+	do{
 		usleep(200);
 		tcpL.cleaning();
-	}
+	}while (!h.kbhit());
+	tcpL.stop();
+	/*
 	Client a(ip, port, camID, device);
 	//Client a("192.168.178.42", 50000, 0, "eth0");
 	a.setSafePrintSemaphore(&sem_print);
@@ -79,13 +82,10 @@ int main(int argc, char** argv) {
 	a.init();
 	a.setJpgQuality(20);
 	a.setMTUsize(1500);
-	a.start();
+	a.start();*/
 
 	//TcpListenner tcpL;
 	//tcpL.start();
-
-	while (1)
-		;
 
 	return 0;
 }

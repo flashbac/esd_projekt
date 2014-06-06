@@ -180,8 +180,11 @@ void Client::thread_kamera_reader() {
 void Client::thread_face_detection() {
 	try{
 		while (running) {
+			boost::this_thread::interruption_point();
 			sem_wait(&sem_faceDetectionNewPicAvailable); // TODO Hier wird der Thread geblockt und kann deshalb nicht ordnetlich beendet werden.
+			boost::this_thread::interruption_point();
 			sem_wait(&sem_faceDetectionBusy);
+			boost::this_thread::interruption_point();
 
 			this->openCVforFaceDetection.loadFromJPEG(&copyOfPicForDetection);
 			this->setFaceDetectionVector(
@@ -268,10 +271,19 @@ int Client::init() {
 
 int Client::start() {
 	int return_value = 0;
+
+	boost::thread::attributes attrs;
+	attrs.set_stack_size(1048576*40); //40MByte
+
 	if (!running) {
 		running = true;
+		//boost::function< void > f = boost::bind(&Client::thread_kamera_reader, this)
+		//*
 		this->thread_cam = new boost::thread(&Client::thread_kamera_reader,
 				this);
+		/*
+		this->thread_cam = new boost::thread( attrs, boost::bind(&Client::thread_kamera_reader, this) );
+		*/
 		if (this->thread_cam == NULL)
 			return_value = -1;
 
@@ -295,9 +307,13 @@ int Client::start() {
 
 void Client::stop() {
 	if (running) {
+		running = false;
+		this->thread_face->interrupt();
+		sem_post(&sem_faceDetectionNewPicAvailable);
+		this->thread_UDPsend->interrupt();
+		this->thread_cam->interrupt();
 		// erstmal die Facedetection abbrechen lassen
 		if (this->thread_face != NULL) {
-			this->thread_face->interrupt();
 			this->thread_face->join();
 //			if (this->thread_face->timed_join(boost::posix_time::seconds(5))){
 //				thread_safe_print("\nthread_face sucessfull joind");
@@ -307,7 +323,6 @@ void Client::stop() {
 			delete (this->thread_face);
 		}
 		if (this->thread_UDPsend != NULL) {
-			this->thread_UDPsend->interrupt();
 			this->thread_UDPsend->join();
 //			if (this->thread_UDPsend->timed_join(boost::posix_time::seconds(5))){
 //				thread_safe_print("\nthread_UDPsend sucessfull joind");
@@ -317,7 +332,7 @@ void Client::stop() {
 			delete (this->thread_UDPsend);
 		}
 		if (this->thread_cam != NULL) {
-			this->thread_cam->interrupt();
+
 			this->thread_cam->join();
 //			if (this->thread_cam->timed_join(boost::posix_time::seconds(5))){
 //				thread_safe_print("\nthread_cam sucessfull joind");
@@ -326,8 +341,8 @@ void Client::stop() {
 //			}
 			delete (this->thread_cam);
 		}
-		running = false;
 
+		thread_safe_print("\nall interruppted!");
 	}
 }
 

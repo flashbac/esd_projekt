@@ -51,6 +51,7 @@ bool FugexySession::isClientConnected()
 void FugexySession::disconnectUdp(){
 	if (this->theClient != NULL) {
 			delete this->theClient;
+			std::cout << "\n theClient wurd hard gekilled";
 		}
 }
 
@@ -93,5 +94,4 @@ void FugexySession::StartClient(std::string ip, int port)
 	theClient->setJpgQuality(20);
 	theClient->setMTUsize(this->MTU);
 	theClient->start();
-
 }

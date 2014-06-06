@@ -9,6 +9,9 @@
 #define HELPER_H_
 
 #include <string>
+#include <sys/types.h>
+#include <termios.h>
+#include <string.h>
 
 class Helper {
 public:
@@ -16,6 +19,7 @@ public:
 	virtual ~Helper();
 
 	int getMTUsize(std::string devicename = "eth0");
+	int kbhit(void);
 };
 
 #endif /* HELPER_H_ */
