@@ -148,7 +148,7 @@ void TcpProtokoll::commandoProzess(std::string json){
 	}
 	std::string cmd = root.get("cmd","").asString();
 
-	printf("%s", cmd.c_str());
+	//printf("%s", cmd.c_str());
 
 	if (cmd == "position" ){
 		Json::Value value;

@@ -114,6 +114,7 @@ int TcpListenner::thread_Binder() {
 
 					FugexySession *s = new FugexySession(client_sock, this->globalMTU, this->globalOutgoingDevice);
 					sessions.push_back(s);
+					numberOffClients++;
 				} else {
 					std::stringstream ss;
 					ss << "Server accept only " << numberOffClients << "Clients";

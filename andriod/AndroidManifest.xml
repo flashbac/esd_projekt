@@ -17,6 +17,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="bht.ti.facefinder.MainActivity"
+            android:configChanges="orientation"
+    		android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +28,8 @@
         </activity>
         <activity
             android:name="bht.ti.facefinder.ViewActivity"
+            android:configChanges="orientation"
+    		android:screenOrientation="portrait"
             android:label="@string/title_activity_view" >
             <!-- android:parentActivityName="bht.ti.facefinder.MainActivity" -->
              
