@@ -40,6 +40,7 @@ public final class R {
         public static final int container=0x7f090000;
         public static final int editTextIpAddress=0x7f090003;
         public static final int editTextPort=0x7f090002;
+        public static final int faces=0x7f090015;
         public static final int home_server=0x7f090008;
         public static final int ipInfo=0x7f09000e;
         public static final int kamera=0x7f090013;

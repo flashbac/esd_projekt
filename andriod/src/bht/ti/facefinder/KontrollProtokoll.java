@@ -13,6 +13,7 @@ public class KontrollProtokoll {
 	
 	private ClientController client;
 	public ArrayList<Kamera> kameras = new ArrayList<Kamera>();
+	public ArrayList<Face> faces = new ArrayList<Face>();
 	
 	public KontrollProtokoll(ClientController c)
 	{
@@ -106,7 +107,7 @@ public class KontrollProtokoll {
 					{
 						JSONArray innerArray = jsonObject.getJSONArray("value");
 						
-						
+						kameras.clear();
 						for (int i = 0; i< innerArray.length();i++ )
 						{
 							JSONObject innerOb = innerArray.getJSONObject(i);
@@ -137,7 +138,8 @@ public class KontrollProtokoll {
 					{
 						JSONArray innerArray = jsonObject.getJSONArray("value");
 					
-						ArrayList<Face> faces = new ArrayList<Face>();
+						//ArrayList<Face> faces = new ArrayList<Face>();
+						faces.clear();
 						for (int i = 0; i< innerArray.length();i++ )
 						{
 							JSONObject innerOb = innerArray.getJSONObject(i);

@@ -21,5 +21,6 @@
         <menu></menu>
     </item>
     <item android:id="@+id/startStream" android:title="Stream Anfordern"></item>
+    <item android:id="@+id/faces" android:title="Detact Face"></item>
 
 </menu>

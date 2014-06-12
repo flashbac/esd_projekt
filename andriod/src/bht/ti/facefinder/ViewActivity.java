@@ -24,6 +24,7 @@ public class ViewActivity extends Activity implements OnClickListener {
 	public KontrollProtokoll kontrollProtokoll;
 	public MediaClient mediaClient = null;
 	private static final int KAMERA_MENU = 10;
+	private static final int FACE_MENU = 11;
 	private int mtu = 1500;
 
 	
@@ -198,6 +199,17 @@ public class ViewActivity extends Activity implements OnClickListener {
 				
 			}
 		}		
+		MenuItem faceMenu = (MenuItem)menu.findItem(R.id.faces);
+		if (faceMenu != null && kontrollProtokoll.kameras.size()>0)
+		{
+			faceMenu.getSubMenu().clear();
+			SubMenu sm =  faceMenu.getSubMenu();
+			for (Face f : kontrollProtokoll.faces) {
+				sm.add(FACE_MENU, f.getId() + 20, f.getId() + 20, f.getName());
+				
+			}
+		}		
+
 		return super.onPrepareOptionsMenu(menu);
 	}
 }
