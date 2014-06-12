@@ -27,8 +27,8 @@ FugexySession::FugexySession(int Sock, int MTU, std::string outgoingDevice)
 
 FugexySession::~FugexySession()
 {
-	theClient->stop();
 	if (this->theClient != NULL) {
+		theClient->stop();
 		delete this->theClient;
 	}
 	if (this->tcpC != NULL) {
@@ -51,7 +51,7 @@ bool FugexySession::isClientConnected()
 void FugexySession::disconnectUdp(){
 	if (this->theClient != NULL) {
 			delete this->theClient;
-			std::cout << "\n theClient wurd hard gekilled";
+			std::cout << "\n theClient wurde hard gekilled";
 		}
 }
 
