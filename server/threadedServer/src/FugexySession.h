@@ -31,12 +31,14 @@ public:
 	TcpConnection* tcpC;
 	IKamera *iKamera;
 	int kameraID;
+	int faceID;
 	// Servo *servo;
 
 	//Functions
 	void disconnectUdp();
 	void StartClient(std::string ip, int port);
 	void SetCamera(int camID);
+	void SetFaceToDetect(int faceID);
 	void disconnectedClient();
 	bool isClientConnected();
 

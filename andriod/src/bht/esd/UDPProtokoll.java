@@ -54,7 +54,7 @@ public class UDPProtokoll {
 					((data[1] << 8) & 0xff00) + (data[2] & 0xff), data[3],
 					data[4], data[5], data2));
 			
-			Log.i("MY","Empfange Bild_ID:" + chunkList.getLast().bild_id + " (" + 
+			Log.i("UDP","Empfange Bild_ID:" + chunkList.getLast().bild_id + " (" + 
 						chunkList.getLast().chunk_id + "/" +
 					    chunkList.getLast().paket_anzahl + ")");
 			
@@ -130,7 +130,7 @@ public class UDPProtokoll {
 	        bmp = BitmapFactory.decodeStream(new ByteArrayInputStream(b.array())); // decodeByteArray(data, 0, data.length, options);
 	        Message message = handler.obtainMessage();
 	        message.obj = bmp;
-	        Log.i("MY","Send Picture to Activity Thread.");
+	        Log.i("UDP","Send Picture to Activity Thread.");
 	        handler.sendMessage(message);
 		}
 	}

@@ -25,6 +25,7 @@ public class ViewActivity extends Activity implements OnClickListener {
 	public MediaClient mediaClient = null;
 	private static final int KAMERA_MENU = 10;
 	private static final int FACE_MENU = 11;
+	private static final int FACE_OFFSET = 20;
 	private int mtu = 1500;
 
 	
@@ -82,6 +83,10 @@ public class ViewActivity extends Activity implements OnClickListener {
 		if (group == KAMERA_MENU)
 		{
 			kontrollProtokoll.Kamera(item.getItemId()); // TODO GEF�HRLICH
+		}
+		if (group == FACE_MENU)
+		{
+			kontrollProtokoll.Face(item.getItemId()-FACE_OFFSET); // TODO GEF�HRLICH
 		}
 		
 		if (id == R.id.action_settings) {
@@ -200,13 +205,13 @@ public class ViewActivity extends Activity implements OnClickListener {
 			}
 		}		
 		MenuItem faceMenu = (MenuItem)menu.findItem(R.id.faces);
-		if (faceMenu != null && kontrollProtokoll.kameras.size()>0)
+		if (faceMenu != null && kontrollProtokoll.faces.size()>0)
 		{
-			faceMenu.getSubMenu().clear();
+			faceMenu.getSubMenu().clear();			
 			SubMenu sm =  faceMenu.getSubMenu();
 			for (Face f : kontrollProtokoll.faces) {
-				sm.add(FACE_MENU, f.getId() + 20, f.getId() + 20, f.getName());
-				
+				sm.add(FACE_MENU, f.getId() + FACE_OFFSET, 
+						f.getId() + FACE_OFFSET, f.getName());
 			}
 		}		
 

@@ -49,6 +49,18 @@ public class KontrollProtokoll {
 		}
 		SendeKommando(jsonobject.toString());
 	}
+
+	public void Face(int faceID)
+	{
+		JSONObject jsonobject = new JSONObject();
+		try {
+			jsonobject.put("cmd", "fase");
+			jsonobject.put("value", faceID);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		SendeKommando(jsonobject.toString());
+	}
 	
 	public void StreamAnfordern(String ip, int port)
 	{
@@ -123,7 +135,7 @@ public class KontrollProtokoll {
 					{
 						int value = jsonObject.getInt("value");
 						
-						Log.i("MY","Current Camera is Camera "+ value + "." );
+						Log.i("TCPP","Current Camera is Camera "+ value + "." );
 						break;
 					}
 					case udp:
@@ -131,7 +143,7 @@ public class KontrollProtokoll {
 						JSONObject innerOb = jsonObject.getJSONObject("value");
 						String des = innerOb.getString("des");
 						int port = innerOb.getInt("port");
-						Log.i("MY","Udp package sent to " + des + ":" + port );
+						Log.i("TCPP","Udp package sent to " + des + ":" + port );
 						break;
 					}
 					case face:
@@ -150,13 +162,13 @@ public class KontrollProtokoll {
 									innerOb.getInt("width"),
 									innerOb.getInt("height")));
 						}
-						Log.i("MY","Empfange " + faces.size() + " Faces.");
+						Log.i("TCPP","Empfange " + faces.size() + " Faces.");
 						break;
 					}
 					case track:
 					{
 						int value = jsonObject.getInt("value");
-						Log.i("MY","Track Camera with ID " + value );
+						Log.i("TCPP","Track Camera with ID " + value );
 						break;
 					}
 					case position:
@@ -164,13 +176,13 @@ public class KontrollProtokoll {
 						JSONObject value = jsonObject.getJSONObject("value");
 						int x = value.getInt("x");
 						int y = value.getInt("y");
-						Log.i("MY","Camera Position x: " + x + " y:" + y );
+						Log.i("TCPP","Camera Position x: " + x + " y:" + y );
 						break;
 					}
 					case mtu:
 					{
 						int value = jsonObject.getInt("value");
-						Log.i("MY","MTU: " + value );
+						Log.i("TCPP","MTU: " + value );
 						
 						
 						break;
@@ -185,7 +197,7 @@ public class KontrollProtokoll {
 				if ( cmd.endsWith("exit"))
 				{
 					JSONObject value = jsonObject.getJSONObject("value");
-					Log.i("MY","Exit Client.");
+					Log.i("TCPP","Exit Client.");
 					client.disconnect();
 				}
 			}

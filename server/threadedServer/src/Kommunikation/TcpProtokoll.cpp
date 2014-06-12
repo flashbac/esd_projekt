@@ -177,6 +177,12 @@ void TcpProtokoll::commandoProzess(std::string json){
 		}
 	}
 
+	if (cmd == "face" ){
+			int value = root.get("value","").asInt();
+			session->SetFaceToDetect(value);
+			return;
+	}
+
 	if (cmd == "mode" ){
 		std::string value = root.get("value","").asString();
 

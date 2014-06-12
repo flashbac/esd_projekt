@@ -24,6 +24,8 @@
 #include "Helper.h"
 #include "OpenCVWarpper.h"
 #include <sys/time.h>
+#include "../Kommunikation/KommunikationTypes.h"
+#include "../Kommunikation/TcpProtokoll.h"
 
 //defines
 #define CLIENT_MAX_BUFFER_PIC_COUNT 20
@@ -31,9 +33,12 @@
 //used namespaces
 using namespace std;
 
+class TcpProtokoll;
+class FugexySession;
+
 class Client {
 public:
-	Client(std::string ipadress, int port, unsigned char camerID, std::string outgoingDeviceName);
+	Client(FugexySession *session,std::string ipadress, int port, unsigned char camerID, std::string outgoingDeviceName);
 	virtual ~Client();
 	void setSafePrintSemaphore(sem_t *sem);
 	void thread_safe_print(std::string str);
@@ -68,6 +73,7 @@ private:
 	Helper *helper;
 	OpenCVWarpper openCVforCapture;
 	OpenCVWarpper openCVforFaceDetection;
+	FugexySession *session;
 
 	boost::thread *thread_cam;
 	boost::thread *thread_face;

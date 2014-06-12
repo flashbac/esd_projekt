@@ -16,6 +16,8 @@ Client Commandos
 	{"cmd":"udp","value":{"des":"192.168.1.1","port":5000}} //sende udp pakete an dieses ziel
 
 	{"cmd":"camera","value":1}		// Kamera 1 auswählen
+
+	{"cmd":"face","value":1}		// Face 1 auswählen
 	
 	{"cmd":"mode","value":"manual"}   	// Mode setzen
 						// Mögliche Modes:

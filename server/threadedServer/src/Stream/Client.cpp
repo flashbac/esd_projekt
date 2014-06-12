@@ -7,9 +7,9 @@
 
 #include "Client.h"
 
-Client::Client(std::string ipadress, int port, unsigned char kamerID,
+Client::Client(FugexySession *session,std::string ipadress, int port, unsigned char kamerID,
 		std::string outgoingDeviceName) {
-
+	this->session = session;
 	this->running = false;
 	this->thread_cam = NULL;
 	this->thread_face = NULL;
@@ -84,6 +84,23 @@ bool Client::isFaceDetectionReady() {
 
 void Client::setFaceDetectionVector(std::vector<cv::Rect> faces) {
 	sem_wait(&sem_faceDetectionVector);
+	if (session->tcpP != NULL)
+	{
+		vector<face_t> facearray;
+		for (unsigned int i = 0; i<faces.size();i++)
+		{
+			face_t f; // = malloc(sizeof(face_t));
+			f.face_id=i;
+			std::string name = "Face" + i;
+			f.name = name;
+			f.x = faces[i].x;
+			f.y = faces[i].y;
+			f.height = faces[i].height;
+			f.width = faces[i].width;
+			facearray.push_back(f);
+		}
+		session->tcpP->statusFace(facearray);
+	}
 	global_faces = faces;
 	sem_post(&sem_faceDetectionVector);
 }
