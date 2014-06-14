@@ -10,11 +10,19 @@
 
 #include "Stream/Client.h"
 #include "Kommunikation/TcpListenner.h"
-//#include "SerialWrapper.h"
+#include "SerialWrapper.h"
 
 int main(int argc, char** argv) {
-	//SerialWrapper& serial = SerialWrapper::instance();
-	//serial.sendPos(0,180,0);
+	SerialWrapper& serial = SerialWrapper::instance();
+	if (serial.isOpen()) {
+		cout << "\nserialport erfolgreich geoeffnet!";
+	} else {
+		cout << "\nserialport konnte NICHT geoeffnet werden!";
+	}
+	while (1) {
+		cout << "\nsende";
+		serial.sendPos(0, 180, 0);
+	}
 
 	Helper h;
 	sem_t sem_print;
@@ -67,25 +75,24 @@ int main(int argc, char** argv) {
 	TcpListenner tcpL(MTU, device);
 	tcpL.start();
 
-	do{
+	do {
 		usleep(200);
 		tcpL.cleaning();
-	}while (!h.kbhit());
+	} while (!h.kbhit());
 	tcpL.stop();
 	/*
-	Client a(ip, port, camID, device);
-	//Client a("192.168.178.42", 50000, 0, "eth0");
-	a.setSafePrintSemaphore(&sem_print);
-	//setup Logitech c270 -> 640x360 @ 25 fps
-	a.setVideoSettings(cameraWidth, cameraHeigth, cameraFrameRate);
-	//a.setVideoSettings(640, 320, 25);
-	a.init();
-	a.setJpgQuality(20);
-	a.setMTUsize(1500);
-	a.start();*/
+	 Client a(ip, port, camID, device);
+	 //Client a("192.168.178.42", 50000, 0, "eth0");
+	 a.setSafePrintSemaphore(&sem_print);
+	 //setup Logitech c270 -> 640x360 @ 25 fps
+	 a.setVideoSettings(cameraWidth, cameraHeigth, cameraFrameRate);
+	 //a.setVideoSettings(640, 320, 25);
+	 a.init();
+	 a.setJpgQuality(20);
+	 a.setMTUsize(1500);
+	 a.start();*/
 
 	//TcpListenner tcpL;
 	//tcpL.start();
-
 	return 0;
 }

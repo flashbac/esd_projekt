@@ -13,21 +13,20 @@
 #define SERIAL_SEND_BUFFER_LENGTH 6
 
 #include "settings.h"
-#include <SerialStream.h>
+#include "SerialWrapperBoost.h"
 #include <semaphore.h>
 #include <stdint.h>
-
-using namespace LibSerial;
 
 class SerialWrapper {
 public:
 	static SerialWrapper& instance();
 
 	virtual ~SerialWrapper();
+	bool isOpen();
 	void sendPos(uint8_t groupID, uint8_t x = 90, uint8_t y = 90);
 private:
-	std::string serialPortName;
-	SerialStream hw_serialPort;
+	SerialWrapperBoost* hw_serial;
+
 	char sendBuffer[SERIAL_SEND_BUFFER_LENGTH];
 	sem_t sendSem;
 	SerialWrapper(); // verhindert, dass ein Objekt von außerhalb von N erzeugt wird.
