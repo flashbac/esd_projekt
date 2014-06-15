@@ -290,7 +290,7 @@ int Client::start() {
 	int return_value = 0;
 
 	//boost::thread::attributes attrs;
-	//attrs.set_stack_size(1048576*40); //40MByte
+	attrs.set_stack_size(1048576*40); //40MByte
 
 	if (!running) {
 		running = true;

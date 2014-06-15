@@ -49,7 +49,7 @@ private:
 	Client* theClient;
 	int MTU;
 	std::string outgoingDevice;
-	bool clientConnected;
+	bool clientConnected = true;
 };
 
 #endif /* FUGEXYSESSION_H_ */

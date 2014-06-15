@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 		x =  (uint8_t)atoi(argv[1]);
 	if (argc > 2)
 		y = (uint8_t)atoi(argv[2]);
-	cout << x << y << std::flush;
+	cout << x << y;
 	serial.sendPos(0, x, y);
 	while (1);
 
