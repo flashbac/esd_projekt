@@ -13,7 +13,9 @@
 //#define SerialPortForServoGroupCommunication "/dev/ttyUSB0"
 #define SerialPortForServoGroupCommunication "/dev/ttymxc3"
 #define AvailabeServoGroups 1
-
+#define MULTIPLY_FACTOR_DEFAULT_X 0.6
+#define MULTIPLY_FACTOR_DEFAULT_Y 1.5
+#define THRESHOLD_DEFAULT 10.0
 
 struct CAMandServoGroup{
 	int camID;

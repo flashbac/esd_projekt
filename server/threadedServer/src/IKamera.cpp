@@ -82,7 +82,7 @@ int IKamera::useCam(int id) {
 		} else
 			return 0;
 	} else
-		return -1;
+		return 0;
 }
 
 int IKamera::unUseCam(int id) {
@@ -94,6 +94,6 @@ int IKamera::unUseCam(int id) {
 		} else
 			return 0;
 	} else
-		return -1;
+		return 0;
 }
 
