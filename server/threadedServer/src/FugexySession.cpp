@@ -164,7 +164,7 @@ void FugexySession::thread_notifyNFaces() {
 				this->theClient->getFaceDetectionVectorAsFace_t();
 		if (faces.size() > 0) {
 
-			//this->tcpP->statusFace(faces);
+			this->tcpP->statusFace(faces);
 
 			if (this->getControlMode() == CONTROL_MODE_AUTOMATIK) {
 				PositionToAngle::instance().calculateAndSendNewPosition(
