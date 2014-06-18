@@ -40,9 +40,8 @@ private:
 	SerialWrapper(const SerialWrapper&); /* verhindert, dass eine weitere Instanz via
 	 Kopier-Konstruktor erstellt werden kann */
 	SerialWrapper & operator =(const SerialWrapper &); //Verhindert weitere Instanz durch Kopie
-	uint8_t x = 90;
-	uint8_t y = 90;
-
+	uint8_t x;
+	uint8_t y;
 
 };
 

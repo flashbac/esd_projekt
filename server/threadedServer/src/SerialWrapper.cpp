@@ -36,28 +36,28 @@ void SerialWrapper::sendDelta(uint8_t groupID, uint8_t dx, uint8_t dy){
 
 	if (dx >= MAX_STEP_VALUE)
 	{
-		this->x += MAX_STEP_VALUE;
+		x += MAX_STEP_VALUE;
 	}
 	else if (dx <= -MAX_STEP_VALUE)
 	{
-		this->x += -MAX_STEP_VALUE;
+		x += -MAX_STEP_VALUE;
 	}
 	else
 	{
-		this->x += dx;
+		x += dx;
 	}
 
 	if (dy >= MAX_STEP_VALUE)
 		{
-			this->y += MAX_STEP_VALUE;
+			y += MAX_STEP_VALUE;
 		}
 		else if (dy <= -MAX_STEP_VALUE)
 		{
-			this->y += -MAX_STEP_VALUE;
+			y += -MAX_STEP_VALUE;
 		}
 		else
 		{
-			this->y += dy;
+			y += dy;
 		}
 
 	SerialWrapper::sendPos(groupID, x, y);
