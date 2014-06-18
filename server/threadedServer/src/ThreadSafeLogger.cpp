@@ -22,6 +22,6 @@ ThreadSafeLogger::~ThreadSafeLogger() {
 
 void ThreadSafeLogger::print(std::string message) {
 	sem_wait(&sem_print);
-	std::cout << message << std::flush;
+	std::cout << message <<'\n' << std::flush;
 	sem_post(&sem_print);
 }

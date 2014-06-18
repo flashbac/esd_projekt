@@ -19,6 +19,7 @@
 
 #include "./Kommunikation/KommunikationTypes.h"
 #include "PositionToAngle.h"
+#include "SerialWrapper.h"
 
 class TcpProtokoll;
 class TcpConnection;

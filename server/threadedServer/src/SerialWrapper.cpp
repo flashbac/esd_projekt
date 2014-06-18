@@ -9,6 +9,8 @@
 
 #include <iostream>
 
+
+
 SerialWrapper& SerialWrapper::instance() {
 	static SerialWrapper _instance;
 	return _instance;
@@ -28,6 +30,39 @@ SerialWrapper::~SerialWrapper() {
 
 bool SerialWrapper::isOpen() {
 	return hw_serial->isOpen();
+}
+
+void SerialWrapper::sendDelta(uint8_t groupID, uint8_t dx, uint8_t dy){
+
+	if (dx >= MAX_STEP_VALUE)
+	{
+		this->x += MAX_STEP_VALUE;
+	}
+	else if (dx <= -MAX_STEP_VALUE)
+	{
+		this->x += -MAX_STEP_VALUE;
+	}
+	else
+	{
+		this->x += dx;
+	}
+
+	if (dy >= MAX_STEP_VALUE)
+		{
+			this->y += MAX_STEP_VALUE;
+		}
+		else if (dy <= -MAX_STEP_VALUE)
+		{
+			this->y += -MAX_STEP_VALUE;
+		}
+		else
+		{
+			this->y += dy;
+		}
+
+	SerialWrapper::sendPos(groupID, x, y);
+
+
 }
 
 void SerialWrapper::sendPos(uint8_t groupID, uint8_t desiredXpos,
