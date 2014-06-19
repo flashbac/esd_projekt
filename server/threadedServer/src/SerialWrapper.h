@@ -17,7 +17,7 @@
 #include <semaphore.h>
 #include <stdint.h>
 
-#define MAX_STEP_VALUE 5
+#define MAX_STEP_VALUE 1
 
 class SerialWrapper {
 public:
