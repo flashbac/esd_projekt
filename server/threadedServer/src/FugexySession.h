@@ -39,6 +39,7 @@ public:
 	TcpConnection* tcpC;
 	IKamera *iKamera;
 	int faceID;
+	int controlMode;
 	// Servo *servo;
 
 	//Functions
@@ -68,7 +69,7 @@ private:
 	boost::thread *thread_notifyNewFaces;
 	sem_t sem_notifyNewFaces;
 
-	int controlMode;
+
 	sem_t sem_setControlMode;
 
 	int kameraID;
