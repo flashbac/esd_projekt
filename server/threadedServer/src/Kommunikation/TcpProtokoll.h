@@ -16,6 +16,7 @@
 #include "../IKamera.h"
 #include "../ThreadSafeLogger.h"
 #include "../SerialWrapper.h"
+#include "../settings.h"
 
 class TcpConnection;
 class FugexySession;
