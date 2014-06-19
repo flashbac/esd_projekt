@@ -56,7 +56,7 @@ double PositionToAngle::getYFaktor() {
 }
 
 void PositionToAngle::calculateAndSendNewPosition(face_t pos,
-		int regionsizeWidth, int regionsizeHeigth) {
+	int regionsizeWidth, int regionsizeHeigth) {
 	int mittelpunktYKameraBild = 0;
 	int mittelpunktXKameraBild = 0;
 

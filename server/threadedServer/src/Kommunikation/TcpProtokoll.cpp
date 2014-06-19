@@ -159,22 +159,22 @@ void TcpProtokoll::commandoProzess(std::string json){
 		int steps = value.get("steps","").asInt();
 		if (derection == "left")
 		{
-			SerialWrapper::instance().sendDelta(AvailabeServoGroups, 0, steps);
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups, steps, 0);
 			return;
 		}
 		if (derection == "right")
 		{
-			SerialWrapper::instance().sendDelta(AvailabeServoGroups,0, -steps);
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups,-steps, 0);
 			return;
 		}
 		if (derection == "top")
 		{
-			SerialWrapper::instance().sendDelta(AvailabeServoGroups, steps, 0);
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups, 0, steps);
 			return;
 		}
 		if (derection == "bottom")
 		{
-			SerialWrapper::instance().sendDelta(AvailabeServoGroups, -steps, 0);
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups, 0, -steps);
 			return;
 		}
 	}
