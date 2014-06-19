@@ -89,7 +89,7 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 
 	printf("          Abweichung Y: %d\n", ermittelteAbweichnungY);
 	printf("          Abweichung X: %d\n", ermittelteAbweichnungX);
-	stepsX = ermittelteAbweichnungX;
+	stepsX = -ermittelteAbweichnungX;
 	stepsY = ermittelteAbweichnungY;
 	//// faktor wird kleiner, um so groeßer das rechteck ist -> dadruch mehr bewegung bei kleineren rechtecken
 	//faceToAreaFaktor = (regionsizeHeigth * regionsizeWidth)
