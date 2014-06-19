@@ -187,7 +187,14 @@ void TcpProtokoll::commandoProzess(std::string json){
 
 	if (cmd == "mode" ){
 		std::string value = root.get("value","").asString();
-
+		if (value == "auto")
+		{
+			session->controlMode = CONTROL_MODE_AUTOMATIK;
+		}
+		if (value == "manual")
+		{
+			session->controlMode = CONTROL_MODE_MANUELL;
+		}
 		return;
 	}
 
