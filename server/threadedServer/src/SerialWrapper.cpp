@@ -77,7 +77,7 @@ void SerialWrapper::sendPos(uint8_t groupID, uint8_t desiredXpos,
 		this->sendBuffer[3] = SERIAL_ENDE_00_02;
 		this->sendBuffer[4] = SERIAL_ENDE_01;
 		this->sendBuffer[5] = SERIAL_ENDE_00_02;
-		printf("Send to Serial x:%d y:%d ", desiredXpos, desiredYpos);
+		printf("Send to Serial x:%d y:%d\n", desiredXpos, desiredYpos);
 		hw_serial->writeBuffer(this->sendBuffer, SERIAL_SEND_BUFFER_LENGTH);
 	}
 	sem_post(&sendSem);
