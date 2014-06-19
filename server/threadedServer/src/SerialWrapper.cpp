@@ -67,6 +67,8 @@ void SerialWrapper::sendDelta(uint8_t groupID, int8_t dx, int8_t dy){
 
 void SerialWrapper::sendPos(uint8_t groupID, uint8_t desiredXpos,
 		uint8_t desiredYpos) {
+	x = desiredXpos;
+	y = desiredYpos;
 	sem_wait(&sendSem);
 	if (hw_serial->isOpen()) {
 		this->sendBuffer[0] = groupID;
