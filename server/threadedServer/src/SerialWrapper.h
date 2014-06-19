@@ -26,7 +26,7 @@ public:
 	virtual ~SerialWrapper();
 	bool isOpen();
 	void sendPos(uint8_t groupID, uint8_t x = 90, uint8_t y = 90);
-	void sendDelta(uint8_t groupID, uint8_t dx, uint8_t dy);
+	void sendDelta(uint8_t groupID, int8_t dx, int8_t dy);
 
 private:
 	SerialWrapperBoost* hw_serial;

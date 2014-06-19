@@ -32,7 +32,7 @@ bool SerialWrapper::isOpen() {
 	return hw_serial->isOpen();
 }
 
-void SerialWrapper::sendDelta(uint8_t groupID, uint8_t dx, uint8_t dy){
+void SerialWrapper::sendDelta(uint8_t groupID, int8_t dx, int8_t dy){
 
 	if (dx >= MAX_STEP_VALUE)
 	{
@@ -48,17 +48,17 @@ void SerialWrapper::sendDelta(uint8_t groupID, uint8_t dx, uint8_t dy){
 	}
 
 	if (dy >= MAX_STEP_VALUE)
-		{
-			y += MAX_STEP_VALUE;
-		}
-		else if (dy <= -MAX_STEP_VALUE)
-		{
-			y += -MAX_STEP_VALUE;
-		}
-		else
-		{
-			y += dy;
-		}
+	{
+		y += MAX_STEP_VALUE;
+	}
+	else if (dy <= -MAX_STEP_VALUE)
+	{
+		y += -MAX_STEP_VALUE;
+	}
+	else
+	{
+		y += dy;
+	}
 
 	SerialWrapper::sendPos(groupID, x, y);
 
