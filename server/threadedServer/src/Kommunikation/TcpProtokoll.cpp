@@ -142,8 +142,10 @@ void TcpProtokoll::commandoProzess(std::string json){
 	if ( !parsingSuccessful )
 	{
 	    // report to the user the failure and their locations in the document.
-	    std::cout  << "Failed to parse configuration\n"
+		std::stringstream ss;
+		ss  << "Failed to parse configuration\n"
 	               << reader.getFormatedErrorMessages();
+	    ThreadSafeLogger::instance().print(ss.str());
 	    return;
 	}
 	std::string cmd = root.get("cmd","").asString();
@@ -157,22 +159,22 @@ void TcpProtokoll::commandoProzess(std::string json){
 		int steps = value.get("steps","").asInt();
 		if (derection == "left")
 		{
-
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups, steps, 0);
 			return;
 		}
 		if (derection == "right")
 		{
-
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups,-steps, 0);
 			return;
 		}
 		if (derection == "top")
 		{
-
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups, 0, steps);
 			return;
 		}
 		if (derection == "bottom")
 		{
-
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups, 0, -steps);
 			return;
 		}
 	}
@@ -185,7 +187,14 @@ void TcpProtokoll::commandoProzess(std::string json){
 
 	if (cmd == "mode" ){
 		std::string value = root.get("value","").asString();
-
+		if (value == "auto")
+		{
+			session->controlMode = CONTROL_MODE_AUTOMATIK;
+		}
+		if (value == "manual")
+		{
+			session->controlMode = CONTROL_MODE_MANUELL;
+		}
 		return;
 	}
 

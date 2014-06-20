@@ -56,7 +56,7 @@ double PositionToAngle::getYFaktor() {
 }
 
 void PositionToAngle::calculateAndSendNewPosition(face_t pos,
-		int regionsizeWidth, int regionsizeHeigth) {
+	int regionsizeWidth, int regionsizeHeigth) {
 	int mittelpunktYKameraBild = 0;
 	int mittelpunktXKameraBild = 0;
 
@@ -75,29 +75,35 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 	//mittelpunkt des Kamerabildes ermitteln
 	mittelpunktYKameraBild = regionsizeHeigth / 2;
 	mittelpunktXKameraBild = regionsizeWidth / 2;
-
+	printf("    Mittelpunkt Bild Y: %d\n", mittelpunktYKameraBild);
+	printf("    Mittelpunkt Bild X: %d\n", mittelpunktXKameraBild);
 	//mittelpunkt vom rechteck im Gesamten Bild bestimmen
 	mittelpunktYrechteckVomGesamtenBild = (pos.height / 2) + pos.y;
 	mittelpunktXrechteckVomGesamtenBild = (pos.width / 2) + pos.x;
 
-	ermittelteAbweichnungY = ((double) regionsizeHeigth / 100.0)
-			* (mittelpunktYKameraBild - mittelpunktYrechteckVomGesamtenBild);
-	ermittelteAbweichnungX = ((double) regionsizeWidth / 100.0)
-			* (mittelpunktXKameraBild - mittelpunktXrechteckVomGesamtenBild);
+	printf("Mittelpunkt Rechteck Y: %d\n", mittelpunktYrechteckVomGesamtenBild);
+	printf("Mittelpunkt Rechteck X: %d\n", mittelpunktXrechteckVomGesamtenBild);
 
-	// faktor wird kleiner, um so groeßer das rechteck ist -> dadruch mehr bewegung bei kleineren rechtecken
-	faceToAreaFaktor = (regionsizeHeigth * regionsizeWidth)
-			/ (pos.height * pos.width);
+	ermittelteAbweichnungY = mittelpunktYKameraBild - mittelpunktYrechteckVomGesamtenBild;
+	ermittelteAbweichnungX = mittelpunktXKameraBild - mittelpunktXrechteckVomGesamtenBild;
 
-	if (abs(ermittelteAbweichnungY) > threshold) {
-		stepsY = ((ermittelteAbweichnungY * multiply_Y_faktor) / 100.0)
-				* faceToAreaFaktor;
-	}
-
-	if (abs(ermittelteAbweichnungX) > threshold) {
-		stepsX = ((ermittelteAbweichnungX * multiply_X_faktor) / 100.0)
-				* faceToAreaFaktor;
-	}
+	printf("          Abweichung Y: %d\n", ermittelteAbweichnungY);
+	printf("          Abweichung X: %d\n", ermittelteAbweichnungX);
+	stepsX = -ermittelteAbweichnungX;
+	stepsY = ermittelteAbweichnungY;
+	//// faktor wird kleiner, um so groeßer das rechteck ist -> dadruch mehr bewegung bei kleineren rechtecken
+	//faceToAreaFaktor = (regionsizeHeigth * regionsizeWidth)
+	//		/ (pos.height * pos.width);
+//
+//	if (abs(ermittelteAbweichnungY) > threshold) {
+//		stepsY = ((ermittelteAbweichnungY * multiply_Y_faktor) / 100.0)
+//				* faceToAreaFaktor;
+//	}
+//
+//	if (abs(ermittelteAbweichnungX) > threshold) {
+//		stepsX = ((ermittelteAbweichnungX * multiply_X_faktor) / 100.0)
+//				* faceToAreaFaktor;
+//	}
 
 	// sende
 	/*SerialWrapper& serial = SerialWrapper::instance();
@@ -107,4 +113,5 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 	std::stringstream ss;
 	ss << "Berechnete steps x:" << stepsX << " y:" << stepsY << "\n";
 	ThreadSafeLogger::instance().print(ss.str());
+	SerialWrapper::instance().sendDelta(AvailabeServoGroups,stepsX, stepsY);
 }

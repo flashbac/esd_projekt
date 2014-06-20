@@ -32,6 +32,7 @@ FugexySession::FugexySession(int Sock, int MTU, std::string outgoingDevice) {
 	//this->controlMode = CONTROL_MODE_MANUELL;
 	this->controlMode = CONTROL_MODE_AUTOMATIK;
 	sem_init(&sem_setControlMode, 0, 1);
+	SerialWrapper::instance().sendPos(AvailabeServoGroups, 90, 90);
 }
 
 FugexySession::~FugexySession() {

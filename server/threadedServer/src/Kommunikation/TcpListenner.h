@@ -21,6 +21,7 @@
 #include <arpa/inet.h> //inet_addr
 #include "./TcpProtokoll.h"
 #include "../FugexySession.h"
+#include "../ThreadSafeLogger.h"
 
 class TcpProtokoll;
 class FugexySession;
@@ -29,7 +30,6 @@ class TcpListenner {
 public:
 	TcpListenner(int globalMTU, std::string globalOutgoingDevice);
 	virtual ~TcpListenner();
-	void setSafePrintSemaphore(sem_t *sem);
 	void thread_safe_print(std::string str);
 	int start();
 	void stop();
@@ -41,7 +41,6 @@ public:
 private:
 	bool running;
 	int numberOffClients;
-	sem_t *sem_print;
 
 	int globalMTU;
 	std::string globalOutgoingDevice;

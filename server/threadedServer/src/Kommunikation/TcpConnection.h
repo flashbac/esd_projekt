@@ -21,6 +21,7 @@
 #include <arpa/inet.h> //inet_addr
 #include "./TcpProtokoll.h"
 #include "../FugexySession.h"
+#include "../ThreadSafeLogger.h"
 
 class TcpProtokoll;
 class FugexySession;

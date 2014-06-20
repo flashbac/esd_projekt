@@ -9,7 +9,10 @@
 
 SerialWrapperBoost::SerialWrapperBoost(std::string port, unsigned int baud_rate) :
 		io(), serial(io, port) {
+
 	serial.set_option(boost::asio::serial_port_base::baud_rate(baud_rate));
+
+
 }
 
 SerialWrapperBoost::~SerialWrapperBoost() {

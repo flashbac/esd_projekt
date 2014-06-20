@@ -12,6 +12,7 @@
 #include "./Kommunikation/KommunikationTypes.h"
 #include "settings.h"
 #include "ThreadSafeLogger.h"
+#include "SerialWrapper.h"
 
 class PositionToAngle {
 public:
