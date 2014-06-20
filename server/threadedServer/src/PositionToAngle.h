@@ -13,6 +13,7 @@
 #include "settings.h"
 #include "ThreadSafeLogger.h"
 #include "SerialWrapper.h"
+#define OEFNUNGSWINKEL_KAMERA 30
 
 class PositionToAngle {
 public:

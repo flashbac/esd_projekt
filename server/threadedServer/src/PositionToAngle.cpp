@@ -67,6 +67,9 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 	int ermittelteAbweichnungY = 0;
 	int ermittelteAbweichnungX = 0;
 
+	double abweichungYInProzent = 0;
+	double abweichungXInProzent = 0;
+
 	double faceToAreaFaktor = 0;
 
 	int stepsX = 0;
@@ -89,8 +92,17 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 
 	printf("          Abweichung Y: %d\n", ermittelteAbweichnungY);
 	printf("          Abweichung X: %d\n", ermittelteAbweichnungX);
-	stepsX = -ermittelteAbweichnungX;
-	stepsY = ermittelteAbweichnungY;
+
+	abweichungYInProzent = ermittelteAbweichnungY * 100 / regionsizeHeigth;
+	abweichungXInProzent = ermittelteAbweichnungX * 100 / regionsizeWidth;
+
+	printf(" Prozent Abweichung Y: %f\%\n", abweichungYInProzent);
+	printf(" Prozent Abweichung X: %f\%\n", abweichungXInProzent);
+
+
+	stepsY = OEFNUNGSWINKEL_KAMERA / 100 * abweichungYInProzent;
+	stepsX = OEFNUNGSWINKEL_KAMERA / 100 * abweichungXInProzent;
+
 	//// faktor wird kleiner, um so groeßer das rechteck ist -> dadruch mehr bewegung bei kleineren rechtecken
 	//faceToAreaFaktor = (regionsizeHeigth * regionsizeWidth)
 	//		/ (pos.height * pos.width);
@@ -110,6 +122,8 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 	 if (serial.isOpen()) {
 
 	 }*/
+
+	stepsX = -stepsX; // Umrechnen jeh nachdem wir Kamera drauf sitzt
 	std::stringstream ss;
 	ss << "Berechnete steps x:" << stepsX << " y:" << stepsY << "\n";
 	ThreadSafeLogger::instance().print(ss.str());
