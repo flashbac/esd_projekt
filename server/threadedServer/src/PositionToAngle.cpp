@@ -100,8 +100,8 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 	printf(" Prozent Abweichung X: %f%%\n", abweichungXInProzent);
 
 
-	stepsY = OEFNUNGSWINKEL_KAMERA / 100 * abweichungYInProzent;
-	stepsX = OEFNUNGSWINKEL_KAMERA / 100 * abweichungXInProzent;
+	stepsY = (int)(0.5+(double)OEFNUNGSWINKEL_KAMERA / 100.0 * (double)abweichungYInProzent);
+	stepsX = (int)(0.5+(double)OEFNUNGSWINKEL_KAMERA / 100.0 * (double)abweichungXInProzent);
 	stepsX = -stepsX; // Umrechnen jeh nachdem wir Kamera drauf sitzt
 
 	printf(" Abweichung in Grad Y: %d%%\n", stepsY);
