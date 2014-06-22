@@ -93,8 +93,8 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 	printf("          Abweichung Y: %d\n", ermittelteAbweichnungY);
 	printf("          Abweichung X: %d\n", ermittelteAbweichnungX);
 
-	abweichungYInProzent = ermittelteAbweichnungY * 100 / regionsizeHeigth;
-	abweichungXInProzent = ermittelteAbweichnungX * 100 / regionsizeWidth;
+	abweichungYInProzent = (double)ermittelteAbweichnungY * 100.0 / (double)regionsizeHeigth;
+	abweichungXInProzent = (double)ermittelteAbweichnungX * 100.0 / (double)regionsizeWidth;
 
 	printf(" Prozent Abweichung Y: %f%%\n", abweichungYInProzent);
 	printf(" Prozent Abweichung X: %f%%\n", abweichungXInProzent);
@@ -102,10 +102,10 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 
 	stepsY = (int)(0.5+(double)OEFNUNGSWINKEL_KAMERA / 100.0 * (double)abweichungYInProzent);
 	stepsX = (int)(0.5+(double)OEFNUNGSWINKEL_KAMERA / 100.0 * (double)abweichungXInProzent);
-	stepsX = -stepsX; // Umrechnen jeh nachdem wir Kamera drauf sitzt
+	//stepsX = -stepsX; // Umrechnen jeh nachdem wir Kamera drauf sitzt
 
-	printf(" Abweichung in Grad Y: %d%%\n", stepsY);
-	printf(" Abweichung in Grad X: %d%%\n", stepsX);
+	printf(" Abweichung in Grad Y: %d\n", stepsY);
+	printf(" Abweichung in Grad X: %d\n", stepsX);
 
 	//// faktor wird kleiner, um so groeßer das rechteck ist -> dadruch mehr bewegung bei kleineren rechtecken
 	//faceToAreaFaktor = (regionsizeHeigth * regionsizeWidth)

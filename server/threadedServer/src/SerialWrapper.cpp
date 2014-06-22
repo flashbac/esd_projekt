@@ -59,7 +59,10 @@ void SerialWrapper::sendDelta(uint8_t groupID, int8_t dx, int8_t dy){
 	{
 		y += dy;
 	}
-
+	if (x > MAX_X_VALUE) x = MAX_X_VALUE;
+	if (x < MIN_X_VALUE) x = MIN_X_VALUE;
+	if (x > MAX_Y_VALUE) x = MIN_Y_VALUE;
+	if (x < MIN_Y_VALUE) x = MIN_Y_VALUE;
 	SerialWrapper::sendPos(groupID, x, y);
 
 

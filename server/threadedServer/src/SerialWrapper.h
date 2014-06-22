@@ -18,6 +18,10 @@
 #include <stdint.h>
 
 #define MAX_STEP_VALUE 5
+#define MIN_Y_VALUE 0
+#define MAX_Y_VALUE 180
+#define MIN_X_VALUE 40
+#define MAX_X_VALUE 146
 
 class SerialWrapper {
 public:
