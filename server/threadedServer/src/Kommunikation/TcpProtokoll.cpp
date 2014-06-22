@@ -38,13 +38,13 @@ void TcpProtokoll::cmdExit(){
 	sendMessageToSenderThread(fastWriter.write(jo));
 }
 
-void TcpProtokoll::camAvalible(){
+void TcpProtokoll::camAvalible(std::vector<cam_t> cams ){
 
-	IKamera *ik = IKamera::getInstance();
+	//IKamera *ik = IKamera::getInstance();
 	Json::Value jo;
 	Json::Value ja;
 
-	std::vector<cam_t> cams = ik->getCams();
+	//std::vector<cam_t> cams = ik->getCams();
 	for (unsigned int i = 0; i<cams.size();i++)
 	{
 		Json::Value io;
@@ -191,7 +191,7 @@ void TcpProtokoll::commandoProzess(std::string json){
 		{
 			session->controlMode = CONTROL_MODE_AUTOMATIK;
 		}
-		if (value == "manual")
+		if (value == "manu")
 		{
 			session->controlMode = CONTROL_MODE_MANUELL;
 		}

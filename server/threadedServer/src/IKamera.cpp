@@ -50,12 +50,12 @@ IKamera* IKamera::getInstance() {
 		cam4.camHeigth = 360;
 		cam4.camFrameRate = 25;
 		cam_t cam5;
-		cam3.systemID = 3;
-		cam3.name = "Udoo 640x480";
-		cam3.use = false;
-		cam3.camWidth = 640;
-		cam3.camHeigth = 480;
-		cam3.camFrameRate = 25;
+		cam5.systemID = 3;
+		cam5.name = "Udoo 640x480";
+		cam5.use = false;
+		cam5.camWidth = 640;
+		cam5.camHeigth = 480;
+		cam5.camFrameRate = 25;
 
 		theInstance->cams.push_back(cam);
 		theInstance->cams.push_back(cam2);

@@ -13,7 +13,7 @@ FugexySession::FugexySession(int Sock, int MTU, std::string outgoingDevice) {
 	tcpC = new TcpConnection(Sock, tcpP);
 	tcpP->setTcpConnectionClass(tcpC);
 
-	tcpP->camAvalible();
+	tcpP->camAvalible(iKamera->getCams());
 	//client = NULL;
 	theClient = NULL;
 	kameraID = -1;

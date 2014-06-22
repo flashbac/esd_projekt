@@ -40,7 +40,7 @@ public:
 	void init ();
 
 	void cmdExit();
-	void camAvalible();
+	void camAvalible(std::vector<cam_t> cams );
 	void statusCamera(int currentCam);
 	void statusUDP(std::string ip, int port);
 	void statusServos(int x, int y);
