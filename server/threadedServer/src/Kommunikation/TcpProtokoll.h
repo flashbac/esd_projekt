@@ -18,6 +18,8 @@
 #include "../SerialWrapper.h"
 #include "../settings.h"
 
+#define TCP_Protokoll_Version 1
+
 class TcpConnection;
 class FugexySession;
 class IKamera;

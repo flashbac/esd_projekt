@@ -32,6 +32,7 @@ void TcpProtokoll::cmdExit(){
 	Json::Value jo;
 
 	jo["cmd"] = "exit";
+	jo["version"] = TCP_Protokoll_Version;
 	jo["value"] = 1;
 
 	Json::FastWriter fastWriter;
@@ -53,6 +54,7 @@ void TcpProtokoll::camAvalible(std::vector<cam_t> cams ){
 		io["use"] = cams[i].use;
 		ja.append(io);
     }
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "cams";
 	jo["value"] = ja;
 
@@ -63,6 +65,7 @@ void TcpProtokoll::camAvalible(std::vector<cam_t> cams ){
 void TcpProtokoll::statusCamera(int currentCam){
 	Json::Value jo;
 
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "camera";
 	jo["value"] = currentCam;
 	Json::FastWriter fastWriter;
@@ -73,6 +76,7 @@ void TcpProtokoll::statusUDP(std::string ip, int port){
 
 	Json::Value jo;
 	Json::Value io;
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "udp";
 	io["des"] = ip.c_str();
 	io["port"] = port;
@@ -84,6 +88,7 @@ void TcpProtokoll::statusUDP(std::string ip, int port){
 void TcpProtokoll::statusServos(int x, int y){
 	Json::Value jo;
 	Json::Value io;
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "position";
 	io["x"] = x;
 	io["y"] = y;
@@ -100,6 +105,7 @@ void TcpProtokoll::statusFace(std::vector<face_t> faces){
 	jo["status"] = "face";
 	for (unsigned int i = 0; i<faces.size();i++)
 	{
+		jo["version"] = TCP_Protokoll_Version;
 		io["id"] = faces[i].face_id;
 		io["name"] = faces[i].name;
 		io["x"] = faces[i].x;
@@ -116,6 +122,7 @@ void TcpProtokoll::statusFace(std::vector<face_t> faces){
 void TcpProtokoll::statusTrack(int face_id){
 	Json::Value jo;
 
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "track";
 	jo["value"] = face_id;
 
@@ -127,6 +134,7 @@ void TcpProtokoll::statusMTU(int mtu)
 {
 	Json::Value jo;
 
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "mtu";
 	jo["value"] = mtu;
 
