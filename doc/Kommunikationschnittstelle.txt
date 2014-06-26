@@ -11,48 +11,48 @@ cmd detaliert:
 
 Client Commandos
 	
-	{"cmd":"exit","value":1}		// Trennt die Kontroll Verbindung
+	{"version":"1","cmd":"exit","value":1}		// Trennt die Kontroll Verbindung
 	
-	{"cmd":"udp","value":{"des":"192.168.1.1","port":5000}} //sende udp pakete an dieses ziel
+	{"version":"1","cmd":"udp","value":{"des":"192.168.1.1","port":5000}} //sende udp pakete an dieses ziel
 
-	{"cmd":"camera","value":1}		// Kamera 1 auswählen
+	{"version":"1","cmd":"camera","value":1}		// Kamera 1 auswählen
 
-	{"cmd":"face","value":1}		// Face 1 auswählen
+	{"version":"1","cmd":"face","value":1}		// Face 1 auswählen
 	
-	{"cmd":"mode","value":"manual"}   	// Mode setzen
+	{"version":"1","cmd":"mode","value":"manual"}   	// Mode setzen
 						// Mögliche Modes:
 						// 1. manual	
 						// 2. auto
 						// 3. compass
 					
-	{"cmd":"position","value":{"direction":"left","steps":1}	// Setzt servo um 1 step nach links (Werte von 1-100)
+	{"version":"1","cmd":"position","value":{"direction":"left","steps":1}	// Setzt servo um 1 step nach links (Werte von 1-100)
 	
-	{"cmd":"position","value":{"direction":"right","steps":1}	// Setzt servo um 1 step nach rechts
+	{"version":"1","cmd":"position","value":{"direction":"right","steps":1}	// Setzt servo um 1 step nach rechts
 
-	{"cmd":"position","value":{"direction":"top","steps":1}		// Setzt servo um 1 step nach oben
+	{"version":"1","cmd":"position","value":{"direction":"top","steps":1}		// Setzt servo um 1 step nach oben
 	
-	{"cmd":"position","value":{"direction":"bottom","steps":1}	// Setzt servo um 1 step nach unten
+	{"version":"1","cmd":"position","value":{"direction":"bottom","steps":1}	// Setzt servo um 1 step nach unten
 
-	{"cmd":"mtu","value":1500}									// Setzt mtu für UDP protokoll
+	{"version":"1","cmd":"mtu","value":1500}									// Setzt mtu für UDP protokoll
 	
 Server Commandos
 
-	{"cmd":"exit","value":1}		// Trennt die Kontroll Verbindung
+	{"version":"1","cmd":"exit","value":1}		// Trennt die Kontroll Verbindung
 
-	{"status":"cams","value":[{"id":1,"name":"Kamera 1","use":true}]}
+	{"version":"1","status":"cams","value":[{"id":1,"name":"Kamera 1","use":true}]}
 					
-	{"status":"camera","value":1}	// Kamera 1 ist ausgewählt
+	{"version":"1","status":"camera","value":1}	// Kamera 1 ist ausgewählt
 
-	{"status":"udp","value":{"des":"192.168.1.1","port":5000}} //sende udp pakete an dieses ziel
+	{"version":"1","status":"udp","value":{"des":"192.168.1.1","port":5000}} //sende udp pakete an dieses ziel
 
-	{"status":"server",} ??
+	{"version":"1","status":"server",} ??
 
-	{"status":"face","value":[{"name":"unknown","id":1234567890,"x":30,"y":20,"width":30,"height":30},
+	{"version":"1","status":"face","value":[{"name":"unknown","id":1234567890,"x":30,"y":20,"width":30,"height":30},
 							  {"name":"hanz","id":123,"x":30,"y":20,"width":30,"height":30}]}
 	
-	{"status":"trak","value":123}	// value gleichbedeutetnd mit einer face id
+	{"version":"1","status":"trak","value":123}	// value gleichbedeutetnd mit einer face id
 
-	{"status":"position","value":{"x":1,"y":1}}
+	{"version":"1","status":"position","value":{"x":1,"y":1}}
 
-	{"status":"mtu","value":1500}
+	{"version":"1","status":"mtu","value":1500}
 

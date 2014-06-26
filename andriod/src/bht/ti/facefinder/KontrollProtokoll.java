@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.JsonReader;
 import android.util.Log;
 
 public class KontrollProtokoll {
@@ -196,9 +195,12 @@ public class KontrollProtokoll {
 				String cmd = jsonObject.getString("cmd");
 				if ( cmd.endsWith("exit"))
 				{
-					JSONObject value = jsonObject.getJSONObject("value");
+					int value = jsonObject.getInt("value");
 					Log.i("TCPP","Exit Client.");
-					client.disconnect();
+					if (value == 1)
+					{
+						client.disconnect();
+					}
 				}
 			}
 		} catch (JSONException e) {
