@@ -55,6 +55,7 @@ private:
 	Mat frame;
 	std::vector<CascadeClassifier> loadedCascades;
 	int cameraID;
+	bool useGPU;
 
 };
 
