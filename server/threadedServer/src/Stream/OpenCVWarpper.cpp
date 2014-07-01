@@ -11,6 +11,7 @@ OpenCVWarpper::OpenCVWarpper() {
 	// TODO Auto-generated constructor stub
 	this->cameraID = -1;
 
+	//returns 0 if OpenCV compiled without CUDA support
 	int cudaCount = gpu::getCudaEnabledDeviceCount();
 
 	std::stringstream ss;
@@ -24,7 +25,8 @@ OpenCVWarpper::OpenCVWarpper() {
 		ss << "[debug]\tNO compatible GPU found.\n";
 		break;
 	default:
-		ss << "[debug]\tone OR more compatible GPU found.\n";
+		ss << "[debug]\t" << cudaCount << " compatible GPU(s) found.\n";
+		gpu::setDevice(0);
 		break;
 	}
 
