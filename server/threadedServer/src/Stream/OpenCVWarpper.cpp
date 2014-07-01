@@ -10,6 +10,25 @@
 OpenCVWarpper::OpenCVWarpper() {
 	// TODO Auto-generated constructor stub
 	this->cameraID = -1;
+
+	int cudaCount = gpu::getCudaEnabledDeviceCount();
+
+	std::stringstream ss;
+	ss << "[debug]\tOpenCV construct\n";
+
+	switch (cudaCount) {
+	case 0:
+		ss << "[debug]\tOpenCV lib compiled WITHOUT GPU support\n";
+		break;
+	case -1:
+		ss << "[debug]\tNO compatible GPU found.\n";
+		break;
+	default:
+		ss << "[debug]\tone OR more compatible GPU found.\n";
+		break;
+	}
+
+	ThreadSafeLogger::instance().print(ss.str());
 }
 
 OpenCVWarpper::~OpenCVWarpper() {
@@ -18,7 +37,8 @@ OpenCVWarpper::~OpenCVWarpper() {
 		captureDevice.release();
 }
 
-int OpenCVWarpper::init(int device, double width, double heigth, double frameRate) {
+int OpenCVWarpper::init(int device, double width, double heigth,
+		double frameRate) {
 	this->cameraID = device;
 	captureDevice.open(device);
 	if (captureDevice.isOpened()) {

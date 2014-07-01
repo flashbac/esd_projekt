@@ -61,6 +61,7 @@
 									<listOptionValue builtIn="false" value="pthread"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.721929466" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="/home/dennis/git/esd_projekt/libs/opencv_cuda/lib_x64"/>
 									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu/"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.327685590" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
