@@ -32,19 +32,20 @@ void TcpProtokoll::cmdExit(){
 	Json::Value jo;
 
 	jo["cmd"] = "exit";
+	jo["version"] = TCP_Protokoll_Version;
 	jo["value"] = 1;
 
 	Json::FastWriter fastWriter;
 	sendMessageToSenderThread(fastWriter.write(jo));
 }
 
-void TcpProtokoll::camAvalible(){
+void TcpProtokoll::camAvalible(std::vector<cam_t> cams ){
 
-	IKamera *ik = IKamera::getInstance();
+	//IKamera *ik = IKamera::getInstance();
 	Json::Value jo;
 	Json::Value ja;
 
-	std::vector<cam_t> cams = ik->getCams();
+	//std::vector<cam_t> cams = ik->getCams();
 	for (unsigned int i = 0; i<cams.size();i++)
 	{
 		Json::Value io;
@@ -53,6 +54,7 @@ void TcpProtokoll::camAvalible(){
 		io["use"] = cams[i].use;
 		ja.append(io);
     }
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "cams";
 	jo["value"] = ja;
 
@@ -63,6 +65,7 @@ void TcpProtokoll::camAvalible(){
 void TcpProtokoll::statusCamera(int currentCam){
 	Json::Value jo;
 
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "camera";
 	jo["value"] = currentCam;
 	Json::FastWriter fastWriter;
@@ -73,6 +76,7 @@ void TcpProtokoll::statusUDP(std::string ip, int port){
 
 	Json::Value jo;
 	Json::Value io;
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "udp";
 	io["des"] = ip.c_str();
 	io["port"] = port;
@@ -84,6 +88,7 @@ void TcpProtokoll::statusUDP(std::string ip, int port){
 void TcpProtokoll::statusServos(int x, int y){
 	Json::Value jo;
 	Json::Value io;
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "position";
 	io["x"] = x;
 	io["y"] = y;
@@ -100,6 +105,7 @@ void TcpProtokoll::statusFace(std::vector<face_t> faces){
 	jo["status"] = "face";
 	for (unsigned int i = 0; i<faces.size();i++)
 	{
+		jo["version"] = TCP_Protokoll_Version;
 		io["id"] = faces[i].face_id;
 		io["name"] = faces[i].name;
 		io["x"] = faces[i].x;
@@ -116,6 +122,7 @@ void TcpProtokoll::statusFace(std::vector<face_t> faces){
 void TcpProtokoll::statusTrack(int face_id){
 	Json::Value jo;
 
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "track";
 	jo["value"] = face_id;
 
@@ -127,6 +134,7 @@ void TcpProtokoll::statusMTU(int mtu)
 {
 	Json::Value jo;
 
+	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "mtu";
 	jo["value"] = mtu;
 
@@ -142,8 +150,10 @@ void TcpProtokoll::commandoProzess(std::string json){
 	if ( !parsingSuccessful )
 	{
 	    // report to the user the failure and their locations in the document.
-	    std::cout  << "Failed to parse configuration\n"
+		std::stringstream ss;
+		ss  << "Failed to parse configuration\n"
 	               << reader.getFormatedErrorMessages();
+	    ThreadSafeLogger::instance().print(ss.str());
 	    return;
 	}
 	std::string cmd = root.get("cmd","").asString();
@@ -157,22 +167,22 @@ void TcpProtokoll::commandoProzess(std::string json){
 		int steps = value.get("steps","").asInt();
 		if (derection == "left")
 		{
-
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups, steps, 0);
 			return;
 		}
 		if (derection == "right")
 		{
-
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups,-steps, 0);
 			return;
 		}
 		if (derection == "top")
 		{
-
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups, 0, steps);
 			return;
 		}
 		if (derection == "bottom")
 		{
-
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups, 0, -steps);
 			return;
 		}
 	}
@@ -185,7 +195,14 @@ void TcpProtokoll::commandoProzess(std::string json){
 
 	if (cmd == "mode" ){
 		std::string value = root.get("value","").asString();
-
+		if (value == "auto")
+		{
+			session->controlMode = CONTROL_MODE_AUTOMATIK;
+		}
+		if (value == "manu")
+		{
+			session->controlMode = CONTROL_MODE_MANUELL;
+		}
 		return;
 	}
 

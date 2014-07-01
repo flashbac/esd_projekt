@@ -14,6 +14,11 @@
 #include "TcpConnection.h"
 #include "KommunikationTypes.h"
 #include "../IKamera.h"
+#include "../ThreadSafeLogger.h"
+#include "../SerialWrapper.h"
+#include "../settings.h"
+
+#define TCP_Protokoll_Version 1
 
 class TcpConnection;
 class FugexySession;
@@ -37,7 +42,7 @@ public:
 	void init ();
 
 	void cmdExit();
-	void camAvalible();
+	void camAvalible(std::vector<cam_t> cams );
 	void statusCamera(int currentCam);
 	void statusUDP(std::string ip, int port);
 	void statusServos(int x, int y);

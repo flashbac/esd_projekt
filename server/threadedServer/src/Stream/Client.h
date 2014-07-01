@@ -49,9 +49,11 @@ public:
 	void stop();
 	void setJpgQuality(int prozent);
 	void setVideoSettings(double width,  double heigth, double frameRate);
+	std::vector<face_t> getFaceDetectionVectorAsFace_t();
 
 private:
 	unsigned char cameraID;
+	bool isInit;
 
 	std::vector<unsigned char> ringpuffer[CLIENT_MAX_BUFFER_PIC_COUNT];
 	std::vector<unsigned char> copyOfPicForDetection;

@@ -12,11 +12,8 @@
 TcpListenner::TcpListenner(int globalMTU, std::string globalOutgoingDevice) {
 
 	numberOffClients = 0;
-
 	thread_TcpBinder = NULL;
-
 	running = 0;
-	sem_print = NULL;
 	this->globalMTU = globalMTU;
 	this->globalOutgoingDevice = globalOutgoingDevice;
 }
@@ -110,7 +107,7 @@ int TcpListenner::thread_Binder() {
 
 		if (client_sock > 0) {
 			if (running) {
-				if (numberOffClients <= 0) {
+				if (numberOffClients <= 1) {
 
 					FugexySession *s = new FugexySession(client_sock, this->globalMTU, this->globalOutgoingDevice);
 					sessions.push_back(s);
@@ -137,18 +134,6 @@ int TcpListenner::thread_Binder() {
 	return 0;
 }
 
-void TcpListenner::setSafePrintSemaphore(sem_t *sem) {
-	this->sem_print = sem;
-}
-
 void TcpListenner::thread_safe_print(std::string str) {
-	if (sem_print != NULL)
-	{
-		sem_wait(sem_print);
-		std::cout << str;
-		printf("%s",str.c_str());
-		sem_post(sem_print);
-	}
-	else
-		printf("%s",str.c_str());
+	ThreadSafeLogger::instance().print(str);
 }

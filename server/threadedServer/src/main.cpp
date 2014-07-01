@@ -11,22 +11,10 @@
 #include "Stream/Client.h"
 #include "Kommunikation/TcpListenner.h"
 #include "SerialWrapper.h"
-uint8_t x=90,y=90;
+uint8_t x = 90, y = 90;
 int main(int argc, char** argv) {
-	SerialWrapper& serial = SerialWrapper::instance();
-	if (serial.isOpen()) {
-		cout << "\nserialport erfolgreich geoeffnet!";
-	} else {
-		cout << "\nserialport konnte NICHT geoeffnet werden!";
-	}
-	cout << "\nsende";
-	if (argc > 1)
-		x =  (uint8_t)atoi(argv[1]);
-	if (argc > 2)
-		y = (uint8_t)atoi(argv[2]);
-	cout << x << y << std::flush;
-	serial.sendPos(0, x, y);
-	while (1);
+
+	OpenCVWarpper wcv;
 
 	Helper h;
 	sem_t sem_print;

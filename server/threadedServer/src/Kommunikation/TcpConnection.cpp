@@ -68,7 +68,7 @@ void TcpConnection::sendMessage(std::string str) {
 
 	if (running == true) {
 		sem_wait(&sem_message_vector);
-		printf("Push to Vector: %s\n", str.c_str());
+		//printf("Push to Vector: %s\n", str.c_str());
 		messages.push_back(str);
 		sem_post(&sem_message_vector);
 	}
@@ -96,7 +96,8 @@ void TcpConnection::thread_Recive(int socket_desc) {
 
 					// Befehl ausführen
 					{
-						printf("Empfangen: %s\n", json.c_str());
+						ThreadSafeLogger::instance().print("TCP Protokoll: Empfangen :" + json);
+						//printf("Empfangen: %s\n", json.c_str());
 						//sendMessage(json);
 						tcpP->commandoProzess(json);
 
@@ -145,14 +146,15 @@ void TcpConnection::thread_Sender(int socket_desc) {
 				sem_wait(&sem_message_vector);
 				if (!messages.empty()) {
 					for (unsigned int i = 0; i < messages.size(); i++) {
-						s.append(messages[i]);
-						s.append(";");
+						s.append(messages[i] + ";");
+						//s.append(";");
 					}
 				}
 				messages.clear();
 				sem_post(&sem_message_vector);
 
-				printf("Sende    : %s\n", s.c_str());
+				ThreadSafeLogger::instance().print("TCP Protokoll: Sende     :" + s);
+				//printf("Sende    : %s\n", s.c_str());
 
 				send(sock, s.c_str(), s.length(), 0);
 			}

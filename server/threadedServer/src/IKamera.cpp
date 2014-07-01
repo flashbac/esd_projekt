@@ -49,11 +49,19 @@ IKamera* IKamera::getInstance() {
 		cam4.camWidth = 640;
 		cam4.camHeigth = 360;
 		cam4.camFrameRate = 25;
+		cam_t cam5;
+		cam5.systemID = 3;
+		cam5.name = "Udoo 640x480";
+		cam5.use = false;
+		cam5.camWidth = 640;
+		cam5.camHeigth = 480;
+		cam5.camFrameRate = 25;
 
 		theInstance->cams.push_back(cam);
 		theInstance->cams.push_back(cam2);
 		theInstance->cams.push_back(cam3);
 		theInstance->cams.push_back(cam4);
+		theInstance->cams.push_back(cam5);
 	}
 	return theInstance;
 }
@@ -82,7 +90,7 @@ int IKamera::useCam(int id) {
 		} else
 			return 0;
 	} else
-		return -1;
+		return 0;
 }
 
 int IKamera::unUseCam(int id) {
@@ -94,6 +102,6 @@ int IKamera::unUseCam(int id) {
 		} else
 			return 0;
 	} else
-		return -1;
+		return 0;
 }
 
