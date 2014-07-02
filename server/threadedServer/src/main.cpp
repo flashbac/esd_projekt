@@ -8,7 +8,6 @@
 #include <semaphore.h>
 //#include <iostream>
 
-#include "Stream/Client.h"
 #include "Kommunikation/TcpListenner.h"
 #include "SerialWrapper.h"
 uint8_t x = 90, y = 90;
