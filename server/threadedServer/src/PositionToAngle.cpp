@@ -140,7 +140,7 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 		std::stringstream ss;
 		ss << "[debug]\tBerechnete steps x:" << stepsX << " y:" << stepsY
 				<< "\n";
-		ThreadSafeLogger::instance().print(ss.str());
+		//ThreadSafeLogger::instance().print(ss.str());
 		SerialWrapper::instance().sendDelta(AvailabeServoGroups, stepsX,
 				stepsY);
 

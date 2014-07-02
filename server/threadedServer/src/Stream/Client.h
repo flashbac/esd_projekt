@@ -41,8 +41,6 @@ class Client {
 public:
 	Client(FugexySession *session,std::string ipadress, int port, unsigned char camerID, std::string outgoingDeviceName);
 	virtual ~Client();
-	void setSafePrintSemaphore(sem_t *sem);
-	void thread_safe_print(std::string str);
 	void setMTUsize(int MTUsize);
 	int getMTUsize();
 	int init();
@@ -70,7 +68,6 @@ private:
 	sem_t sem_faceDetectionBusy;
 	sem_t sem_faceDetectionVector;
 	sem_t sem_faceDetectionNewPicAvailable;
-	sem_t *sem_print;
 
 	UDPClient *udpClient;
 	UDPProtkoll *udpProtokoll;

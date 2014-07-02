@@ -7,9 +7,7 @@
 
 #include "TcpProtokoll.h"
 
-
-TcpProtokoll::TcpProtokoll(FugexySession *session)
-{
+TcpProtokoll::TcpProtokoll(FugexySession *session) {
 	this->tcpConnection = NULL;
 	this->session = session;
 }
@@ -18,17 +16,19 @@ TcpProtokoll::~TcpProtokoll() {
 
 }
 
-void TcpProtokoll::setTcpConnectionClass(TcpConnection* tcpConnection){
+void TcpProtokoll::setTcpConnectionClass(TcpConnection* tcpConnection) {
 	this->tcpConnection = tcpConnection;
 
 }
 
-void TcpProtokoll::sendMessageToSenderThread(std::string json){
-	printf("Send: %s", json.c_str());
+void TcpProtokoll::sendMessageToSenderThread(std::string json) {
+	std::stringstream ss;
+	ss << "[debug]\t[TcpProtokoll Send: "<< json << "\n";
+	//ThreadSafeLogger::instance().print(ss.str());
 	tcpConnection->sendMessage(json);
 }
 
-void TcpProtokoll::cmdExit(){
+void TcpProtokoll::cmdExit() {
 	Json::Value jo;
 
 	jo["cmd"] = "exit";
@@ -39,21 +39,20 @@ void TcpProtokoll::cmdExit(){
 	sendMessageToSenderThread(fastWriter.write(jo));
 }
 
-void TcpProtokoll::camAvalible(std::vector<cam_t> cams ){
+void TcpProtokoll::camAvalible(std::vector<cam_t> cams) {
 
 	//IKamera *ik = IKamera::getInstance();
 	Json::Value jo;
 	Json::Value ja;
 
 	//std::vector<cam_t> cams = ik->getCams();
-	for (unsigned int i = 0; i<cams.size();i++)
-	{
+	for (unsigned int i = 0; i < cams.size(); i++) {
 		Json::Value io;
 		io["id"] = i;
 		io["name"] = cams[i].name;
 		io["use"] = cams[i].use;
 		ja.append(io);
-    }
+	}
 	jo["version"] = TCP_Protokoll_Version;
 	jo["status"] = "cams";
 	jo["value"] = ja;
@@ -62,7 +61,7 @@ void TcpProtokoll::camAvalible(std::vector<cam_t> cams ){
 	sendMessageToSenderThread(fastWriter.write(jo));
 
 }
-void TcpProtokoll::statusCamera(int currentCam){
+void TcpProtokoll::statusCamera(int currentCam) {
 	Json::Value jo;
 
 	jo["version"] = TCP_Protokoll_Version;
@@ -72,7 +71,7 @@ void TcpProtokoll::statusCamera(int currentCam){
 	sendMessageToSenderThread(fastWriter.write(jo));
 
 }
-void TcpProtokoll::statusUDP(std::string ip, int port){
+void TcpProtokoll::statusUDP(std::string ip, int port) {
 
 	Json::Value jo;
 	Json::Value io;
@@ -85,7 +84,7 @@ void TcpProtokoll::statusUDP(std::string ip, int port){
 	Json::FastWriter fastWriter;
 	sendMessageToSenderThread(fastWriter.write(jo));
 }
-void TcpProtokoll::statusServos(int x, int y){
+void TcpProtokoll::statusServos(int x, int y) {
 	Json::Value jo;
 	Json::Value io;
 	jo["version"] = TCP_Protokoll_Version;
@@ -98,13 +97,12 @@ void TcpProtokoll::statusServos(int x, int y){
 	sendMessageToSenderThread(fastWriter.write(jo));
 
 }
-void TcpProtokoll::statusFace(std::vector<face_t> faces){
+void TcpProtokoll::statusFace(std::vector<face_t> faces) {
 	Json::Value jo;
 	Json::Value array;
 	Json::Value io;
 	jo["status"] = "face";
-	for (unsigned int i = 0; i<faces.size();i++)
-	{
+	for (unsigned int i = 0; i < faces.size(); i++) {
 		jo["version"] = TCP_Protokoll_Version;
 		io["id"] = faces[i].face_id;
 		io["name"] = faces[i].name;
@@ -119,7 +117,7 @@ void TcpProtokoll::statusFace(std::vector<face_t> faces){
 	Json::FastWriter fastWriter;
 	sendMessageToSenderThread(fastWriter.write(jo));
 }
-void TcpProtokoll::statusTrack(int face_id){
+void TcpProtokoll::statusTrack(int face_id) {
 	Json::Value jo;
 
 	jo["version"] = TCP_Protokoll_Version;
@@ -130,8 +128,7 @@ void TcpProtokoll::statusTrack(int face_id){
 	sendMessageToSenderThread(fastWriter.write(jo));
 }
 
-void TcpProtokoll::statusMTU(int mtu)
-{
+void TcpProtokoll::statusMTU(int mtu) {
 	Json::Value jo;
 
 	jo["version"] = TCP_Protokoll_Version;
@@ -142,95 +139,85 @@ void TcpProtokoll::statusMTU(int mtu)
 	sendMessageToSenderThread(fastWriter.write(jo));
 }
 
-void TcpProtokoll::commandoProzess(std::string json){
+void TcpProtokoll::commandoProzess(std::string json) {
 	Json::Value root;
 	Json::Reader reader;
 
 	bool parsingSuccessful = reader.parse(json, root);
-	if ( !parsingSuccessful )
-	{
-	    // report to the user the failure and their locations in the document.
+	if (!parsingSuccessful) {
+		// report to the user the failure and their locations in the document.
 		std::stringstream ss;
-		ss  << "Failed to parse configuration\n"
-	               << reader.getFormatedErrorMessages();
-	    ThreadSafeLogger::instance().print(ss.str());
-	    return;
+		ss << "Failed to parse configuration\n"
+				<< reader.getFormatedErrorMessages();
+		ThreadSafeLogger::instance().print(ss.str());
+		return;
 	}
-	std::string cmd = root.get("cmd","").asString();
+	std::string cmd = root.get("cmd", "").asString();
 
 	//printf("%s", cmd.c_str());
 
-	if (cmd == "position" ){
+	if (cmd == "position") {
 		Json::Value value;
-		value = root.get("value","");
-		std::string derection = value.get("direction","").asString();
-		int steps = value.get("steps","").asInt();
-		if (derection == "left")
-		{
+		value = root.get("value", "");
+		std::string derection = value.get("direction", "").asString();
+		int steps = value.get("steps", "").asInt();
+		if (derection == "left") {
 			SerialWrapper::instance().sendDelta(AvailabeServoGroups, steps, 0);
 			return;
 		}
-		if (derection == "right")
-		{
-			SerialWrapper::instance().sendDelta(AvailabeServoGroups,-steps, 0);
+		if (derection == "right") {
+			SerialWrapper::instance().sendDelta(AvailabeServoGroups, -steps, 0);
 			return;
 		}
-		if (derection == "top")
-		{
+		if (derection == "top") {
 			SerialWrapper::instance().sendDelta(AvailabeServoGroups, 0, steps);
 			return;
 		}
-		if (derection == "bottom")
-		{
+		if (derection == "bottom") {
 			SerialWrapper::instance().sendDelta(AvailabeServoGroups, 0, -steps);
 			return;
 		}
 	}
 
-	if (cmd == "face" ){
-			int value = root.get("value","").asInt();
-			session->SetFaceToDetect(value);
-			return;
+	if (cmd == "face") {
+		int value = root.get("value", "").asInt();
+		session->SetFaceToDetect(value);
+		return;
 	}
 
-	if (cmd == "mode" ){
-		std::string value = root.get("value","").asString();
-		if (value == "auto")
-		{
+	if (cmd == "mode") {
+		std::string value = root.get("value", "").asString();
+		if (value == "auto") {
 			session->controlMode = CONTROL_MODE_AUTOMATIK;
 		}
-		if (value == "manu")
-		{
+		if (value == "manu") {
 			session->controlMode = CONTROL_MODE_MANUELL;
 		}
 		return;
 	}
 
-	if (cmd == "camera" ){
-		int value = root.get("value","").asInt();
+	if (cmd == "camera") {
+		int value = root.get("value", "").asInt();
 		session->SetCamera(value);
 		return;
 	}
 
-	if (cmd == "udp" ){
+	if (cmd == "udp") {
 		Json::Value value;
-		value = root.get("value","");
-		std::string des = value.get("des","").asString();
-		int port = value.get("port","").asInt();
-		session->StartClient(des,port);
+		value = root.get("value", "");
+		std::string des = value.get("des", "").asString();
+		int port = value.get("port", "").asInt();
+		session->StartClient(des, port);
 		return;
 	}
 
-	if (cmd == "exit" ){
-		int value = root.get("value","").asInt();
-		if (value == 1)
-		{
+	if (cmd == "exit") {
+		int value = root.get("value", "").asInt();
+		if (value == 1) {
 			//disconnect
 			session->disconnectedClient();
 			return;
 		}
 	}
 }
-
-
 
