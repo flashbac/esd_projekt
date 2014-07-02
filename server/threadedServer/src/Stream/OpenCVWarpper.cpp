@@ -45,7 +45,8 @@ OpenCVWarpper::~OpenCVWarpper() {
 int OpenCVWarpper::init(int device, double width, double heigth,
 		double frameRate) {
 	std::stringstream ss;
-	ss << "[debug]\tOpenCV Cam Settings: W " << width << " H " << heigth << " @ " << frameRate << "\n";
+	ss << "[debug]\tOpenCV Cam Settings: W " << width << " H " << heigth
+			<< " @ " << frameRate << "\n";
 	ThreadSafeLogger::instance().print(ss.str());
 
 	this->cameraID = device;

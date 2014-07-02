@@ -160,6 +160,8 @@ void Client::wait(int seconds) {
 void Client::thread_kamera_reader() {
 	static int lastFrameRate = 0;
 	static int lastFrameMS = 0;
+	static int pic_counter = 0;
+
 	try {
 		while (running) {
 			// ist trozdem call by referenz!
@@ -169,6 +171,18 @@ void Client::thread_kamera_reader() {
 
 			if (!openCVforCapture.queryFrame())
 				this->thread_safe_print("\nbild query fehlgeschlagen");
+
+			openCVforCapture.MatToJPEG(&nextPic, this->jpgQuality);
+
+			pic_counter++;
+			pic_counter = pic_counter % 5;
+			//frage ob faceDetection nicht beschäftigt ist?
+			if (isFaceDetectionReady() && (pic_counter == 0)) {
+				// kopie vom bild anlegen, copyOfPicForDetection wird durch sem_faceDetectionNewPicAvailable geschuetzt
+				copyOfPicForDetection.resize(nextPic.size());
+				memcpy(&copyOfPicForDetection[0], &nextPic[0], nextPic.size());
+				sem_post(&sem_faceDetectionNewPicAvailable);
+			}
 
 			openCVforCapture.drawRects(this->getFaceDetectionVector());
 
@@ -229,20 +243,11 @@ void Client::thread_face_detection() {
 }
 
 void Client::thread_send_pic() {
-	static int pic_counter = 0;
 	try {
 		while (running) {
 			// keine kopie, ist noch call by reference
 			std::vector<unsigned char>& nextPic = *getNextToReadToSend();
-			pic_counter++;
-			pic_counter = pic_counter % 10;
-			//frage ob faceDetection nicht beschäftigt ist?
-			if (isFaceDetectionReady() && (pic_counter == 0)) {
-				// kopie vom bild anlegen, copyOfPicForDetection wird durch sem_faceDetectionNewPicAvailable geschuetzt
-				copyOfPicForDetection.resize(nextPic.size());
-				memcpy(&copyOfPicForDetection[0], &nextPic[0], nextPic.size());
-				sem_post(&sem_faceDetectionNewPicAvailable);
-			}
+
 			// send pic
 			this->udpProtokoll->sendInChunks(this->cameraID, &nextPic[0],
 					nextPic.size());
