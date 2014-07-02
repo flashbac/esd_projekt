@@ -29,6 +29,7 @@
 
 //defines
 #define CLIENT_MAX_BUFFER_PIC_COUNT 20
+#define MAX_ABWEICHUNG_RECHTECK 5
 
 //used namespaces
 using namespace std;
@@ -58,6 +59,7 @@ private:
 	std::vector<unsigned char> ringpuffer[CLIENT_MAX_BUFFER_PIC_COUNT];
 	std::vector<unsigned char> copyOfPicForDetection;
 	std::vector<cv::Rect> global_faces;
+	std::vector<cv::Rect> global_faces_before;
 	int jpgQuality;
 	double camera_width;
 	double camera_heigth;
@@ -84,6 +86,7 @@ private:
 	bool running;
 	timeval frameRateMeasureStart, frameRateMeasureEnd;
 
+	bool AbweichungImBereich(cv::Rect a, cv::Rect b, double MaxAbweichung);
 	bool isFaceDetectionReady();
 	void setFaceDetectionVector(std::vector<cv::Rect> faces);
 	std::vector<cv::Rect> getFaceDetectionVector();
