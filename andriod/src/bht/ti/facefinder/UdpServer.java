@@ -1,17 +1,11 @@
 package bht.ti.facefinder;
 
 import java.io.IOException;
-import java.io.PipedOutputStream;
-import java.io.PipedWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetSocketAddress;
 import java.net.SocketException;
-
-import android.R.bool;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.ImageView;
 import bht.esd.UDPProtokoll;
 
 public class UdpServer implements Runnable{

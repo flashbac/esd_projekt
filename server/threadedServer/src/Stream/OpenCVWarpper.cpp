@@ -10,6 +10,30 @@
 OpenCVWarpper::OpenCVWarpper() {
 	// TODO Auto-generated constructor stub
 	this->cameraID = -1;
+	this->useGPU = false;
+
+	//returns 0 if OpenCV compiled without CUDA support
+	int cudaCount = gpu::getCudaEnabledDeviceCount();
+
+	std::stringstream ss;
+	ss << "[debug]\tOpenCV construct\n";
+
+	switch (cudaCount) {
+	case 0:
+		ss << "[debug]\tOpenCV lib compiled WITHOUT GPU support\n";
+		break;
+	case -1:
+		ss << "[debug]\tNO compatible GPU found.\n";
+		break;
+	default:
+		ss << "[debug]\t" << cudaCount << " compatible GPU(s) found.\n";
+		gpu::resetDevice();
+		gpu::setDevice(0);
+		this->useGPU = true;
+		break;
+	}
+
+	ThreadSafeLogger::instance().print(ss.str());
 }
 
 OpenCVWarpper::~OpenCVWarpper() {
@@ -18,7 +42,13 @@ OpenCVWarpper::~OpenCVWarpper() {
 		captureDevice.release();
 }
 
-int OpenCVWarpper::init(int device, double width, double heigth, double frameRate) {
+int OpenCVWarpper::init(int device, double width, double heigth,
+		double frameRate) {
+	std::stringstream ss;
+	ss << "[debug]\tOpenCV Cam Settings: W " << width << " H " << heigth
+			<< " @ " << frameRate << "\n";
+	ThreadSafeLogger::instance().print(ss.str());
+
 	this->cameraID = device;
 	captureDevice.open(device);
 	if (captureDevice.isOpened()) {
@@ -79,9 +109,16 @@ std::vector<Rect> OpenCVWarpper::detect(Mat *frame, CascadeClassifier cascade) {
 
 	detectedRects.clear();
 	//find faces and store them in the vector array
-	//face_cascade.detectMultiScale(frame_gray, faces, 1.1, 3, CV_HAAR_FIND_BIGGEST_OBJECT|CV_HAAR_SCALE_IMAGE, Size(30,30));
-	cascade.detectMultiScale(frame_gray, detectedRects, 1.1, 3, 0,
-			Size(30, 30));
+	if (this->useGPU) {
+		// allocate and upload
+		gpu::GpuMat gpuImgForUpload(frame_gray);
+		gpu::HOGDescriptor hog;
+		hog.detectMultiScale(gpuImgForUpload, detectedRects, 1.1);
+	} else {
+		//face_cascade.detectMultiScale(frame_gray, faces, 1.1, 3, CV_HAAR_FIND_BIGGEST_OBJECT|CV_HAAR_SCALE_IMAGE, Size(30,30));
+		cascade.detectMultiScale(frame_gray, detectedRects, 1.1, 3, 0,
+				Size(30, 30));
+	}
 
 	return detectedRects;
 }

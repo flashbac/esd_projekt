@@ -107,7 +107,7 @@ int TcpListenner::thread_Binder() {
 
 		if (client_sock > 0) {
 			if (running) {
-				if (numberOffClients <= 0) {
+				if (numberOffClients <= 1) {
 
 					FugexySession *s = new FugexySession(client_sock, this->globalMTU, this->globalOutgoingDevice);
 					sessions.push_back(s);

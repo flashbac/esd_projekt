@@ -57,11 +57,20 @@ IKamera* IKamera::getInstance() {
 		cam5.camHeigth = 480;
 		cam5.camFrameRate = 25;
 
+		cam_t cam6;
+		cam6.systemID = 0;
+		cam6.name = "jetson 640x360@25";
+		cam6.use = false;
+		cam6.camWidth = 640;
+		cam6.camHeigth = 360;
+		cam6.camFrameRate = 25;
+
 		theInstance->cams.push_back(cam);
 		theInstance->cams.push_back(cam2);
 		theInstance->cams.push_back(cam3);
 		theInstance->cams.push_back(cam4);
 		theInstance->cams.push_back(cam5);
+		theInstance->cams.push_back(cam6);
 	}
 	return theInstance;
 }

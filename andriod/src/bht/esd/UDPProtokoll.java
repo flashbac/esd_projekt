@@ -1,7 +1,6 @@
 package bht.esd;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.PipedOutputStream;
 import java.net.DatagramPacket;
 import java.nio.ByteBuffer;
@@ -10,7 +9,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;

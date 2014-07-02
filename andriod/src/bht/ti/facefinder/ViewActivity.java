@@ -26,7 +26,7 @@ public class ViewActivity extends Activity implements OnClickListener {
 	private static final int KAMERA_MENU = 10;
 	private static final int FACE_MENU = 11;
 	private static final int FACE_OFFSET = 20;
-	private int mtu = 1500;
+	//private int mtu = 1500;
 
 	
 	@Override

@@ -8,12 +8,10 @@
 #include <semaphore.h>
 //#include <iostream>
 
-#include "Stream/Client.h"
 #include "Kommunikation/TcpListenner.h"
 #include "SerialWrapper.h"
 uint8_t x = 90, y = 90;
 int main(int argc, char** argv) {
-
 	Helper h;
 	sem_t sem_print;
 	//std::string ip = "141.64.166.22";
