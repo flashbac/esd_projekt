@@ -82,9 +82,54 @@ bool Client::isFaceDetectionReady() {
 	}
 }
 
+bool Client::AbweichungImBereich(cv::Rect a, cv::Rect b, double MaxAbweichung) {
+	 double xAbweichung = (double)abs((a.x + a.width/2) - (b.x + b.width/2)) * 100.0 / (double)camera_width;
+	 double yAbweichung = (double)abs((a.y + a.height/2) - (b.y + b.height/2)) * 100.0 / (double)camera_heigth;
+
+	 if (xAbweichung <= MaxAbweichung && yAbweichung <= MaxAbweichung)
+		 return true;
+	 else
+		 return false;
+}
+
 void Client::setFaceDetectionVector(std::vector<cv::Rect> faces) {
 	sem_wait(&sem_faceDetectionVector);
-	global_faces = faces;
+
+//	std::vector<cv::Rect> aFaces = global_faces;  // Angezegte Faces
+//
+//	// Vergleich zwischen neuen faces und den vorher angezeigten
+//	for (unsigned int i = 0; i < faces.size(); i++) {
+//		for (unsigned int j = 0; j < aFaces.size(); j++) {
+//			if (AbweichungImBereich(aFaces[j],faces[i], MAX_ABWEICHUNG_RECHTECK) )
+//			{
+//				//Face behalten
+//			}
+//			else
+//			{ // Abweichung entstanden mit Before vergleichen
+//				for (unsigned int k = 0; k < global_faces_before.size(); k++) {
+//					if (AbweichungImBereich(aFaces[j],global_faces_before[k], MAX_ABWEICHUNG_RECHTECK))
+//					{
+//						// Face berhalten
+//					}
+//					else
+//					{
+//						// Abweichungen zu Groß also Face übereinstimmung nicht gefunden
+//						// Face löschen
+//						aFaces.erase(aFaces.begin()+j);
+//					}
+//				}
+//			}
+//
+//			// Faces hinzufügen fehlt noch
+//
+//		}
+//	}
+//	global_faces_before = faces;
+//
+//	global_faces = aFaces;
+
+
+	global_faces = faces; // !!! das muss das auskommentiert werden wenn das oben wieder rein kommentiert wird
 	sem_post(&sem_faceDetectionVector);
 	session->notifyNewFaces();
 }
