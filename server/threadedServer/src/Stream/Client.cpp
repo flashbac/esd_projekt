@@ -40,8 +40,8 @@ Client::Client(FugexySession *session, std::string ipadress, int port,
 		this->~Client();
 
 	if (openCVforFaceDetection.addCascade(
-			"/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml")
-	//"/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml")
+			//"/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml")
+	"/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml")
 			!= 0)
 		this->~Client();
 }
