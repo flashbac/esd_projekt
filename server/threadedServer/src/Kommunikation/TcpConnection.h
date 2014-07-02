@@ -31,8 +31,6 @@ public:
 	TcpConnection(int sock, TcpProtokoll *tcpP);
 	virtual ~TcpConnection();
 	void sendMessage(std::string str);
-	void setSafePrintSemaphore(sem_t *sem);
-	void thread_safe_print(std::string str);
 	void stop();
 
 private:
@@ -44,13 +42,11 @@ private:
 	TcpProtokoll *tcpP;
 	int sock;
 
-	sem_t *sem_print;
 	sem_t sem_message_vector;
 
 	void thread_Sender(int socket_desc);
 	void thread_Recive(int socket_desc);
 	int init();
-
 
 };
 

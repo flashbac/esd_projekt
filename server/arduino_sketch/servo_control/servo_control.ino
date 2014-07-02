@@ -64,11 +64,11 @@ void TC6_Handler()
 
     if (servosGroups[i].desiredY > istZustandY){
       istZustandY += STEP_WITDTH;
-      servosGroups[i].servoX.write(istZustandY);
+      servosGroups[i].servoY.write(istZustandY);
     }
     if (servosGroups[i].desiredY < istZustandY){
       istZustandY -= STEP_WITDTH;
-      servosGroups[i].servoX.write(istZustandY);
+      servosGroups[i].servoY.write(istZustandY);
     }
   }
 }
