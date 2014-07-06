@@ -5,11 +5,14 @@
  *      Author: dennis
  */
 
+#include <opencv2/core/core.hpp>
+#include <opencv2/objdetect/objdetect.hpp>
+#include <sys/time.h>
 #include <fstream>
 #include <iostream>
 #include <iterator>
 #include <vector>
-#include <sys/time.h>
+#include <unistd.h>
 
 #include "OpenCVWarpper.h"
 
@@ -20,8 +23,10 @@ timeval MeasureStart, MeasureEnd;
 int main(int argc, char** argv) {
 
 	OpenCVWarpper ocv;
-	int timeinterval = 0;
-	int average = 0;
+	long timeinterval = 0;
+	long sec = 0;
+	long average = 0;
+	long sec_average = 0;
 
 	std::ifstream testFile("./aufnahme.jpg", std::ios::binary);
 	std::vector<unsigned char> fileContents(
@@ -51,10 +56,18 @@ int main(int argc, char** argv) {
 		timeinterval = MeasureEnd.tv_usec - MeasureStart.tv_usec;
 		timeinterval = timeinterval / 1000;
 		average += timeinterval;
+
+		sec = MeasureEnd.tv_sec - MeasureStart.tv_sec;
+
+		//printf("Durchlauf %d: %ld sec und %ld microsec -> %f \n",i, sec, usec, (double) ((double)sec + (double)usec/10));
+		sec_average += sec;
+
 	}
 
 	average /= 10;
-	std::cout << "Durchschnittliche Zeit: " << average << "ms\n";
+	sec_average /= 10;
+
+	std::cout << "Durchschnittliche Zeit: " << sec_average << "s und " << average <<"ms\n";
 
 	return 0;
 }
