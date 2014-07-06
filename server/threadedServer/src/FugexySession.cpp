@@ -97,11 +97,6 @@ void FugexySession::StartClient(std::string ip, int port) {
 
 	theClient = new Client(this, ip, port, tmpCam.systemID,
 			this->outgoingDevice);
-	sem_t sem_print;
-	if (sem_init(&sem_print, 0, 1) < 0) {
-		std::cout << "Error: init sem_print";
-	}
-	theClient->setSafePrintSemaphore(&sem_print);
 
 	//setup Logitech c270 -> 640x360 @ 25 fps
 	theClient->setVideoSettings(tmpCam.camWidth, tmpCam.camHeigth,

@@ -16,7 +16,6 @@ Client::Client(FugexySession *session, std::string ipadress, int port,
 	this->thread_face = NULL;
 	this->thread_UDPsend = NULL;
 	this->cameraID = kamerID;
-	this->sem_print = NULL;
 	this->jpgQuality = 100;
 	//default: most cameras support this mode 320x240@25
 	this->camera_width = 320;
@@ -62,13 +61,6 @@ Client::~Client() {
 
 }
 
-void Client::thread_safe_print(string str) {
-	sem_wait(this->sem_print);
-	std::cout << str;
-	cout.flush();
-	sem_post(this->sem_print);
-}
-
 bool Client::isFaceDetectionReady() {
 	int value = -1;
 
@@ -82,9 +74,56 @@ bool Client::isFaceDetectionReady() {
 	}
 }
 
+bool Client::AbweichungImBereich(cv::Rect a, cv::Rect b, double MaxAbweichung) {
+	double xAbweichung = (double) abs((a.x + a.width / 2) - (b.x + b.width / 2))
+			* 100.0 / (double) camera_width;
+	double yAbweichung = (double) abs(
+			(a.y + a.height / 2) - (b.y + b.height / 2)) * 100.0
+			/ (double) camera_heigth;
+
+	if (xAbweichung <= MaxAbweichung && yAbweichung <= MaxAbweichung)
+		return true;
+	else
+		return false;
+}
+
 void Client::setFaceDetectionVector(std::vector<cv::Rect> faces) {
 	sem_wait(&sem_faceDetectionVector);
-	global_faces = faces;
+
+//	std::vector<cv::Rect> aFaces = global_faces;  // Angezegte Faces
+//
+//	// Vergleich zwischen neuen faces und den vorher angezeigten
+//	for (unsigned int i = 0; i < faces.size(); i++) {
+//		for (unsigned int j = 0; j < aFaces.size(); j++) {
+//			if (AbweichungImBereich(aFaces[j],faces[i], MAX_ABWEICHUNG_RECHTECK) )
+//			{
+//				//Face behalten
+//			}
+//			else
+//			{ // Abweichung entstanden mit Before vergleichen
+//				for (unsigned int k = 0; k < global_faces_before.size(); k++) {
+//					if (AbweichungImBereich(aFaces[j],global_faces_before[k], MAX_ABWEICHUNG_RECHTECK))
+//					{
+//						// Face berhalten
+//					}
+//					else
+//					{
+//						// Abweichungen zu Groß also Face übereinstimmung nicht gefunden
+//						// Face löschen
+//						aFaces.erase(aFaces.begin()+j);
+//					}
+//				}
+//			}
+//
+//			// Faces hinzufügen fehlt noch
+//
+//		}
+//	}
+//	global_faces_before = faces;
+//
+//	global_faces = aFaces;
+
+	global_faces = faces; // !!! das muss das auskommentiert werden wenn das oben wieder rein kommentiert wird
 	sem_post(&sem_faceDetectionVector);
 	session->notifyNewFaces();
 }
@@ -160,6 +199,8 @@ void Client::wait(int seconds) {
 void Client::thread_kamera_reader() {
 	static int lastFrameRate = 0;
 	static int lastFrameMS = 0;
+	static int pic_counter = 0;
+
 	try {
 		while (running) {
 			// ist trozdem call by referenz!
@@ -168,7 +209,20 @@ void Client::thread_kamera_reader() {
 			gettimeofday(&(this->frameRateMeasureStart), 0);
 
 			if (!openCVforCapture.queryFrame())
-				this->thread_safe_print("\nbild query fehlgeschlagen");
+				ThreadSafeLogger::instance().print(
+						"[debug]\t[Client] bild query fehlgeschlagen");
+
+			openCVforCapture.MatToJPEG(&nextPic, this->jpgQuality);
+
+			pic_counter++;
+			pic_counter = pic_counter % 5;
+			//frage ob faceDetection nicht beschäftigt ist?
+			if (isFaceDetectionReady() && (pic_counter == 0)) {
+				// kopie vom bild anlegen, copyOfPicForDetection wird durch sem_faceDetectionNewPicAvailable geschuetzt
+				copyOfPicForDetection.resize(nextPic.size());
+				memcpy(&copyOfPicForDetection[0], &nextPic[0], nextPic.size());
+				sem_post(&sem_faceDetectionNewPicAvailable);
+			}
 
 			openCVforCapture.drawRects(this->getFaceDetectionVector());
 
@@ -198,7 +252,8 @@ void Client::thread_kamera_reader() {
 			boost::this_thread::interruption_point();
 		}
 	} catch (boost::thread_interrupted&) {
-		thread_safe_print("\nthread_kamera_reader interrupted!");
+		ThreadSafeLogger::instance().print(
+				"[debug]\t[Client] thread_kamera_reader interrupted!");
 	}
 }
 
@@ -222,27 +277,19 @@ void Client::thread_face_detection() {
 			sem_post(&sem_faceDetectionBusy);
 			boost::this_thread::interruption_point();
 		}
-		thread_safe_print("\nFace detection wurde beeendet!");
+		//ThreadSafeLogger::instance().print("[debug]\t[Client] Face detection wurde beeendet!");
 	} catch (boost::thread_interrupted&) {
-		thread_safe_print("\nFace detection interruppted!");
+		ThreadSafeLogger::instance().print(
+				"[debug]\t[Client] Face detection interruppted!");
 	}
 }
 
 void Client::thread_send_pic() {
-	static int pic_counter = 0;
 	try {
 		while (running) {
 			// keine kopie, ist noch call by reference
 			std::vector<unsigned char>& nextPic = *getNextToReadToSend();
-			pic_counter++;
-			pic_counter = pic_counter % 10;
-			//frage ob faceDetection nicht beschäftigt ist?
-			if (isFaceDetectionReady() && (pic_counter == 0)) {
-				// kopie vom bild anlegen, copyOfPicForDetection wird durch sem_faceDetectionNewPicAvailable geschuetzt
-				copyOfPicForDetection.resize(nextPic.size());
-				memcpy(&copyOfPicForDetection[0], &nextPic[0], nextPic.size());
-				sem_post(&sem_faceDetectionNewPicAvailable);
-			}
+
 			// send pic
 			this->udpProtokoll->sendInChunks(this->cameraID, &nextPic[0],
 					nextPic.size());
@@ -251,14 +298,13 @@ void Client::thread_send_pic() {
 			boost::this_thread::interruption_point();
 		}
 	} catch (boost::thread_interrupted&) {
-		thread_safe_print("\nthread_send_pic interrupted!");
+		ThreadSafeLogger::instance().print(
+				"[debug]\t[Client] thread_send_pic interrupted!");
 	} catch (std::exception &e) {
-		thread_safe_print(e.what());
+		std::stringstream ss;
+		ss << "[debug]\t[Client] " << e.what() << "\n";
+		ThreadSafeLogger::instance().print(ss.str());
 	}
-}
-
-void Client::setSafePrintSemaphore(sem_t *sem) {
-	this->sem_print = sem;
 }
 
 void Client::setMTUsize(int MTUsize) {
@@ -371,7 +417,8 @@ void Client::stop() {
 			delete (this->thread_cam);
 		}
 
-		thread_safe_print("\nall interruppted!");
+		ThreadSafeLogger::instance().print(
+				"[debug]\t[Client] all threads interruppted!");
 	}
 }
 
