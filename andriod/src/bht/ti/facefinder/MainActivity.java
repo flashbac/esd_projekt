@@ -34,20 +34,6 @@ public class MainActivity extends Activity {
 
 	private void btnIPAutoFill() {
 		// TODO Auto-generated method stub
-		Button rensky = (Button)findViewById(R.id.rensky_net);
-		rensky.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				EditText etip = (EditText) findViewById(R.id.editTextIpAddress);
-				EditText etport = (EditText) findViewById(R.id.editTextPort);
-				etip.getText().clear();
-				etport.getText().clear();
-				etip.getText().append("88.198.13.243");
-				etport.getText().append("5000");
-			}
-		});
 		
 		Button home = (Button)findViewById(R.id.home_server);
 		home.setOnClickListener(new View.OnClickListener() {
