@@ -111,8 +111,8 @@ std::vector<Rect> OpenCVWarpper::detect(Mat *frame, CascadeClassifier cascade) {
 	//find faces and store them in the vector array
 	if (this->useGPU) {
 		// allocate and upload
-		gpu::GpuMat gpuImgForUpload(frame_gray);
-		gpu::HOGDescriptor hog;
+		static gpu::GpuMat gpuImgForUpload(frame_gray);
+		static gpu::HOGDescriptor hog;
 		hog.detectMultiScale(gpuImgForUpload, detectedRects, 1.1);
 	} else {
 		cascade.detectMultiScale(frame_gray, detectedRects, 1.1, 5, 0,
