@@ -49,17 +49,18 @@ int main(int argc, char** argv) {
 		gettimeofday(&(MeasureStart), 0);
 		faces = ocv.detect(ocv.getCascades()[0]);
 		gettimeofday(&(MeasureEnd), 0);
-
+		sec = MeasureEnd.tv_sec - MeasureStart.tv_sec;
 		if (MeasureEnd.tv_usec < MeasureStart.tv_usec) {
 			MeasureEnd.tv_usec = MeasureEnd.tv_usec + 1000000;
+			sec--;
 		}
 		timeinterval = MeasureEnd.tv_usec - MeasureStart.tv_usec;
 		timeinterval = timeinterval / 1000;
 		average += timeinterval;
 
-		sec = MeasureEnd.tv_sec - MeasureStart.tv_sec;
 
-		//printf("Durchlauf %d: %ld sec und %ld microsec -> %f \n",i, sec, usec, (double) ((double)sec + (double)usec/10));
+
+		printf("Durchlauf %d: %ld sec und %ld microsec \n",i, sec, timeinterval );
 		sec_average += sec;
 
 	}
