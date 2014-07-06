@@ -31,8 +31,8 @@ int main(int argc, char** argv) {
 	ocv.loadFromJPEG(&fileContents);
 
 	if (ocv.addCascade(
-			//"./lbpcascade_frontalface.xml")
-	"./haarcascade_frontalface_alt.xml")
+			"./lbpcascade_frontalface.xml")
+	//"/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml")
 			!= 0) {
 		std::cout << "fehler beim laden der xml\n";
 	}
