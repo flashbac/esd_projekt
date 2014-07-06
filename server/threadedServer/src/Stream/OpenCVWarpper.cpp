@@ -45,7 +45,8 @@ OpenCVWarpper::~OpenCVWarpper() {
 int OpenCVWarpper::init(int device, double width, double heigth,
 		double frameRate) {
 	std::stringstream ss;
-	ss << "[debug]\tOpenCV Cam Settings: W " << width << " H " << heigth << " @ " << frameRate << "\n";
+	ss << "[debug]\tOpenCV Cam Settings: W " << width << " H " << heigth
+			<< " @ " << frameRate << "\n";
 	ThreadSafeLogger::instance().print(ss.str());
 
 	this->cameraID = device;
@@ -114,9 +115,8 @@ std::vector<Rect> OpenCVWarpper::detect(Mat *frame, CascadeClassifier cascade) {
 		gpu::HOGDescriptor hog;
 		hog.detectMultiScale(gpuImgForUpload, detectedRects, 1.1);
 	} else {
-		//face_cascade.detectMultiScale(frame_gray, faces, 1.1, 3, CV_HAAR_FIND_BIGGEST_OBJECT|CV_HAAR_SCALE_IMAGE, Size(30,30));
-		cascade.detectMultiScale(frame_gray, detectedRects, 1.1, 3, 0,
-				Size(30, 30));
+		cascade.detectMultiScale(frame_gray, detectedRects, 1.1, 5, 0,
+				Size(20, 20));
 	}
 
 	return detectedRects;
