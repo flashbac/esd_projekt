@@ -23,6 +23,7 @@ class OpenCVWarpper {
 public:
 	OpenCVWarpper();
 	virtual ~OpenCVWarpper();
+	void tryToInitAndUseGPU(int deviceNumber = 0);
 	int init(int device = 0, double width = 320, double heigth = 240,
 			double frameRate = 25);
 	int addCascade(std::string path);

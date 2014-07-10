@@ -43,6 +43,7 @@ Client::Client(FugexySession *session, std::string ipadress, int port,
 	//"/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml")
 			!= 0)
 		this->~Client();
+	openCVforFaceDetection.tryToInitAndUseGPU();
 }
 
 Client::~Client() {
@@ -206,14 +207,14 @@ void Client::thread_kamera_reader() {
 			// ist trozdem call by referenz!
 			std::vector<unsigned char>& nextPic = *getNextFreeToWriteImage();
 
-			gettimeofday(&(this->frameRateMeasureStart), 0);
+			//gettimeofday(&(this->frameRateMeasureStart), 0);
 
 			if (!openCVforCapture.queryFrame())
 				ThreadSafeLogger::instance().print(
 						"[debug]\t[Client] bild query fehlgeschlagen");
 
 			openCVforCapture.MatToJPEG(&nextPic, this->jpgQuality);
-
+			
 			pic_counter++;
 			pic_counter = pic_counter % 5;
 			//frage ob faceDetection nicht beschäftigt ist?
@@ -225,15 +226,15 @@ void Client::thread_kamera_reader() {
 			}
 
 			openCVforCapture.drawRects(this->getFaceDetectionVector());
-
-			std::stringstream frameText;
+			
+			/*std::stringstream frameText;
 			//frameText << "FrameRate: " << lastFrameRate << " Bilder/sec == " << lastFrameMS << "ms/Bild";
 			frameText << "FrameRate: " << lastFrameRate << " fps";
-			openCVforCapture.drawText(frameText.str());
+			openCVforCapture.drawText(frameText.str());*/
 
 			openCVforCapture.MatToJPEG(&nextPic, this->jpgQuality);
 
-			gettimeofday(&(this->frameRateMeasureEnd), 0);
+			/*gettimeofday(&(this->frameRateMeasureEnd), 0);
 
 			if (this->frameRateMeasureEnd.tv_usec
 					< this->frameRateMeasureStart.tv_usec) {
@@ -244,7 +245,7 @@ void Client::thread_kamera_reader() {
 					- this->frameRateMeasureStart.tv_usec;
 			lastFrameMS = lastFrameMS / 1000;
 			lastFrameRate = 1000 / lastFrameMS;
-
+			*/
 			/*std::stringstream str;
 			 str << "\nBild Size: " << nextPic.size() << "bytes zeit: " << lastFrameMS << "ms bilder/sec: " << lastFrameRate;
 			 this->thread_safe_print(str.str());*/

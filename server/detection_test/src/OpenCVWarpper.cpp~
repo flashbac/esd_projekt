@@ -27,6 +27,9 @@ OpenCVWarpper::OpenCVWarpper() {
 		break;
 	default:
 		ss << "[debug]\t" << cudaCount << " compatible GPU(s) found.\n";
+		gpu::resetDevice();
+		gpu::setDevice(0);
+		this->useGPU = true;
 		break;
 	}
 
@@ -37,32 +40,6 @@ OpenCVWarpper::~OpenCVWarpper() {
 	// TODO Auto-generated destructor stub
 	if (captureDevice.isOpened())
 		captureDevice.release();
-}
-
-void OpenCVWarpper::tryToInitAndUseGPU(int deviceNumber){
-
-	std::stringstream ss;
-
-	ss << "[debug]\t[openCVwrapper] try to init GPU\n";
-
-	int cudaCount = gpu::getCudaEnabledDeviceCount();
-
-	if(cudaCount < 1){
-		ss << "[debug]\t[openCVwrapper] GPU canot be init. all OpenCV operation will be done on CPU\n";
-		ThreadSafeLogger::instance().print(ss.str());
-	}
-	
-	if(deviceNumber > cudaCount) deviceNumber = 0;
-
-	ss << "[debug]\t[openCVwrapper] try to init GPU ID: " << deviceNumber << "\n";
-
-	gpu::resetDevice();
-	gpu::setDevice(0);
-	this->useGPU = true;
-
-	ss << "[debug]\t[openCVwrapper] now using GPU for facedetection\n";
-
-	ThreadSafeLogger::instance().print(ss.str());
 }
 
 int OpenCVWarpper::init(int device, double width, double heigth,
@@ -134,8 +111,8 @@ std::vector<Rect> OpenCVWarpper::detect(Mat *frame, CascadeClassifier cascade) {
 	//find faces and store them in the vector array
 	if (this->useGPU) {
 		// allocate and upload
-		static gpu::GpuMat gpuImgForUpload(frame_gray);
-		static gpu::HOGDescriptor hog;
+		gpu::GpuMat gpuImgForUpload(frame_gray);
+		gpu::HOGDescriptor hog;
 		hog.detectMultiScale(gpuImgForUpload, detectedRects, 1.1);
 	} else {
 		cascade.detectMultiScale(frame_gray, detectedRects, 1.1, 5, 0,

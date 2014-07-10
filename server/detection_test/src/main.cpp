@@ -13,6 +13,9 @@
 #include <iterator>
 #include <vector>
 #include <unistd.h>
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/gpu/gpu.hpp"
 
 #include "OpenCVWarpper.h"
 
@@ -36,15 +39,16 @@ int main(int argc, char** argv) {
 	ocv.loadFromJPEG(&fileContents);
 
 	if (ocv.addCascade(
-			//"./lbpcascade_frontalface.xml")
-	"./haarcascade_frontalface_alt.xml")
+			"./lbpcascade_frontalface.xml")
+	//"./haarcascade_frontalface_alt.xml")
 			!= 0) {
 		std::cout << "fehler beim laden der xml\n";
 	}
 
+	ocv.tryToInitAndUseGPU();
 	faces = ocv.detect(ocv.getCascades()[0]);
 
-	for (int i = 0; i < 10; i++) {
+	/*for (int i = 0; i < 10; i++) {
 
 		gettimeofday(&(MeasureStart), 0);
 		faces = ocv.detect(ocv.getCascades()[0]);
@@ -70,5 +74,17 @@ int main(int argc, char** argv) {
 
 	std::cout << "Durchschnittliche Zeit: " << sec_average << "s und " << average <<"ms\n";
 
+	*/
+	//ocv.init(0,1280,720,25);
+	std::vector<std::vector<Rect> > v;
+	ocv.init(0,640,360,25);
+while(1){
+	ocv.queryFrame();
+	//ocv.queryFrame();
+	v = ocv.detectAll();
+	std::stringstream s;
+	s << "anzahl erkannter obj. : " << v.size() << "\n";
+	ThreadSafeLogger::instance().print(s.str());
+}
 	return 0;
 }

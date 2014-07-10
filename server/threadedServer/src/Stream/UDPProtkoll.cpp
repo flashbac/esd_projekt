@@ -6,6 +6,7 @@
  */
 
 #include "UDPProtkoll.h"
+#include <iostream>
 //#include <iostream>
 
 /*
@@ -17,7 +18,6 @@ UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize, int andriodTimeout,
 	if (client == NULL)
 		this->~UDPProtkoll();
 	this->client = client;
-
 	this->maxPackageSize = MTUsize - UDP_DATAGRAMM_LENGTH - UDP_HEADER_LENGTH;
 	this->bild_id = 0;
 	this->mtu = MTUsize;
@@ -25,6 +25,7 @@ UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize, int andriodTimeout,
 	this->andriodMaxBytesToTimeout = andriodMaxBytesToTimeout;
 	//this->setMTUsize(MTUsize);
 	this->chunkBuffer = (unsigned char*) malloc(MTUsize);
+	std::cout << " maxPS: " << this->maxPackageSize << "\n" << std::flush;
 }
 
 UDPProtkoll::~UDPProtkoll() {
@@ -41,7 +42,9 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 	uint8_t chunkCounter = 0;
 	unsigned int byteCounter = 0;
 	//unsigned char *chunkBuffer = (unsigned char*) malloc(maxPackageSize);
-	uint8_t packageCount = (uint8_t) ((length / maxPackageSize) + 1);
+	uint8_t packageCount;
+	if(this->maxPackageSize == 0) packageCount = (uint8_t) ((length / 1466) + 1);
+	else packageCount = (uint8_t) ((length / this->maxPackageSize) + 1);
 	int pauseZaehler = 0;
 
 	if (kamera_id < 0)
@@ -68,8 +71,10 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 
 		if ((length - byteCounter) < maxPackageSize)
 			lengthOfSendingContent = (length - byteCounter);
-		else
-			lengthOfSendingContent = maxPackageSize;
+		else{
+			if(this->maxPackageSize == 0) lengthOfSendingContent = 1466;
+			else lengthOfSendingContent = maxPackageSize;
+		}
 
 		memcpy(chunkBuffer + UDP_HEADER_LENGTH, buffer + byteCounter, lengthOfSendingContent);
 		/*memcpy(&chunkBuffer[UDP_HEADER_LENGTH], buffer + byteCounter,
