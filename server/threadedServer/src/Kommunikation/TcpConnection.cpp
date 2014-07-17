@@ -12,7 +12,7 @@ TcpConnection::TcpConnection(int sock, TcpProtokoll *tcpP) {
 	this->tcpP = tcpP;
 
 	if (sem_init(&sem_message_vector, 0, 1) < 0) {
-		thread_safe_print("Error: init sem_message_vector");
+		ThreadSafeLogger::instance().print("[debug]\tError: init sem_message_vector");
 	}
 
 	messages.clear();
@@ -96,7 +96,7 @@ void TcpConnection::thread_Recive(int socket_desc) {
 
 					// Befehl ausführen
 					{
-						ThreadSafeLogger::instance().print("TCP Protokoll: Empfangen :" + json);
+						//ThreadSafeLogger::instance().print("TCP Protokoll: Empfangen :" + json);
 						//printf("Empfangen: %s\n", json.c_str());
 						//sendMessage(json);
 						tcpP->commandoProzess(json);
@@ -118,17 +118,14 @@ void TcpConnection::thread_Recive(int socket_desc) {
 			//	break;
 			boost::this_thread::interruption_point();
 		}
-		if(read_size == 0)
-		    {
-		        puts("Client disconnected");
-		        fflush(stdout);
-		    }
-		    else if(read_size == -1)
-		    {
-		        perror("recv failed");
-		    }
+		if (read_size == 0) {
+			ThreadSafeLogger::instance().print("[debug]\t[TcpConnection] Client disconnected\n");
+		} else if (read_size == -1) {
+			ThreadSafeLogger::instance().print("[debug]\t[TcpConnection] recv failed\n");
+		}
 	} catch (boost::thread_interrupted&) {
-		thread_safe_print("\nTcpSocket reader interrupted!");
+		ThreadSafeLogger::instance().print(
+				"[debug]\tTcpSocket reader interrupted!");
 
 	}
 	return;
@@ -153,8 +150,7 @@ void TcpConnection::thread_Sender(int socket_desc) {
 				messages.clear();
 				sem_post(&sem_message_vector);
 
-				ThreadSafeLogger::instance().print("TCP Protokoll: Sende     :" + s);
-				//printf("Sende    : %s\n", s.c_str());
+				//ThreadSafeLogger::instance().print("TCP Protokoll: Sende     :" + s);
 
 				send(sock, s.c_str(), s.length(), 0);
 			}
@@ -162,19 +158,7 @@ void TcpConnection::thread_Sender(int socket_desc) {
 		}
 		//close(sock);
 	} catch (boost::thread_interrupted&) {
-		thread_safe_print("\nTcpSocket writer interrupted!");
+		ThreadSafeLogger::instance().print(
+				"[debug]\tTcpSocket writer interrupted!\n");
 	}
-}
-
-void TcpConnection::setSafePrintSemaphore(sem_t *sem) {
-	this->sem_print = sem;
-}
-
-void TcpConnection::thread_safe_print(std::string str) {
-	if (sem_print != NULL) {
-		sem_wait(sem_print);
-		std::cout << str;
-		sem_post(sem_print);
-	} else
-		printf("%s", str.c_str());
 }

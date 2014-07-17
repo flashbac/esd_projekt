@@ -56,7 +56,7 @@ double PositionToAngle::getYFaktor() {
 }
 
 void PositionToAngle::calculateAndSendNewPosition(face_t pos,
-	int regionsizeWidth, int regionsizeHeigth) {
+		int regionsizeWidth, int regionsizeHeigth) {
 	int mittelpunktYKameraBild = 0;
 	int mittelpunktXKameraBild = 0;
 
@@ -74,38 +74,47 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 
 	int stepsX = 0;
 	int stepsY = 0;
+	static int lastX = 0;
+	static int lastY = 0;
 
 	//mittelpunkt des Kamerabildes ermitteln
 	mittelpunktYKameraBild = regionsizeHeigth / 2;
 	mittelpunktXKameraBild = regionsizeWidth / 2;
-	printf("    Mittelpunkt Bild Y: %d\n", mittelpunktYKameraBild);
-	printf("    Mittelpunkt Bild X: %d\n", mittelpunktXKameraBild);
+	//printf("    Mittelpunkt Bild Y: %d\n", mittelpunktYKameraBild);
+	//printf("    Mittelpunkt Bild X: %d\n", mittelpunktXKameraBild);
 	//mittelpunkt vom rechteck im Gesamten Bild bestimmen
 	mittelpunktYrechteckVomGesamtenBild = (pos.height / 2) + pos.y;
 	mittelpunktXrechteckVomGesamtenBild = (pos.width / 2) + pos.x;
 
-	printf("Mittelpunkt Rechteck Y: %d\n", mittelpunktYrechteckVomGesamtenBild);
-	printf("Mittelpunkt Rechteck X: %d\n", mittelpunktXrechteckVomGesamtenBild);
+	//printf("Mittelpunkt Rechteck Y: %d\n", mittelpunktYrechteckVomGesamtenBild);
+	//printf("Mittelpunkt Rechteck X: %d\n", mittelpunktXrechteckVomGesamtenBild);
 
-	ermittelteAbweichnungY = mittelpunktYKameraBild - mittelpunktYrechteckVomGesamtenBild;
-	ermittelteAbweichnungX = mittelpunktXKameraBild - mittelpunktXrechteckVomGesamtenBild;
+	ermittelteAbweichnungY = mittelpunktYKameraBild
+			- mittelpunktYrechteckVomGesamtenBild;
+	ermittelteAbweichnungX = mittelpunktXKameraBild
+			- mittelpunktXrechteckVomGesamtenBild;
 
-	printf("          Abweichung Y: %d\n", ermittelteAbweichnungY);
-	printf("          Abweichung X: %d\n", ermittelteAbweichnungX);
+	//printf("          Abweichung Y: %d\n", ermittelteAbweichnungY);
+	//printf("          Abweichung X: %d\n", ermittelteAbweichnungX);
 
-	abweichungYInProzent = (double)ermittelteAbweichnungY * 100.0 / (double)regionsizeHeigth;
-	abweichungXInProzent = (double)ermittelteAbweichnungX * 100.0 / (double)regionsizeWidth;
+	abweichungYInProzent = (double) ermittelteAbweichnungY * 100.0
+			/ (double) regionsizeHeigth;
+	abweichungXInProzent = (double) ermittelteAbweichnungX * 100.0
+			/ (double) regionsizeWidth;
 
-	printf(" Prozent Abweichung Y: %f%%\n", abweichungYInProzent);
-	printf(" Prozent Abweichung X: %f%%\n", abweichungXInProzent);
+	//printf(" Prozent Abweichung Y: %f%%\n", abweichungYInProzent);
+	//printf(" Prozent Abweichung X: %f%%\n", abweichungXInProzent);
 
-
-	stepsY = (int)(0.5+(double)OEFNUNGSWINKEL_KAMERA / 100.0 * (double)abweichungYInProzent);
-	stepsX = (int)(0.5+(double)OEFNUNGSWINKEL_KAMERA / 100.0 * (double)abweichungXInProzent);
+	stepsY = (int) (0.5
+			+ (double) OEFNUNGSWINKEL_KAMERA / 100.0
+					* (double) abweichungYInProzent);
+	stepsX = (int) (0.5
+			+ (double) OEFNUNGSWINKEL_KAMERA / 100.0
+					* (double) abweichungXInProzent);
 	//stepsX = -stepsX; // Umrechnen jeh nachdem wir Kamera drauf sitzt
 
-	printf(" Abweichung in Grad Y: %d\n", stepsY);
-	printf(" Abweichung in Grad X: %d\n", stepsX);
+	//printf(" Abweichung in Grad Y: %d\n", stepsY);
+	//printf(" Abweichung in Grad X: %d\n", stepsX);
 
 	//// faktor wird kleiner, um so groeßer das rechteck ist -> dadruch mehr bewegung bei kleineren rechtecken
 	//faceToAreaFaktor = (regionsizeHeigth * regionsizeWidth)
@@ -127,9 +136,15 @@ void PositionToAngle::calculateAndSendNewPosition(face_t pos,
 
 	 }*/
 
+	if ((lastX != stepsX) || (lastY != stepsY)) {
+		std::stringstream ss;
+		ss << "[debug]\tBerechnete steps x:" << stepsX << " y:" << stepsY
+				<< "\n";
+		//ThreadSafeLogger::instance().print(ss.str());
+		SerialWrapper::instance().sendDelta(AvailabeServoGroups, stepsX,
+				stepsY);
 
-	std::stringstream ss;
-	ss << "Berechnete steps x:" << stepsX << " y:" << stepsY << "\n";
-	ThreadSafeLogger::instance().print(ss.str());
-	SerialWrapper::instance().sendDelta(AvailabeServoGroups,stepsX, stepsY);
+		lastX = stepsX;
+		lastY = stepsY;
+	}
 }

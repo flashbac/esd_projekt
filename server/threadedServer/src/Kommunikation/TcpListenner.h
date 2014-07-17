@@ -30,7 +30,6 @@ class TcpListenner {
 public:
 	TcpListenner(int globalMTU, std::string globalOutgoingDevice);
 	virtual ~TcpListenner();
-	void thread_safe_print(std::string str);
 	int start();
 	void stop();
 	int cleaning();

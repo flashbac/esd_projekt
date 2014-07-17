@@ -13,6 +13,9 @@
 #include "opencv2/objdetect/objdetect.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/gpu/gpu.hpp"
+
+#include "../ThreadSafeLogger.h"
 
 using namespace cv;
 
@@ -20,7 +23,9 @@ class OpenCVWarpper {
 public:
 	OpenCVWarpper();
 	virtual ~OpenCVWarpper();
-	int init(int device = 0, double width = 320, double heigth = 240, double frameRate = 25);
+	void tryToInitAndUseGPU(int deviceNumber = 0);
+	int init(int device = 0, double width = 320, double heigth = 240,
+			double frameRate = 25);
 	int addCascade(std::string path);
 	int removeCascade(CascadeClassifier cascade);
 	std::vector<CascadeClassifier> getCascades();
@@ -40,18 +45,19 @@ public:
 	void display(std::string windowName, Mat *frame);
 	void loadFromJPEG(std::vector<unsigned char> *buffer);
 	void MatToJPEG(std::vector<unsigned char> *buffer, int quality = 100);
-	void MatToJPEG(Mat *frame, std::vector<unsigned char> *buffer, int quality = 100);
+	void MatToJPEG(Mat *frame, std::vector<unsigned char> *buffer, int quality =
+			100);
 	void QueryDetectAllToJPEG(std::vector<unsigned char> *buffer);
 	void QueryAndDrawToJPEG(std::vector<Rect> detectedObjects,
 			std::vector<unsigned char> *buffer);
 	void saveToFile(std::string filename);
 
 private:
-	CvCapture* captureDevice2;
 	VideoCapture captureDevice;
 	Mat frame;
 	std::vector<CascadeClassifier> loadedCascades;
 	int cameraID;
+	bool useGPU;
 
 };
 

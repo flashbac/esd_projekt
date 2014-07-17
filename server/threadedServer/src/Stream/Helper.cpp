@@ -32,14 +32,13 @@ int Helper::getMTUsize(std::string devicename) {
 	snprintf(buf, sizeof(buf), "/sys/class/net/%s/mtu", devicename.c_str());
 	f = fopen(buf, "r");
 	if(!f) {
-		perror("Error opening:");
-		exit(EXIT_FAILURE);
+		perror("Error opening Networkdevice for MTU");
+		return 1500;
 	}
 	count = getline(&line, &len, f);
-
 	if (count == -1) {
-		perror("Error opening:");
-		exit(EXIT_FAILURE);
+		perror("Error opening Networkdevice for MTU");
+		return 1500;
 	}
 	sscanf(line, "%d\n", &mtu);
 	fclose(f);

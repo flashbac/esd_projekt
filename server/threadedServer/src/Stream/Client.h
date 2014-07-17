@@ -29,6 +29,7 @@
 
 //defines
 #define CLIENT_MAX_BUFFER_PIC_COUNT 20
+#define MAX_ABWEICHUNG_RECHTECK 5
 
 //used namespaces
 using namespace std;
@@ -40,8 +41,6 @@ class Client {
 public:
 	Client(FugexySession *session,std::string ipadress, int port, unsigned char camerID, std::string outgoingDeviceName);
 	virtual ~Client();
-	void setSafePrintSemaphore(sem_t *sem);
-	void thread_safe_print(std::string str);
 	void setMTUsize(int MTUsize);
 	int getMTUsize();
 	int init();
@@ -58,6 +57,7 @@ private:
 	std::vector<unsigned char> ringpuffer[CLIENT_MAX_BUFFER_PIC_COUNT];
 	std::vector<unsigned char> copyOfPicForDetection;
 	std::vector<cv::Rect> global_faces;
+	std::vector<cv::Rect> global_faces_before;
 	int jpgQuality;
 	double camera_width;
 	double camera_heigth;
@@ -68,7 +68,6 @@ private:
 	sem_t sem_faceDetectionBusy;
 	sem_t sem_faceDetectionVector;
 	sem_t sem_faceDetectionNewPicAvailable;
-	sem_t *sem_print;
 
 	UDPClient *udpClient;
 	UDPProtkoll *udpProtokoll;
@@ -84,6 +83,7 @@ private:
 	bool running;
 	timeval frameRateMeasureStart, frameRateMeasureEnd;
 
+	bool AbweichungImBereich(cv::Rect a, cv::Rect b, double MaxAbweichung);
 	bool isFaceDetectionReady();
 	void setFaceDetectionVector(std::vector<cv::Rect> faces);
 	std::vector<cv::Rect> getFaceDetectionVector();

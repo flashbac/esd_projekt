@@ -68,25 +68,14 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/rensky.net"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/btnConnect"
-            android:layout_below="@+id/btnConnect"
-            android:layout_marginTop="38dp"
-            android:text="rensky.net" />
-
-        <Button
             android:id="@+id/home_server"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/rensky.net"
-            android:layout_alignBottom="@+id/rensky.net"
-            android:layout_marginLeft="17dp"
-            android:layout_toRightOf="@+id/rensky.net"
-            android:text="192.168.1.40" />
+            android:layout_below="@+id/btnConnect"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="51dp"
+            android:text="192.168.1.230" />
 
     </RelativeLayout>
 

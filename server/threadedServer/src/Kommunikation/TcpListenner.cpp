@@ -7,8 +7,6 @@
 
 #include "TcpListenner.h"
 
-
-
 TcpListenner::TcpListenner(int globalMTU, std::string globalOutgoingDevice) {
 
 	numberOffClients = 0;
@@ -27,8 +25,8 @@ int TcpListenner::start() {
 	int return_value = 0;
 	if (!running) {
 		running = true;
-		this->thread_TcpBinder = new boost::thread(
-				&TcpListenner::thread_Binder, this);
+		this->thread_TcpBinder = new boost::thread(&TcpListenner::thread_Binder,
+				this);
 		if (this->thread_TcpBinder == NULL)
 			return_value = -1;
 
@@ -40,23 +38,18 @@ int TcpListenner::start() {
 	return return_value;
 }
 
-int TcpListenner::cleaning()
-{
-	for (unsigned int i = 0; i < sessions.size(); )
-	{
-		if (!sessions[i]->isClientConnected() && sessions[i] != NULL)
-		{
+int TcpListenner::cleaning() {
+	for (unsigned int i = 0; i < sessions.size();) {
+		if (!sessions[i]->isClientConnected() && sessions[i] != NULL) {
 			FugexySession *s = sessions[i];
-			sessions.erase(sessions.begin()+i);
+			sessions.erase(sessions.begin() + i);
 			numberOffClients--;
 			delete s;
-		}
-		else
+		} else
 			i++;
 	}
 	return 0;
 }
-
 
 void TcpListenner::stop() {
 	if (running) {
@@ -78,10 +71,11 @@ int TcpListenner::thread_Binder() {
 	//Create socket
 	socket_desc = socket(AF_INET, SOCK_STREAM, 0);
 	if (socket_desc == -1) {
-		thread_safe_print("Could not create socket.");
+		ThreadSafeLogger::instance().print(
+				"[debug]\t[TcpListner] Could not create socket.");
 
 	}
-	thread_safe_print("Socket created.");
+	ThreadSafeLogger::instance().print("[debug]\t[TcpListner] Socket created.");
 
 	server.sin_family = AF_INET;
 	server.sin_addr.s_addr = INADDR_ANY;
@@ -89,51 +83,50 @@ int TcpListenner::thread_Binder() {
 
 	//Bind
 	if (bind(socket_desc, (struct sockaddr *) &server, sizeof(server)) < 0) {
-		thread_safe_print("Could not bind to socket. Error");
+		ThreadSafeLogger::instance().print(
+				"[debug]\t[TcpListner] Could not bind to socket. Error");
 		return 1;
 	}
-	thread_safe_print("Sucessfully bind to socket");
+	//ThreadSafeLogger::instance().print("Sucessfully bind to socket");
 
 	//Listen
 	listen(socket_desc, 3);
 
 	//Accept and incoming connection
-	thread_safe_print("Waiting for incoming connections...");
+	ThreadSafeLogger::instance().print(
+			"[debug]\t[TcpListner] Waiting for incoming connections...");
 	c = sizeof(struct sockaddr_in);
 
 	while ((client_sock = accept(socket_desc, (struct sockaddr *) &client,
 			(socklen_t*) &c))) {
-		thread_safe_print("Connection accepted ");
+		//ThreadSafeLogger::instance().print("Connection accepted ");
 
 		if (client_sock > 0) {
 			if (running) {
 				if (numberOffClients <= 1) {
 
-					FugexySession *s = new FugexySession(client_sock, this->globalMTU, this->globalOutgoingDevice);
+					FugexySession *s = new FugexySession(client_sock,
+							this->globalMTU, this->globalOutgoingDevice);
 					sessions.push_back(s);
 					numberOffClients++;
 				} else {
 					std::stringstream ss;
-					ss << "Server accept only " << numberOffClients << "Clients";
+					ss << "Server accept only " << numberOffClients
+							<< "Clients";
 
 					send(client_sock, ss.str().c_str(), ss.str().length(), 0);
 					close(client_sock);
 				}
 			} else {
-				thread_safe_print(
-						"Can not connect bind socket is not in lissen mode.");
+				ThreadSafeLogger::instance().print(
+						"[debug]\t[TcpListner] Can not connect bind socket is not in lissen mode.");
 			}
 
-		}
-		else
-		{
-		thread_safe_print("accept failed");
-		return 1;
+		} else {
+			ThreadSafeLogger::instance().print(
+					"[debug]\t[TcpListner] accept failed");
+			return 1;
 		}
 	}
 	return 0;
-}
-
-void TcpListenner::thread_safe_print(std::string str) {
-	ThreadSafeLogger::instance().print(str);
 }

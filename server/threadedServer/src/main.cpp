@@ -8,11 +8,20 @@
 #include <semaphore.h>
 //#include <iostream>
 
-#include "Stream/Client.h"
 #include "Kommunikation/TcpListenner.h"
 #include "SerialWrapper.h"
 uint8_t x = 90, y = 90;
+
+volatile int quit_signal=0;
+#include <signal.h>
+extern "C" void quit_signal_handler(int signum) {
+ if (quit_signal!=0) exit(0); // just exit already
+ quit_signal=1;
+}
+
+
 int main(int argc, char** argv) {
+	signal(SIGINT,quit_signal_handler); // listen for ctrl-C
 
 	Helper h;
 	sem_t sem_print;
@@ -68,7 +77,9 @@ int main(int argc, char** argv) {
 	do {
 		usleep(200);
 		tcpL.cleaning();
-	} while (!h.kbhit());
+		
+	//} while (!h.kbhit());
+	} while (!quit_signal);
 	tcpL.stop();
 	/*
 	 Client a(ip, port, camID, device);
