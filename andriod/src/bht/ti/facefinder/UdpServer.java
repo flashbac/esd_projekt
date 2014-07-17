@@ -15,11 +15,14 @@ public class UdpServer implements Runnable{
 	private Boolean run = false;
 	private DatagramSocket serverSocket = null;
 	private int mtu = 1500;
+	private UDPProtokoll p;
 
 	
 	public UdpServer (Handler handler)
 	{
 		this.handler = handler;
+		UDPProtokoll p = new UDPProtokoll();
+		p.setHeandler(this.handler);
 	}
 		
 	public void Stop()
@@ -44,9 +47,9 @@ public class UdpServer implements Runnable{
 		}
 
       byte[] receiveData = new byte[mtu];
-      UDPProtokoll p = new UDPProtokoll();
+      //UDPProtokoll p = new UDPProtokoll();
       //p.setPanel(image);
-      p.setHeandler(handler);
+      //p.setHeandler(handler);
       while(run)
          {
             DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
