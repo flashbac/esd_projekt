@@ -183,8 +183,9 @@ public class ClientController {
 				try {
 					String read = "";
 					int item;
+					read = "";
 					while (socket != null) {
-						read = "";
+						
 						while ((item = br.read()) != -1 ) {
 							System.out.print((char) item);
 							read += (char) item;
@@ -193,12 +194,24 @@ public class ClientController {
 								break;
 							}
 						}
-						if (read.compareTo("")!=0)
+						if (read.compareTo("")!=0) 
 						{
-							Message msg = Message.obtain();
-							msg.obj = read; // Some Arbitrary object
-							reciveHandler.sendMessage(msg);
-							Log.d("MY", "Socket Read: " + read);
+							int index = read.indexOf(";");
+							while(index >= 0 )
+							{
+								
+								if (read.startsWith("{") && read.charAt(index -1) == '}' ||
+									read.startsWith("[") && read.charAt(index -1) == ']')
+								{
+									Message msg = Message.obtain();
+									msg.obj = read.substring(0, index);
+									reciveHandler.sendMessage(msg);
+									Log.d("MY", "Socket Read: " + read.substring(0, index));	
+								}
+								read = read.substring(index + 1);
+								index = read.indexOf(";");
+							}
+							
 						}
 					}
 				} catch (IOException e) {
