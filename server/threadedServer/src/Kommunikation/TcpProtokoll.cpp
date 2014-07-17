@@ -188,10 +188,10 @@ void TcpProtokoll::commandoProzess(std::string json) {
 	if (cmd == "mode") {
 		std::string value = root.get("value", "").asString();
 		if (value == "auto") {
-			session->controlMode = CONTROL_MODE_AUTOMATIK;
+			session->setControlModeToAutomatik();
 		}
 		if (value == "manu") {
-			session->controlMode = CONTROL_MODE_MANUELL;
+			session->setControlModeToManuell();
 		}
 		return;
 	}
