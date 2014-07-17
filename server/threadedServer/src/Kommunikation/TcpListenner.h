@@ -20,11 +20,11 @@
 #include <sys/socket.h>
 #include <arpa/inet.h> //inet_addr
 #include "./TcpProtokoll.h"
-#include "../FugexySession.h"
+#include "../VugexySession.h"
 #include "../ThreadSafeLogger.h"
 
 class TcpProtokoll;
-class FugexySession;
+class VugexySession;
 
 class TcpListenner {
 public:
@@ -35,7 +35,7 @@ public:
 	int cleaning();
 	void sendMessage(std::string str);
 
-	std::vector<FugexySession*> sessions;
+	std::vector<VugexySession*> sessions;
 
 private:
 	bool running;

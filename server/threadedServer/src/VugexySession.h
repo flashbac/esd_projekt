@@ -27,11 +27,11 @@ class TcpConnection;
 class Client;
 class IKamera;
 
-class FugexySession {
+class VugexySession {
 public:
 
-	FugexySession(int Sock, int MTU, std::string outgoingDevice);
-	virtual ~FugexySession();
+	VugexySession(int Sock, int MTU, std::string outgoingDevice);
+	virtual ~VugexySession();
 
 	//Member
 

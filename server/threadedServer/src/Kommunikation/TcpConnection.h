@@ -20,11 +20,11 @@
 #include <sys/socket.h>
 #include <arpa/inet.h> //inet_addr
 #include "./TcpProtokoll.h"
-#include "../FugexySession.h"
+#include "../VugexySession.h"
 #include "../ThreadSafeLogger.h"
 
 class TcpProtokoll;
-class FugexySession;
+class VugexySession;
 
 class TcpConnection {
 public:

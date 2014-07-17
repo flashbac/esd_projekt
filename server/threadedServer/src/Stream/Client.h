@@ -35,11 +35,11 @@
 using namespace std;
 
 class TcpProtokoll;
-class FugexySession;
+class VugexySession;
 
 class Client {
 public:
-	Client(FugexySession *session,std::string ipadress, int port, unsigned char camerID, std::string outgoingDeviceName);
+	Client(VugexySession *session,std::string ipadress, int port, unsigned char camerID, std::string outgoingDeviceName);
 	virtual ~Client();
 	void setMTUsize(int MTUsize);
 	int getMTUsize();
@@ -74,7 +74,7 @@ private:
 	Helper *helper;
 	OpenCVWarpper openCVforCapture;
 	OpenCVWarpper openCVforFaceDetection;
-	FugexySession *session;
+	VugexySession *session;
 
 	boost::thread *thread_cam;
 	boost::thread *thread_face;

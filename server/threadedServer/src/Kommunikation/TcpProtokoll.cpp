@@ -7,7 +7,7 @@
 
 #include "TcpProtokoll.h"
 
-TcpProtokoll::TcpProtokoll(FugexySession *session) {
+TcpProtokoll::TcpProtokoll(VugexySession *session) {
 	this->tcpConnection = NULL;
 	this->session = session;
 }
