@@ -21,7 +21,7 @@
 #define TCP_Protokoll_Version 1
 
 class TcpConnection;
-class FugexySession;
+class VugexySession;
 class IKamera;
 
 class TcpProtokoll {
@@ -30,11 +30,11 @@ public:
 
 	// Variablen
 	TcpConnection *tcpConnection;
-	FugexySession *session;
+	VugexySession *session;
 
 	// Functions
 
-	TcpProtokoll(FugexySession *session);
+	TcpProtokoll(VugexySession *session);
 	virtual ~TcpProtokoll();
 
 	void commandoProzess(std::string json);

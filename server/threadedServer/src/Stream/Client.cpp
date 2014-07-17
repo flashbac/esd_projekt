@@ -7,7 +7,7 @@
 
 #include "Client.h"
 
-Client::Client(FugexySession *session, std::string ipadress, int port,
+Client::Client(VugexySession *session, std::string ipadress, int port,
 		unsigned char kamerID, std::string outgoingDeviceName) {
 	this->session = session;
 	this->running = false;

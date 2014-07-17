@@ -1,13 +1,13 @@
 /*
- * FugexySession.cpp
+ * VugexySession.cpp
  *
  *  Created on: 26.05.2014
  *      Author: rensky
  */
 
-#include "FugexySession.h"
+#include "VugexySession.h"
 
-FugexySession::FugexySession(int Sock, int MTU, std::string outgoingDevice) {
+VugexySession::VugexySession(int Sock, int MTU, std::string outgoingDevice) {
 	iKamera = IKamera::getInstance();
 	tcpP = new TcpProtokoll(this);
 	tcpC = new TcpConnection(Sock, tcpP);
@@ -26,7 +26,7 @@ FugexySession::FugexySession(int Sock, int MTU, std::string outgoingDevice) {
 		this->thread_notifyNewFaces = NULL;
 	} else {
 		this->thread_notifyNewFaces = new boost::thread(
-				&FugexySession::thread_notifyNFaces, this);
+				&VugexySession::thread_notifyNFaces, this);
 	}
 
 	//this->controlMode = CONTROL_MODE_MANUELL;
@@ -35,7 +35,7 @@ FugexySession::FugexySession(int Sock, int MTU, std::string outgoingDevice) {
 	SerialWrapper::instance().sendPos(AvailabeServoGroups, 90, 90);
 }
 
-FugexySession::~FugexySession() {
+VugexySession::~VugexySession() {
 	if (this->theClient != NULL) {
 		theClient->stop();
 		delete this->theClient;
@@ -53,21 +53,21 @@ FugexySession::~FugexySession() {
 	}
 }
 
-void FugexySession::disconnectedClient() {
+void VugexySession::disconnectedClient() {
 	clientConnected = false;
 }
-bool FugexySession::isClientConnected() {
+bool VugexySession::isClientConnected() {
 	return clientConnected;
 }
 
-void FugexySession::disconnectUdp() {
+void VugexySession::disconnectUdp() {
 	if (this->theClient != NULL) {
 		delete this->theClient;
 		std::cout << "\n theClient wurde hard gekilled";
 	}
 }
 
-void FugexySession::SetCamera(int camID) {
+void VugexySession::SetCamera(int camID) {
 
 	// Kamera wird freigegegebn 		  || Kamera ist noch nicht gesetzt
 	if (iKamera->unUseCam(kameraID) == 0) {
@@ -82,11 +82,11 @@ void FugexySession::SetCamera(int camID) {
 	}
 }
 
-void FugexySession::SetFaceToDetect(int faceID) {
+void VugexySession::SetFaceToDetect(int faceID) {
 	this->faceID = faceID;
 }
 
-void FugexySession::StartClient(std::string ip, int port) {
+void VugexySession::StartClient(std::string ip, int port) {
 	//std::string device = "eth0";
 	//int MTU = 1500;
 	cam_t tmpCam = iKamera->getCams().at(kameraID);
@@ -108,19 +108,19 @@ void FugexySession::StartClient(std::string ip, int port) {
 	theClient->start();
 }
 
-void FugexySession::setControlModeToAutomatik() {
+void VugexySession::setControlModeToAutomatik() {
 	sem_wait(&sem_setControlMode);
 	this->controlMode = CONTROL_MODE_AUTOMATIK;
 	sem_post(&sem_setControlMode);
 }
 
-void FugexySession::setControlModeToManuell() {
+void VugexySession::setControlModeToManuell() {
 	sem_wait(&sem_setControlMode);
 	this->controlMode = CONTROL_MODE_MANUELL;
 	sem_post(&sem_setControlMode);
 }
 
-int FugexySession::getControlMode() {
+int VugexySession::getControlMode() {
 	int tmp = -1;
 	sem_wait(&sem_setControlMode);
 	tmp = this->controlMode;
@@ -129,7 +129,7 @@ int FugexySession::getControlMode() {
 	return tmp;
 }
 
-int FugexySession::getBiggestRect(std::vector<face_t> faces) {
+int VugexySession::getBiggestRect(std::vector<face_t> faces) {
 	if (faces.size() < 0)
 		return -1;
 	int tmpID = 0;
@@ -148,7 +148,7 @@ int FugexySession::getBiggestRect(std::vector<face_t> faces) {
 	return tmpID;
 }
 
-void FugexySession::thread_notifyNFaces() {
+void VugexySession::thread_notifyNFaces() {
 	while ((this->tcpP == NULL) || (theClient == NULL)) {
 		boost::this_thread::interruption_point();
 	}
@@ -177,7 +177,7 @@ void FugexySession::thread_notifyNFaces() {
 	//sem_post(&sem_notifyNewFaces);
 }
 
-void FugexySession::notifyNewFaces() {
+void VugexySession::notifyNewFaces() {
 	//this->thread_notifyNewFaces->start_thread();
 	int value = -1;
 	sem_getvalue(&sem_notifyNewFaces, &value);

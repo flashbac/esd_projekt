@@ -41,7 +41,7 @@ int TcpListenner::start() {
 int TcpListenner::cleaning() {
 	for (unsigned int i = 0; i < sessions.size();) {
 		if (!sessions[i]->isClientConnected() && sessions[i] != NULL) {
-			FugexySession *s = sessions[i];
+			VugexySession *s = sessions[i];
 			sessions.erase(sessions.begin() + i);
 			numberOffClients--;
 			delete s;
@@ -105,7 +105,7 @@ int TcpListenner::thread_Binder() {
 			if (running) {
 				if (numberOffClients <= 1) {
 
-					FugexySession *s = new FugexySession(client_sock,
+					VugexySession *s = new VugexySession(client_sock,
 							this->globalMTU, this->globalOutgoingDevice);
 					sessions.push_back(s);
 					numberOffClients++;
