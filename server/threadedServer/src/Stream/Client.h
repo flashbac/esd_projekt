@@ -2,23 +2,19 @@
  * Client.h
  *
  *  Created on: 18.05.2014
- *      Author: dennis
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #ifndef CLIENT_H_
 #define CLIENT_H_
 
-// includes
-
-//#include <boost/thread.hpp>
 #include <boost/thread/thread.hpp>
 #include <semaphore.h>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
-
-
 #include "UDPClient.h"
 #include "UDPProtkoll.h"
 #include "Helper.h"

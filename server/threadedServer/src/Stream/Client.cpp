@@ -2,7 +2,8 @@
  * Client.cpp
  *
  *  Created on: 18.05.2014
- *      Author: dennis
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #include "Client.h"
@@ -90,39 +91,6 @@ bool Client::AbweichungImBereich(cv::Rect a, cv::Rect b, double MaxAbweichung) {
 
 void Client::setFaceDetectionVector(std::vector<cv::Rect> faces) {
 	sem_wait(&sem_faceDetectionVector);
-
-//	std::vector<cv::Rect> aFaces = global_faces;  // Angezegte Faces
-//
-//	// Vergleich zwischen neuen faces und den vorher angezeigten
-//	for (unsigned int i = 0; i < faces.size(); i++) {
-//		for (unsigned int j = 0; j < aFaces.size(); j++) {
-//			if (AbweichungImBereich(aFaces[j],faces[i], MAX_ABWEICHUNG_RECHTECK) )
-//			{
-//				//Face behalten
-//			}
-//			else
-//			{ // Abweichung entstanden mit Before vergleichen
-//				for (unsigned int k = 0; k < global_faces_before.size(); k++) {
-//					if (AbweichungImBereich(aFaces[j],global_faces_before[k], MAX_ABWEICHUNG_RECHTECK))
-//					{
-//						// Face berhalten
-//					}
-//					else
-//					{
-//						// Abweichungen zu Groß also Face übereinstimmung nicht gefunden
-//						// Face löschen
-//						aFaces.erase(aFaces.begin()+j);
-//					}
-//				}
-//			}
-//
-//			// Faces hinzufügen fehlt noch
-//
-//		}
-//	}
-//	global_faces_before = faces;
-//
-//	global_faces = aFaces;
 
 	global_faces = faces; // !!! das muss das auskommentiert werden wenn das oben wieder rein kommentiert wird
 	sem_post(&sem_faceDetectionVector);
@@ -214,7 +182,7 @@ void Client::thread_kamera_reader() {
 						"[debug]\t[Client] bild query fehlgeschlagen");
 
 			openCVforCapture.MatToJPEG(&nextPic, this->jpgQuality);
-			
+
 			pic_counter++;
 			pic_counter = pic_counter % 5;
 			//frage ob faceDetection nicht beschäftigt ist?
@@ -226,15 +194,14 @@ void Client::thread_kamera_reader() {
 			}
 
 			openCVforCapture.drawRects(this->getFaceDetectionVector());
-			
-			/*std::stringstream frameText;
-			//frameText << "FrameRate: " << lastFrameRate << " Bilder/sec == " << lastFrameMS << "ms/Bild";
+
+			std::stringstream frameText;
 			frameText << "FrameRate: " << lastFrameRate << " fps";
-			openCVforCapture.drawText(frameText.str());*/
+			openCVforCapture.drawText(frameText.str());
 
 			openCVforCapture.MatToJPEG(&nextPic, this->jpgQuality);
 
-			/*gettimeofday(&(this->frameRateMeasureEnd), 0);
+			gettimeofday(&(this->frameRateMeasureEnd), 0);
 
 			if (this->frameRateMeasureEnd.tv_usec
 					< this->frameRateMeasureStart.tv_usec) {
@@ -245,10 +212,7 @@ void Client::thread_kamera_reader() {
 					- this->frameRateMeasureStart.tv_usec;
 			lastFrameMS = lastFrameMS / 1000;
 			lastFrameRate = 1000 / lastFrameMS;
-			*/
-			/*std::stringstream str;
-			 str << "\nBild Size: " << nextPic.size() << "bytes zeit: " << lastFrameMS << "ms bilder/sec: " << lastFrameRate;
-			 this->thread_safe_print(str.str());*/
+
 			sem_post(&sem_numberToWrite);
 			boost::this_thread::interruption_point();
 		}
@@ -262,12 +226,13 @@ void Client::thread_face_detection() {
 	try {
 		while (running) {
 			boost::this_thread::interruption_point();
-			sem_wait(&sem_faceDetectionNewPicAvailable); // TODO Hier wird der Thread geblockt und kann deshalb nicht ordnetlich beendet werden.
-			/*while (sem_trywait(&sem_faceDetectionNewPicAvailable) != 0) {
-			 boost::this_thread::interruption_point();
-			 }*/
+			while (sem_trywait(&sem_faceDetectionNewPicAvailable) != 0) {
+				boost::this_thread::interruption_point();
+			}
 			boost::this_thread::interruption_point();
-			sem_wait(&sem_faceDetectionBusy);
+			while (sem_trywait(&sem_faceDetectionBusy) != 0) {
+				boost::this_thread::interruption_point();
+			}
 			boost::this_thread::interruption_point();
 
 			this->openCVforFaceDetection.loadFromJPEG(&copyOfPicForDetection);
@@ -278,7 +243,6 @@ void Client::thread_face_detection() {
 			sem_post(&sem_faceDetectionBusy);
 			boost::this_thread::interruption_point();
 		}
-		//ThreadSafeLogger::instance().print("[debug]\t[Client] Face detection wurde beeendet!");
 	} catch (boost::thread_interrupted&) {
 		ThreadSafeLogger::instance().print(
 				"[debug]\t[Client] Face detection interruppted!");
@@ -348,9 +312,6 @@ int Client::init() {
 int Client::start() {
 	int return_value = 0;
 
-	//boost::thread::attributes attrs;
-	//attrs.set_stack_size(1048576*40); //40MByte
-
 	if (!running) {
 		running = true;
 		//boost::function< void > f = boost::bind(&Client::thread_kamera_reader, this)
@@ -385,39 +346,22 @@ void Client::stop() {
 	if (running) {
 		running = false;
 		this->thread_face->interrupt();
-		sem_post(&sem_faceDetectionNewPicAvailable);
 		this->thread_UDPsend->interrupt();
 		this->thread_cam->interrupt();
 		// erstmal die Facedetection abbrechen lassen
 		if (this->thread_face != NULL) {
 			this->thread_face->join();
-//			if (this->thread_face->timed_join(boost::posix_time::seconds(5))){
-//				thread_safe_print("\nthread_face sucessfull joind");
-//			} else {
-//				thread_safe_print("\nthread_face joind Timed out!");
-//			}
 			delete (this->thread_face);
 		}
 		if (this->thread_UDPsend != NULL) {
 			this->thread_UDPsend->join();
-//			if (this->thread_UDPsend->timed_join(boost::posix_time::seconds(5))){
-//				thread_safe_print("\nthread_UDPsend sucessfull joind");
-//			} else {
-//				thread_safe_print("\nthread_UDPsend joind Timed out!");
-//			}
 			delete (this->thread_UDPsend);
 		}
 		if (this->thread_cam != NULL) {
 
 			this->thread_cam->join();
-//			if (this->thread_cam->timed_join(boost::posix_time::seconds(5))){
-//				thread_safe_print("\nthread_cam sucessfull joind");
-//			} else {
-//				thread_safe_print("\nthread_cam joind Timed out!");
-//			}
 			delete (this->thread_cam);
 		}
-
 		ThreadSafeLogger::instance().print(
 				"[debug]\t[Client] all threads interruppted!");
 	}

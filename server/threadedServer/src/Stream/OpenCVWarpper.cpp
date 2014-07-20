@@ -2,7 +2,8 @@
  * OpenCVWarpper.cpp
  *
  *  Created on: 18.05.2014
- *      Author: dennis
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #include "OpenCVWarpper.h"
@@ -39,7 +40,7 @@ OpenCVWarpper::~OpenCVWarpper() {
 		captureDevice.release();
 }
 
-void OpenCVWarpper::tryToInitAndUseGPU(int deviceNumber){
+void OpenCVWarpper::tryToInitAndUseGPU(int deviceNumber) {
 
 	std::stringstream ss;
 
@@ -47,14 +48,18 @@ void OpenCVWarpper::tryToInitAndUseGPU(int deviceNumber){
 
 	int cudaCount = gpu::getCudaEnabledDeviceCount();
 
-	if(cudaCount < 1){
-		ss << "[debug]\t[openCVwrapper] GPU canot be init. all OpenCV operation will be done on CPU\n";
+	if (cudaCount < 1) {
+		ss
+				<< "[debug]\t[openCVwrapper] GPU canot be init. all OpenCV operation will be done on CPU\n";
 		ThreadSafeLogger::instance().print(ss.str());
+		return;
 	}
-	
-	if(deviceNumber > cudaCount) deviceNumber = 0;
 
-	ss << "[debug]\t[openCVwrapper] try to init GPU ID: " << deviceNumber << "\n";
+	if (deviceNumber > cudaCount)
+		deviceNumber = 0;
+
+	ss << "[debug]\t[openCVwrapper] try to init GPU ID: " << deviceNumber
+			<< "\n";
 
 	gpu::resetDevice();
 	gpu::setDevice(0);

@@ -2,7 +2,8 @@
  * PositionToAngle.h
  *
  *  Created on: 16.06.2014
- *      Author: dennis
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #ifndef POSITIONTOANGLE_H_

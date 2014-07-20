@@ -2,7 +2,8 @@
  * SerialWrapperBoost.cpp
  *
  *  Created on: 14.06.2014
- *      Author: dennis
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #include "SerialWrapperBoost.h"

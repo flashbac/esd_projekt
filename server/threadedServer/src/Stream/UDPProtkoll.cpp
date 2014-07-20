@@ -2,19 +2,15 @@
  * UDPProtkoll.cpp
  *
  *  Created on: 08.05.2014
- *      Author: dennis
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #include "UDPProtkoll.h"
 #include <iostream>
-//#include <iostream>
 
-/*
- *
- */
 UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize, int andriodTimeout,
 		int andriodMaxBytesToTimeout) {
-	// TODO Auto-generated constructor stub
 	if (client == NULL)
 		this->~UDPProtkoll();
 	this->client = client;
@@ -23,28 +19,22 @@ UDPProtkoll::UDPProtkoll(UDPClient *client, int MTUsize, int andriodTimeout,
 	this->mtu = MTUsize;
 	this->andriodTimeout = andriodTimeout;
 	this->andriodMaxBytesToTimeout = andriodMaxBytesToTimeout;
-	//this->setMTUsize(MTUsize);
 	this->chunkBuffer = (unsigned char*) malloc(MTUsize);
 	std::cout << " maxPS: " << this->maxPackageSize << "\n" << std::flush;
 }
 
 UDPProtkoll::~UDPProtkoll() {
-	// TODO Auto-generated destructor stub
-	//std::cout << "\n destruct";
 	delete this->chunkBuffer;
 }
 
-//unsigned char chunkBuffer[10240];
 int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 		size_t length) {
 
 	bool errorFree = true;
 	uint8_t chunkCounter = 0;
 	unsigned int byteCounter = 0;
-	//unsigned char *chunkBuffer = (unsigned char*) malloc(maxPackageSize);
 	uint8_t packageCount;
-	if(this->maxPackageSize == 0) packageCount = (uint8_t) ((length / 1466) + 1);
-	else packageCount = (uint8_t) ((length / this->maxPackageSize) + 1);
+	packageCount = (uint8_t) ((length / this->maxPackageSize) + 1);
 	int pauseZaehler = 0;
 
 	if (kamera_id < 0)
@@ -53,13 +43,9 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 		return -1;
 	if (buffer == NULL)
 		return -1;
-
-	//printf("\n[send] bild_id: %d; anzahl der packete %d\n", bild_id, packageCount);
-
 	do {
 		// wipe chunkBuffer
 		memset(chunkBuffer, 0, maxPackageSize);
-		//memset(&chunkBuffer[0], 0, maxPackageSize);
 		unsigned int lengthOfSendingContent = 0;
 
 		chunkBuffer[0] = UDP_PROTOKOLL_VERSION;
@@ -71,20 +57,20 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 
 		if ((length - byteCounter) < maxPackageSize)
 			lengthOfSendingContent = (length - byteCounter);
-		else{
-			if(this->maxPackageSize == 0) lengthOfSendingContent = 1466;
-			else lengthOfSendingContent = maxPackageSize;
+		else {
+			if (this->maxPackageSize == 0)
+				lengthOfSendingContent = 1466;
+			else
+				lengthOfSendingContent = maxPackageSize;
 		}
 
-		memcpy(chunkBuffer + UDP_HEADER_LENGTH, buffer + byteCounter, lengthOfSendingContent);
-		/*memcpy(&chunkBuffer[UDP_HEADER_LENGTH], buffer + byteCounter,
-				lengthOfSendingContent);*/
+		memcpy(chunkBuffer + UDP_HEADER_LENGTH, buffer + byteCounter,
+				lengthOfSendingContent);
 
-		//if (client->sendData(chunkBuffer,
-		if (client->sendData(&chunkBuffer[0],
+		if (client->sendData(chunkBuffer,
+		//if (client->sendData(&chunkBuffer[0],
 				lengthOfSendingContent + UDP_HEADER_LENGTH) != lengthOfSendingContent+UDP_HEADER_LENGTH) {
 			errorFree = false;
-			printf("\nError while sending via UDP\n");
 		}
 
 		byteCounter += lengthOfSendingContent;
@@ -94,17 +80,10 @@ int UDPProtkoll::sendInChunks(uint8_t kamera_id, unsigned char *buffer,
 			usleep(andriodTimeout);
 			pauseZaehler = 0;
 		}
-		//printf("\nsend chunk packageID: %d", chunkCounter);
-
 	} while ((byteCounter < length) && (errorFree));
-
-	//bild_id = (bild_id + 1) % sizeof(uint16_t);
 	bild_id = (bild_id + 1) % 65536;
-	// free allocate space
-	// //free(chunkBuffer);
-
-	if (errorFree) {
-		//printf("\nsuccessfule send data with ID: %d", bild_id);
+	if (!errorFree) {
+		return 0;
 	}
 	return byteCounter;
 }

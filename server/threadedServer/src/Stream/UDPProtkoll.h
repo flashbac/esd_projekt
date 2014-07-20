@@ -2,7 +2,8 @@
  * UDPProtkoll.h
  *
  *  Created on: 08.05.2014
- *      Author: dennis
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #ifndef UDPPROTKOLL_H_

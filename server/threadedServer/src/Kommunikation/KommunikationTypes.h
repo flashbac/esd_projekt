@@ -1,3 +1,11 @@
+/*
+ * KommunikationTypes.h
+ *
+ *  Created on: 18.05.2014
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
+ */
+
 #include <string>
 
 #ifndef KOMMUNIKATIONSTYPES_H_

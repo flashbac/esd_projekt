@@ -2,7 +2,8 @@
  * FugexySession.h
  *
  *  Created on: 26.05.2014
- *      Author: rensky
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #ifndef FUGEXYSESSION_H_

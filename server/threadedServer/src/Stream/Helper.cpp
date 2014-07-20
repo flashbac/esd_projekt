@@ -2,7 +2,8 @@
  * Helper.cpp
  *
  *  Created on: 08.05.2014
- *      Author: dennis
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #include "Helper.h"
@@ -31,7 +32,7 @@ int Helper::getMTUsize(std::string devicename) {
 
 	snprintf(buf, sizeof(buf), "/sys/class/net/%s/mtu", devicename.c_str());
 	f = fopen(buf, "r");
-	if(!f) {
+	if (!f) {
 		perror("Error opening Networkdevice for MTU");
 		return 1500;
 	}

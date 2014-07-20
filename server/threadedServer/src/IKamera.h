@@ -2,7 +2,8 @@
  * IKamera.h
  *
  *  Created on: 02.06.2014
- *      Author: rensky
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #include <cstdio>

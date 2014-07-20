@@ -2,7 +2,8 @@
  * Kommunikation.h
  *
  *  Created on: 18.05.2014
- *      Author: rensky
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #ifndef KOMMUNIKATION_H_

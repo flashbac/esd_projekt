@@ -2,7 +2,8 @@
  * UDPClient.cpp
  *
  *  Created on: 08.05.2014
- *      Author: dennis
+ *      Author: Dennis Rump & René Galow - Beuth Hochschule Berlin
+ *      Lizenz: GPL v2
  */
 
 #include "UDPClient.h"
@@ -31,11 +32,6 @@ UDPClient::UDPClient(std::string ipadress, int port) {
 	my_addr.sin_family = AF_INET;
 	my_addr.sin_addr.s_addr = INADDR_ANY;
 	my_addr.sin_port = 0;
-
-	if (bind(sockd, (struct sockaddr*) &my_addr, sizeof(my_addr)) < 0) {
-		perror("bind failed. Error");
-		this->~UDPClient();
-	}
 
 	/* server address */
 	srv_addr.sin_family = AF_INET;
