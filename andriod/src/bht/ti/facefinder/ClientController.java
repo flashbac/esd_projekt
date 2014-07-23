@@ -7,45 +7,43 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
 public class ClientController {
-	
+
 	private String IP;
 	private int Port;
 	private Socket socket;
-	
+
 	private ReciveData reciver;
 	private Thread reciverThread;
-	
+
 	private SendData sender;
 	private Thread senderThread;
-	
+
 	public Handler sendHandler;
 	public Handler reciveHandler;
-	
+
 	private PrintWriter out;
 	private KontrollProtokoll kontrollProtokoll;
-	
+
 	public ClientController(String ip, int Port) {
 		setIP(ip);
 		setPort(Port);
-		
-		reciveHandler = new Handler()
-		{
+
+		reciveHandler = new Handler() {
 			@Override
 			public void handleMessage(Message msg) {
-		    	
-				String read = (String)msg.obj;
-		    	Log.d("MY", "Heander Read: " + read);
-		    	// do something with read
-		    	kontrollProtokoll.VerarbeiteAnfrage(read);	
+
+				String read = (String) msg.obj;
+				Log.d("MY", "Heander Read: " + read);
+				// do something with read
+				kontrollProtokoll.VerarbeiteAnfrage(read);
 			}
-		};	
+		};
 	}
 
 	public void sendKommando(String jsonString) {
@@ -56,8 +54,7 @@ public class ClientController {
 
 	public int connect() {
 		// client = new ClientThread();
-		if (socket != null)
-		{
+		if (socket != null) {
 			try {
 				socket.close();
 			} catch (IOException e) {
@@ -68,11 +65,11 @@ public class ClientController {
 
 		reciver = new ReciveData();
 		sender = new SendData();
-		senderThread = new Thread (sender);
+		senderThread = new Thread(sender);
 		reciverThread = new Thread(reciver);
-		
+
 		ConnectServer cs = new ConnectServer();
-		Thread ts = new Thread (cs);
+		Thread ts = new Thread(cs);
 		ts.start();
 		try {
 			ts.join();
@@ -81,17 +78,15 @@ public class ClientController {
 			e1.printStackTrace();
 		}
 
-		if (socket == null)
-		{
+		if (socket == null) {
 			return -1;
 		}
 		return 0;
 	}
 
 	public void disconnect() {
-		
-		if (socket != null)
-		{
+
+		if (socket != null) {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -105,20 +100,20 @@ public class ClientController {
 				e.printStackTrace();
 			}
 		}
-		
+
 		senderThread = null;
 		reciverThread = null;
-		
+
 		socket = null;
 	}
-	
+
 	class ConnectServer extends Thread {
-		
+
 		@Override
 		public void run() {
 			try {
 				socket = new Socket(getIP(), getPort());
-				
+
 				try {
 					out = new PrintWriter(socket.getOutputStream(), true);
 				} catch (IOException e1) {
@@ -127,7 +122,7 @@ public class ClientController {
 				}
 				senderThread.start();
 				reciverThread.start();
-				
+
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -137,40 +132,37 @@ public class ClientController {
 			}
 
 		}
-		
+
 	}
-	
+
 	class SendData extends Thread {
 		@Override
 		public void run() {
-		
+
 			Looper.prepare();
 			sendHandler = new Handler() {
 				public void handleMessage(Message msg) {
-	                    
-					String tosend = (String)msg.obj;
-        	   
-					if (socket != null)
-					{   
+
+					String tosend = (String) msg.obj;
+
+					if (socket != null) {
 						Log.d("MY", "Socket Send: " + tosend);
 						out.println(tosend + ";");
-					}    	   
-				}   
+					}
+				}
 			};
-	        
+
 			Looper.loop();
 		}
 	}
-	
-	class ReciveData implements Runnable {
-			
-		public ReciveData() {
 
+	class ReciveData implements Runnable {
+
+		public ReciveData() {
 		}
 
 		@Override
 		public void run() {
-
 			if (socket != null) {
 				BufferedReader br = null;
 				try {
@@ -185,33 +177,32 @@ public class ClientController {
 					int item;
 					read = "";
 					while (socket != null) {
-						
-						while ((item = br.read()) != -1 ) {
+						while ((item = br.read()) != -1) {
 							System.out.print((char) item);
 							read += (char) item;
-							if (!br.ready())
-							{
+							if (!br.ready()) {
 								break;
 							}
 						}
-						if (read.compareTo("")!=0) 
-						{
+						if (read.compareTo("") != 0) {
 							int index = read.indexOf(";");
-							while(index >= 0 )
-							{
-								
-								if (read.startsWith("{") && read.charAt(index -1) == '}' ||
-									read.startsWith("[") && read.charAt(index -1) == ']')
-								{
+							while (index >= 0) {
+
+								if (read.startsWith("{")
+										&& read.charAt(index - 1) == '}'
+										|| read.startsWith("[")
+										&& read.charAt(index - 1) == ']') {
 									Message msg = Message.obtain();
 									msg.obj = read.substring(0, index);
 									reciveHandler.sendMessage(msg);
-									Log.d("MY", "Socket Read: " + read.substring(0, index));	
+									Log.d("MY",
+											"Socket Read: "
+													+ read.substring(0, index));
 								}
 								read = read.substring(index + 1);
 								index = read.indexOf(";");
 							}
-							
+
 						}
 					}
 				} catch (IOException e) {
@@ -221,7 +212,7 @@ public class ClientController {
 			}
 		}
 	}
-	
+
 	public String getIP() {
 		return IP;
 	}
@@ -245,5 +236,5 @@ public class ClientController {
 	public void setKontrollProtokoll(KontrollProtokoll kontrollProtokoll) {
 		this.kontrollProtokoll = kontrollProtokoll;
 	}
-	
+
 }

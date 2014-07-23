@@ -126,8 +126,6 @@ public class KontrollProtokoll {
 									innerOb.getString("name"),
 									innerOb.getBoolean("use")));	
 						}
-						
-						
 						break;
 					}
 					case camera:
